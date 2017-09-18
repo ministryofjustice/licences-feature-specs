@@ -1,5 +1,6 @@
 package uk.gov.justice.digital.hmpps.licences.site
 
+import geb.spock.GebReportingSpec
 import groovy.json.JsonSlurper
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.FeedbackPage
@@ -7,7 +8,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.HealthPage
 import uk.gov.justice.digital.hmpps.licences.pages.IndexPage
 
 @Stepwise
-class WebsiteSpec  {
+class WebsiteSpec extends GebReportingSpec {
 
 
     def 'Application title is shown'() {
