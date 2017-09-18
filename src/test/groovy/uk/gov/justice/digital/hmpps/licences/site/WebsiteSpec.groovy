@@ -5,24 +5,15 @@ import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.FeedbackPage
 import uk.gov.justice.digital.hmpps.licences.pages.HealthPage
 import uk.gov.justice.digital.hmpps.licences.pages.IndexPage
-import uk.gov.justice.digital.hmpps.licences.pages.LoggedinPage
-import uk.gov.justice.digital.hmpps.licences.util.SignOnBaseSpec
 
 @Stepwise
-class WebsiteSpec extends SignOnBaseSpec {
+class WebsiteSpec  {
 
-    def setupSpec() {
-        signIn()
-    }
-
-    def cleanupSpec() {
-        signOut()
-    }
 
     def 'Application title is shown'() {
 
         when: 'Viewing the website'
-        to LoggedinPage
+        to IndexPage
 
         then: 'application title is shown'
         header.applicationTitle == 'Licences Application'
@@ -31,7 +22,7 @@ class WebsiteSpec extends SignOnBaseSpec {
     def 'feedback link shows feedback page'() {
 
         given: 'Viewing the website'
-        to LoggedinPage
+        to IndexPage
 
         when: 'I click the feedback link'
         header.feedbackLink.click()
