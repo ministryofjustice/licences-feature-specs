@@ -1,0 +1,17 @@
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+.gradle
+build/
+gradle-app.setting
+.gradletasknamecache
+target/
+.idea
+.DS_Store
+*.iml
+*.ipr
+*.iws
+.gradle
+build/
+gradlew.bat
+out/
+gradle/wrapper/gradle-wrapper.properties
