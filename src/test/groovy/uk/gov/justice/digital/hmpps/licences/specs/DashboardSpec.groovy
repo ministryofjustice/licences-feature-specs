@@ -28,10 +28,10 @@ class DashboardSpec extends GebReportingSpec {
         to DashboardPage
 
         then: 'I see a start button for the not started licence'
-        infoRequiredLicences[0].find('#viewLicence').text() == 'Start'
+        infoRequiredLicences[0].find('.requiredButton').text() == 'Start'
 
         and: 'I see a continue button for the in progress licence'
-        infoRequiredLicences[1].find('#viewLicence').text() == 'Continue'
+        infoRequiredLicences[1].find('.requiredButton').text() == 'Continue'
 
     }
 
