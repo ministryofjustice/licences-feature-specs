@@ -19,6 +19,8 @@ class PrisonerDetailsPage extends Page{
         prisonerKeyDates { $('#keyDates') }
 
         continueBtns { $('#continueBtns') }
+
+        createLicence { continueBtns.find('.requiredButton', 0).click() }
     }
 
 }
