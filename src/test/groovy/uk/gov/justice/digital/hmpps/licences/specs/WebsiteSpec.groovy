@@ -20,21 +20,6 @@ class WebsiteSpec extends GebReportingSpec {
         header.applicationTitle == 'Licences Application'
     }
 
-    def 'feedback link shows feedback page'() {
-
-        given: 'Viewing the website'
-        to IndexPage
-
-        when: 'I click the feedback link'
-        header.feedbackLink.click()
-
-        then: 'I see the feedback page'
-        at FeedbackPage
-
-        and: 'I see an email link'
-        feedbackMailtoLink.isDisplayed()
-    }
-
     def 'health page shows application status'() {
 
         when: 'Viewing the health page'
