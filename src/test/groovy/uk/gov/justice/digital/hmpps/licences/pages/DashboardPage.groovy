@@ -11,6 +11,10 @@ class DashboardPage extends Page{
         header { module(HeaderModule) }
 
         infoRequiredLicences(required: false) { $('tr.infoRequired') }
+
+        viewDetailsFor{ nomisId ->
+            $('a', href: contains(nomisId)).click()
+        }
     }
 
 }

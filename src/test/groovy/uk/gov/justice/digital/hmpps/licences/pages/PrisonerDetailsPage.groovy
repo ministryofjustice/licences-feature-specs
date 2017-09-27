@@ -5,7 +5,7 @@ import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class PrisonerDetailsPage extends Page{
 
-    static url = '/details/A1235HG'
+    static url = '/details/'
 
     static at = {
         browser.currentUrl.contains('/details/')
