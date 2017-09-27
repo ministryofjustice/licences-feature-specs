@@ -9,6 +9,8 @@ class IndexPage extends Page{
 
     static content = {
         header { module(HeaderModule) }
+
+        viewDashboard { $('a', href: contains(dashboard)).click() }
     }
 
 }

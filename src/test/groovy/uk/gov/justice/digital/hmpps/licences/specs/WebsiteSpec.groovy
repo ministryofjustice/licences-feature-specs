@@ -3,7 +3,6 @@ package uk.gov.justice.digital.hmpps.licences.specs
 import geb.spock.GebReportingSpec
 import groovy.json.JsonSlurper
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.FeedbackPage
 import uk.gov.justice.digital.hmpps.licences.pages.HealthPage
 import uk.gov.justice.digital.hmpps.licences.pages.IndexPage
 
