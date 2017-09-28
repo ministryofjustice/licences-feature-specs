@@ -30,6 +30,7 @@ class WebsiteSpec extends GebReportingSpec {
         def response = new JsonSlurper().parseText(json)
 
         response.healthy == true
-        response.checks.dummy == 'ok'
+        response.checks.db == 'ok'
+        response.checks.nomis == 'ok'
     }
 }
