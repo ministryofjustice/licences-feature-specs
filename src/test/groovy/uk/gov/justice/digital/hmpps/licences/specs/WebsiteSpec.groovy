@@ -31,6 +31,6 @@ class WebsiteSpec extends GebReportingSpec {
 
         response.healthy == true
         response.checks.db == 'OK'
-        response.checks.nomis == 'OK'
+        response.checks.licences == 'OK'
     }
 }
