@@ -2,15 +2,15 @@ package uk.gov.justice.digital.hmpps.licences.specs
 
 import geb.spock.GebReportingSpec
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.DashboardPage
+import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 
 @Stepwise
-class DashboardSpec extends GebReportingSpec {
+class TasklistSpec extends GebReportingSpec {
 
     def 'Shows licences requiring information'() {
 
         when: 'I view the dashboard'
-        to DashboardPage
+        to TasklistPage
 
         then: 'I see two licences with information required'
         infoRequiredLicences.size() == 2
@@ -20,7 +20,7 @@ class DashboardSpec extends GebReportingSpec {
     def 'Shows the right button text depending on licence processing status'() {
 
         when: 'I view the dashboard'
-        to DashboardPage
+        to TasklistPage
 
         then: 'I see a start button for the not started licence'
         infoRequiredLicences[0].find('.requiredButton').text() == 'Start'
@@ -41,7 +41,7 @@ class DashboardSpec extends GebReportingSpec {
         ]
 
         when: 'I view the dashboard'
-        to DashboardPage
+        to TasklistPage
 
         then: 'I see the expected data'
         offenderDetails.each { item, value ->

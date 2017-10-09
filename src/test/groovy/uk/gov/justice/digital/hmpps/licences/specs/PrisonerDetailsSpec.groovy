@@ -2,7 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.specs
 
 import geb.spock.GebReportingSpec
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.DashboardPage
+import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
 
 @Stepwise
@@ -62,7 +62,7 @@ class PrisonerDetailsSpec extends GebReportingSpec {
     }
 
     def toDetailsPageFor(nomisId) {
-        to DashboardPage
+        to TasklistPage
         viewDetailsFor(nomisId)
         at PrisonerDetailsPage
     }
