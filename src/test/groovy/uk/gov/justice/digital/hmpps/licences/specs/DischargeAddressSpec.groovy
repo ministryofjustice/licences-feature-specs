@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.specs
 
 import geb.spock.GebReportingSpec
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 import uk.gov.justice.digital.hmpps.licences.pages.DischargeAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
@@ -9,6 +10,10 @@ import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
 @Stepwise
 class DischargeAddressSpec extends GebReportingSpec {
 
+    def setupSpec() {
+        to SigninPage
+        signIn
+    }
 
     def 'Shows personal details of the prisoner'() {
 
