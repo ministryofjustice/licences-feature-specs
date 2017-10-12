@@ -7,11 +7,16 @@ import uk.gov.justice.digital.hmpps.licences.pages.FeedbackPage
 import uk.gov.justice.digital.hmpps.licences.pages.HealthPage
 import uk.gov.justice.digital.hmpps.licences.pages.IndexPage
 import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
+import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 
 @Stepwise
 class WebsiteSpec extends GebReportingSpec {
 
+    def setupSpec() {
+        to SigninPage
+        signIn
+    }
 
     def 'Application title is shown'() {
 
@@ -34,7 +39,7 @@ class WebsiteSpec extends GebReportingSpec {
 
         response.healthy == true
         response.checks.db == 'OK'
-        response.checks.licences == 'OK'
+        response.checks.nomis == 'OK'
     }
 
     def 'feedback link shows feedback page'() {

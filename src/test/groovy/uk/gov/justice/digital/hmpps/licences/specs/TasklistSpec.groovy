@@ -2,10 +2,16 @@ package uk.gov.justice.digital.hmpps.licences.specs
 
 import geb.spock.GebReportingSpec
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 
 @Stepwise
 class TasklistSpec extends GebReportingSpec {
+
+    def setupSpec() {
+        to SigninPage
+        signIn
+    }
 
     def 'Shows licences requiring information'() {
 
