@@ -7,6 +7,10 @@ class TasklistPage extends Page{
 
     static url = '/'
 
+    static at = {
+        browser.currentUrl.equals('/')
+    }
+
     static content = {
         header { module(HeaderModule) }
 

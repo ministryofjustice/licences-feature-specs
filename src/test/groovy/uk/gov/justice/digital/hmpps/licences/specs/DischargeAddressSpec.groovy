@@ -13,6 +13,7 @@ class DischargeAddressSpec extends GebReportingSpec {
     def setupSpec() {
         to SigninPage
         signIn
+        at TasklistPage
     }
 
     def 'Shows personal details of the prisoner'() {
