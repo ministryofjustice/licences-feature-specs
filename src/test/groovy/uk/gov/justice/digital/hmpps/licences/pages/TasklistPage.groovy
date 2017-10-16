@@ -7,6 +7,10 @@ class TasklistPage extends Page{
 
     static url = '/'
 
+    static at = {
+        $("h1").text() == "Upcoming releases"
+    }
+
     static content = {
         header { module(HeaderModule) }
 

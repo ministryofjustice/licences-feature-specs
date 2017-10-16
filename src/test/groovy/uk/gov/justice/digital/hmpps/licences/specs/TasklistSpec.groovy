@@ -9,8 +9,10 @@ import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 class TasklistSpec extends GebReportingSpec {
 
     def setupSpec() {
+        go '/logout'
         to SigninPage
         signIn
+        at TasklistPage
     }
 
     def 'Shows licences requiring information'() {

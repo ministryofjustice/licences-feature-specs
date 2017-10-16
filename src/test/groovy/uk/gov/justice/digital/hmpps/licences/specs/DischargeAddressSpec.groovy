@@ -11,8 +11,10 @@ import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
 class DischargeAddressSpec extends GebReportingSpec {
 
     def setupSpec() {
+        go '/logout'
         to SigninPage
         signIn
+        at TasklistPage
     }
 
     def 'Shows personal details of the prisoner'() {
