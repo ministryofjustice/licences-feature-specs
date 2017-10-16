@@ -8,7 +8,7 @@ class TasklistPage extends Page{
     static url = '/'
 
     static at = {
-        browser.currentUrl.equals('/')
+        $("h1").text() == "Upcoming releases"
     }
 
     static content = {

@@ -9,8 +9,14 @@ class SigninPage extends Page{
 
     static content = {
         signIn {
-            $('form')['username'] = 'any'
-            $('form')['password'] = 'any'
+            $('form').username = 'any'
+            $('form').password = 'any'
+
+            assert $('form').username == 'any'
+            assert $('form').password == 'any'
+
+            assert $('#submit').text() == 'Login'
+
             $('#submit').click()
         }
     }
