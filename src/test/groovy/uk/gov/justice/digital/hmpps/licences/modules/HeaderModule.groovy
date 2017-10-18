@@ -7,7 +7,7 @@ class HeaderModule extends Module {
 
     static content = {
 
-        user { $('#userLoggerIn').text() }
+        user { $('#header-user').text() }
 
         logoutLink {$('a', text: 'Logout')}
     }

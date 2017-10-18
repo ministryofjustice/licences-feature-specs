@@ -17,7 +17,7 @@ class WebsiteSpec extends GebReportingSpec {
         signIn
     }
 
-    def 'User is shown'() {
+    def 'User name is shown'() {
         when: 'Viewing the website'
         to IndexPage
 
