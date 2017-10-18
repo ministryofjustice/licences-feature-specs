@@ -41,10 +41,9 @@ class PrisonerDetailsSpec extends GebReportingSpec {
 
         given:
         def keyDates = [
-                '#sentenceExpires' : '08/02/2018',
-                '#hdcEligibility'  : 'N/A',
-                '#supervisionStart': '09/07/2017',
-                '#supervisionEnd'  : '09/07/2018'
+                '#releaseDate': '10/11/2017',
+                '#licenceExpires'  : '10/06/2018',
+                '#sentenceExpires' : '10/06/2018'
         ]
 
         when: 'I view the personal details page'
@@ -62,10 +61,21 @@ class PrisonerDetailsSpec extends GebReportingSpec {
         toDetailsPageFor('A1235HG')
 
         then: 'I see a continue button'
-        continueBtns.find('.requiredButton', 0).value() == 'Continue'
+        footerButtons.continueButton.value() == 'Continue'
 
         and: 'I see a back to dashboard button'
-        continueBtns.find('.requiredButton', 1).text() == 'Back to dashboard'
+        footerButtons.backButton.text() == 'Back to dashboard'
+    }
+
+    def 'Back to dashboard button goes back to dashboard'() {
+        when: 'I view the personal details page'
+        toDetailsPageFor('A1235HG')
+
+        and: 'I click the back to dashboard button'
+        footerButtons.backButton.click()
+
+        then: 'I go back to the dashboard'
+        at TasklistPage
     }
 
     def toDetailsPageFor(nomisId) {
