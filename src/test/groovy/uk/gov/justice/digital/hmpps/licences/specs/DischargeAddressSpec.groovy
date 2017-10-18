@@ -61,10 +61,21 @@ class DischargeAddressSpec extends GebReportingSpec {
         toDischargeAddressPageFor('A1235HG')
 
         then: 'I see a continue button'
-        continueBtns.find('.requiredButton', 0).value() == 'Continue'
+        footerButtons.continueButton.value() == 'Continue'
 
         and: 'I see a back to dashboard button'
-        continueBtns.find('.requiredButton', 1).text() == 'Back to dashboard'
+        footerButtons.backButton.text() == 'Back to dashboard'
+    }
+
+    def 'Back to dashboard button goes back to dashboard'() {
+        when: 'I view the personal details page'
+        toDischargeAddressPageFor('A1235HG')
+
+        and: 'I click the back to dashboard button'
+        footerButtons.backButton.click()
+
+        then: 'I go back to the dashboard'
+        at TasklistPage
     }
 
     def toDischargeAddressPageFor(nomisId) {

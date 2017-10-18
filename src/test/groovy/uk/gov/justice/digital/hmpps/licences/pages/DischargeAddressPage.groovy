@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.pages
 
 import geb.Page
+import uk.gov.justice.digital.hmpps.licences.modules.ButtonsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class DischargeAddressPage extends Page{
@@ -14,6 +15,8 @@ class DischargeAddressPage extends Page{
     static content = {
         header { module(HeaderModule) }
 
+        footerButtons { module(ButtonsModule) }
+
         dischargeAddressDetails { $('#addressDetails') }
 
         acceptanceForm { $('#acceptanceForm') }
@@ -25,9 +28,6 @@ class DischargeAddressPage extends Page{
         addressForm { $('#addressForm') }
 
         addressFormIsVisible { addressForm.hasClass('js-hidden') }
-
-        continueBtns { $('#continueBtns') }
-
     }
 
 }
