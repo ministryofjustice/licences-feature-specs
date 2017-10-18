@@ -7,8 +7,8 @@ class HeaderModule extends Module {
 
     static content = {
 
-        feedbackLink { $('a', text: 'feedback') }
+        user { $('#userLoggerIn').text() }
 
-        applicationTitle { $('#proposition-name')[0].text() }
+        logoutLink {$('a', text: 'Logout')}
     }
 }

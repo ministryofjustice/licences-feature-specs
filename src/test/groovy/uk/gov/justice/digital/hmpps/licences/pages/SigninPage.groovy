@@ -7,6 +7,10 @@ class SigninPage extends Page{
 
     static url = '/signin'
 
+    static at = {
+        browser.currentUrl.contains('/login')
+    }
+
     static content = {
         signIn {
             $('form').username = 'any'
