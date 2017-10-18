@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.specs
 
 import geb.spock.GebReportingSpec
+import spock.lang.Ignore
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
@@ -25,6 +26,7 @@ class TasklistSpec extends GebReportingSpec {
 
     }
 
+    @Ignore
     def 'Shows the right button text depending on licence processing status'() {
 
         when: 'I view the dashboard'
