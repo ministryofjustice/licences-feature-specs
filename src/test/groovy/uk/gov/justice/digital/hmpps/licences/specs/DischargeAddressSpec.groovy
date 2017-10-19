@@ -22,6 +22,7 @@ class DischargeAddressSpec extends GebReportingSpec {
 
     def cleanupSpec() {
         actions.logOut()
+        testData.deleteLicences()
     }
 
     def 'Shows personal details of the prisoner'() {
