@@ -2,21 +2,32 @@ package uk.gov.justice.digital.hmpps.licences.specs
 
 import geb.spock.GebReportingSpec
 import spock.lang.Ignore
+import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
+import uk.gov.justice.digital.hmpps.licences.util.Actions
+import uk.gov.justice.digital.hmpps.licences.util.Database
+import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
 class TasklistSpec extends GebReportingSpec {
 
+    @Shared TestData testData = new TestData()
+    @Shared Actions actions = new Actions()
+
     def setupSpec() {
-        go '/logout'
-        to SigninPage
-        signIn
-        at TasklistPage
+        actions.logIn()
+    }
+
+    def cleanupSpec() {
+        actions.logOut()
     }
 
     def 'Shows licences requiring information'() {
+
+        given: 'No licences started'
+        testData.deleteLicences()
 
         when: 'I view the dashboard'
         to TasklistPage
@@ -26,8 +37,10 @@ class TasklistSpec extends GebReportingSpec {
 
     }
 
-    @Ignore
     def 'Shows the right button text depending on licence processing status'() {
+
+        given: 'Licence for A6627JH has been started'
+        testData.createLicence(['nomisId' : 'A6627JH'])
 
         when: 'I view the dashboard'
         to TasklistPage

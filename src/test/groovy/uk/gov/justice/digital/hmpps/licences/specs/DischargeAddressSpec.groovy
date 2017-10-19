@@ -1,20 +1,27 @@
 package uk.gov.justice.digital.hmpps.licences.specs
 
 import geb.spock.GebReportingSpec
+import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 import uk.gov.justice.digital.hmpps.licences.pages.DischargeAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
+import uk.gov.justice.digital.hmpps.licences.util.Actions
+import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
 class DischargeAddressSpec extends GebReportingSpec {
 
+    @Shared TestData testData = new TestData()
+    @Shared Actions actions = new Actions()
+
     def setupSpec() {
-        go '/logout'
-        to SigninPage
-        signIn
-        at TasklistPage
+        actions.logIn()
+    }
+
+    def cleanupSpec() {
+        actions.logOut()
     }
 
     def 'Shows personal details of the prisoner'() {
@@ -28,7 +35,8 @@ class DischargeAddressSpec extends GebReportingSpec {
         ]
 
         when: 'I view the discharge address page'
-        toDischargeAddressPageFor('A1235HG')
+        actions.toDischargeAddressPageFor('A1235HG')
+        at DischargeAddressPage
 
         then: 'I see the expected personal details data'
         dischargeAddressItems.each { item, value ->
@@ -39,7 +47,7 @@ class DischargeAddressSpec extends GebReportingSpec {
     def 'Reveals form if I click yes radio, hides if click no'() {
 
         when: 'I view the personal details page'
-        toDischargeAddressPageFor('A1235HG')
+        at DischargeAddressPage
 
         and: 'I click radio yes'
         radioYes.click()
@@ -58,7 +66,7 @@ class DischargeAddressSpec extends GebReportingSpec {
     def 'Shows the buttons to continue and to return to dashboard'() {
 
         when: 'I view the personal details page'
-        toDischargeAddressPageFor('A1235HG')
+        at DischargeAddressPage
 
         then: 'I see a continue button'
         footerButtons.continueButton.value() == 'Continue'
@@ -68,21 +76,14 @@ class DischargeAddressSpec extends GebReportingSpec {
     }
 
     def 'Back to dashboard button goes back to dashboard'() {
+
         when: 'I view the personal details page'
-        toDischargeAddressPageFor('A1235HG')
+        at DischargeAddressPage
 
         and: 'I click the back to dashboard button'
         footerButtons.backButton.click()
 
         then: 'I go back to the dashboard'
         at TasklistPage
-    }
-
-    def toDischargeAddressPageFor(nomisId) {
-        to TasklistPage
-        viewDetailsFor(nomisId)
-        at PrisonerDetailsPage
-        createLicence()
-        at DischargeAddressPage
     }
 }
