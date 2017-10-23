@@ -23,9 +23,9 @@ class DischargeAddressSpec extends GebReportingSpec {
         given:
         def dischargeAddressItems = [
                 '#address1'         : '19 Grantham Road',
-                '#contact'          : 'Alison Andrews',
-                '#contactNumber'    : '07889814455',
-                '#homeAddress'      : 'No'
+//                '#contact'          : 'Alison Andrews',
+//                '#contactNumber'    : '07889814455',
+//                '#homeAddress'      : 'No'
         ]
 
         when: 'I view the discharge address page'
