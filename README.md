@@ -10,6 +10,7 @@ The following environment variables must be set:
 * TEST_DB_SERVER - eg localhost
 * TEST_DB_USER - eg SA
 * TEST_DB_PASS - eg password
+* TEST_DB - eg licences
 
 Note that you can set values for the Database environment variables in a config.properties file in the project root.
 
