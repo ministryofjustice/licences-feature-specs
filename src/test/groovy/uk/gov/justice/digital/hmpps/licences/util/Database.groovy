@@ -23,9 +23,10 @@ class Database {
         def server = System.env.TEST_DB_SERVER ?: properties.TEST_DB_SERVER
         def user = System.env.TEST_DB_USER ?: properties.TEST_DB_USER
         def password = System.env.TEST_DB_PASS ?: properties.TEST_DB_PASS
+        def database = System.env.TEST_DB ?: properties.TEST_DB
 
         def driver = 'net.sourceforge.jtds.jdbc.Driver'
-        def url = "jdbc:jtds:sqlserver://$server/licences"
+        def url = "jdbc:jtds:sqlserver://$server/$database"
 
         println "Connecting to: $url"
 
