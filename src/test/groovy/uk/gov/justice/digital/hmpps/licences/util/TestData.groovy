@@ -15,6 +15,6 @@ class TestData {
     }
 
     def createLicence(Map<String, String> data) {
-        licences.create(JsonOutput.toJson(data), data.nomisId)
+        licences.create(JsonOutput.toJson(data), data.nomisId, 'STARTED')
     }
 }
