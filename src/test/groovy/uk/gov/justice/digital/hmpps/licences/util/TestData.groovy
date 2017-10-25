@@ -14,7 +14,7 @@ class TestData {
         licences.deleteAll()
     }
 
-    def createLicence(Map<String, String> data) {
-        licences.create(JsonOutput.toJson(data), data.nomisId, 'STARTED')
+    def createLicence(Map<String, String> data, status) {
+        licences.create(JsonOutput.toJson(data), data.nomisId, status)
     }
 }
