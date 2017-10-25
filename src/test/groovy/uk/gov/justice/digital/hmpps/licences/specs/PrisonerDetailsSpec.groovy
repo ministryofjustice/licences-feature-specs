@@ -1,19 +1,27 @@
 package uk.gov.justice.digital.hmpps.licences.specs
 
 import geb.spock.GebReportingSpec
+import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
+import uk.gov.justice.digital.hmpps.licences.util.Actions
+import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
 class PrisonerDetailsSpec extends GebReportingSpec {
 
+    @Shared TestData testData = new TestData()
+    @Shared Actions actions = new Actions()
+
     def setupSpec() {
-        go '/logout'
-        to SigninPage
-        signIn
-        at TasklistPage
+        actions.logIn()
+    }
+
+    def cleanupSpec() {
+        actions.logOut()
+        testData.deleteLicences()
     }
 
     def 'Shows personal details of the prisoner'() {
@@ -29,7 +37,8 @@ class PrisonerDetailsSpec extends GebReportingSpec {
         ]
 
         when: 'I view the personal details page'
-        toDetailsPageFor('A1235HG')
+        actions.toDetailsPageFor('A1235HG')
+        at PrisonerDetailsPage
 
         then: 'I see the expected personal details data'
         prisonerDetails.each { item, value ->
@@ -47,7 +56,7 @@ class PrisonerDetailsSpec extends GebReportingSpec {
         ]
 
         when: 'I view the personal details page'
-        toDetailsPageFor('A1235HG')
+        at PrisonerDetailsPage
 
         then: 'I see the key dates data'
         keyDates.each { item, value ->
@@ -58,7 +67,7 @@ class PrisonerDetailsSpec extends GebReportingSpec {
     def 'Shows the buttons to continue and to return to dashboard'() {
 
         when: 'I view the personal details page'
-        toDetailsPageFor('A1235HG')
+        at PrisonerDetailsPage
 
         then: 'I see a continue button'
         footerButtons.continueButton.value() == 'Continue'
@@ -68,19 +77,14 @@ class PrisonerDetailsSpec extends GebReportingSpec {
     }
 
     def 'Back to dashboard button goes back to dashboard'() {
+
         when: 'I view the personal details page'
-        toDetailsPageFor('A1235HG')
+        at PrisonerDetailsPage
 
         and: 'I click the back to dashboard button'
         footerButtons.backButton.click()
 
         then: 'I go back to the dashboard'
         at TasklistPage
-    }
-
-    def toDetailsPageFor(nomisId) {
-        to TasklistPage
-        viewDetailsFor(nomisId)
-        at PrisonerDetailsPage
     }
 }
