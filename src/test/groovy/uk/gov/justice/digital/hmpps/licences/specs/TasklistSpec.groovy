@@ -41,7 +41,7 @@ class TasklistSpec extends GebReportingSpec {
     def 'Shows the right button text depending on licence processing status'() {
 
         given: 'Licence for A6627JH has been started'
-        testData.createLicence(['nomisId' : 'A6627JH'])
+        testData.createLicence(['nomisId' : 'A6627JH'], 'STARTED')
 
         when: 'I view the dashboard'
         to TasklistPage

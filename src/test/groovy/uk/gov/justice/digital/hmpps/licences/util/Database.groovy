@@ -38,8 +38,8 @@ class Database {
         sql.execute('DELETE FROM LICENCES')
     }
 
-    def create(licence, nomisId) {
+    def create(licence, nomisId, status) {
         println "create $licence : $nomisId"
-        sql.execute('INSERT INTO LICENCES VALUES (?,?)', [licence, nomisId])
+        sql.execute('INSERT INTO LICENCES VALUES (?,?, ?)', [licence, nomisId, status])
     }
 }
