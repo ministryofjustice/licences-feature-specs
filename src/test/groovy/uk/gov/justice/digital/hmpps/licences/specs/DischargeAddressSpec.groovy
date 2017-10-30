@@ -26,14 +26,12 @@ class DischargeAddressSpec extends GebReportingSpec {
         testData.deleteLicences()
     }
 
-    def 'Shows personal details of the prisoner'() {
+    @Ignore
+    def 'Shows discharge address from nomis'() {
 
         given:
         def dischargeAddressItems = [
-                '#address1'         : '19 Grantham Road',
-//                '#contact'          : 'Alison Andrews',
-//                '#contactNumber'    : '07889814455',
-//                '#homeAddress'      : 'No'
+                '#address1'         : '19 Grantham Road'
         ]
 
         when: 'I view the discharge address page'
@@ -69,6 +67,7 @@ class DischargeAddressSpec extends GebReportingSpec {
     def 'Shows the buttons to continue and to return to dashboard'() {
 
         when: 'I view the personal details page'
+        actions.toDischargeAddressPageFor('A1235HG')
         at DischargeAddressPage
 
         then: 'I see a continue button'
