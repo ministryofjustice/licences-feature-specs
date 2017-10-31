@@ -93,7 +93,7 @@ class AdditionalConditionsSpec extends GebReportingSpec {
     @Ignore // pending change button from link to form submit
     def 'Shows the buttons to continue and to return to dashboard'() {
 
-        when: 'I view the additional conditions page'
+        when: 'I view the page'
         actions.toAdditionalConditionsPageFor('A1235HG')
         at AdditionalConditionsPage
 
@@ -106,7 +106,7 @@ class AdditionalConditionsSpec extends GebReportingSpec {
 
     def 'Back to dashboard button goes back to dashboard'() {
 
-        when: 'I view the additional conditions page'
+        when: 'I view the page'
         actions.toAdditionalConditionsPageFor('A1235HG')
         at AdditionalConditionsPage
 

@@ -91,7 +91,7 @@ class DischargeAddressSpec extends GebReportingSpec {
 
     def 'Shows the buttons to continue and to return to dashboard'() {
 
-        when: 'I view the discharge address page'
+        when: 'I view the page'
         actions.toDischargeAddressPageFor('A1235HG')
         at DischargeAddressPage
 
@@ -104,7 +104,7 @@ class DischargeAddressSpec extends GebReportingSpec {
 
     def 'Back to dashboard button goes back to dashboard'() {
 
-        when: 'I view the personal details page'
+        when: 'I view the page'
         at DischargeAddressPage
 
         and: 'I click the back to dashboard button'

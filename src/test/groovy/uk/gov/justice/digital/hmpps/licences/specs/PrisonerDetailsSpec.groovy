@@ -69,7 +69,7 @@ class PrisonerDetailsSpec extends GebReportingSpec {
 
     def 'Shows the buttons to continue and to return to dashboard'() {
 
-        when: 'I view the prisoner details page'
+        when: 'I view the page'
         at PrisonerDetailsPage
 
         then: 'I see a continue button'
@@ -81,7 +81,7 @@ class PrisonerDetailsSpec extends GebReportingSpec {
 
     def 'Back to dashboard button goes back to dashboard'() {
 
-        when: 'I view the prisoner details page'
+        when: 'I view the page'
         at PrisonerDetailsPage
 
         and: 'I click the back to dashboard button'
