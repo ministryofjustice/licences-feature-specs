@@ -6,8 +6,6 @@ import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class DischargeAddressPage extends Page{
 
-    static url = '/dischargeAddress/AB111111'
-
     static at = {
         browser.currentUrl.contains('/dischargeAddress/')
     }
