@@ -16,6 +16,12 @@ class AdditionalConditionsPage extends Page{
         footerButtons { module(ButtonsModule) }
 
         standardConditionsLink { $('a', href: contains('standard')) }
+
+        noAdditionalConditions { $('a', text: 'No additional conditions required') }
+
+        selectCondition { conditionId ->
+            $('label', for: 'check-' + conditionId).click()
+        }
     }
 
 }
