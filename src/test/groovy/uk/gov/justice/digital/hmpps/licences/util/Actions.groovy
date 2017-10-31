@@ -4,6 +4,7 @@ import geb.Browser
 import uk.gov.justice.digital.hmpps.licences.pages.AdditionalConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.DischargeAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
+import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 
@@ -47,6 +48,15 @@ class Actions {
             at DischargeAddressPage
             footerButtons.clickContinue
             at AdditionalConditionsPage
+        }
+    }
+
+    def toReportingInstructionsPageFor(nomisId) {
+        toAdditionalConditionsPageFor(nomisId)
+        Browser.drive {
+            at AdditionalConditionsPage
+            footerButtons.clickContinue
+            at ReportingInstructionsPage
         }
     }
 }

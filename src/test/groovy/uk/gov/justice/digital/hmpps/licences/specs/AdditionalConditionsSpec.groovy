@@ -106,7 +106,7 @@ class AdditionalConditionsSpec extends GebReportingSpec {
 
     def 'Back to dashboard button goes back to dashboard'() {
 
-        when: 'I view the prisoner details page'
+        when: 'I view the additional conditions page'
         actions.toAdditionalConditionsPageFor('A1235HG')
         at AdditionalConditionsPage
 

@@ -27,7 +27,7 @@ class DischargeAddressPage extends Page{
 
         addressFormIsVisible { addressForm.hasClass('js-hidden') }
 
-        usingAddress { criteria ->
+        usingFormInputs { criteria ->
             criteria.each { key, value ->
                 $('form')[key] = value
             }

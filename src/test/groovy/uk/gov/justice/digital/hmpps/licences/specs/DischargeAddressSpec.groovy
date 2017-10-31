@@ -33,7 +33,7 @@ class DischargeAddressSpec extends GebReportingSpec {
         at DischargeAddressPage
 
         when: 'I enter the address details'
-        usingAddress([
+        usingFormInputs([
                 address1 : 'line 1',
                 address2 : 'line 2',
                 address3 : 'line 3',
