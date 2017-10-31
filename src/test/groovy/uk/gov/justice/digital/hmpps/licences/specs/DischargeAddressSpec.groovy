@@ -65,7 +65,7 @@ class DischargeAddressSpec extends GebReportingSpec {
 
         then: 'I see the expected personal details data'
         dischargeAddressItems.each { item, value ->
-            dischargeAddressDetails.find(item).text() == value
+            assert dischargeAddressDetails.find(item).text() == value
         }
     }
 

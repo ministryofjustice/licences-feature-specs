@@ -69,7 +69,7 @@ class TasklistSpec extends GebReportingSpec {
 
         then: 'I see the expected data'
         offenderDetails.each { item, value ->
-            infoRequiredLicences[0].find(item).text() == value
+            assert infoRequiredLicences[0].find(item).text() == value
         }
     }
 
