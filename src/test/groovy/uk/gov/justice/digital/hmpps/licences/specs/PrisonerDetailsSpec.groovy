@@ -82,7 +82,7 @@ class PrisonerDetailsSpec extends GebReportingSpec {
         at PrisonerDetailsPage
 
         and: 'I click the back to dashboard button'
-        footerButtons.backButton.click()
+        footerButtons.clickBack
 
         then: 'I go back to the dashboard'
         at TasklistPage

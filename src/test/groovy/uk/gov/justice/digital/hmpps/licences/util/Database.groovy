@@ -40,6 +40,10 @@ class Database {
 
     def create(licence, nomisId, status) {
         println "create $licence : $nomisId"
-        sql.execute('INSERT INTO LICENCES VALUES (?,?, ?)', [licence, nomisId, status])
+        sql.execute('INSERT INTO LICENCES VALUES (?,?,?)', [licence, nomisId, status])
+    }
+
+    def find(nomisId) {
+        return sql.firstRow("SELECT * FROM LICENCES WHERE NOMIS_ID like (?)", nomisId)
     }
 }
