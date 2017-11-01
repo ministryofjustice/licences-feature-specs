@@ -67,7 +67,7 @@ class ReportingInstructionsSpec extends GebReportingSpec {
 
     def 'Shows the buttons to continue and to return to dashboard'() {
 
-        when: 'I view the reporting instructions page'
+        when: 'I view the page'
         actions.toReportingInstructionsPageFor('A1235HG')
         at ReportingInstructionsPage
 
@@ -80,7 +80,7 @@ class ReportingInstructionsSpec extends GebReportingSpec {
 
     def 'Back to dashboard button goes back to dashboard'() {
 
-        when: 'I view the reporting instructions page'
+        when: 'I view the page'
         at ReportingInstructionsPage
 
         and: 'I click the back to dashboard button'
