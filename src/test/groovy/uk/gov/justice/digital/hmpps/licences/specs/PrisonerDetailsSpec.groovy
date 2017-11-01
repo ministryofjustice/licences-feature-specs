@@ -12,8 +12,11 @@ import uk.gov.justice.digital.hmpps.licences.util.TestData
 @Stepwise
 class PrisonerDetailsSpec extends GebReportingSpec {
 
-    @Shared TestData testData = new TestData()
-    @Shared Actions actions = new Actions()
+    @Shared
+    TestData testData = new TestData()
+
+    @Shared
+    Actions actions = new Actions()
 
     def setupSpec() {
         actions.logIn()
@@ -24,7 +27,7 @@ class PrisonerDetailsSpec extends GebReportingSpec {
         testData.deleteLicences()
     }
 
-    def 'Shows personal details of the prisoner'() {
+    def 'Shows details of the prisoner'() {
 
         given:
         def prisonerDetails = [
@@ -36,13 +39,13 @@ class PrisonerDetailsSpec extends GebReportingSpec {
                 '#prisonerLocation'    : 'HB1 | L2 | Cell 3'
         ]
 
-        when: 'I view the personal details page'
+        when: 'I view the prisoner details page'
         actions.toDetailsPageFor('A1235HG')
         at PrisonerDetailsPage
 
-        then: 'I see the expected personal details data'
+        then: 'I see the expected prisoner details data'
         prisonerDetails.each { item, value ->
-            prisonerPersonalDetails.find(item).text() == value
+            assert prisonerPersonalDetails.find(item).text() == value
         }
     }
 
@@ -50,23 +53,23 @@ class PrisonerDetailsSpec extends GebReportingSpec {
 
         given:
         def keyDates = [
-                '#releaseDate': '10/11/2017',
-                '#licenceExpires'  : '10/06/2018',
-                '#sentenceExpires' : '10/06/2018'
+                '#releaseDate'    : '10/11/2017',
+                '#licenceExpires' : '10/06/2018',
+                '#sentenceExpires': '10/06/2018'
         ]
 
-        when: 'I view the personal details page'
+        when: 'I view the prisoner details page'
         at PrisonerDetailsPage
 
         then: 'I see the key dates data'
         keyDates.each { item, value ->
-            prisonerKeyDates.find(item).text() == value
+            assert prisonerKeyDates.find(item).text() == value
         }
     }
 
     def 'Shows the buttons to continue and to return to dashboard'() {
 
-        when: 'I view the personal details page'
+        when: 'I view the prisoner details page'
         at PrisonerDetailsPage
 
         then: 'I see a continue button'
@@ -78,7 +81,7 @@ class PrisonerDetailsSpec extends GebReportingSpec {
 
     def 'Back to dashboard button goes back to dashboard'() {
 
-        when: 'I view the personal details page'
+        when: 'I view the prisoner details page'
         at PrisonerDetailsPage
 
         and: 'I click the back to dashboard button'
