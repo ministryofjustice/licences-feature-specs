@@ -5,8 +5,6 @@ import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class TasklistPage extends Page{
 
-    static url = '/'
-
     static at = {
         $("#pageHeading").text() == "Upcoming releases"
     }

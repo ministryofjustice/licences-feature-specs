@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.util
 
 import geb.Browser
+import uk.gov.justice.digital.hmpps.licences.pages.AdditionalConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.DischargeAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
@@ -9,7 +10,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 
 class Actions {
 
-    def logIn(){
+    def logIn() {
         Browser.drive {
             to SigninPage
             signIn
@@ -37,6 +38,15 @@ class Actions {
             at PrisonerDetailsPage
             footerButtons.clickContinue
             at DischargeAddressPage
+        }
+    }
+
+    def toAdditionalConditionsPageFor(nomisId) {
+        toDischargeAddressPageFor(nomisId)
+        Browser.drive {
+            at DischargeAddressPage
+            footerButtons.clickContinue
+            at AdditionalConditionsPage
         }
     }
 }

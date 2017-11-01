@@ -5,8 +5,6 @@ import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class SigninPage extends Page{
 
-    static url = '/signin'
-
     static at = {
         browser.currentUrl.contains('/login')
     }
