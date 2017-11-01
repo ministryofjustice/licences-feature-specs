@@ -14,6 +14,12 @@ class ReportingInstructionsPage extends Page{
         header { module(HeaderModule) }
 
         footerButtons { module(ButtonsModule) }
+
+        usingFormInputs { criteria ->
+            criteria.each { key, value ->
+                $('form')[key] = value
+            }
+        }
     }
 
 }
