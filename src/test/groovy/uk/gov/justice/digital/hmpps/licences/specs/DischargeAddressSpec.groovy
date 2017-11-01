@@ -26,6 +26,31 @@ class DischargeAddressSpec extends GebReportingSpec {
         testData.deleteLicences()
     }
 
+    def 'I can enter an address and it is saved to the licence'() {
+
+        given:
+        actions.toDischargeAddressPageFor('A1235HG')
+        at DischargeAddressPage
+
+        when: 'I enter the address details'
+        usingAddress([
+                address1 : 'line 1',
+                address2 : 'line 2',
+                address3 : 'line 3',
+                postCode : 'post code',
+        ])
+
+        and: 'I continue'
+        footerButtons.clickContinue
+
+        then: 'The address is saved to the database'
+        def result = testData.findLicenceFor('A1235HG').dischargeAddress
+        result.address1 == 'line 1'
+        result.address2 == 'line 2'
+        result.address3 == 'line 3'
+        result.postCode == 'post code'
+    }
+
     @Ignore
     def 'Shows discharge address from nomis'() {
 
@@ -66,7 +91,7 @@ class DischargeAddressSpec extends GebReportingSpec {
 
     def 'Shows the buttons to continue and to return to dashboard'() {
 
-        when: 'I view the personal details page'
+        when: 'I view the discharge address page'
         actions.toDischargeAddressPageFor('A1235HG')
         at DischargeAddressPage
 
@@ -83,7 +108,7 @@ class DischargeAddressSpec extends GebReportingSpec {
         at DischargeAddressPage
 
         and: 'I click the back to dashboard button'
-        footerButtons.backButton.click()
+        footerButtons.clickBack
 
         then: 'I go back to the dashboard'
         at TasklistPage

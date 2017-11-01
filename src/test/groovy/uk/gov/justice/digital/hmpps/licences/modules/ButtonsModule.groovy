@@ -9,5 +9,8 @@ class ButtonsModule extends Module {
         continueBtns { $('#continueBtns') }
         continueButton { continueBtns.find('.requiredButton', 0) }
         backButton { continueBtns.find('.requiredButton', 1) }
+
+        clickContinue { continueButton.click() }
+        clickBack { backButton.click() }
     }
 }

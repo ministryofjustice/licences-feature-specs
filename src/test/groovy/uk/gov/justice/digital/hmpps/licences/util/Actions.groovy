@@ -35,7 +35,7 @@ class Actions {
         toDetailsPageFor(nomisId)
         Browser.drive {
             at PrisonerDetailsPage
-            createLicence()
+            footerButtons.clickContinue
             at DischargeAddressPage
         }
     }

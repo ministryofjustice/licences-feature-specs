@@ -20,8 +20,6 @@ class PrisonerDetailsPage extends Page{
         prisonerPersonalDetails { $('#personalDetails') }
 
         prisonerKeyDates { $('#keyDates') }
-
-        createLicence { footerButtons.continueButton.click() }
     }
 
 }
