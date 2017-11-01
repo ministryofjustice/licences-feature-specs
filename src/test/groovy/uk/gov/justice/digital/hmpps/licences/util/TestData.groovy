@@ -23,4 +23,8 @@ class TestData {
         def licence = licences.find(nomisId).LICENCE.asciiStream.text
         return new JsonSlurper().parseText(licence)
     }
+
+    def findLicenceStatusFor(nomisId) {
+        return licences.find(nomisId).STATUS
+    }
 }
