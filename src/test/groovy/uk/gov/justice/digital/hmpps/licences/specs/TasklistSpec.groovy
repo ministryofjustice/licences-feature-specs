@@ -35,7 +35,6 @@ class TasklistSpec extends GebReportingSpec {
 
         then: 'I see two licences with information required'
         infoRequiredLicences.size() == 2
-
     }
 
     def 'Shows the right button text depending on licence processing status'() {
@@ -73,4 +72,31 @@ class TasklistSpec extends GebReportingSpec {
         }
     }
 
+    def 'Shows licences awaiting OMU approval'() {
+
+        given:
+        def offenderDetails = [
+                '.awaitingName'         : 'Andrews, Mark',
+                '.awaitingNomisId'      : 'A1235HG',
+                '.awaitingEstablishment': 'HMP Manchester',
+                '.awaitingDischargeDate': '01/11/2017'
+        ]
+
+        and: 'A sent licence'
+        testData.createLicence([
+                'nomisId'         : 'A1235HG',
+                'agencyLocationId': 'ABC'
+        ], 'SENT')
+
+        when: 'I view the dashboard'
+        to TasklistPage
+
+        then: 'I see the licence awaiting approval'
+        awaitingApprovalLicences.size() == 1
+
+        and: 'I see the expected data'
+        offenderDetails.each { item, value ->
+            assert awaitingApprovalLicences[0].find(item).text() == value
+        }
+    }
 }
