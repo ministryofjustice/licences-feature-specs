@@ -4,6 +4,7 @@ import geb.spock.GebReportingSpec
 import groovy.json.JsonSlurper
 import spock.lang.Shared
 import spock.lang.Stepwise
+import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.licences.pages.HealthPage
 import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
@@ -15,27 +16,38 @@ import uk.gov.justice.digital.hmpps.licences.util.TestData
 @Stepwise
 class WebsiteSpec extends GebReportingSpec {
 
-    @Shared TestData testData = new TestData()
-    @Shared Actions actions = new Actions()
-
-    def setupSpec() {
-        actions.logIn()
-    }
+    @Shared
+    TestData testData = new TestData()
+    @Shared
+    Actions actions = new Actions()
 
     def cleanupSpec() {
         actions.logOut()
     }
 
-    def 'User name is shown'() {
+    @Unroll
+    def 'Correct user name is shown when I log in as #user'() {
+
+        given: 'I log in as an OM'
+        actions.logIn(user)
+
         when: 'Viewing the website'
         to IndexPage
 
-        then: 'logged in user is shown'
-        header.user.contains('staff, user')
+        then: 'logged in user name is shown'
+        header.user.contains(userName)
+        actions.logOut()
+
+        where:
+        user  | userName
+        'OM'  | 'User, OM'
+        'OMU' | 'User, OMU'
+        'PM'  | 'User, PM'
     }
 
     def 'User can log out'() {
         given: 'I am viewing the website'
+        actions.logIn()
         to IndexPage
 
         when: 'I click the logout link'
@@ -45,7 +57,7 @@ class WebsiteSpec extends GebReportingSpec {
         at SigninPage
     }
 
-    def 'health page shows application status'() {
+    def 'Health page shows application status'() {
 
         when: 'Viewing the health page'
         to HealthPage

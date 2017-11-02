@@ -12,10 +12,10 @@ import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
 
 class Actions {
 
-    def logIn() {
+    def logIn(user = 'OM') {
         Browser.drive {
             to SigninPage
-            signIn
+            signInAs(user)
             at TasklistPage
         }
     }
