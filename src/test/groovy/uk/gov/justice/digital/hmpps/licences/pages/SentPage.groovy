@@ -4,10 +4,10 @@ import geb.Page
 import uk.gov.justice.digital.hmpps.licences.modules.ButtonsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class ReviewInformationPage extends Page{
+class SentPage extends Page{
 
     static at = {
-        browser.currentUrl.contains('/licenceDetails/')
+        browser.currentUrl.contains('/sent/')
     }
 
     static content = {
@@ -15,8 +15,8 @@ class ReviewInformationPage extends Page{
 
         footerButtons { module(ButtonsModule) }
 
-        dischargeAddress { $('#dischargeAddress').text() }
-        reportName { $('#reportName').text() }
+        agencyName { $('#agencyName').text() }
+        agencyTel { $('#agencyTel').text() }
     }
 
 }

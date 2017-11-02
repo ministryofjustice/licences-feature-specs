@@ -13,6 +13,7 @@ class TasklistPage extends Page{
         header { module(HeaderModule) }
 
         infoRequiredLicences(required: false) { $('tr.infoRequired') }
+        awaitingApprovalLicences(required: false) { $('tr.awaitingApproval') }
 
         viewDetailsFor{ nomisId ->
             $('a', href: contains(nomisId)).click()
