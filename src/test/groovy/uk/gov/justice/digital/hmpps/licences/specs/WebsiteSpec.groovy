@@ -28,13 +28,11 @@ class WebsiteSpec extends GebReportingSpec {
     @Unroll
     def 'Correct user name is shown when I log in as #user'() {
 
-        given: 'I log in as an OM'
+        when: 'I log in as an OM'
         actions.logIn(user)
-
-        when: 'Viewing the website'
         to IndexPage
 
-        then: 'logged in user name is shown'
+        then: 'my user name is shown'
         header.user.contains(userName)
         actions.logOut()
 
@@ -45,7 +43,18 @@ class WebsiteSpec extends GebReportingSpec {
         'PM'  | 'User, PM'
     }
 
+    def 'Login prevented for user without licences role'() {
+
+        when: 'I log in as a Nomis user without Licences roles'
+        to SigninPage
+        signInAs('NONE')
+
+        then: 'Log in fails and I see the log in screen'
+        at SigninPage
+    }
+
     def 'User can log out'() {
+
         given: 'I am viewing the website'
         actions.logIn()
         to IndexPage
