@@ -18,7 +18,7 @@ class DischargeAddressSpec extends GebReportingSpec {
     @Shared Actions actions = new Actions()
 
     def setupSpec() {
-        actions.logIn()
+        actions.logIn('OM')
     }
 
     def cleanupSpec() {
@@ -111,6 +111,6 @@ class DischargeAddressSpec extends GebReportingSpec {
         footerButtons.clickBack
 
         then: 'I go back to the dashboard'
-        at TasklistPage
+        at(new TasklistPage(forUser: 'OM'))
     }
 }

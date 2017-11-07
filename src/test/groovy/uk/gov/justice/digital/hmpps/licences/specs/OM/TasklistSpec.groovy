@@ -17,7 +17,7 @@ class TasklistSpec extends GebReportingSpec {
     @Shared Actions actions = new Actions()
 
     def setupSpec() {
-        actions.logIn()
+        actions.logIn('OM')
     }
 
     def cleanupSpec() {
@@ -31,7 +31,7 @@ class TasklistSpec extends GebReportingSpec {
         testData.deleteLicences()
 
         when: 'I view the dashboard'
-        to TasklistPage
+        via TasklistPage
 
         then: 'I see two licences with information required'
         infoRequiredLicences.size() == 2
@@ -43,7 +43,7 @@ class TasklistSpec extends GebReportingSpec {
         testData.createLicence(['nomisId' : 'A6627JH'], 'STARTED')
 
         when: 'I view the dashboard'
-        to TasklistPage
+        via TasklistPage
 
         then: 'I see a start button for the not started licence'
         infoRequiredLicences[0].find('.requiredButton').text() == 'Start'
@@ -64,7 +64,7 @@ class TasklistSpec extends GebReportingSpec {
         ]
 
         when: 'I view the dashboard'
-        to TasklistPage
+        via TasklistPage
 
         then: 'I see the expected data'
         offenderDetails.each { item, value ->
@@ -76,10 +76,10 @@ class TasklistSpec extends GebReportingSpec {
 
         given:
         def offenderDetails = [
-                '.awaitingName'         : 'Andrews, Mark',
-                '.awaitingNomisId'      : 'A1235HG',
-                '.awaitingEstablishment': 'HMP Manchester',
-                '.awaitingDischargeDate': '01/11/2017'
+                '.sentName'         : 'Andrews, Mark',
+                '.sentNomisId'      : 'A1235HG',
+                '.sentEstablishment': 'HMP Manchester',
+                '.sentDischargeDate': '01/11/2017'
         ]
 
         and: 'A sent licence'
@@ -89,7 +89,7 @@ class TasklistSpec extends GebReportingSpec {
         ], 'SENT')
 
         when: 'I view the dashboard'
-        to TasklistPage
+        via TasklistPage
 
         then: 'I see the licence awaiting approval'
         awaitingApprovalLicences.size() == 1

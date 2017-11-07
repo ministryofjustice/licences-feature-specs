@@ -20,7 +20,7 @@ class SendSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        actions.logIn()
+        actions.logIn('OM')
     }
 
     def cleanupSpec() {

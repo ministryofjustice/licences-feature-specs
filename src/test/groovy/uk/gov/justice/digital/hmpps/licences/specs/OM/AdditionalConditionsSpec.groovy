@@ -22,7 +22,7 @@ class AdditionalConditionsSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        actions.logIn()
+        actions.logIn('OM')
     }
 
     def cleanupSpec() {
@@ -114,6 +114,6 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         footerButtons.clickBack
 
         then: 'I go back to the dashboard'
-        at TasklistPage
+        at(new TasklistPage(forUser: 'OM'))
     }
 }

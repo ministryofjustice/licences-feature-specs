@@ -16,7 +16,7 @@ class Actions {
         Browser.drive {
             to SigninPage
             signInAs(user)
-            at TasklistPage
+            at(new TasklistPage(forUser: user))
         }
     }
 
@@ -28,7 +28,7 @@ class Actions {
 
     def toDetailsPageFor(nomisId) {
         Browser.drive {
-            to TasklistPage
+            via TasklistPage
             viewDetailsFor(nomisId)
             at PrisonerDetailsPage
         }
