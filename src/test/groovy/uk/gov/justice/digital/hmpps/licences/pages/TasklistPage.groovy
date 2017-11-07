@@ -22,6 +22,8 @@ class TasklistPage extends Page {
 
         infoRequiredLicences(required: false) { $('tr.required') }
         awaitingApprovalLicences(required: false) { $('tr.sent') }
+        checkingLicences(required: false) { $('tr.checking') }
+        checkSentLicences(required: false) { $('tr.checkSent') }
 
         viewDetailsFor { nomisId ->
             $('a', href: contains(nomisId)).click()
