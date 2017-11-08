@@ -67,7 +67,6 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         at ReportingInstructionsPage
     }
 
-    @Ignore
     def 'Selected conditions are saved to the licence'() {
 
         given: 'Viewing additional conditions'
