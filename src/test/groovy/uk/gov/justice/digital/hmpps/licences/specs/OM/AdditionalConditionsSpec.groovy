@@ -67,7 +67,6 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         at ReportingInstructionsPage
     }
 
-    @Ignore
     def 'Selected conditions are saved to the licence'() {
 
         given: 'Viewing additional conditions'
@@ -78,19 +77,26 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         selectCondition(8)
         selectCondition(9)
 
+        and: 'I enter field values'
+        $('#appointmentName') << 'Name One'
+        $('#mentalHealthName') << 'Name Two'
+
         and: 'I continue'
         footerButtons.clickContinue
 
         then: 'The selected conditions are saved to the database'
-        def conditions = testData.findLicenceFor('A1235HG').conditions
-        conditions[0].id == 8 // to finish when we decide how to save licence conditions
-        conditions[1].id == 9
+        def conditions = testData.findLicenceFor('A1235HG').additionalConditions
+        conditions.size() == 2
+        conditions.containsKey('8')
+        conditions.containsKey('9')
+        conditions['8'].containsKey('appointmentName')
+        conditions['8']['appointmentName'] == 'Name One'
+        conditions['9']['mentalHealthName'] == 'Name Two'
 
         and: 'I see the next page'
         at ReportingInstructionsPage
     }
 
-    @Ignore // pending change button from link to form submit
     def 'Shows the buttons to continue and to return to dashboard'() {
 
         when: 'I view the page'
