@@ -17,6 +17,7 @@ class TasklistSpec extends GebReportingSpec {
     @Shared Actions actions = new Actions()
 
     def setupSpec() {
+        testData.deleteLicences()
         actions.logIn('OM')
     }
 

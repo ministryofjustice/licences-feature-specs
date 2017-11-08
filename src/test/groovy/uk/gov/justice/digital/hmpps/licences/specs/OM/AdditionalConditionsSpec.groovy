@@ -32,18 +32,18 @@ class AdditionalConditionsSpec extends GebReportingSpec {
 
     def 'Shows link to view standard conditions'() {
 
-       when: 'I view the additional conditions page'
-       actions.toAdditionalConditionsPageFor('A1235HG')
-       at AdditionalConditionsPage
+        when: 'I view the additional conditions page'
+        actions.toAdditionalConditionsPageFor('A1235HG')
+        at AdditionalConditionsPage
 
-       then: 'I see a link to the standard conditions page'
-       standardConditionsLink.isDisplayed()
+        then: 'I see a link to the standard conditions page'
+        standardConditionsLink.isDisplayed()
 
-       when: 'I click the standard consitions link'
-       standardConditionsLink.click()
+        when: 'I click the standard consitions link'
+        standardConditionsLink.click()
 
-       then: 'I see the standard conditions page'
-       at StandardConditionsPage
+        then: 'I see the standard conditions page'
+        at StandardConditionsPage
     }
 
     def 'Standard conditions page has link back to additional conditions page'() {
@@ -67,6 +67,7 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         at ReportingInstructionsPage
     }
 
+    @Ignore
     def 'Selected conditions are saved to the licence'() {
 
         given: 'Viewing additional conditions'
