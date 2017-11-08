@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs
+package uk.gov.justice.digital.hmpps.licences.specs.OM
 
 import geb.spock.GebReportingSpec
 import spock.lang.Ignore
@@ -22,7 +22,7 @@ class AdditionalConditionsSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        actions.logIn()
+        actions.logIn('OM')
     }
 
     def cleanupSpec() {
@@ -32,18 +32,18 @@ class AdditionalConditionsSpec extends GebReportingSpec {
 
     def 'Shows link to view standard conditions'() {
 
-       when: 'I view the additional conditions page'
-       actions.toAdditionalConditionsPageFor('A1235HG')
-       at AdditionalConditionsPage
+        when: 'I view the additional conditions page'
+        actions.toAdditionalConditionsPageFor('A1235HG')
+        at AdditionalConditionsPage
 
-       then: 'I see a link to the standard conditions page'
-       standardConditionsLink.isDisplayed()
+        then: 'I see a link to the standard conditions page'
+        standardConditionsLink.isDisplayed()
 
-       when: 'I click the standard consitions link'
-       standardConditionsLink.click()
+        when: 'I click the standard consitions link'
+        standardConditionsLink.click()
 
-       then: 'I see the standard conditions page'
-       at StandardConditionsPage
+        then: 'I see the standard conditions page'
+        at StandardConditionsPage
     }
 
     def 'Standard conditions page has link back to additional conditions page'() {
@@ -78,19 +78,26 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         selectCondition(8)
         selectCondition(9)
 
+        and: 'I enter field values'
+        $('#appointmentName') << 'Name One'
+        $('#mentalHealthName') << 'Name Two'
+
         and: 'I continue'
         footerButtons.clickContinue
 
         then: 'The selected conditions are saved to the database'
-        def conditions = testData.findLicenceFor('A1235HG').conditions
-        conditions[0].id == 8 // to finish when we decide how to save licence conditions
-        conditions[1].id == 9
+        def conditions = testData.findLicenceFor('A1235HG').additionalConditions
+        conditions.size() == 2
+        conditions.containsKey('8')
+        conditions.containsKey('9')
+        conditions['8'].containsKey('appointmentName')
+        conditions['8']['appointmentName'] == 'Name One'
+        conditions['9']['mentalHealthName'] == 'Name Two'
 
         and: 'I see the next page'
         at ReportingInstructionsPage
     }
 
-    @Ignore // pending change button from link to form submit
     def 'Shows the buttons to continue and to return to dashboard'() {
 
         when: 'I view the page'
@@ -114,6 +121,6 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         footerButtons.clickBack
 
         then: 'I go back to the dashboard'
-        at TasklistPage
+        at(new TasklistPage(forUser: 'OM'))
     }
 }

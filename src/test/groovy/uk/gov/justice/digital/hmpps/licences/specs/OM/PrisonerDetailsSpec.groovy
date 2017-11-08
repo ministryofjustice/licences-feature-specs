@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs
+package uk.gov.justice.digital.hmpps.licences.specs.OM
 
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
@@ -19,7 +19,7 @@ class PrisonerDetailsSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        actions.logIn()
+        actions.logIn('OM')
     }
 
     def cleanupSpec() {
@@ -88,6 +88,6 @@ class PrisonerDetailsSpec extends GebReportingSpec {
         footerButtons.clickBack
 
         then: 'I go back to the dashboard'
-        at TasklistPage
+        at(new TasklistPage(forUser: 'OM'))
     }
 }

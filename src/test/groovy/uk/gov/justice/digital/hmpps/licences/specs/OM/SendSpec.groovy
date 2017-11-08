@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs
+package uk.gov.justice.digital.hmpps.licences.specs.OM
 
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
@@ -20,7 +20,7 @@ class SendSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        actions.logIn()
+        actions.logIn('OM')
     }
 
     def cleanupSpec() {

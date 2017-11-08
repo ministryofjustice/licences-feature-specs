@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs
+package uk.gov.justice.digital.hmpps.licences.specs.OM
 
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
@@ -19,7 +19,7 @@ class ReviewInformationSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        actions.logIn()
+        actions.logIn('OM')
     }
 
     def cleanupSpec() {
@@ -59,7 +59,7 @@ class ReviewInformationSpec extends GebReportingSpec {
     def 'Shows the buttons to continue and to return to dashboard'() {
 
         when: 'I view the page'
-        actions.toReviewInformationPageFor('A1235HG')
+        go '/licenceDetails/A1235HG'
         at ReviewInformationPage
 
         then: 'I see a continue button'
@@ -68,6 +68,27 @@ class ReviewInformationSpec extends GebReportingSpec {
         and: 'I see a back to dashboard button'
         footerButtons.backButton.text() == 'Back to dashboard'
     }
+
+    def 'Does not show continue button when licence has been sent to OMU'() {
+
+        given: 'A sent licence'
+        testData.createLicence([
+                'nomisId'         : 'A6627JH',
+                'agencyLocationId': 'ABC'
+        ], 'SENT')
+
+        when: 'I view the page'
+        go '/licenceDetails/A6627JH'
+        at ReviewInformationPage
+
+
+        then: 'I do not see a continue button'
+        footerButtons.continueButton.isDisplayed() == false
+
+        and: 'I see a back to dashboard button'
+        footerButtons.backButton.text() == 'Back to dashboard'
+    }
+
 
     def 'Back to dashboard button goes back to dashboard'() {
 
@@ -78,6 +99,6 @@ class ReviewInformationSpec extends GebReportingSpec {
         footerButtons.clickBack
 
         then: 'I go back to the dashboard'
-        at TasklistPage
+        at(new TasklistPage(forUser: 'OM'))
     }
 }
