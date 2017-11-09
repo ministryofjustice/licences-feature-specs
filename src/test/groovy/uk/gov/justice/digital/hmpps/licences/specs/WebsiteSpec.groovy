@@ -18,6 +18,7 @@ class WebsiteSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
+
     @Shared
     Actions actions = new Actions()
 

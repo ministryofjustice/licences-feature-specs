@@ -14,12 +14,12 @@ class TasklistSpec extends GebReportingSpec {
     @Shared Actions actions = new Actions()
 
     def setupSpec() {
+        testData.deleteLicences()
         actions.logIn('OMU')
     }
 
     def cleanupSpec() {
         actions.logOut()
-        testData.deleteLicences()
     }
 
     def 'Shows licences ready to check'() {

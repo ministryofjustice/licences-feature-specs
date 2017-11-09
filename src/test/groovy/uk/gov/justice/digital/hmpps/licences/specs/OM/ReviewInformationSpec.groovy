@@ -19,12 +19,12 @@ class ReviewInformationSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
+        testData.deleteLicences()
         actions.logIn('OM')
     }
 
     def cleanupSpec() {
         actions.logOut()
-        testData.deleteLicences()
     }
 
     def 'Shows the previously entered licence data'() {

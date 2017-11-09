@@ -23,12 +23,12 @@ class ReportingInstructionsSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
+        testData.deleteLicences()
         actions.logIn('OM')
     }
 
     def cleanupSpec() {
         actions.logOut()
-        testData.deleteLicences()
     }
 
     def 'I can enter an address. contact, and time, and they are saved to the licence'() {

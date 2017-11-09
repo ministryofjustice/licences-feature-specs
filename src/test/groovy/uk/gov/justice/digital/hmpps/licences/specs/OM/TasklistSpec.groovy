@@ -23,7 +23,6 @@ class TasklistSpec extends GebReportingSpec {
 
     def cleanupSpec() {
         actions.logOut()
-        testData.deleteLicences()
     }
 
     def 'Shows licences requiring information'() {

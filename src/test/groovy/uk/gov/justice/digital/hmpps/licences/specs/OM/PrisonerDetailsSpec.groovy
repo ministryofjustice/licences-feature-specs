@@ -19,12 +19,12 @@ class PrisonerDetailsSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
+        testData.deleteLicences()
         actions.logIn('OM')
     }
 
     def cleanupSpec() {
         actions.logOut()
-        testData.deleteLicences()
     }
 
     def 'Shows details of the prisoner'() {
