@@ -46,7 +46,8 @@ class ReportingInstructionsSpec extends GebReportingSpec {
                 postCode : 'post code',
                 telephone: '1234',
                 date     : 'adate',
-                time     : 'atime'
+                hour     : 'anhour',
+                minute     : 'aminute',
         ])
 
         and: 'I continue'
@@ -60,8 +61,8 @@ class ReportingInstructionsSpec extends GebReportingSpec {
         result.postCode == 'post code'
         result.name == 'contact name'
         result.telephone == '1234'
-        result.date == 'adate'
-        result.time == 'atime'
+        result.hour == 'anhour'
+        result.minute == 'aminute'
     }
 
 
