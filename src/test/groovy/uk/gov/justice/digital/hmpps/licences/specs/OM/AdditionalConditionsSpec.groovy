@@ -97,6 +97,21 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         at ReportingInstructionsPage
     }
 
+    def 'Shows the data that has been saved to the licence'() {
+
+        when: 'I view the page'
+        actions.toAdditionalConditionsPageFor('A1235HG')
+        at AdditionalConditionsPage
+
+        then: 'I see that conditions 8 and 9 are selected'
+        assert $('input', name: 'additionalConditions', value: '8').value()
+        assert $('input', name: 'additionalConditions', value: '9').value()
+
+        and: 'I see the loaded form inputs'
+        $('input', id: 'appointmentName').value() == 'Name One'
+        $('input', id: 'mentalHealthName').value() == 'Name Two'
+    }
+
     def 'Shows the buttons to continue and to return to dashboard'() {
 
         when: 'I view the page'
