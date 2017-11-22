@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.pages
 
 import geb.Page
+import geb.module.Checkbox
 import uk.gov.justice.digital.hmpps.licences.modules.ButtonsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
