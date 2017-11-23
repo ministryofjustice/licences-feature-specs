@@ -51,6 +51,25 @@ class DischargeAddressSpec extends GebReportingSpec {
         result.postCode == 'post code'
     }
 
+    def 'Shows the data that has been saved to the licence'() {
+
+        when: 'I view the discharge address page'
+        actions.toDischargeAddressPageFor('A1235HG')
+        at DischargeAddressPage
+
+        then: 'I see the data for the saved address'
+        def dischargeAddressItems = [
+                'address1'         : 'line 1',
+                'address2'         : 'line 2',
+                'address3'         : 'line 3',
+                'postCode'         : 'post code'
+        ]
+
+        dischargeAddressItems.each { item, value ->
+            assert $('input', name: item).value() == value
+        }
+    }
+
     @Ignore
     def 'Shows discharge address from nomis'() {
 

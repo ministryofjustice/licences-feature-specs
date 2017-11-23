@@ -65,6 +65,30 @@ class ReportingInstructionsSpec extends GebReportingSpec {
         result.minute == 'aminute'
     }
 
+    def 'Shows the reporting instructions data that has been saved to the licence'() {
+
+        when: 'I view the discharge address page'
+        actions.toReportingInstructionsPageFor('A1235HG')
+        at ReportingInstructionsPage
+
+        then: 'I see the data for the saved address'
+        def dischargeAddressItems = [
+                name  : 'contact name',
+                address1 : 'line 1',
+                address2 : 'line 2',
+                address3 : 'line 3',
+                postCode : 'post code',
+                telephone: '1234',
+                date     : 'adate',
+                hour     : 'anhour',
+                minute     : 'aminute',
+        ]
+
+        dischargeAddressItems.each { item, value ->
+            assert $('input', name: item).value() == value
+        }
+    }
+
 
     def 'Shows the buttons to continue and to return to dashboard'() {
 
