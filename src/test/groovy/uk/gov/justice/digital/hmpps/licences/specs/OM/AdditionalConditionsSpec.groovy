@@ -67,6 +67,26 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         at ReportingInstructionsPage
     }
 
+    def 'Selected conditions require their inputs'() {
+
+        given: 'Viewing additional conditions'
+        actions.toAdditionalConditionsPageFor('A1235HG')
+        at AdditionalConditionsPage
+
+        when: 'I select conditions 8 and 9'
+        selectCondition(8)
+        selectCondition(9)
+
+        and: 'I continue'
+        footerButtons.clickContinue
+
+        then: 'The additional conditions page is shown with error messages'
+        at AdditionalConditionsPage
+        $('#submissionError')
+        $('.missing-8')
+        $('.missing-9')
+    }
+
     def 'Selected conditions are saved to the licence'() {
 
         given: 'Viewing additional conditions'
