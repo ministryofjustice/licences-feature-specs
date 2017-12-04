@@ -74,7 +74,7 @@ class WebsiteSpec extends GebReportingSpec {
 
         then: 'I see health status OK'
 
-        def json = driver.pageSource - '<html><head></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">'
+        def json = driver.pageSource - ' xmlns="http://www.w3.org/1999/xhtml"' - '<html><head></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">'
         def response = new JsonSlurper().parseText(json)
 
         response.healthy == true
