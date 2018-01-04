@@ -30,3 +30,7 @@ task wrapper(type: Wrapper) {
     gradleVersion = '3.1'
 }
 
+task stageTest(type: Test) {
+    group = 'Verification'
+    systemProperty 'spock.configuration', 'StageSpockConfig.groovy'
+}
