@@ -50,18 +50,6 @@ class OffenderDetailsSpec extends GebReportingSpec {
         }
     }
 
-    def 'Shows link to return to caselist'() {
-
-        when: 'I view the page'
-        at PrisonerDetailsPage
-
-        then: 'I see a start button for the eligibility check'
-        find('#eligibilityCheckStart').value() == 'Start'
-
-        and: 'I see a print button for the proposed address form'
-        find('#addressFormPrint').text() == 'Print form'
-    }
-
     def 'Back link goes back to caselist'() {
 
         when: 'I view the page'
