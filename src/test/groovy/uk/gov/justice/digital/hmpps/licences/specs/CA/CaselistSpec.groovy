@@ -17,7 +17,7 @@ class CaselistSpec extends GebReportingSpec {
 
     def setupSpec() {
         testData.deleteLicences()
-        actions.logIn('CA')
+        actions.logIn('CA_USER')
     }
 
     def cleanupSpec() {
@@ -41,21 +41,18 @@ class CaselistSpec extends GebReportingSpec {
 
         given:
         def offenderDetails = [
-                '.name'    : 'Andrews, Mark',
-                '.id'      : 'A1235HG',
-                '.location': 'A-C-2-002 - HMP Berwyn',
-                '.hdced'   : '09/07/2017',
-                '.crd'     : '15/12/2017',
-                '.status'  : 'Not yet started',
+                '.name'      : 'Andrews, Mark',
+                '.offenderNo': 'A1235HG',
+                '.location'  : 'A-C-2-002 - HMP Berwyn',
+                '.hdced'     : '09/07/2017',
+                '.crd'       : '15/12/2017',
+                '.status'    : 'Not started',
         ]
 
         when: 'I view the case list'
         via CaselistPage
 
-        then: 'I see the hdc eligible prisoner'
-        hdcEligible.size() == 1
-
-        and: 'I see the expected data'
+        then: 'I see the expected data for the prisoner'
         offenderDetails.each { item, value ->
             assert hdcEligible[0].find(item).text() == value
         }

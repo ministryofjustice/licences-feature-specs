@@ -7,7 +7,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 
 class Actions {
 
-    def logIn(user = 'CA') {
+    def logIn(user = 'CA_USER') {
         Browser.drive {
             to SigninPage
             signInAs(user)
