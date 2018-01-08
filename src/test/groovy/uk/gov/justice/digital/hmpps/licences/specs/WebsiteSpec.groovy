@@ -5,6 +5,7 @@ import groovy.json.JsonSlurper
 import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
+import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.HealthPage
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
@@ -28,7 +29,7 @@ class WebsiteSpec extends GebReportingSpec {
 
         when: 'I log in'
         actions.logIn(user)
-        to SigninPage
+        to CaselistPage
 
         then: 'my user name is shown'
         header.user.contains(userName)
@@ -55,7 +56,7 @@ class WebsiteSpec extends GebReportingSpec {
 
         given: 'I am viewing the website'
         actions.logIn()
-        to SigninPage
+        to CaselistPage
 
         when: 'I click the logout link'
         header.logoutLink.click()
