@@ -38,6 +38,7 @@ class OffenderDetailsSpec extends GebReportingSpec {
                 '#prisonerCrd'         : '13/06/2018',
                 '#prisonerHdced'       : '11/01/2018',
                 '#prisonerComName'     : 'Emma Spinks',
+                '#prisonerPhotoDate'   : '09/04/2017'
         ]
 
         when: 'I view the prisoner details page'
