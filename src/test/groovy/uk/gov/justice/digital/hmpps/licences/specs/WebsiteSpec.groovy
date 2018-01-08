@@ -6,10 +6,7 @@ import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.licences.pages.HealthPage
-import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
-import uk.gov.justice.digital.hmpps.licences.pages.TasklistPage
-import uk.gov.justice.digital.hmpps.licences.pages.IndexPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -29,19 +26,19 @@ class WebsiteSpec extends GebReportingSpec {
     @Unroll
     def 'Correct user name is shown when I log in as #user'() {
 
-        when: 'I log in as an OM'
+        when: 'I log in'
         actions.logIn(user)
-        to IndexPage
+        to SigninPage
 
         then: 'my user name is shown'
         header.user.contains(userName)
         actions.logOut()
 
         where:
-        user  | userName
-        'OM'  | 'User, OM'
-        'OMU' | 'User, OMU'
-        'PM'  | 'User, PM'
+        user      | userName
+        'CA_USER' | 'User, CA_USER'
+        'RO_USER' | 'User, RO_USER'
+        'DM_USER' | 'User, DM_USER'
     }
 
     def 'Login prevented for user without licences role'() {
@@ -58,7 +55,7 @@ class WebsiteSpec extends GebReportingSpec {
 
         given: 'I am viewing the website'
         actions.logIn()
-        to IndexPage
+        to SigninPage
 
         when: 'I click the logout link'
         header.logoutLink.click()
