@@ -14,7 +14,7 @@ class CaselistPage extends Page {
 
         hdcEligible(required: false) { $('tr.hdcEligible') }
 
-        viewDetailsFor { nomisId ->
+        viewTaskListFor { nomisId ->
             $('a', href: contains(nomisId)).click()
         }
     }
