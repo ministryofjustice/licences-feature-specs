@@ -28,5 +28,8 @@ class EligibilityCheckPage extends Page {
             $("input", number, name: "excludedReasons").module(Checkbox)
         }
 
+        unsuitableReasonsItem { int number ->
+            $("input", number, name: "unsuitableReasons").module(Checkbox)
+        }
     }
 }
