@@ -43,7 +43,7 @@ class CaselistSpec extends GebReportingSpec {
         def offenderDetails = [
                 '.name'      : 'Andrews, Mark',
                 '.offenderNo': 'A1235HG',
-                '.location'  : 'A-C-2-002 - HMP Berwyn',
+                '.location'  : 'A-C-2-002 - BERWYN (HMP)',
                 '.hdced'     : '09/07/2017',
                 '.crd'       : '15/12/2017',
                 '.status'    : 'Not started',
