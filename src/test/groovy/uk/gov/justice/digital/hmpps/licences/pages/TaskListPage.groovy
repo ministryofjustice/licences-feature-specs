@@ -13,5 +13,20 @@ class TaskListPage extends Page {
         header { module(HeaderModule) }
 
         prisonerPersonalDetails { $('#personalDetails') }
+
+        eligibilityCheckStartButton(required: false) { $('#eligibilityCheckStart') }
+        eligibilityCheckUpdateLink(required: false) { $('#eligibilityCheckUpdate') }
+
+        excludedAnswer(required: false)  { $('#excludedAnswer') }
+        unsuitableAnswer(required: false)  { $('#unsuitableAnswer') }
+        investigationAnswer(required: false)  { $('#investigationAnswer') }
+
+        printEligibilityFormButton(required: false) { $('#eligibilityFormPrint') }
+        eligibilityFormPrintStatusText(required: false) { $('#eligibilityFormPrintStatusText') }
+        eligibilityFormPrintStatusIcon(required: false) { $('#eligibilityFormPrintStatusIcon') }
+
+        printAddressFormButton(required: false) { $('#addressFormPrint') }
+        addressFormPrintStatusText(required: false) { $('#addressFormPrintStatusText') }
+        addressFormPrintStatusIcon(required: false) { $('#addressFormPrintStatusIcon') }
     }
 }

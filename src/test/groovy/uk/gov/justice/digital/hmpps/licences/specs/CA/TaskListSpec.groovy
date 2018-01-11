@@ -71,23 +71,91 @@ class TaskListSpec extends GebReportingSpec {
         at TaskListPage
 
         then: 'I see a start button for the eligibility check'
-        find('#eligibilityCheckStart').value() == 'Start'
+        eligibilityCheckStartButton.value() == 'Start'
 
         and: 'I see a print button for the proposed address form'
-        find('#addressFormPrint').text() == 'Print form'
+        printAddressFormButton.text() == 'Print form'
     }
 
     def 'Start eligibility check button goes to eligibility check page'() {
 
-        given: 'Viewing the page'
+        given: 'Viewing the task page'
         at TaskListPage
 
         when: 'I click to start eligibility check'
-        find('#eligibilityCheckStart').click()
+        eligibilityCheckStartButton.click()
 
         then: 'I see the eligibility check page'
         at EligibilityCheckPage
     }
 
-    // todo is the button text meant to say View instead of Start when check done previously?
+    def 'Change answers link shown when eligibility check done'() {
+
+        given: 'Eligibility checks already done'
+        testData.createLicence([
+                'nomisId'    : 'A1235HG',
+                'eligibility' : [
+                        'excluded': 'false',
+                        'unsuitable': 'true',
+                        'investigation': 'true'
+                ]
+        ], 'ELIGIBILITY_CHECKED')
+
+        when: 'I view the tasklist page'
+        actions.toTaskListPageFor('A1235HG')
+        at TaskListPage
+
+        then: 'I see the change answers link'
+        eligibilityCheckUpdateLink.value() == 'Change these answers'
+    }
+
+    def 'Eligibility answers shown after eligibility check done'() {
+
+        given: 'Eligibility checks already done'
+        // follow on from previous
+
+        when: 'Viewing the task page'
+        at TaskListPage
+
+        then: 'I see the eligibility answers'
+        excludedAnswer = 'No'
+        unsuitableAnswer = 'Yes'
+        investigationAnswer = 'Yes'
+
+    }
+
+    def 'Change answers option removed after form is printed'() {
+
+        given: 'Eligibility checks already done'
+        // follow on from previous
+
+        when: 'I view the task page'
+        at TaskListPage
+
+        and: 'I press the print form button'
+        printEligibilityFormButton.click()
+
+        then: 'I do not see the change answers option'
+        !eligibilityCheckUpdateLink.isDisplayed() // not sure this will work
+    }
+
+    def 'Form printed status shown after form is printed'() {
+
+        given: 'Form has been printed'
+        // follow on from previous
+
+        when: 'I view the task page'
+        at TaskListPage
+
+        then: 'I see the form printed text'
+        eligibilityFormPrintStatusText.conatins('printed')
+
+        and: 'I see the form printed status'
+        eligibilityFormPrintStatusIcon.isDisplayed()
+
+        and: 'The form print button text is updated'
+        printAddressFormButton.text() == 'Print form again'
+    }
+
+
 }
