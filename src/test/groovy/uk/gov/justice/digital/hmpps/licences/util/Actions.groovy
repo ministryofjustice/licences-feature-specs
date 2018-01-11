@@ -1,7 +1,8 @@
 package uk.gov.justice.digital.hmpps.licences.util
 
 import geb.Browser
-import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
+import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
+import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 
@@ -22,11 +23,21 @@ class Actions {
         }
     }
 
-    def toDetailsPageFor(nomisId) {
+    def toTaskListPageFor(nomisId) {
         Browser.drive {
             via CaselistPage
-            viewDetailsFor(nomisId)
-            at PrisonerDetailsPage
+            viewTaskListFor(nomisId)
+            at TaskListPage
+        }
+    }
+
+    def toEligibilityCheckPageFor(nomisId) {
+        // toTaskListPageFor(nomisId)
+        Browser.drive {
+            // at TaskListPage
+            // click button
+            go '/hdc/eligibility/A1235HG'
+            at EligibilityCheckPage
         }
     }
 }

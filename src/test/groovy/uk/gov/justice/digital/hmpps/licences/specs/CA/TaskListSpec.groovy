@@ -5,12 +5,12 @@ import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
-import uk.gov.justice.digital.hmpps.licences.pages.PrisonerDetailsPage
+import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
-class OffenderDetailsSpec extends GebReportingSpec {
+class TaskListSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
@@ -42,9 +42,9 @@ class OffenderDetailsSpec extends GebReportingSpec {
                 '#prisonerPhotoDate'   : '09/04/2017'
         ]
 
-        when: 'I view the prisoner details page'
-        actions.toDetailsPageFor('A1235HG')
-        at PrisonerDetailsPage
+        when: 'I view the task list page'
+        actions.toTaskListPageFor('A1235HG')
+        at TaskListPage
 
         then: 'I see the expected prisoner details data'
         prisonerDetails.each { item, value ->
@@ -55,7 +55,7 @@ class OffenderDetailsSpec extends GebReportingSpec {
     def 'Back link goes back to caselist'() {
 
         when: 'I view the page'
-        at PrisonerDetailsPage
+        at TaskListPage
 
         and: 'I click the back to dashboard button'
         $('a', text: 'Back').click()
@@ -67,8 +67,8 @@ class OffenderDetailsSpec extends GebReportingSpec {
     def 'Shows buttons for eligibility check and print address form'() {
 
         when: 'I view the page'
-        actions.toDetailsPageFor('A1235HG')
-        at PrisonerDetailsPage
+        actions.toTaskListPageFor('A1235HG')
+        at TaskListPage
 
         then: 'I see a start button for the eligibility check'
         find('#eligibilityCheckStart').value() == 'Start'
@@ -80,7 +80,7 @@ class OffenderDetailsSpec extends GebReportingSpec {
     def 'Start eligibility check button goes to eligibility check page'() {
 
         given: 'Viewing the page'
-        at PrisonerDetailsPage
+        at TaskListPage
 
         when: 'I click to start eligibility check'
         find('#eligibilityCheckStart').click()
