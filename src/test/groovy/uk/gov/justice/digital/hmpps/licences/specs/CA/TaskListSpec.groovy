@@ -32,7 +32,7 @@ class TaskListSpec extends GebReportingSpec {
         given:
         def prisonerDetails = [
                 '#prisonerName'        : 'Andrews, Mark',
-                '#prisonerAliases'     : 'Marky Mark, Big Mark',
+//                '#prisonerAliases'     : 'Marky Mark, Big Mark',
                 '#prisonerPrisonNumber': 'A1235HG',
                 '#prisonerDob'         : '22/10/1989',
 
@@ -42,7 +42,7 @@ class TaskListSpec extends GebReportingSpec {
 //                '#prisonerHdced'       : '11/01/2018',
 //                '#prisonerComName'     : 'Emma Spinks',
 
-                '#prisonerPhotoDate'   : 'Uploaded: 09/04/2017'
+//                '#prisonerPhotoDate'   : 'Uploaded: 09/04/2017'
         ]
 
         when: 'I view the task list page'
@@ -55,7 +55,6 @@ class TaskListSpec extends GebReportingSpec {
         }
     }
 
-    @Ignore('todo')
     def 'Back link goes back to caselist'() {
 
         when: 'I view the page'
@@ -68,7 +67,6 @@ class TaskListSpec extends GebReportingSpec {
         at CaselistPage
     }
 
-    @Ignore('todo')
     def 'Shows buttons for eligibility check and print address form'() {
 
         when: 'I view the page'
@@ -78,11 +76,10 @@ class TaskListSpec extends GebReportingSpec {
         then: 'I see a start button for the eligibility check'
         eligibilityCheckStartButton.value() == 'Start'
 
-        and: 'I see a print button for the proposed address form'
-        printAddressFormButton.text() == 'Print form'
+//        and: 'I see a print button for the proposed address form'
+//        printAddressFormButton.text() == 'Print form'
     }
 
-    @Ignore('todo')
     def 'Start eligibility check button goes to eligibility check page'() {
 
         given: 'Viewing the task page'
@@ -95,16 +92,15 @@ class TaskListSpec extends GebReportingSpec {
         at EligibilityCheckPage
     }
 
-    @Ignore('todo')
     def 'Change answers link shown when eligibility check done'() {
 
         given: 'Eligibility checks already done'
         testData.createLicence([
                 'nomisId'    : 'A1235HG',
                 'eligibility' : [
-                        'excluded': 'false',
-                        'unsuitable': 'true',
-                        'investigation': 'true'
+                        'excluded': 'No',
+                        'unsuitable': 'Yes',
+                        'investigation': 'Yes'
                 ]
         ], 'ELIGIBILITY_CHECKED')
 
@@ -113,10 +109,9 @@ class TaskListSpec extends GebReportingSpec {
         at TaskListPage
 
         then: 'I see the change answers link'
-        eligibilityCheckUpdateLink.value() == 'Change these answers'
+        eligibilityCheckUpdateLink.text() == 'Change these answers'
     }
 
-    @Ignore('todo')
     def 'Eligibility answers shown after eligibility check done'() {
 
         given: 'Eligibility checks already done'
@@ -126,9 +121,9 @@ class TaskListSpec extends GebReportingSpec {
         at TaskListPage
 
         then: 'I see the eligibility answers'
-        excludedAnswer == 'No'
-        unsuitableAnswer == 'Yes'
-        investigationAnswer == 'Yes'
+        excludedAnswer.text() == 'No'
+        unsuitableAnswer.text() == 'Yes'
+        investigationAnswer.text() == 'Yes'
 
     }
 
