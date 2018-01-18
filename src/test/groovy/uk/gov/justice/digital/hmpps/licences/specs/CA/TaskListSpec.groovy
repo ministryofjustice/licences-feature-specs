@@ -56,13 +56,13 @@ class TaskListSpec extends GebReportingSpec {
         }
     }
 
-    def 'Back link goes back to caselist'() {
+    def 'Back link goes back to case list'() {
 
         when: 'I view the page'
         at TaskListPage
 
         and: 'I click the back to dashboard button'
-        $('a', text: 'Back').click()
+        $('a', text: 'Back to case list').click()
 
         then: 'I go back to the dashboard'
         at CaselistPage
