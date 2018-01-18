@@ -53,14 +53,14 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at EligibilityCheckPage
 
         and: 'I select yes for excluded'
-        excludedRadios.checked = 'true'
+        excludedRadios.checked = 'Yes'
 
         then: 'I see 7 reason options'
         excludedReasonsForm.isDisplayed()
         excludedReasons.size() == 7
 
         when: 'I select yes for unsuitable'
-        unsuitableRadios.checked = 'true'
+        unsuitableRadios.checked = 'Yes'
 
         then: 'I see 4 reason options'
         unsuitableReasonsForm.isDisplayed()
@@ -73,8 +73,8 @@ class EligibilityCheckSpec extends GebReportingSpec {
         testData.createLicence([
                 'nomisId'    : 'A1235HG',
                 'eligibility' : [
-                    'excluded': 'false',
-                    'unsuitable': 'true'
+                    'excluded': 'No',
+                    'unsuitable': 'Yes'
                 ]
         ], 'ELIGIBILITY_CHECKED')
 
@@ -83,8 +83,8 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at EligibilityCheckPage
 
         then: 'I see the previous values'
-        excludedRadios.checked == 'false'
-        unsuitableRadios.checked == 'true'
+        excludedRadios.checked == 'No'
+        unsuitableRadios.checked == 'Yes'
 
         and: 'No value is shown when none was set'
         investigationRadios.checked == null
@@ -96,7 +96,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at EligibilityCheckPage
 
         when: 'I select new options'
-        excludedRadios.checked = 'true'
+        excludedRadios.checked = 'Yes'
         excludedReasonsItem(0).check()
         excludedReasonsItem(1).check()
         excludedReasonsItem(4).check()
@@ -115,7 +115,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at EligibilityCheckPage
 
         then: 'I see the original values'
-        excludedRadios.checked == 'false'
+        excludedRadios.checked == 'No'
         excludedReasonsItem(0).unchecked
         excludedReasonsItem(1).unchecked
         excludedReasonsItem(4).unchecked
@@ -127,7 +127,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at EligibilityCheckPage
 
         when: 'I select new options'
-        excludedRadios.checked = 'true'
+        excludedRadios.checked = 'Yes'
         excludedReasonsItem(2).check()
         excludedReasonsItem(3).check()
         excludedReasonsItem(5).check()
@@ -146,7 +146,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at EligibilityCheckPage
 
         then: 'I see the new values'
-        excludedRadios.checked == 'true'
+        excludedRadios.checked == 'Yes'
         excludedReasonsItem(2).checked
         excludedReasonsItem(3).checked
         excludedReasonsItem(5).checked
