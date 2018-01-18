@@ -32,17 +32,18 @@ class TaskListSpec extends GebReportingSpec {
         given:
         def prisonerDetails = [
                 '#prisonerName'        : 'Andrews, Mark',
-//                '#prisonerAliases'     : 'Marky Mark, Big Mark',
+                '#prisonerAliases'     : 'Marky Mark, Big Mark',
                 '#prisonerPrisonNumber': 'A1235HG',
+
                 '#prisonerDob'         : '22/10/1989',
+                '#prisonerLocation'    : 'BERWYN (HMP)',
+                '#prisonerOffences'    : 'Robbery, conspiracy to rob',
 
-//                '#prisonerLocation'    : 'HMP Berwyn',
-//                '#prisonerOffences'    : 'Robbery, conspiracy to rob',
-//                '#prisonerCrd'         : '13/06/2018',
-//                '#prisonerHdced'       : '11/01/2018',
-//                '#prisonerComName'     : 'Emma Spinks',
+                '#prisonerCrd'         : '15/12/2017',
+                '#prisonerHdced'       : '09/07/2017',
+                '#prisonerComName'     : 'Emma Spinks',
 
-//                '#prisonerPhotoDate'   : 'Uploaded: 09/04/2017'
+                '#prisonerPhotoDate'   : 'Uploaded: 09/04/2017'
         ]
 
         when: 'I view the task list page'
