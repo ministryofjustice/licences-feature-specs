@@ -36,7 +36,7 @@ class TaskListSpec extends GebReportingSpec {
                 '#prisonerPrisonNumber': 'A1235HG',
 
                 '#prisonerDob'         : '22/10/1989',
-                '#prisonerLocation'    : 'BERWYN (HMP)',
+                '#prisonerLocation'    : 'HMP Berwyn',
                 '#prisonerOffences'    : 'Robbery, conspiracy to rob',
 
                 '#prisonerCrd'         : '15/12/2017',
