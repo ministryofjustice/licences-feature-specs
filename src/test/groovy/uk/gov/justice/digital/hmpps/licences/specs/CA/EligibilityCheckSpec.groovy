@@ -18,7 +18,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
     def setupSpec() {
         testData.deleteLicences()
-        actions.logIn('CA_USER')
+        actions.logIn('CA')
     }
 
     def cleanupSpec() {
@@ -71,7 +71,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         given: 'Eligibility checks already done'
         testData.createLicence([
-                'nomisId'    : 'A1235HG',
+                'nomisId'    : 'A1235XX',
                 'eligibility' : [
                     'excluded': 'No',
                     'unsuitable': 'Yes'
@@ -79,7 +79,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         ], 'ELIGIBILITY_CHECKED')
 
         when: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235HG')
+        actions.toEligibilityCheckPageFor('A1235XX')
         at EligibilityCheckPage
 
         then: 'I see the previous values'
@@ -111,7 +111,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235HG') // todo update with buttons when ready
+        actions.toEligibilityCheckPageFor('A1235XX') // todo update with buttons when ready
         at EligibilityCheckPage
 
         then: 'I see the original values'
@@ -142,7 +142,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235HG') // todo update with buttons when ready
+        actions.toEligibilityCheckPageFor('A1235XX') // todo update with buttons when ready
         at EligibilityCheckPage
 
         then: 'I see the new values'

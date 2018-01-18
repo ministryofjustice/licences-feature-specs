@@ -33,4 +33,5 @@ task wrapper(type: Wrapper) {
 task stageTest(type: Test) {
     group = 'Verification'
     systemProperty 'spock.configuration', 'StageSpockConfig.groovy'
+    systemProperty 'TEST_ENV', 'stage'
 }
