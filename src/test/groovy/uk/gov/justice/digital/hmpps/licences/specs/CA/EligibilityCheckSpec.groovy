@@ -63,7 +63,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         given: 'Eligibility checks already done'
         testData.createLicence([
-                'nomisId'    : 'A1235XX',
+                'nomisId'    : 'A1235HG',
                 'eligibility' : [
                     'excluded': 'No',
                     'unsuitable': 'Yes'
@@ -71,7 +71,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         ], 'ELIGIBILITY_CHECKED')
 
         when: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235XX')
+        actions.toEligibilityCheckPageFor('A1235HG')
         at EligibilityCheckPage
 
         then: 'I see the previous values'
@@ -99,7 +99,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235XX') // todo update with buttons when ready
+        actions.toEligibilityCheckPageFor('A1235HG') // todo update with buttons when ready
         at EligibilityCheckPage
 
         then: 'I see the original values'
@@ -153,7 +153,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235XX') // todo update with buttons when ready
+        actions.toEligibilityCheckPageFor('A1235HG') // todo update with buttons when ready
         at EligibilityCheckPage
 
         then: 'I see the new values'

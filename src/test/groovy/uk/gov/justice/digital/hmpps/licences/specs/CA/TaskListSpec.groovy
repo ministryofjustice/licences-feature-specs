@@ -36,7 +36,7 @@ class TaskListSpec extends GebReportingSpec {
         def prisonerDetails = [
                 '#prisonerName'        : 'Andrews, Mark',
                 '#prisonerAliases'     : 'Marky Mark, Big Mark',
-                '#prisonerPrisonNumber': 'A1235XX',
+                '#prisonerPrisonNumber': 'A1235HG',
 
                 '#prisonerDob'         : '22/10/1989',
                 '#prisonerLocation'    : 'HMP Berwyn',
@@ -50,7 +50,7 @@ class TaskListSpec extends GebReportingSpec {
         ]
 
         when: 'I view the task list page'
-        actions.toTaskListPageFor('A1235XX')
+        actions.toTaskListPageFor('A1235HG')
         at TaskListPage
 
         then: 'I see the expected prisoner details data'
@@ -74,7 +74,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows buttons for eligibility check and print address form'() {
 
         when: 'I view the page'
-        actions.toTaskListPageFor('A1235XX')
+        actions.toTaskListPageFor('A1235HG')
         at TaskListPage
 
         then: 'I see a start button for the eligibility check'
@@ -100,7 +100,7 @@ class TaskListSpec extends GebReportingSpec {
 
         given: 'Eligibility checks already done'
         testData.createLicence([
-                'nomisId'    : 'A1235XX',
+                'nomisId'    : 'A1235HG',
                 'eligibility' : [
                         'excluded': 'No',
                         'unsuitable': 'Yes',
@@ -109,7 +109,7 @@ class TaskListSpec extends GebReportingSpec {
         ], 'ELIGIBILITY_CHECKED')
 
         when: 'I view the tasklist page'
-        actions.toTaskListPageFor('A1235XX')
+        actions.toTaskListPageFor('A1235HG')
         at TaskListPage
 
         then: 'I see the change answers link'
