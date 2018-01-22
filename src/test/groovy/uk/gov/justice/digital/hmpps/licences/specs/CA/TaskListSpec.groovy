@@ -2,8 +2,10 @@ package uk.gov.justice.digital.hmpps.licences.specs.CA
 
 import geb.spock.GebReportingSpec
 import spock.lang.Ignore
+import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
@@ -20,20 +22,21 @@ class TaskListSpec extends GebReportingSpec {
 
     def setupSpec() {
         testData.deleteLicences()
-        actions.logIn('CA_USER')
+        actions.logIn('CA')
     }
 
     def cleanupSpec() {
         actions.logOut()
     }
 
+    @Stage
     def 'Shows details of the prisoner'() {
 
         given:
         def prisonerDetails = [
                 '#prisonerName'        : 'Andrews, Mark',
                 '#prisonerAliases'     : 'Marky Mark, Big Mark',
-                '#prisonerPrisonNumber': 'A1235HG',
+                '#prisonerPrisonNumber': 'A1235XX',
 
                 '#prisonerDob'         : '22/10/1989',
                 '#prisonerLocation'    : 'HMP Berwyn',
@@ -47,7 +50,7 @@ class TaskListSpec extends GebReportingSpec {
         ]
 
         when: 'I view the task list page'
-        actions.toTaskListPageFor('A1235HG')
+        actions.toTaskListPageFor('A1235XX')
         at TaskListPage
 
         then: 'I see the expected prisoner details data'
@@ -71,7 +74,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows buttons for eligibility check and print address form'() {
 
         when: 'I view the page'
-        actions.toTaskListPageFor('A1235HG')
+        actions.toTaskListPageFor('A1235XX')
         at TaskListPage
 
         then: 'I see a start button for the eligibility check'
@@ -97,7 +100,7 @@ class TaskListSpec extends GebReportingSpec {
 
         given: 'Eligibility checks already done'
         testData.createLicence([
-                'nomisId'    : 'A1235HG',
+                'nomisId'    : 'A1235XX',
                 'eligibility' : [
                         'excluded': 'No',
                         'unsuitable': 'Yes',
@@ -106,7 +109,7 @@ class TaskListSpec extends GebReportingSpec {
         ], 'ELIGIBILITY_CHECKED')
 
         when: 'I view the tasklist page'
-        actions.toTaskListPageFor('A1235HG')
+        actions.toTaskListPageFor('A1235XX')
         at TaskListPage
 
         then: 'I see the change answers link'
@@ -128,7 +131,7 @@ class TaskListSpec extends GebReportingSpec {
 
     }
 
-    @Ignore('todo')
+    @PendingFeature
     def 'Change answers option removed after form is printed'() {
 
         given: 'Eligibility checks already done'
@@ -144,7 +147,7 @@ class TaskListSpec extends GebReportingSpec {
         !eligibilityCheckUpdateLink.isDisplayed() // not sure this will work
     }
 
-    @Ignore('todo')
+    @PendingFeature
     def 'Form printed status shown after form is printed'() {
 
         given: 'Form has been printed'

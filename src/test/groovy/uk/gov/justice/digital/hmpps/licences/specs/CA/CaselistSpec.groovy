@@ -3,6 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.specs.CA
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -17,13 +18,14 @@ class CaselistSpec extends GebReportingSpec {
 
     def setupSpec() {
         testData.deleteLicences()
-        actions.logIn('CA_USER')
+        actions.logIn('CA')
     }
 
     def cleanupSpec() {
         actions.logOut()
     }
 
+    @Stage
     def 'Shows the caseload of HDC eligible prisoners'() {
 
         given: 'No licences started'
@@ -36,7 +38,7 @@ class CaselistSpec extends GebReportingSpec {
         hdcEligible.size() == 2
     }
 
-
+    @Stage
     def 'Shows licence case summary details'() {
 
         given:

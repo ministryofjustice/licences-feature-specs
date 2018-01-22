@@ -1,29 +1,25 @@
 package uk.gov.justice.digital.hmpps.licences.util
 
 import groovy.sql.Sql
+import spock.lang.Shared
 
 class Database {
 
+    @Shared
+    LicencesUi licencesUi = new LicencesUi()
+
     def sql
-    def properties
 
     Database() {
-        loadProperties()
         connect()
         addShutdownHook { sql.close() }
     }
-    def loadProperties ( ) {
-        properties = new Properties()
-        new File('config.properties').withInputStream {
-            properties.load(it)
-        }
-    }
 
     private Sql connect() {
-        def server = System.env.TEST_DB_SERVER ?: properties.TEST_DB_SERVER
-        def user = System.env.TEST_DB_USER ?: properties.TEST_DB_USER
-        def password = System.env.TEST_DB_PASS ?: properties.TEST_DB_PASS
-        def database = System.env.TEST_DB ?: properties.TEST_DB
+        def server = licencesUi.dbServer
+        def user = licencesUi.dbUser
+        def password = licencesUi.dbPassword
+        def database = licencesUi.dbDatabase
 
         def driver = 'net.sourceforge.jtds.jdbc.Driver'
         def url = "jdbc:jtds:sqlserver://$server/$database"
@@ -35,10 +31,14 @@ class Database {
 
     def deleteAll() {
         println 'deleteAll'
-        sql.execute('DELETE FROM LICENCES')
+        sql.execute("DELETE FROM LICENCES WHERE NOMIS_ID like '%XX'")
     }
 
     def create(licence, nomisId, status) {
+        if (!nomisId.endsWith('XX')) {
+            println 'Nomis ID must end with XX for stage tests'
+            return
+        }
         println "create $licence : $nomisId"
         sql.execute('INSERT INTO LICENCES VALUES (?,?,?)', [licence, nomisId, status])
     }
