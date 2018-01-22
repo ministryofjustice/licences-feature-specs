@@ -37,7 +37,9 @@ jobs:
       - checkout
       - restore_cache:
           key: gradle-cache-{{ checksum "build.gradle" }}
-      - run: echo "stage tests"
+      - run:
+          name: selected feature tests for stage
+          command: ./gradlew clean stageTest
 workflows:
   version: 2
   acceptance:
