@@ -36,10 +36,10 @@ class Database {
     }
 
     def create(licence, nomisId, status) {
-        if (!nomisId.endsWith('XX')) {
-            println 'Nomis ID must end with XX for stage tests'
-            return
-        }
+//        if (!nomisId.endsWith('XX')) {
+//            println 'Nomis ID must end with XX for stage tests'
+//            return
+//        }
         println "create $licence : $nomisId"
         sql.execute('INSERT INTO LICENCES VALUES (?,?,?)', [licence, nomisId, status])
     }
