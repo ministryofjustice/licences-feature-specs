@@ -25,6 +25,16 @@ jobs:
       - store_artifacts:
           path: ./build/geb-reports
           destination: geb
+      - store_artifacts:
+          path: ./build/test-results
+          destination: test-results
+  accept_stage:
+    docker:
+    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      command: /sbin/init
+    working_directory: ~/noms-digital-studio/licences-feature-specs
+    steps:
+      - checkout
 workflows:
   version: 2
   acceptance:
@@ -34,3 +44,10 @@ workflows:
             branches:
               only:
                 - master
+      - hold:
+          type: approval
+          requires:
+            - accept_mock
+      - accept-stage:
+          requires:
+            - hold
