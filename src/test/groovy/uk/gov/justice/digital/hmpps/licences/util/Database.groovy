@@ -31,7 +31,8 @@ class Database {
 
     def deleteAll() {
         println 'deleteAll'
-        sql.execute("DELETE FROM LICENCES WHERE NOMIS_ID like '%XX'")
+        //sql.execute("DELETE FROM LICENCES WHERE NOMIS_ID like '%XX'")
+        sql.execute("DELETE FROM LICENCES")
     }
 
     def create(licence, nomisId, status) {
