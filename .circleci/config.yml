@@ -49,8 +49,6 @@ workflows:
                 - master
       - hold:
           type: approval
-          requires:
-            - accept_mock
       - accept_stage:
           requires:
             - hold
