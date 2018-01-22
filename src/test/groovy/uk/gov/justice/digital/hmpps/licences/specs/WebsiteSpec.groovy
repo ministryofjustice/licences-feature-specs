@@ -37,9 +37,9 @@ class WebsiteSpec extends GebReportingSpec {
 
         where:
         user      | userName
-        'CA_USER' | 'User, CA_USER'
-        'RO_USER' | 'User, RO_USER'
-        'DM_USER' | 'User, DM_USER'
+        'CA' | 'User, CA_USER'
+        'RO' | 'User, RO_USER'
+        'DM' | 'User, DM_USER'
     }
 
     def 'Login prevented for user without licences role'() {

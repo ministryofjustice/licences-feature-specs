@@ -14,15 +14,17 @@ class Actions {
     LicencesUi licencesUi = new LicencesUi()
 
     def users = [
-            'mock' :[
-                    'CA': 'CA_USER',
-                    'RO': 'RO_USER',
-                    'DM': 'DM_USER'
+            'mock' : [
+                    'CA'  : 'CA_USER',
+                    'RO'  : 'RO_USER',
+                    'DM'  : 'DM_USER',
+                    'NONE': 'NONE'
             ],
-            'stage':[
-                    'CA': 'CA_USER_TEST',
-                    'RO': 'RO_USER_TEST',
-                    'DM': 'DM_USER_TEST'
+            'stage': [
+                    'CA'  : 'CA_USER_TEST',
+                    'RO'  : 'RO_USER_TEST',
+                    'DM'  : 'DM_USER_TEST',
+                    'NONE': 'NONE'
             ]
     ]
 
