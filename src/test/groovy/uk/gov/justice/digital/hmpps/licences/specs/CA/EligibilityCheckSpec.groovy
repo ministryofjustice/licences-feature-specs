@@ -4,6 +4,8 @@ import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
+import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckCrdTimePage
+import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckSuitablePage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -33,8 +35,6 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         then: 'Neither radio option is selected'
         excludedRadios.checked == null
-        unsuitableRadios.checked == null
-        investigationRadios.checked == null
     }
 
     def 'Reasons not shown when option is no'() {
@@ -44,7 +44,6 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         then: 'I do not see reason options'
         !excludedReasonsForm.isDisplayed()
-        !unsuitableReasonsForm.isDisplayed()
     }
 
     def 'Reasons are shown when option is yes'(){
@@ -58,13 +57,6 @@ class EligibilityCheckSpec extends GebReportingSpec {
         then: 'I see 7 reason options'
         excludedReasonsForm.isDisplayed()
         excludedReasons.size() == 7
-
-        when: 'I select yes for unsuitable'
-        unsuitableRadios.checked = 'Yes'
-
-        then: 'I see 4 reason options'
-        unsuitableReasonsForm.isDisplayed()
-        unsuitableReasons.size() == 4
     }
 
     def 'Can view eligibility checks when already started'() {
@@ -84,10 +76,6 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         then: 'I see the previous values'
         excludedRadios.checked == 'No'
-        unsuitableRadios.checked == 'Yes'
-
-        and: 'No value is shown when none was set'
-        investigationRadios.checked == null
     }
 
     def 'Modified choices are not saved after return to tasklist'() {
@@ -121,9 +109,29 @@ class EligibilityCheckSpec extends GebReportingSpec {
         excludedReasonsItem(4).unchecked
     }
 
+    def 'The suitability form is shown after the excluded form' () {
+        given: 'On the eligibility checks page'
+        at EligibilityCheckPage
+
+        when: 'I select new options and save'
+        excludedRadios.checked = 'Yes'
+        find('#continueBtn').click()
+
+        then: 'I see the suitability form'
+        at EligibilityCheckSuitablePage
+
+        when: 'I select yes for unsuitable'
+        unsuitableRadios.checked = 'Yes'
+
+        then: 'I see 4 reason options'
+        unsuitableReasonsForm.isDisplayed()
+        unsuitableReasons.size() == 4
+    }
+
     def 'Modified choices are saved after save and continue'() {
 
         given: 'On the eligibility checks page'
+        actions.toEligibilityCheckPageFor('A1235HG')
         at EligibilityCheckPage
 
         when: 'I select new options'
@@ -139,6 +147,9 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         when: 'I choose save and continue'
         find('#continueBtn').click()
+        at EligibilityCheckSuitablePage
+
+        find('#backBtn').click()
         at TaskListPage
 
         and: 'I view the eligibility checks page'
@@ -150,5 +161,52 @@ class EligibilityCheckSpec extends GebReportingSpec {
         excludedReasonsItem(2).checked
         excludedReasonsItem(3).checked
         excludedReasonsItem(5).checked
+    }
+
+    def 'The CRD time form is shown after the suitability form' () {
+        given: 'On the eligibility checks page'
+        at EligibilityCheckPage
+
+        when: 'I select new options and save'
+        excludedRadios.checked = 'Yes'
+        find('#continueBtn').click()
+
+        then: 'I see the suitability form'
+        at EligibilityCheckSuitablePage
+
+        when: 'I select yes for unsuitable and continue'
+        unsuitableRadios.checked = 'Yes'
+        find('#continueBtn').click()
+
+        then: 'I see the crd time form'
+        at EligibilityCheckCrdTimePage
+    }
+
+    def 'All selections are saved and shown on the task list' () {
+        given: 'On the eligibility checks page'
+        actions.toEligibilityCheckPageFor('A1235HG')
+        at EligibilityCheckPage
+
+        when: 'I select new options and save'
+        excludedRadios.checked = 'Yes'
+        find('#continueBtn').click()
+        at EligibilityCheckSuitablePage
+
+        and: 'I select No for unsuitable and continue'
+        unsuitableRadios.checked = 'No'
+        find('#continueBtn').click()
+        at EligibilityCheckCrdTimePage
+
+        and: 'I select Yes for CRD time and continue'
+        crdTimeRadios.checked = 'Yes'
+        find('#continueBtn').click()
+
+        then: 'I return to the task list page'
+        at TaskListPage
+
+        and: 'I can see my saved answers'
+        excludedAnswer.text() == 'Yes'
+        unsuitableAnswer.text() == 'No'
+        crdTimeAnswer.text() == 'Yes'
     }
 }

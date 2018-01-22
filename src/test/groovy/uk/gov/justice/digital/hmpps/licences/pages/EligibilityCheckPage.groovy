@@ -15,21 +15,13 @@ class EligibilityCheckPage extends Page {
         header { module(HeaderModule) }
 
         excludedRadios { $(name: "excluded").module(RadioButtons) }
-        unsuitableRadios { $(name: "unsuitable").module(RadioButtons) }
-        investigationRadios { $(name: "investigation").module(RadioButtons) }
 
         excludedReasonsForm(required: false) { $("#excludedForm") }
-        unsuitableReasonsForm(required: false) { $("#unsuitableForm") }
 
         excludedReasons(required: false) { $(name: "excludedReasons") }
-        unsuitableReasons(required: false) { $(name: "unsuitableReasons") }
 
         excludedReasonsItem { int number ->
             $("input", number, name: "excludedReasons").module(Checkbox)
-        }
-
-        unsuitableReasonsItem { int number ->
-            $("input", number, name: "unsuitableReasons").module(Checkbox)
         }
     }
 }

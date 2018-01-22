@@ -101,7 +101,7 @@ class TaskListSpec extends GebReportingSpec {
                 'eligibility' : [
                         'excluded': 'No',
                         'unsuitable': 'Yes',
-                        'investigation': 'Yes'
+                        'crdTime': 'Yes'
                 ]
         ], 'ELIGIBILITY_CHECKED')
 
@@ -124,7 +124,7 @@ class TaskListSpec extends GebReportingSpec {
         then: 'I see the eligibility answers'
         excludedAnswer.text() == 'No'
         unsuitableAnswer.text() == 'Yes'
-        investigationAnswer.text() == 'Yes'
+        crdTimeAnswer.text() == 'Yes'
 
     }
 

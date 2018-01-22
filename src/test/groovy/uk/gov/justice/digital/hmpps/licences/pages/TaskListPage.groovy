@@ -19,7 +19,7 @@ class TaskListPage extends Page {
 
         excludedAnswer(required: false)  { $('#excludedAnswer') }
         unsuitableAnswer(required: false)  { $('#unsuitableAnswer') }
-        investigationAnswer(required: false)  { $('#investigationAnswer') }
+        crdTimeAnswer(required: false)  { $('#crdTimeAnswer') }
 
         printEligibilityFormButton(required: false) { $('#eligibilityFormPrint') }
         eligibilityFormPrintStatusText(required: false) { $('#eligibilityFormPrintStatusText') }
