@@ -8,13 +8,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:
-            - gradle-cache
-      - run: if [ -a ./gradlew ]; then gradlew dependencies; else gradle dependencies; fi
+          key: jars-{{ checksum "build.gradle" }}
+      - run:
+          name: Download Dependencies
+          command: ./gradlew dependencies
       - save_cache:
-          key: gradle-cache
           paths:
             - ~/.gradle
+            key: jars-{{ checksum "build.gradle" }}
       - run:
           name: feature tests for mock
           command: ./gradlew clean build
