@@ -49,8 +49,3 @@ workflows:
             branches:
               only:
                 - master
-      - hold:
-          type: approval
-      - accept_stage:
-          requires:
-            - hold
