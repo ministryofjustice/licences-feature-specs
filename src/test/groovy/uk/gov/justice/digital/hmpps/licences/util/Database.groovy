@@ -31,15 +31,14 @@ class Database {
 
     def deleteAll() {
         println 'deleteAll'
-        //sql.execute("DELETE FROM LICENCES WHERE NOMIS_ID like '%XX'")
-        sql.execute("DELETE FROM LICENCES")
+        sql.execute("DELETE FROM LICENCES WHERE NOMIS_ID like '%XX'")
     }
 
     def create(licence, nomisId, status) {
-//        if (!nomisId.endsWith('XX')) {
-//            println 'Nomis ID must end with XX for stage tests'
-//            return
-//        }
+        if (!nomisId.endsWith('XX')) {
+            println 'Nomis ID must end with XX for stage tests'
+            return
+        }
         println "create $licence : $nomisId"
         sql.execute('INSERT INTO LICENCES VALUES (?,?,?)', [licence, nomisId, status])
     }

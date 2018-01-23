@@ -30,7 +30,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
     def 'Starts with nothing selected because there is no default '() {
 
         when: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235HG')
+        actions.toEligibilityCheckPageFor('A0001XX')
         at EligibilityCheckPage
 
         then: 'Neither radio option is selected'
@@ -63,7 +63,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         given: 'Eligibility checks already done'
         testData.createLicence([
-                'nomisId'    : 'A1235HG',
+                'nomisId'    : 'A0001XX',
                 'eligibility' : [
                     'excluded': 'No',
                     'unsuitable': 'Yes'
@@ -71,7 +71,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         ], 'ELIGIBILITY_CHECKED')
 
         when: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235HG')
+        actions.toEligibilityCheckPageFor('A0001XX')
         at EligibilityCheckPage
 
         then: 'I see the previous values'
@@ -99,7 +99,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235HG') // todo update with buttons when ready
+        actions.toEligibilityCheckPageFor('A0001XX')
         at EligibilityCheckPage
 
         then: 'I see the original values'
@@ -131,7 +131,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
     def 'Modified choices are saved after save and continue'() {
 
         given: 'On the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235HG')
+        actions.toEligibilityCheckPageFor('A0001XX')
         at EligibilityCheckPage
 
         when: 'I select new options'
@@ -153,7 +153,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235HG') // todo update with buttons when ready
+        actions.toEligibilityCheckPageFor('A0001XX')
         at EligibilityCheckPage
 
         then: 'I see the new values'
@@ -184,7 +184,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
     def 'All selections are saved and shown on the task list' () {
         given: 'On the eligibility checks page'
-        actions.toEligibilityCheckPageFor('A1235HG')
+        actions.toEligibilityCheckPageFor('A0001XX')
         at EligibilityCheckPage
 
         when: 'I select new options and save'

@@ -35,22 +35,22 @@ class TaskListSpec extends GebReportingSpec {
         given:
         def prisonerDetails = [
                 '#prisonerName'        : 'Andrews, Mark',
-                '#prisonerAliases'     : 'Marky Mark, Big Mark',
-                '#prisonerPrisonNumber': 'A1235HG',
+                '#prisonerAliases'     : 'Marky Andrews',
+                '#prisonerPrisonNumber': 'A0001XX',
 
                 '#prisonerDob'         : '22/10/1989',
-                '#prisonerLocation'    : 'HMP Berwyn',
-                '#prisonerOffences'    : 'Robbery, conspiracy to rob',
+                '#prisonerLocation'    : 'Licence Auto Test Prison',
+                '#prisonerOffences'    : "Cause exceed max permitted wt of artic' vehicle - No of axles/configuration (No MOT/Manufacturer's Plate)",
 
-                '#prisonerCrd'         : '15/12/2017',
-                '#prisonerHdced'       : '09/07/2017',
-                '#prisonerComName'     : 'Emma Spinks',
+                '#prisonerCrd'         : '15/10/2019',
+                '#prisonerHdced'       : '13/07/2019',
+                '#prisonerComName'     : 'Jessy Jones',
 
-                '#prisonerPhotoDate'   : 'Uploaded: 09/04/2017'
+                '#prisonerPhotoDate'   : 'Uploaded: 05/07/2017'
         ]
 
         when: 'I view the task list page'
-        actions.toTaskListPageFor('A1235HG')
+        actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
         then: 'I see the expected prisoner details data'
@@ -74,7 +74,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows buttons for eligibility check and print address form'() {
 
         when: 'I view the page'
-        actions.toTaskListPageFor('A1235HG')
+        actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
         then: 'I see a start button for the eligibility check'
@@ -100,7 +100,7 @@ class TaskListSpec extends GebReportingSpec {
 
         given: 'Eligibility checks already done'
         testData.createLicence([
-                'nomisId'    : 'A1235HG',
+                'nomisId'    : 'A0001XX',
                 'eligibility' : [
                         'excluded': 'No',
                         'unsuitable': 'Yes',
@@ -109,7 +109,7 @@ class TaskListSpec extends GebReportingSpec {
         ], 'ELIGIBILITY_CHECKED')
 
         when: 'I view the tasklist page'
-        actions.toTaskListPageFor('A1235HG')
+        actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
         then: 'I see the change answers link'
