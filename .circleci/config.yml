@@ -24,10 +24,10 @@ jobs:
           destination: junit
       - store_artifacts:
           path: ./build/geb-reports
-          destination: geb
+          destination: mock/geb
       - store_artifacts:
           path: ./build/test-results
-          destination: test-results
+          destination: mock/test-results
   accept_stage:
     docker:
     - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
@@ -38,8 +38,24 @@ jobs:
       - restore_cache:
           key: gradle-cache-{{ checksum "build.gradle" }}
       - run:
-          name: selected feature tests for stage
+          name: Download Dependencies
+          command: ./gradlew dependencies
+      - save_cache:
+          key: gradle-cache-{{ checksum "build.gradle" }}
+          paths:
+            - ~/.gradle
+      - run:
+          name: feature tests for mock
           command: ./gradlew clean stageTest
+      - store_test_results:
+          path: ./build/test-results
+          destination: junit
+      - store_artifacts:
+          path: ./build/geb-reports
+          destination: stage/geb
+      - store_artifacts:
+          path: ./build/test-results
+          destination: stage/test-results
 workflows:
   version: 2
   acceptance:
