@@ -19,7 +19,7 @@ class LicencesUi {
         dbPassword = System.env.TEST_DB_PASS ?: properties.TEST_DB_PASS
         dbDatabase = System.env.TEST_DB ?: properties.TEST_DB
 
-        testEnv = System.env.TEST_ENV ?: System.properties['TEST_ENV']
+        testEnv = System.env.TEST_ENV ?: System.properties['TEST_ENV'] ?: 'mock'
 
         if(!['mock', 'stage'].contains(testEnv)) {
             println "ERROR - Invalid test environment: $testEnv"

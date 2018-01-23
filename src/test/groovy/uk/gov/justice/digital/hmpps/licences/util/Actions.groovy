@@ -57,7 +57,7 @@ class Actions {
         Browser.drive {
             // at TaskListPage
             // click button
-            go '/hdc/eligibility/A1235HG'
+            go '/hdc/eligibility/' + nomisId
             at EligibilityCheckPage
         }
     }
