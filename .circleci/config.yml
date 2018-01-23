@@ -46,7 +46,12 @@ jobs:
             - ~/.gradle
       - run:
           name: feature tests for mock
-          command: ./gradlew clean stageTest
+          command: |
+            echo $LICENCES_URI
+            echo $LICENCES_URI_STAGE
+            export LICENCES_URI="$LICENCES_URI_STAGE"
+            echo $LICENCES_URI
+            ./gradlew clean stageTest
       - store_test_results:
           path: ./build/test-results
           destination: junit
