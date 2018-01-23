@@ -10,15 +10,12 @@ jobs:
       - restore_cache:
           key: gradle-cache-{{ checksum "build.gradle" }}
       - run:
-          name: Download Dependencies
-          command: ./gradlew dependencies
+          name: feature tests for mock
+          command: ./gradlew clean mockTest
       - save_cache:
           key: gradle-cache-{{ checksum "build.gradle" }}
           paths:
             - ~/.gradle
-      - run:
-          name: feature tests for mock
-          command: ./gradlew clean mockTest
       - store_test_results:
           path: ./build/test-results
           destination: junit
@@ -37,13 +34,6 @@ jobs:
       - checkout
       - restore_cache:
           key: gradle-cache-{{ checksum "build.gradle" }}
-      - run:
-          name: Download Dependencies
-          command: ./gradlew dependencies
-      - save_cache:
-          key: gradle-cache-{{ checksum "build.gradle" }}
-          paths:
-            - ~/.gradle
       - run:
           name: feature tests for mock
           command: |
