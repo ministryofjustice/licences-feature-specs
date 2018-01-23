@@ -18,7 +18,7 @@ jobs:
             - ~/.gradle
       - run:
           name: feature tests for mock
-          command: ./gradlew clean test
+          command: ./gradlew clean mockTest
       - store_test_results:
           path: ./build/test-results
           destination: junit
