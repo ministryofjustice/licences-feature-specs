@@ -47,10 +47,10 @@ jobs:
       - run:
           name: feature tests for mock
           command: |
-            echo $LICENCES_URI
-            echo $LICENCES_URI_STAGE
             export LICENCES_URI="$LICENCES_URI_STAGE"
-            echo $LICENCES_URI
+            export TEST_DB="$TEST_DB_STAGE"
+            export TEST_DB_PASS="$TEST_DB_PASS_STAGE"
+            export TEST_DB_SERVER="$TEST_DB_SERVER_STAGE"
             ./gradlew clean stageTest
       - store_test_results:
           path: ./build/test-results
