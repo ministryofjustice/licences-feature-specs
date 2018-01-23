@@ -35,7 +35,7 @@ class CaselistSpec extends GebReportingSpec {
         via CaselistPage
 
         then: 'I see two HDC eligible prisoners'
-        hdcEligible.size() == 2
+        hdcEligible.size() == 1
     }
 
     @Stage
