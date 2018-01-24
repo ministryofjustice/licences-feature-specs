@@ -21,10 +21,10 @@ jobs:
           destination: junit
       - store_artifacts:
           path: ./build/geb-reports/uk/gov/justice/digital/hmpps/licences/specs
-          destination: mock/geb
+          destination: mock/feature-reports
       - store_artifacts:
           path: ./build/test-results
-          destination: mock/test-results
+          destination: mock/junit-reports
   accept_stage:
     docker:
     - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
@@ -47,10 +47,10 @@ jobs:
           destination: junit
       - store_artifacts:
           path: ./build/geb-reports/uk/gov/justice/digital/hmpps/licences/specs
-          destination: stage/geb
+          destination: stage/feature-reports
       - store_artifacts:
           path: ./build/test-results
-          destination: stage/test-results
+          destination: stage/junit-reports
 workflows:
   version: 2
   acceptance:
