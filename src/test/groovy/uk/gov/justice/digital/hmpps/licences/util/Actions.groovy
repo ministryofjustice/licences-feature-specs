@@ -14,24 +14,16 @@ class Actions {
     LicencesUi licencesUi = new LicencesUi()
 
     def users = [
-            'mock' : [
-                    'CA'  : 'CA_USER',
-                    'RO'  : 'RO_USER',
-                    'DM'  : 'DM_USER',
-                    'NONE': 'NONE'
-            ],
-            'stage': [
-                    'CA'  : 'CA_USER_TEST',
-                    'RO'  : 'RO_USER_TEST',
-                    'DM'  : 'DM_USER_TEST',
-                    'NONE': 'NONE'
-            ]
+            'CA'  : 'CA_USER_TEST',
+            'RO'  : 'RO_USER_TEST',
+            'DM'  : 'DM_USER_TEST',
+            'NONE': 'NONE'
     ]
 
     def logIn(role = 'CA') {
         Browser.drive {
             to SigninPage
-            def userName = users[licencesUi.testEnv][role]
+            def userName = users[role]
             println "Logging in as ${userName}"
             signInAs(userName)
             at CaselistPage
@@ -53,10 +45,7 @@ class Actions {
     }
 
     def toEligibilityCheckPageFor(nomisId) {
-        // toTaskListPageFor(nomisId)
         Browser.drive {
-            // at TaskListPage
-            // click button
             go '/hdc/eligibility/' + nomisId
             at EligibilityCheckPage
         }
