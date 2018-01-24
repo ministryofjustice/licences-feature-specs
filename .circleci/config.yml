@@ -35,7 +35,7 @@ jobs:
       - restore_cache:
           key: gradle-cache-{{ checksum "build.gradle" }}
       - run:
-          name: feature tests for mock
+          name: feature tests for stage
           command: |
             export LICENCES_URI="$LICENCES_URI_STAGE"
             export TEST_DB="$TEST_DB_STAGE"
