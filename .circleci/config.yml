@@ -46,7 +46,7 @@ jobs:
           path: ./build/test-results
           destination: junit
       - store_artifacts:
-          path: ./build/geb-reports
+          path: ./build/geb-reports/uk/gov/justice/digital/hmpps/licences/specs
           destination: stage/geb
       - store_artifacts:
           path: ./build/test-results
