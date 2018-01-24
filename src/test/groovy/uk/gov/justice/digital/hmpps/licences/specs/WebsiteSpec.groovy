@@ -36,7 +36,7 @@ class WebsiteSpec extends GebReportingSpec {
         actions.logOut()
 
         where:
-        user      | userName
+        user | userName
         'CA' | 'User, CA_USER'
         'RO' | 'User, RO_USER'
         'DM' | 'User, DM_USER'
