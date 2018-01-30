@@ -2,7 +2,10 @@ package uk.gov.justice.digital.hmpps.licences.util
 
 import geb.Browser
 import spock.lang.Shared
+import uk.gov.justice.digital.hmpps.licences.pages.BassReferralPage
+import uk.gov.justice.digital.hmpps.licences.pages.CurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
+import uk.gov.justice.digital.hmpps.licences.pages.OptOutPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
@@ -48,6 +51,27 @@ class Actions {
         Browser.drive {
             go '/hdc/eligibility/' + nomisId
             at EligibilityCheckPage
+        }
+    }
+
+    def toOptOutPageFor(nomisId) {
+        Browser.drive {
+            go '/hdc/proposedAddress/optOut/' + nomisId
+            at OptOutPage
+        }
+    }
+
+    def toBassReferralPage(nomisId) {
+        Browser.drive {
+            go '/hdc/proposedAddress/bassReferral/' + nomisId
+            at BassReferralPage
+        }
+    }
+
+    def toCurfewAddressPage(nomisId) {
+        Browser.drive {
+            go '/hdc/proposedAddress/curfewAddress/' + nomisId
+            at CurfewAddressPage
         }
     }
 }
