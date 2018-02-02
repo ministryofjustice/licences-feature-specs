@@ -4,10 +4,10 @@ import geb.Page
 import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class OptOutPage extends Page {
+class ProposedAddressBassReferralPage extends Page {
 
     static at = {
-        browser.currentUrl.contains('/hdc/proposedAddress/optOut/')
+        browser.currentUrl.contains('/hdc/proposedAddress/bassReferral/')
     }
 
     static content = {
@@ -15,6 +15,8 @@ class OptOutPage extends Page {
 
         decisionRadios { $(name: "decision").module(RadioButtons) }
 
-        detailsForm(required: false) { $("#optOutDetails") }
+        proposedTownInput(required: false) { $("#proposedTown") }
+
+        proposedCountyInput(required: false) { $("#proposedCounty") }
     }
 }
