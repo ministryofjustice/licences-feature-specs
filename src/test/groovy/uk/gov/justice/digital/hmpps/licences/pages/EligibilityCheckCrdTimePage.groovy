@@ -13,7 +13,7 @@ class EligibilityCheckCrdTimePage extends Page {
     static content = {
         header { module(HeaderModule) }
 
-        crdTimeRadios { $(name: "crdTime").module(RadioButtons) }
+        crdTimeRadios { $(name: "decision").module(RadioButtons) }
 
     }
 }

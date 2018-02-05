@@ -62,11 +62,12 @@ class EligibilityCheckSpec extends GebReportingSpec {
     def 'Can view eligibility checks when already started'() {
 
         given: 'Eligibility checks already done'
+        testData.deleteLicences()
         testData.createLicence([
                 'nomisId'    : 'A0001XX',
-                'eligibility' : [
-                    'excluded': 'No',
-                    'unsuitable': 'Yes'
+                'eligibility'    : [
+                        'excluded'  : ['decision': 'No'],
+                        'unsuitable': ['decision': 'Yes']
                 ]
         ], 'ELIGIBILITY_CHECKED')
 

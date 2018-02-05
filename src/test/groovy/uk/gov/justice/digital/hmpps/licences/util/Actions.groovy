@@ -49,7 +49,7 @@ class Actions {
 
     def toEligibilityCheckPageFor(nomisId) {
         Browser.drive {
-            go '/hdc/eligibility/' + nomisId
+            go '/hdc/eligibility/excluded/' + nomisId
             at EligibilityCheckPage
         }
     }

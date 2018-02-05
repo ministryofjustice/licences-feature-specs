@@ -99,12 +99,13 @@ class TaskListSpec extends GebReportingSpec {
     def 'Change answers link shown when eligibility check done'() {
 
         given: 'Eligibility checks already done'
+        testData.deleteLicences()
         testData.createLicence([
                 'nomisId'    : 'A0001XX',
                 'eligibility' : [
-                        'excluded': 'No',
-                        'unsuitable': 'Yes',
-                        'crdTime': 'Yes'
+                        'excluded': ['decision': 'No'],
+                        'suitability': ['decision': 'Yes'],
+                        'crdTime': ['decision': 'Yes']
                 ]
         ], 'ELIGIBILITY_CHECKED')
 

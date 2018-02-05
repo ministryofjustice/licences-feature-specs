@@ -14,14 +14,14 @@ class EligibilityCheckSuitablePage extends Page {
     static content = {
         header { module(HeaderModule) }
 
-        unsuitableRadios { $(name: "unsuitable").module(RadioButtons) }
+        unsuitableRadios { $(name: "decision").module(RadioButtons) }
 
         unsuitableReasonsForm(required: false) { $("#unsuitableForm") }
 
-        unsuitableReasons(required: false) { $(name: "unsuitableReasons") }
+        unsuitableReasons(required: false) { $(name: "reason") }
 
         unsuitableReasonsItem { int number ->
-            $("input", number, name: "unsuitableReasons").module(Checkbox)
+            $("input", number, name: "reason").module(Checkbox)
         }
     }
 }
