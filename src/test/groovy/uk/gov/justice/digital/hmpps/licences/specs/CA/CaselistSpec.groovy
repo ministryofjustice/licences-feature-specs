@@ -60,4 +60,16 @@ class CaselistSpec extends GebReportingSpec {
         }
     }
 
+    def 'Shows started status when licence record exists'() {
+
+        given: 'a licence exists'
+        testData.createLicenceWithJson('A0001XX', '{"nomisId": "A0001XX"}')
+
+        when: 'I view the caselist'
+        via CaselistPage
+
+        then: ' The status is "started"'
+        hdcEligible[0].find('.status').text() == 'Started'
+    }
+
 }
