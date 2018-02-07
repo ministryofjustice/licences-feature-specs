@@ -74,7 +74,7 @@ class ProposedAddressSpec extends GebReportingSpec {
                         optOut: ['decision': 'Yes',
                                  'reason'  : 'Reason']
                 ]
-        ], 'ELIGIBILITY_CHECKED')
+        ])
 
         when: 'I view the eligibility checks page'
         actions.toOptOutPageFor('A0001XX')
@@ -217,8 +217,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         and: 'I can click to submit'
         find('#continueBtn').click()
 
-        then: 'The licence status is updated and I move to confirmation page'
-        assert testData.findLicenceStatusFor('A0001XX') == 'ADDRESS_SUBMITTED'
+        then: 'I move to confirmation page'
         at ProposedAddressSubmissionConfirmationPage
 
         when: 'I click return to task list'
