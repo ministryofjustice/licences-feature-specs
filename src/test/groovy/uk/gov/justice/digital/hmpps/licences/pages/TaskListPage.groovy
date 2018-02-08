@@ -28,5 +28,11 @@ class TaskListPage extends Page {
         printAddressFormButton(required: false) { $('#addressFormPrint') }
         addressFormPrintStatusText(required: false) { $('#addressFormPrintStatusText') }
         addressFormPrintStatusIcon(required: false) { $('#addressFormPrintStatusIcon') }
+
+        taskListActions(required: false) { $('.taskListAction') }
+
+        taskListAction{ taskName ->
+            $('h2', text: contains(taskName)).closest('div').find('.taskListAction')
+        }
     }
 }
