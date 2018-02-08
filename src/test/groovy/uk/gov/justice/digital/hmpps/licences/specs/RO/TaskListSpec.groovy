@@ -120,14 +120,14 @@ class TaskListSpec extends GebReportingSpec {
         given: 'All tasks started'
         testData.createLicence([
                 'nomisId'              : 'A0001XX',
-                'curfewAddressReview'  : '',
                 'licenceConditions'    : [
+                        'curfewAddressReview'  : '{}',
+                        'riskManagement'       : '{}',
                         'standardConditions': [
-                                'additionalConditionsRequired': 'No'
+                                'nextPathDecision': 'No'
                         ]
                 ],
-                'riskManagement'       : '',
-                'reportingInstructions': ''
+                'reportingInstructions': '{}'
         ])
 
         when: 'I view the page'
