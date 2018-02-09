@@ -69,7 +69,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
                         'excluded'  : ['decision': 'No'],
                         'unsuitable': ['decision': 'Yes']
                 ]
-        ], 'ELIGIBILITY_CHECKED')
+        ])
 
         when: 'I view the eligibility checks page'
         actions.toEligibilityCheckPageFor('A0001XX')
