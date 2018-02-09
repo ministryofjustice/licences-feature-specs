@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.specs.CA
 
 import geb.spock.GebReportingSpec
+import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressCurfewAddressPage
@@ -204,6 +205,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     }
 
+    @PendingFeature
     def 'I can submit the address to the RO' () {
         given: 'On confirm address page'
         at ProposedAddressConfirmPage
