@@ -6,8 +6,8 @@ import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressConfirmPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressSubmissionConfirmationPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressSubmitPage
+import uk.gov.justice.digital.hmpps.licences.pages.SentPage
+import uk.gov.justice.digital.hmpps.licences.pages.SendPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressOptOutPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressBassReferralPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
@@ -205,7 +205,6 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     }
 
-    @PendingFeature
     def 'I can submit the address to the RO' () {
         given: 'On confirm address page'
         at ProposedAddressConfirmPage
@@ -214,13 +213,13 @@ class ProposedAddressSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         then: 'I see the submit to RO page'
-        at ProposedAddressSubmitPage
+        at SendPage
 
         and: 'I can click to submit'
         find('#continueBtn').click()
 
         then: 'I move to confirmation page'
-        at ProposedAddressSubmissionConfirmationPage
+        at SentPage
 
         when: 'I click return to task list'
         find('#backBtn').click()
