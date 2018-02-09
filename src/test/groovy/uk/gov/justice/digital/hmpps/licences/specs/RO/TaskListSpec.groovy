@@ -124,7 +124,7 @@ class TaskListSpec extends GebReportingSpec {
                         'curfewAddressReview'  : '{}',
                         'riskManagement'       : '{}',
                         'standardConditions': [
-                                'nextPathDecision': 'No'
+                                'additionalConditionsRequired': 'No'
                         ]
                 ],
                 'reportingInstructions': '{}'
