@@ -21,8 +21,18 @@ class TaskListSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
+
     @Shared
     Actions actions = new Actions()
+
+    @Shared
+    def tasks = [
+            address   : 'Proposed curfew address',
+            conditions: 'Additional conditions',
+            risk      : 'Risk management and victim liaison',
+            reporting : 'Reporting instructions',
+            submit    : 'Submit to OMU'
+    ]
 
     def setupSpec() {
         testData.deleteLicences()
@@ -108,22 +118,21 @@ class TaskListSpec extends GebReportingSpec {
         at TaskListPage
 
         where:
-        task                                 | page
-        'Proposed curfew address'            | CurfewAddressReviewPage
-        'Additional conditions'              | StandardConditionsPage
-        'Risk management and victim liaison' | RiskManagementPage
-        //'Reporting instructions'             | ReportingInstructionsPage
+        task             | page
+        tasks.address    | CurfewAddressReviewPage
+        tasks.conditions | StandardConditionsPage
+        tasks.risk       | RiskManagementPage
+        //tasks.reporting             | ReportingInstructionsPage
     }
 
     def 'Shows view button for tasks that have been started'() {
 
-        given: 'All tasks started'
+        given: 'Tasks started except risk management'
         testData.createLicence([
                 'nomisId'              : 'A0001XX',
                 'licenceConditions'    : [
-                        'curfewAddressReview'  : '{}',
-                        'riskManagement'       : '{}',
-                        'standardConditions': [
+                        'curfewAddressReview': '{}',
+                        'standardConditions' : [
                                 'additionalConditionsRequired': 'No'
                         ]
                 ],
@@ -134,14 +143,43 @@ class TaskListSpec extends GebReportingSpec {
         actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
-        then: 'I see 4 task buttons'
+        then: 'I see 4 task buttons (no submit button shown)'
         taskListActions.size() == 4
 
-        and: 'The buttons all say View'
-        taskListActions.every { it.text() == 'View' }
+        and: 'The buttons for started tasks all say View'
+        taskListAction(tasks.address).text() == 'View'
+        taskListAction(tasks.conditions).text() == 'View'
+        taskListAction(tasks.risk).text() == 'Start'
+        taskListAction(tasks.reporting).text() == 'View'
     }
 
-    
+    def 'Shows Submit button when all tasks are done'() {
+
+        given: 'All tasks done'
+        // todo update this when we have a definition of minimum for DONE
+        // todo updte when curfewAddressReview and riskManagement moved outide licenceConditions
+        testData.createLicence([
+                'nomisId'              : 'A0002XX',
+                'licenceConditions'    : [
+                        'curfewAddressReview': '{}',
+                        'riskManagement'     : '{}',
+                        'standardConditions' : [
+                                'additionalConditionsRequired': 'No'
+                        ]
+                ],
+                'reportingInstructions': '{}'
+        ])
+
+        when: 'I view the page'
+        actions.toTaskListPageFor('A0002XX')
+        at TaskListPage
+
+        then: 'I see 5 task buttons'
+        taskListActions.size() == 5
+
+        and: 'There is a submit to OMU button'
+        taskListAction(tasks.submit).text() == 'Continue'
+    }
 }
 
 

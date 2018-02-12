@@ -41,8 +41,7 @@ class Actions {
 
     def toTaskListPageFor(nomisId) {
         Browser.drive {
-            via CaselistPage
-            viewTaskListFor(nomisId)
+            go '/hdc/taskList/' + nomisId
             at TaskListPage
         }
     }

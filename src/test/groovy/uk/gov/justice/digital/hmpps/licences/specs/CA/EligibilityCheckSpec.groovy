@@ -67,7 +67,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
                 'nomisId'    : 'A0001XX',
                 'eligibility'    : [
                         'excluded'  : ['decision': 'No'],
-                        'unsuitable': ['decision': 'Yes']
+                        'suitability': ['decision': 'Yes']
                 ]
         ])
 
