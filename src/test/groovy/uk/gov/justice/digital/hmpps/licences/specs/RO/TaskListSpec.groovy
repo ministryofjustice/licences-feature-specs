@@ -143,7 +143,7 @@ class TaskListSpec extends GebReportingSpec {
         actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
-        then: 'I see 4 task buttons'
+        then: 'I see 4 task buttons (no submit button shown)'
         taskListActions.size() == 4
 
         and: 'The buttons for started tasks all say View'
@@ -155,7 +155,9 @@ class TaskListSpec extends GebReportingSpec {
 
     def 'Shows Submit button when all tasks are done'() {
 
-        given: 'All tasks done'  // todo update this when we have a definition of minimum for DONE
+        given: 'All tasks done'
+        // todo update this when we have a definition of minimum for DONE
+        // todo updte when curfewAddressReview and riskManagement moved outide licenceConditions
         testData.createLicence([
                 'nomisId'              : 'A0002XX',
                 'licenceConditions'    : [
