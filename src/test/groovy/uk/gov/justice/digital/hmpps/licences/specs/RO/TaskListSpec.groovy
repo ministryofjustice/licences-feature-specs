@@ -9,8 +9,11 @@ import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.CurfewAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
+import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressConfirmPage
 import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.SendPage
+import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
@@ -179,6 +182,29 @@ class TaskListSpec extends GebReportingSpec {
 
         and: 'There is a submit to OMU button'
         taskListAction(tasks.submit).text() == 'Continue'
+    }
+
+    def 'I can submit the licence back to the CA' () {
+        given: 'At task list'
+        at TaskListPage
+
+        when: 'I press submit to OMU'
+        taskListAction(tasks.submit).click()
+
+        then: 'I see the submit to CA page'
+        at SendPage
+
+        and: 'I can click to submit'
+        find('#continueBtn').click()
+
+        then: 'I move to confirmation page'
+        at SentPage
+
+        when: 'I click return to task list'
+        find('#backBtn').click()
+
+        then: 'I return to the tasklist'
+        at TaskListPage
     }
 }
 
