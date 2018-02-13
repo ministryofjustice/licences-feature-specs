@@ -4,6 +4,9 @@ import geb.spock.GebReportingSpec
 import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.CurfewAddressReviewPage
+import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -28,6 +31,22 @@ class ProposedCurfewAddressSpec extends GebReportingSpec {
     @PendingFeature
     def 'Shows address details' () {
 
+        given: 'A licence record with a proposed curfew address'
+        // todo
+
+        and: 'At task list page'
+        actions.toTaskListPageFor('A0001XX')
+        at TaskListPage
+
+        when: 'I start the address review task'
+        taskListAction('Proposed curfew address').click()
+
+        then: 'I see the address details page'
+        at CurfewAddressReviewPage
+
+        and: 'I see the address details'
+        // todo
+        assert(false)
     }
 
     @PendingFeature

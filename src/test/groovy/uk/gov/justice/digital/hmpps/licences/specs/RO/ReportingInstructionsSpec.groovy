@@ -4,6 +4,9 @@ import geb.spock.GebReportingSpec
 import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -28,6 +31,19 @@ class ReportingInstructionsSpec extends GebReportingSpec {
     @PendingFeature
     def 'Reporting instructions initially blank' () {
 
+        given: 'At task list page'
+        actions.toTaskListPageFor('A0001XX')
+        at TaskListPage
+
+        when: 'I start the reporting instructions task'
+        taskListAction('Reporting instructions').click()
+
+        then: 'I see the reporting instructions page'
+        at ReportingInstructionsPage
+
+        and: 'The options are unset'
+        // todo
+        assert(false)
     }
 
     @PendingFeature

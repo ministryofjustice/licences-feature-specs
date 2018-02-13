@@ -4,13 +4,14 @@ import geb.spock.GebReportingSpec
 import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
-class AdditionalConditionsSpec extends GebReportingSpec {
+class RiskManagementSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
@@ -27,23 +28,38 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         actions.logOut()
     }
 
-    def 'Standard conditions page shown first' () {
+    @PendingFeature
+    def 'Options initially blank' () {
 
         given: 'At task list page'
         actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
-        when: 'I start the additional conditions task'
-        taskListAction('Additional conditions').click()
+        when: 'I start the risk management task'
+        taskListAction('Risk management and victim liaison').click()
 
-        then: 'I see the standard conditions page'
-        at StandardConditionsPage
+        then: 'I see the risk management page'
+        at RiskManagementPage
+
+        and: 'The options are unset'
+        // todo
+        assert(false)
     }
 
     @PendingFeature
-    def 'Options initially unset' () {
+    def 'Risk management details shown when YES' () {
 
     }
+
+    @PendingFeature
+    def 'Awaiting information details shown when YES' () {
+
+    }
+    @PendingFeature
+    def 'Victim liaison details shown when YES' () {
+
+    }
+
 
     @PendingFeature
     def 'Modified options not saved on return to tasklist' () {
@@ -52,31 +68,6 @@ class AdditionalConditionsSpec extends GebReportingSpec {
 
     @PendingFeature
     def 'Modified options saved on save and continue' () {
-
-    }
-
-    @PendingFeature
-    def 'When additional conditions NOT required, does NOT show additional conditions page' () {
-
-    }
-
-    @PendingFeature
-    def 'When additional conditions required, shows additional conditions page' () {
-
-    }
-
-    @PendingFeature
-    def 'Additional conditions initially unset' () {
-
-    }
-
-    @PendingFeature
-    def 'Modified Additional conditions not saved on return to tasklist' () {
-
-    }
-
-    @PendingFeature
-    def 'Modified Additional conditions saved on save and continue' () {
 
     }
 }
