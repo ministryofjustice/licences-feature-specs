@@ -9,8 +9,11 @@ import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.CurfewAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
+import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressConfirmPage
 import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.SendPage
+import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
@@ -157,7 +160,7 @@ class TaskListSpec extends GebReportingSpec {
 
         given: 'All tasks done'
         // todo update this when we have a definition of minimum for DONE
-        // todo updte when curfewAddressReview and riskManagement moved outide licenceConditions
+        // todo update when curfewAddressReview and riskManagement moved outide licenceConditions
         testData.createLicence([
                 'nomisId'              : 'A0002XX',
                 'licenceConditions'    : [
@@ -168,7 +171,7 @@ class TaskListSpec extends GebReportingSpec {
                         ]
                 ],
                 'reportingInstructions': '{}'
-        ])
+        ], 'PROCESSING_RO')
 
         when: 'I view the page'
         actions.toTaskListPageFor('A0002XX')
@@ -179,6 +182,34 @@ class TaskListSpec extends GebReportingSpec {
 
         and: 'There is a submit to OMU button'
         taskListAction(tasks.submit).text() == 'Continue'
+    }
+
+    def 'I can submit the licence back to the CA' () {
+        given: 'At task list'
+        actions.toTaskListPageFor('A0002XX')
+        at TaskListPage
+
+        when: 'I press submit to OMU'
+        taskListAction(tasks.submit).click()
+
+        then: 'I see the submit to CA page'
+        at SendPage
+
+        and: 'I see contact details for the prison'
+        prison.text() == 'HMP Licence Test Prison'
+        phones.size() == 2
+
+        and: 'I can click to submit'
+        find('#continueBtn').click()
+
+        then: 'I see the confirmation page'
+        at SentPage
+
+        when: 'I click return to task list'
+        find('#backBtn').click()
+
+        then: 'I return to the tasklist'
+        at TaskListPage
     }
 }
 
