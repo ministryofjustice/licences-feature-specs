@@ -184,6 +184,7 @@ class TaskListSpec extends GebReportingSpec {
         taskListAction(tasks.submit).text() == 'Continue'
     }
 
+    // @Stage todo prep data on stage
     def 'I can submit the licence back to the CA' () {
         given: 'At task list'
         actions.toTaskListPageFor('A0002XX')
