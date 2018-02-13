@@ -81,7 +81,6 @@ class ProposedCurfewAddressSpec extends GebReportingSpec {
 
     }
 
-    @PendingFeature
     def 'Modified choices are saved after save and continue' () {
 
         given: 'At address review page'
