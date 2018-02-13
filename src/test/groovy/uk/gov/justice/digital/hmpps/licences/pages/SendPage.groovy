@@ -9,4 +9,15 @@ class SendPage extends Page {
         browser.currentUrl.contains('/hdc/send/')
     }
 
+    static content = {
+        header { module(HeaderModule) }
+
+        prison(required: false) { $("#premise") }
+        city(required: false) { $("#city") }
+        locality(required: false) { $("#locality") }
+        postCode(required: false) { $("#postCode") }
+
+        phones(required: false) { $("div", id: startsWith("phone")) }
+    }
+
 }
