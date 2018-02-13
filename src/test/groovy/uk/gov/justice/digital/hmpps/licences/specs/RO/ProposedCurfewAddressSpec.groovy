@@ -33,17 +33,11 @@ class ProposedCurfewAddressSpec extends GebReportingSpec {
         given: 'A licence record with a proposed curfew address'
         testData.createLicenceWithJson('A0001XX', '{"proposedAddress":{"optOut":{"decision":"No"},"bassReferral":{"decision":"No"},"curfewAddress":{"addressLine1":"street","addressLine2":"","addressTown":"town","postCode":"PC11PC","telephone":"4444444","electricity":"Yes","occupier":{"name":"","age":"","relationship":""},"residents":[{"name":"","age":"","relation":""},{"name":"","age":"","relation":""},{"name":"","age":"","relation":""}]}}}')
 
-        and: 'At task list page'
-        actions.toTaskListPageFor('A0001XX')
-        at TaskListPage
-
-        when: 'I start the address review task'
-        taskListAction('Proposed curfew address').click()
-
-        then: 'I see the address details page'
+        when: 'I go to the address review page'
+        actions.toAddressReviewPageFor('A0001XX')
         at CurfewAddressReviewPage
 
-        and: 'I see the address details'
+        then: 'I see the address details'
         street.text() == 'street'
         town.text() == 'town'
         postCode.text() == 'PC11PC'
@@ -90,5 +84,19 @@ class ProposedCurfewAddressSpec extends GebReportingSpec {
     @PendingFeature
     def 'Modified choices are saved after save and continue' () {
 
+        given: 'At address review page'
+        actions.toAddressReviewPageFor('A0001XX')
+
+        when: 'I enter new values'
+        landlordConsentRadios.checked = 'Yes'
+
+        and: 'I save and continue'
+        find('#continueBtn').click()
+
+        and: 'I return to the address review page'
+        actions.toAddressReviewPageFor('A0001XX')
+
+        then: 'I see the previously entered values'
+        landlordConsentRadios.checked == 'Yes'
     }
 }

@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.util
 
 import geb.Browser
 import spock.lang.Shared
+import uk.gov.justice.digital.hmpps.licences.pages.CurfewAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressBassReferralPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
@@ -71,6 +72,13 @@ class Actions {
         Browser.drive {
             go '/hdc/proposedAddress/curfewAddress/' + nomisId
             at ProposedAddressCurfewAddressPage
+        }
+    }
+
+    def toAddressReviewPageFor(nomisId) {
+        Browser.drive {
+            go '/hdc/licenceConditions/curfewAddressReview/' + nomisId
+            at CurfewAddressReviewPage
         }
     }
 }

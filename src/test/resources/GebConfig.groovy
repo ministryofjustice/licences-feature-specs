@@ -11,7 +11,7 @@ driver = {
     capabilities.setJavascriptEnabled(true)
 
     // Use the following to run tests in headless mode
-    def driverInstance = new PhantomJSDriver(capabilities)
+    //def driverInstance = new PhantomJSDriver(capabilities)
 
     // Use the following to set path to chromedriver if not using linux chromedriver
     // System.setProperty('webdriver.chrome.driver', '/usr/local/bin/chromedriver')
@@ -20,7 +20,7 @@ driver = {
     // System.setProperty('webdriver.chrome.driver', '/Applications/chromedriver')
 
     // Use the following to run tests with Chromedriver
-    // def driverInstance = new ChromeDriver()
+     def driverInstance = new ChromeDriver()
 
 
     driverInstance.manage().window().maximize()
