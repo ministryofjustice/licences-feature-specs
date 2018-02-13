@@ -28,7 +28,6 @@ class RiskManagementSpec extends GebReportingSpec {
         actions.logOut()
     }
 
-    @PendingFeature
     def 'Options initially blank' () {
 
         given: 'At task list page'
@@ -42,8 +41,9 @@ class RiskManagementSpec extends GebReportingSpec {
         at RiskManagementPage
 
         and: 'The options are unset'
-        // todo
-        assert(false)
+        riskManagementRadios.checked == null
+        awaitingInformationRadios.checked == null
+        victimLiaisonRadios.checked == null
     }
 
     @PendingFeature

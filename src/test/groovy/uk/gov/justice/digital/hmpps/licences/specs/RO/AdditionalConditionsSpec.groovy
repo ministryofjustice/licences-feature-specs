@@ -4,6 +4,7 @@ import geb.spock.GebReportingSpec
 import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.CurfewAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
@@ -40,9 +41,13 @@ class AdditionalConditionsSpec extends GebReportingSpec {
         at StandardConditionsPage
     }
 
-    @PendingFeature
     def 'Options initially unset' () {
 
+        when: 'At standard page'
+        at StandardConditionsPage
+
+        then:
+        additionalConditionsRadios.checked == null
     }
 
     @PendingFeature

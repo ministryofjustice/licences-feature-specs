@@ -28,11 +28,10 @@ class ProposedCurfewAddressSpec extends GebReportingSpec {
         actions.logOut()
     }
 
-    @PendingFeature
     def 'Shows address details' () {
 
         given: 'A licence record with a proposed curfew address'
-        // todo
+        testData.createLicenceWithJson('A0001XX', '{"proposedAddress":{"optOut":{"decision":"No"},"bassReferral":{"decision":"No"},"curfewAddress":{"addressLine1":"street","addressLine2":"","addressTown":"town","postCode":"PC11PC","telephone":"4444444","electricity":"Yes","occupier":{"name":"","age":"","relationship":""},"residents":[{"name":"","age":"","relation":""},{"name":"","age":"","relation":""},{"name":"","age":"","relation":""}]}}}')
 
         and: 'At task list page'
         actions.toTaskListPageFor('A0001XX')
@@ -45,13 +44,22 @@ class ProposedCurfewAddressSpec extends GebReportingSpec {
         at CurfewAddressReviewPage
 
         and: 'I see the address details'
-        // todo
-        assert(false)
+        street.text() == 'street'
+        town.text() == 'town'
+        postCode.text() == 'PC11PC'
+
+        // todo these all need formatting/capitalising
+        // todo check other values
     }
 
-    @PendingFeature
     def 'Confirmation options initially unselected' () {
 
+        when: 'At address review page'
+        at CurfewAddressReviewPage
+
+        then:
+        landlordConsentRadios.checked == null
+        manageSafelyRadios.checked == null
     }
 
     @PendingFeature
