@@ -5,7 +5,7 @@ import geb.module.Checkbox
 import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class EligibilityCheckSuitablePage extends Page {
+class SuitabilityCheckPage extends Page {
 
     static at = {
         browser.currentUrl.contains('/hdc/eligibility/suitability')

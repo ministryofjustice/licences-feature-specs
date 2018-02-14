@@ -4,14 +4,12 @@ import geb.spock.GebReportingSpec
 import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.CurfewAddressReviewPage
-import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
-import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
-class ProposedCurfewAddressSpec extends GebReportingSpec {
+class ProposedAddressReviewSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
@@ -35,7 +33,7 @@ class ProposedCurfewAddressSpec extends GebReportingSpec {
 
         when: 'I go to the address review page'
         actions.toAddressReviewPageFor('A0001XX')
-        at CurfewAddressReviewPage
+        at ProposedAddressReviewPage
 
         then: 'I see the address details'
         street.text() == 'street'
@@ -49,7 +47,7 @@ class ProposedCurfewAddressSpec extends GebReportingSpec {
     def 'Confirmation options initially unselected' () {
 
         when: 'At address review page'
-        at CurfewAddressReviewPage
+        at ProposedAddressReviewPage
 
         then:
         landlordConsentRadios.checked == null

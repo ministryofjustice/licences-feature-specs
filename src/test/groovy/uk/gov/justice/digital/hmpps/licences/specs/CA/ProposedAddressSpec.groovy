@@ -1,15 +1,14 @@
 package uk.gov.justice.digital.hmpps.licences.specs.CA
 
 import geb.spock.GebReportingSpec
-import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressCurfewAddressPage
+import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressConfirmPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.SendPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressOptOutPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressBassReferralPage
+import uk.gov.justice.digital.hmpps.licences.pages.HdcOptOutPage
+import uk.gov.justice.digital.hmpps.licences.pages.BassReferralPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -35,7 +34,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         when: 'I view the opt out page'
         actions.toOptOutPageFor('A0001XX')
-        at ProposedAddressOptOutPage
+        at HdcOptOutPage
 
         then: 'Neither radio option is selected'
         decisionRadios.checked == null
@@ -79,7 +78,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         when: 'I view the eligibility checks page'
         actions.toOptOutPageFor('A0001XX')
-        at ProposedAddressOptOutPage
+        at HdcOptOutPage
 
         then: 'I see the previous values'
         decisionRadios.checked == 'Yes'
@@ -90,7 +89,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     def 'The task list is shown next if opt out is Yes' () {
         given: 'On opt out page'
-        at ProposedAddressOptOutPage
+        at HdcOptOutPage
 
         when: 'I select to opt out'
         decisionRadios.checked = 'Yes'
@@ -104,14 +103,14 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         when: 'I view the opt out page'
         actions.toOptOutPageFor('A0001XX')
-        at ProposedAddressOptOutPage
+        at HdcOptOutPage
 
         and: 'I select to not opt out'
         decisionRadios.checked = 'No'
         find('#continueBtn').click()
 
         then: 'I see the BASS referral form'
-        at ProposedAddressBassReferralPage
+        at BassReferralPage
 
         and: 'Nothing is selected'
         decisionRadios.checked == null
@@ -137,7 +136,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     def 'The task list is shown next if BASS referral is Yes' () {
         given: 'On BASS referral page'
-        at ProposedAddressBassReferralPage
+        at BassReferralPage
 
         when: 'I select yes'
         decisionRadios.checked = 'Yes'
@@ -150,20 +149,20 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'The proposed address form is shown next if BASS referral is No' () {
         when: 'I view the opt out page'
         actions.toBassReferralPage('A0001XX')
-        at ProposedAddressBassReferralPage
+        at BassReferralPage
 
         and: 'I select no'
         decisionRadios.checked = 'No'
         find('#continueBtn').click()
 
         then: 'I see the proposed Address Form'
-        at ProposedAddressCurfewAddressPage
+        at ProposedAddressPage
     }
 
     def 'Inputted choices are saved after save and continue' () {
 
         given: 'On Curfew Address page'
-        at ProposedAddressCurfewAddressPage
+        at ProposedAddressPage
 
         when: 'I fill in the form and save'
         address1 = 'Address 1'

@@ -1,16 +1,12 @@
 package uk.gov.justice.digital.hmpps.licences.specs.RO
 
 import geb.spock.GebReportingSpec
-import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
-import uk.gov.justice.digital.hmpps.licences.pages.CurfewAddressReviewPage
-import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressConfirmPage
-import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.SendPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
@@ -122,7 +118,7 @@ class TaskListSpec extends GebReportingSpec {
 
         where:
         task             | page
-        tasks.address    | CurfewAddressReviewPage
+        tasks.address    | ProposedAddressReviewPage
         tasks.conditions | StandardConditionsPage
         tasks.risk       | RiskManagementPage
         //tasks.reporting             | ReportingInstructionsPage

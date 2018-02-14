@@ -2,11 +2,11 @@ package uk.gov.justice.digital.hmpps.licences.util
 
 import geb.Browser
 import spock.lang.Shared
-import uk.gov.justice.digital.hmpps.licences.pages.CurfewAddressReviewPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressBassReferralPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressCurfewAddressPage
+import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
+import uk.gov.justice.digital.hmpps.licences.pages.BassReferralPage
+import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressOptOutPage
+import uk.gov.justice.digital.hmpps.licences.pages.HdcOptOutPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
@@ -57,28 +57,28 @@ class Actions {
     def toOptOutPageFor(nomisId) {
         Browser.drive {
             go '/hdc/proposedAddress/optOut/' + nomisId
-            at ProposedAddressOptOutPage
+            at HdcOptOutPage
         }
     }
 
     def toBassReferralPage(nomisId) {
         Browser.drive {
             go '/hdc/proposedAddress/bassReferral/' + nomisId
-            at ProposedAddressBassReferralPage
+            at BassReferralPage
         }
     }
 
     def toCurfewAddressPage(nomisId) {
         Browser.drive {
             go '/hdc/proposedAddress/curfewAddress/' + nomisId
-            at ProposedAddressCurfewAddressPage
+            at ProposedAddressPage
         }
     }
 
     def toAddressReviewPageFor(nomisId) {
         Browser.drive {
             go '/hdc/licenceConditions/curfewAddressReview/' + nomisId
-            at CurfewAddressReviewPage
+            at ProposedAddressReviewPage
         }
     }
 }

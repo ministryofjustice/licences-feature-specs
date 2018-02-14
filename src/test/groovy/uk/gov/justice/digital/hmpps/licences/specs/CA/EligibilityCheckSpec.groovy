@@ -4,8 +4,8 @@ import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
-import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckCrdTimePage
-import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckSuitablePage
+import uk.gov.justice.digital.hmpps.licences.pages.EligibilityTimeCheckPage
+import uk.gov.justice.digital.hmpps.licences.pages.SuitabilityCheckPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -119,7 +119,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         then: 'I see the suitability form'
-        at EligibilityCheckSuitablePage
+        at SuitabilityCheckPage
 
         when: 'I select yes for unsuitable'
         unsuitableRadios.checked = 'Yes'
@@ -148,7 +148,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         when: 'I choose save and continue'
         find('#continueBtn').click()
-        at EligibilityCheckSuitablePage
+        at SuitabilityCheckPage
 
         find('#backBtn').click()
         at TaskListPage
@@ -173,14 +173,14 @@ class EligibilityCheckSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         then: 'I see the suitability form'
-        at EligibilityCheckSuitablePage
+        at SuitabilityCheckPage
 
         when: 'I select yes for unsuitable and continue'
         unsuitableRadios.checked = 'Yes'
         find('#continueBtn').click()
 
         then: 'I see the crd time form'
-        at EligibilityCheckCrdTimePage
+        at EligibilityTimeCheckPage
     }
 
     def 'All selections are saved and shown on the task list' () {
@@ -191,12 +191,12 @@ class EligibilityCheckSpec extends GebReportingSpec {
         when: 'I select new options and save'
         excludedRadios.checked = 'Yes'
         find('#continueBtn').click()
-        at EligibilityCheckSuitablePage
+        at SuitabilityCheckPage
 
         and: 'I select No for unsuitable and continue'
         unsuitableRadios.checked = 'No'
         find('#continueBtn').click()
-        at EligibilityCheckCrdTimePage
+        at EligibilityTimeCheckPage
 
         and: 'I select Yes for CRD time and continue'
         crdTimeRadios.checked = 'Yes'
