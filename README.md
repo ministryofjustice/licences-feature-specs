@@ -1,5 +1,6 @@
 # licences-feature-specs
 End-to-end tests for the Licences Application
+see http://www.gebish.org/manual/current/
 
 ## Pre-Requisites
 
