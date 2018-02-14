@@ -75,12 +75,27 @@ class LicenceConditionsSpec extends GebReportingSpec {
     }
 
     @PendingFeature
+    def 'Select a condition reveals the input form' () {
+
+    }
+
+    @PendingFeature
     def 'Modified Additional conditions not saved on return to tasklist' () {
 
     }
 
     @PendingFeature
     def 'Modified Additional conditions saved on save and continue' () {
+
+    }
+
+    @PendingFeature
+    def 'A more detailed check of multiple inputs being correctly shown in the right form' () {
+
+    }
+
+    @PendingFeature
+    def 'Saved values shown on the review screen' () { // or maybe a separate spec for the review
 
     }
 }

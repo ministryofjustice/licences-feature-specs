@@ -65,6 +65,11 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     }
 
     @PendingFeature
+    def 'Electricity supply answer previously given by CA' () { // is this really what we are meant to do? seems odd.
+
+    }
+
+    @PendingFeature
     def 'Further details not shown when managed safely is yes' () {
 
     }
