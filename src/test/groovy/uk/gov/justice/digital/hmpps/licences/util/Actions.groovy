@@ -77,7 +77,7 @@ class Actions {
 
     def toAddressReviewPageFor(nomisId) {
         Browser.drive {
-            go '/hdc/licenceConditions/curfewAddressReview/' + nomisId
+            go '/hdc/curfew/curfewAddressReview/' + nomisId
             at ProposedAddressReviewPage
         }
     }

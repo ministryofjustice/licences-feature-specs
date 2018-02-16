@@ -129,13 +129,17 @@ class TaskListSpec extends GebReportingSpec {
         given: 'Tasks started except risk management'
         testData.createLicence([
                 'nomisId'              : 'A0001XX',
+                'curfew'               : [
+                        'curfewAddressReview': {}
+                ],
                 'licenceConditions'    : [
-                        'curfewAddressReview': '{}',
-                        'standardConditions' : [
+                        'standard': [
                                 'additionalConditionsRequired': 'No'
                         ]
                 ],
-                'reportingInstructions': '{}'
+                'reporting': [
+                        'reportingInstructions': '{}'
+                ]
         ])
 
         when: 'I view the page'
@@ -159,14 +163,20 @@ class TaskListSpec extends GebReportingSpec {
         // todo update when curfewAddressReview and riskManagement moved outide licenceConditions
         testData.createLicence([
                 'nomisId'              : 'A0002XX',
-                'licenceConditions'    : [
+                'curfew'               : [
                         'curfewAddressReview': '{}',
-                        'riskManagement'     : '{}',
-                        'standardConditions' : [
+                ],
+                'risk'                  : [
+                        'riskManagement': '{}',
+                ],
+                'licenceConditions'    : [
+                        'standard': [
                                 'additionalConditionsRequired': 'No'
                         ]
                 ],
-                'reportingInstructions': '{}'
+                'reporting': [
+                        'reportingInstructions': '{}'
+                ]
         ], 'PROCESSING_RO')
 
         when: 'I view the page'

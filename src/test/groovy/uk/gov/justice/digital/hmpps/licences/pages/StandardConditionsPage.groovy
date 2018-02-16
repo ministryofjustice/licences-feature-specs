@@ -7,7 +7,7 @@ import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 class StandardConditionsPage extends Page {
 
     static at = {
-        browser.currentUrl.contains('/standardConditions/')
+        browser.currentUrl.contains('/standard/')
     }
 
     static content = {
