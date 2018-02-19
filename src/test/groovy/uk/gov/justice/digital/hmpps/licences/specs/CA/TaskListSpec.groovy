@@ -107,7 +107,7 @@ class TaskListSpec extends GebReportingSpec {
                         'suitability': ['decision': 'Yes'],
                         'crdTime': ['decision': 'Yes']
                 ]
-        ])
+        ], 'ELIGIBILITY')
 
         when: 'I view the tasklist page'
         actions.toTaskListPageFor('A0001XX')

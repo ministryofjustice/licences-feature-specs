@@ -48,7 +48,7 @@ class CaselistSpec extends GebReportingSpec {
                 '.location'  : 'A-1-1 - Licence Auto Test Prison',
                 '.hdced'     : '13/07/2019',
                 '.crd'       : '15/10/2019',
-                '.status'    : 'Not started',
+                '.status'    : 'Not Started',
         ]
 
         when: 'I view the case list'
@@ -60,16 +60,16 @@ class CaselistSpec extends GebReportingSpec {
         }
     }
 
-    def 'Shows started status when licence record exists'() {
+    def 'Shows in progress status when licence record exists and tasks have started'() {
 
         given: 'a licence exists'
-        testData.createLicenceWithJson('A0001XX', '{"nomisId": "A0001XX"}')
+        testData.createLicenceWithJson('A0001XX', '{"nomisId": "A0001XX", "licence": {"eligibility": { "excluded": "No"}}}', 'ELIGIBILITY')
 
         when: 'I view the caselist'
         via CaselistPage
 
-        then: ' The status is "started"'
-        hdcEligible[0].find('.status').text() == 'Started'
+        then: ' The status indicates that the processing has begun'
+        hdcEligible[0].find('.status').text() == 'Eligibility checks ongoing'
     }
 
 }
