@@ -159,7 +159,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         at ProposedAddressPage
     }
 
-    def 'Inputted choices are saved after save and continue' () {
+    def 'Entered values are saved after save and continue' () {
 
         given: 'On Curfew Address page'
         at ProposedAddressPage

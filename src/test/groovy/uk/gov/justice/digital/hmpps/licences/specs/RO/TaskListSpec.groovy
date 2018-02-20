@@ -30,7 +30,7 @@ class TaskListSpec extends GebReportingSpec {
             conditions: 'Additional conditions',
             risk      : 'Risk management and victim liaison',
             reporting : 'Reporting instructions',
-            submit    : 'Submit to OMU'
+            submit    : 'Submit to PCA'
     ]
 
     def setupSpec() {
@@ -127,20 +127,21 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows view button for tasks that have been started'() {
 
         given: 'Tasks started except risk management'
+        testData.deleteLicences()
         testData.createLicence([
-                'nomisId'              : 'A0001XX',
-                'curfew'               : [
-                        'curfewAddressReview': {}
+                'nomisId'          : 'A0001XX',
+                'curfew'           : [
+                        'curfewAddressReview': 'anything'
                 ],
-                'licenceConditions'    : [
+                'licenceConditions': [
                         'standard': [
                                 'additionalConditionsRequired': 'No'
                         ]
                 ],
-                'reporting': [
+                'reporting'        : [
                         'reportingInstructions': '{}'
                 ]
-        ])
+        ], 'PROCESSING_RO')
 
         when: 'I view the page'
         actions.toTaskListPageFor('A0001XX')
@@ -159,28 +160,36 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows Submit button when all tasks are done'() {
 
         given: 'All tasks done'
-        // todo update this when we have a definition of minimum for DONE
-        // todo update when curfewAddressReview and riskManagement moved outide licenceConditions
+        testData.deleteLicences()
         testData.createLicence([
-                'nomisId'              : 'A0002XX',
-                'curfew'               : [
-                        'curfewAddressReview': '{}',
+                'nomisId'          : 'A0001XX',
+                'curfew'           : [
+                        'curfewAddressReview': [
+                                'consent'           : 'Yes',
+                                'deemedSafe'        : 'Yes',
+                                'electricity'       : 'Yes',
+                                'homeVisitConducted': 'Yes'
+                        ],
+                        'curfewHours'        : '{}',
                 ],
-                'risk'                  : [
-                        'riskManagement': '{}',
+                'risk'             : [
+                        'riskManagement': [
+                                'planningActions': 'No',
+                                'victimLiaison': 'No'
+                        ],
                 ],
-                'licenceConditions'    : [
+                'licenceConditions': [
                         'standard': [
                                 'additionalConditionsRequired': 'No'
                         ]
                 ],
-                'reporting': [
+                'reporting'        : [
                         'reportingInstructions': '{}'
                 ]
         ], 'PROCESSING_RO')
 
         when: 'I view the page'
-        actions.toTaskListPageFor('A0002XX')
+        actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
         then: 'I see 5 task buttons'
@@ -191,12 +200,12 @@ class TaskListSpec extends GebReportingSpec {
     }
 
     // @Stage todo prep data on stage
-    def 'I can submit the licence back to the CA' () {
+    def 'I can submit the licence back to the CA'() {
         given: 'At task list'
-        actions.toTaskListPageFor('A0002XX')
+        actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
-        when: 'I press submit to OMU'
+        when: 'I press submit to PCA'
         taskListAction(tasks.submit).click()
 
         then: 'I see the submit to CA page'

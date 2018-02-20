@@ -48,7 +48,7 @@ class CaselistSpec extends GebReportingSpec {
                 '.location'  : 'Licence Auto Test Prison',
                 '.hdced'     : '13/07/2019',
                 '.crd'       : '15/10/2019',
-                '.status'    : 'Not started',
+                '.status'    : 'Not Started',
         ]
 
         when: 'I view the case list'

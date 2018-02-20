@@ -19,7 +19,7 @@ class TestData {
         checkAndCreateLicence(JsonOutput.toJson(data), data.nomisId, status)
     }
 
-    def createLicenceWithJson(nomisId, status = '', String data) {
+    def createLicenceWithJson(nomisId, String data, status = '') {
         checkAndCreateLicence(data, nomisId, status)
     }
 
