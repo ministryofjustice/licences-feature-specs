@@ -20,6 +20,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
 
     def setupSpec() {
         testData.deleteLicences()
+        testData.createLicence(['nomisId': 'A0001XX'], 'ELIGIBILITY')
         actions.logIn('RO')
     }
 
