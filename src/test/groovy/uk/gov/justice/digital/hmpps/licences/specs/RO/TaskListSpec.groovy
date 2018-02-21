@@ -104,6 +104,10 @@ class TaskListSpec extends GebReportingSpec {
         actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
+        and: 'A licence exists for the nomis id'
+        testData.deleteLicences()
+        testData.createLicence(['nomisId': 'A0001XX'], 'ELIGIBILITY')
+
         when: 'I start the task'
         taskListAction(task).click()
 
