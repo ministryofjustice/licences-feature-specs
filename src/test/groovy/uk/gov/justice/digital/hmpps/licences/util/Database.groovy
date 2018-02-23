@@ -34,7 +34,7 @@ class Database {
         sql.execute("DELETE FROM LICENCES WHERE NOMIS_ID like '%XX'")
     }
 
-    def create(licence, nomisId, status) {
+    def create(nomisId, status, licence) {
         if (!nomisId.endsWith('XX')) {
             println 'Nomis ID must end with XX for stage tests'
             return

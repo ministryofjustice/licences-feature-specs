@@ -20,7 +20,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
     def setupSpec() {
         testData.deleteLicences()
-        testData.createLicence(['nomisId': 'A0001XX'], 'ELIGIBILITY')
+        testData.loadLicence('eligibility/unstarted')
         actions.logIn('CA')
     }
 
@@ -64,13 +64,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         given: 'Eligibility checks already done'
         testData.deleteLicences()
-        testData.createLicence([
-                'nomisId'    : 'A0001XX',
-                'eligibility'    : [
-                        'excluded'  : ['decision': 'No'],
-                        'suitability': ['decision': 'Yes']
-                ]
-        ], 'ELIGIBILITY')
+        testData.loadLicence('eligibility/unsuitable')
 
         when: 'I view the eligibility checks page'
         actions.toEligibilityCheckPageFor('A0001XX')

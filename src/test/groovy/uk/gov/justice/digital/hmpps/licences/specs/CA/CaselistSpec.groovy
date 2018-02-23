@@ -39,7 +39,7 @@ class CaselistSpec extends GebReportingSpec {
     }
 
     @Stage
-    def 'Shows licence case summary details'() {
+    def 'Shows licence case summary details (from nomis)'() {
 
         given:
         def offenderDetails = [
@@ -63,7 +63,7 @@ class CaselistSpec extends GebReportingSpec {
     def 'Shows in progress status when licence record exists and tasks have started'() {
 
         given: 'a licence exists'
-        testData.createLicenceWithJson('A0001XX', '{"nomisId": "A0001XX", "licence": {"eligibility": { "excluded": "No"}}}', 'ELIGIBILITY')
+        testData.loadLicence('eligibility/started')
 
         when: 'I view the caselist'
         via CaselistPage

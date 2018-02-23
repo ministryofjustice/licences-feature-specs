@@ -29,16 +29,16 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     def 'Shows address details' () {
 
         given: 'A licence record with a proposed curfew address'
-        testData.createLicenceWithJson('A0001XX', '{"proposedAddress":{"optOut":{"decision":"No"},"bassReferral":{"decision":"No"},"curfewAddress":{"addressLine1":"street","addressLine2":"","addressTown":"town","postCode":"PC11PC","telephone":"4444444","electricity":"Yes","occupier":{"name":"","age":"","relationship":""},"residents":[{"name":"","age":"","relation":""},{"name":"","age":"","relation":""},{"name":"","age":"","relation":""}]}}}')
+        testData.loadLicence('processing-ro/unstarted')
 
         when: 'I go to the address review page'
         actions.toAddressReviewPageFor('A0001XX')
         at ProposedAddressReviewPage
 
         then: 'I see the address details'
-        street.text() == 'street'
-        town.text() == 'town'
-        postCode.text() == 'PC11PC'
+        street.text() == 'Street'
+        town.text() == 'Town'
+        postCode.text() == 'AB1 1AB'
 
         // todo these all need formatting/capitalising
         // todo check other values

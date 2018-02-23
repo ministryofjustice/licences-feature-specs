@@ -1,0 +1,16 @@
+{
+  "status": "ELIGIBILITY",
+  "licence": {
+    "eligibility": {
+      "excluded": {
+        "decision": "Yes",
+        "reason": [
+          "sexOffenderRegister",
+          "rotlFail",
+          "hdcCurfewConditions",
+          "deportation"
+        ]
+      }
+    }
+  }
+}

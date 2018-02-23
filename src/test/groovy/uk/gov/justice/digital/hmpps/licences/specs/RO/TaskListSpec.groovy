@@ -43,7 +43,7 @@ class TaskListSpec extends GebReportingSpec {
     }
 
     @Stage
-    def 'Shows details of the prisoner'() {
+    def 'Shows details of the prisoner (from nomis)'() {
 
         given:
         def prisonerDetails = [
@@ -106,7 +106,7 @@ class TaskListSpec extends GebReportingSpec {
 
         and: 'A licence exists for the nomis id'
         testData.deleteLicences()
-        testData.createLicence(['nomisId': 'A0001XX'], 'ELIGIBILITY')
+        testData.loadLicence('processing-ro/unstarted')
 
         when: 'I start the task'
         taskListAction(task).click()
@@ -130,22 +130,9 @@ class TaskListSpec extends GebReportingSpec {
 
     def 'Shows view button for tasks that have been started'() {
 
-        given: 'Tasks started except risk management'
+        given: 'Tasks started except reporting instructions'
         testData.deleteLicences()
-        testData.createLicence([
-                'nomisId'          : 'A0001XX',
-                'curfew'           : [
-                        'curfewAddressReview': 'anything'
-                ],
-                'licenceConditions': [
-                        'standard': [
-                                'additionalConditionsRequired': 'No'
-                        ]
-                ],
-                'reporting'        : [
-                        'reportingInstructions': '{}'
-                ]
-        ], 'PROCESSING_RO')
+        testData.loadLicence('processing-ro/risks-no')
 
         when: 'I view the page'
         actions.toTaskListPageFor('A0001XX')
@@ -157,40 +144,15 @@ class TaskListSpec extends GebReportingSpec {
         and: 'The buttons for started tasks all say View'
         taskListAction(tasks.address).text() == 'View'
         taskListAction(tasks.conditions).text() == 'View'
-        taskListAction(tasks.risk).text() == 'Start'
-        taskListAction(tasks.reporting).text() == 'View'
+        taskListAction(tasks.risk).text() == 'View'
+        taskListAction(tasks.reporting).text() == 'Start'
     }
 
     def 'Shows Submit button when all tasks are done'() {
 
         given: 'All tasks done'
         testData.deleteLicences()
-        testData.createLicence([
-                'nomisId'          : 'A0001XX',
-                'curfew'           : [
-                        'curfewAddressReview': [
-                                'consent'           : 'Yes',
-                                'deemedSafe'        : 'Yes',
-                                'electricity'       : 'Yes',
-                                'homeVisitConducted': 'Yes'
-                        ],
-                        'curfewHours'        : '{}',
-                ],
-                'risk'             : [
-                        'riskManagement': [
-                                'planningActions': 'No',
-                                'victimLiaison': 'No'
-                        ],
-                ],
-                'licenceConditions': [
-                        'standard': [
-                                'additionalConditionsRequired': 'No'
-                        ]
-                ],
-                'reporting'        : [
-                        'reportingInstructions': '{}'
-                ]
-        ], 'PROCESSING_RO')
+        testData.loadLicence('processing-ro/done')
 
         when: 'I view the page'
         actions.toTaskListPageFor('A0001XX')
