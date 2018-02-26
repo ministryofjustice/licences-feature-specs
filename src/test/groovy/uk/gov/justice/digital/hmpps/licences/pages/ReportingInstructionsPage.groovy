@@ -11,5 +11,11 @@ class ReportingInstructionsPage extends Page {
 
     static content = {
         header { module(HeaderModule) }
+
+        name { $('#name') }
+        street{ $('#building') }
+        town{ $('#town') }
+        postcode{ $('#postcode') }
+        telephone{ $('#telephone') }
     }
 }

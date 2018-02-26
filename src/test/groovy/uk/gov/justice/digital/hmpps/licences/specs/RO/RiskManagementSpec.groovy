@@ -1,11 +1,9 @@
 package uk.gov.justice.digital.hmpps.licences.specs.RO
 
 import geb.spock.GebReportingSpec
-import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
-import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -105,7 +103,7 @@ class RiskManagementSpec extends GebReportingSpec {
         find('#backBtn').click()
         at TaskListPage
 
-        and: 'I view the address review page'
+        and: 'I view the risk management page'
         actions.toRiskManagementPageFor('A0001XX')
         at RiskManagementPage
 
@@ -127,7 +125,7 @@ class RiskManagementSpec extends GebReportingSpec {
         and: 'I save and continue'
         find('#continueBtn').click()
 
-        and: 'I return to the address review page'
+        and: 'I return to the risk management page'
         actions.toRiskManagementPageFor('A0001XX')
         at RiskManagementPage
 

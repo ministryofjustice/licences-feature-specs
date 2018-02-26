@@ -8,6 +8,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.BassReferralPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
 import uk.gov.justice.digital.hmpps.licences.pages.HdcOptOutPage
+import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
@@ -103,6 +104,13 @@ class Actions {
         Browser.drive {
             go 'hdc/risk/riskManagement/' + nomisId
             at RiskManagementPage
+        }
+    }
+
+    def toReportingInstructionsPageFor(nomisId) {
+        Browser.drive {
+            go 'hdc/reporting/reportingInstructions/' + nomisId
+            at ReportingInstructionsPage
         }
     }
 }
