@@ -3,6 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.util
 import geb.Browser
 import spock.lang.Shared
 import uk.gov.justice.digital.hmpps.licences.pages.AdditionalConditionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.CurfewHoursPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.BassReferralPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressPage
@@ -111,6 +112,13 @@ class Actions {
         Browser.drive {
             go 'hdc/reporting/reportingInstructions/' + nomisId
             at ReportingInstructionsPage
+        }
+    }
+
+     def toCurfewHoursPageFor(nomisId) {
+        Browser.drive {
+            go 'hdc/curfew/curfewHours/' + nomisId
+            at CurfewHoursPage
         }
     }
 }
