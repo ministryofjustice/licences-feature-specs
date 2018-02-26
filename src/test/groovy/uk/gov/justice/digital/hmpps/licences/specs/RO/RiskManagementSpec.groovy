@@ -47,27 +47,92 @@ class RiskManagementSpec extends GebReportingSpec {
         victimLiaisonRadios.checked == null
     }
 
-    @PendingFeature
     def 'Risk management details shown when YES' () {
 
+        when: 'At risk management page'
+        at RiskManagementPage
+
+        then: 'I dont see the details form'
+        !riskManagementForm.isDisplayed()
+
+        when: 'I select yes for risk management'
+        riskManagementRadios.checked = 'Yes'
+
+        then: 'I see the details form'
+        riskManagementForm.isDisplayed()
     }
 
-    @PendingFeature
     def 'Awaiting information details shown when YES' () {
 
+        when: 'At risk management page'
+        at RiskManagementPage
+
+        then: 'I dont see the details form'
+        !awaitingInformationForm.isDisplayed()
+
+        when: 'I select yes for awaiting information'
+        awaitingInformationRadios.checked = 'Yes'
+
+        then: 'I see the details form'
+        awaitingInformationForm.isDisplayed()
     }
-    @PendingFeature
+
     def 'Victim liaison details shown when YES' () {
 
+        when: 'At risk management page'
+        at RiskManagementPage
+
+        then: 'I dont see the details form'
+        !victimLiaisonForm.isDisplayed()
+
+        when: 'I select yes for victim liaison'
+        victimLiaisonRadios.checked = 'Yes'
+
+        then: 'I see the details form'
+        victimLiaisonForm.isDisplayed()
     }
 
-    @PendingFeature
     def 'Modified options not saved on return to tasklist' () {
 
+        given:  'At risk management page'
+        at RiskManagementPage
+
+        when: 'I select new options'
+        riskManagementRadios.checked = 'Yes'
+        victimLiaisonRadios.checked = 'Yes'
+
+        and: 'I choose return to tasklist'
+        find('#backBtn').click()
+        at TaskListPage
+
+        and: 'I view the address review page'
+        actions.toRiskManagementPageFor('A0001XX')
+        at RiskManagementPage
+
+        then: 'I see the original values'
+        riskManagementRadios.checked == null
+        victimLiaisonRadios.checked == null
     }
 
-    @PendingFeature
-    def 'Modified options saved on save and continue' () {
+    def 'Modified choices are saved after save and continue' () {
 
+
+        given:  'At risk management page'
+        at RiskManagementPage
+
+        when: 'I select new options'
+        riskManagementRadios.checked = 'Yes'
+        victimLiaisonRadios.checked = 'No'
+
+        and: 'I save and continue'
+        find('#continueBtn').click()
+
+        and: 'I return to the address review page'
+        actions.toRiskManagementPageFor('A0001XX')
+        at RiskManagementPage
+
+        then: 'I see the previously entered values'
+        riskManagementRadios.checked == 'Yes'
+        victimLiaisonRadios.checked == 'No'
     }
 }
