@@ -50,7 +50,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
         when: 'At address review page'
         at ProposedAddressReviewPage
 
-        then:
+        then: 'Options not set'
         landlordConsentRadios.checked == null
         manageSafelyRadios.checked == null
     }
@@ -105,7 +105,6 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
         when: 'I select new options'
         landlordConsentRadios.checked = 'Yes'
         manageSafelyRadios.checked = 'Yes'
-
 
         and: 'I choose return to tasklist'
         find('#backBtn').click()

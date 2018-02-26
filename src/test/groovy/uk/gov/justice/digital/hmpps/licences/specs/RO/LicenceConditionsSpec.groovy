@@ -4,6 +4,9 @@ import geb.spock.GebReportingSpec
 import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.AdditionalConditionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.LicenceDetailsPage
+import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
@@ -43,60 +46,136 @@ class LicenceConditionsSpec extends GebReportingSpec {
 
     def 'Options initially unset' () {
 
-        when: 'At standard page'
+        when: 'I view the standard conditions page'
         at StandardConditionsPage
 
         then:
         additionalConditionsRadios.checked == null
     }
 
-    @PendingFeature
-    def 'Modified options not saved on return to tasklist' () {
-
-    }
-
-    @PendingFeature
-    def 'Modified options saved on save and continue' () {
-
-    }
-
-    @PendingFeature
     def 'When additional conditions NOT required, does NOT show additional conditions page' () {
 
+        given: 'At standard page'
+        at StandardConditionsPage
+
+        when: 'I select no additional conditions'
+        additionalConditionsRadios = 'No'
+
+        and: 'I continue'
+        find('#continueBtn').click()
+
+        then: 'I see the risk management page'
+        at RiskManagementPage
     }
 
-    @PendingFeature
     def 'When additional conditions required, shows additional conditions page' () {
 
+        when: 'I view the standard conditions page'
+        actions.toStandardConditionsPageFor('A0001XX')
+        at StandardConditionsPage
+
+        and: 'I select additional conditions required'
+        additionalConditionsRadios = 'Yes'
+
+        and: 'I continue'
+        find('#continueBtn').click()
+
+        then: 'I see the additional conditions page'
+        at AdditionalConditionsPage
     }
 
-    @PendingFeature
     def 'Additional conditions initially unset' () {
 
+        when: 'At additional conditions page'
+        at AdditionalConditionsPage
+
+        then: 'Options not set'
+        conditions.every { !it.value() }
     }
 
-    @PendingFeature
     def 'Select a condition reveals the input form' () {
 
+        when: 'At additional conditions page'
+        at AdditionalConditionsPage
+
+        then: 'The input form is not shown'
+        !$("#groupsOrOrganisation").isDisplayed()
+
+        when: 'I select a condition requiring additional input'
+        $("form").additionalConditions = 'NOCONTACTASSOCIATE'
+
+        then: 'The input form is shown'
+        $("#groupsOrOrganisation").isDisplayed()
     }
 
-    @PendingFeature
-    def 'Modified Additional conditions not saved on return to tasklist' () {
 
+    def 'Modified additional conditions not saved on return to tasklist' () {
+
+        when: 'At additional conditions page'
+        at AdditionalConditionsPage
+
+        and: 'I select some conditions'
+        $("form").additionalConditions = ['NOCONTACTPRISONER', 'NOCONTACTASSOCIATE', 'NORESIDE']
+
+        and: 'I choose return to tasklist'
+        find('#backBtn').click()
+        at TaskListPage
+
+        and: 'I view the additional conditions page'
+        actions.toAdditionalConditionsPageFor('A0001XX')
+        at AdditionalConditionsPage
+
+        then: 'Options not set'
+        conditions.every { !it.value() }
     }
 
-    @PendingFeature
     def 'Modified Additional conditions saved on save and continue' () {
 
+        when: 'At additional conditions page'
+        at AdditionalConditionsPage
+
+        and: 'I select some conditions'
+        $("form").additionalConditions = ['NOCONTACTPRISONER', 'NOCONTACTASSOCIATE']
+        $("#groupsOrOrganisation") << 'sample input'
+
+        and: 'I save and continue'
+        find('#continueBtn').click()
+
+        and: 'I view the additional conditions page'
+        actions.toAdditionalConditionsPageFor('A0001XX')
+        at AdditionalConditionsPage
+
+        then: 'I see the previously entered values'
+        conditionsItem('NOCONTACTPRISONER').checked
+        conditionsItem('NOCONTACTASSOCIATE').checked
+        $("#groupsOrOrganisation").value() == 'sample input'
     }
 
-    @PendingFeature
-    def 'A more detailed check of multiple inputs being correctly shown in the right form' () {
+    def 'Saved values shown on the review screen' () {
 
+        when: 'I have already entered some conditions'
+        at AdditionalConditionsPage
+
+        and: 'I save and continue'
+        find('#continueBtn').click()
+
+        then: 'I see the licence details page'
+        at LicenceDetailsPage
+
+        and: 'I see the previously selected values'
+        additionalConditions.size() == 2
+        $('div.additionalContent').find(text: contains('sample input')).size() == 1
     }
 
-    @PendingFeature
-    def 'Saved values shown on the review screen' () { // or maybe a separate spec for the review
+    def 'Add another condition button returns to additional conditions page' () {
 
+        given: 'On licence details page'
+        at LicenceDetailsPage
+
+        when: 'I choose to add another condition'
+        find('#addAnother').click()
+
+        then: 'I see the additional conditions page'
+        at AdditionalConditionsPage
     }
 }
