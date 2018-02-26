@@ -17,7 +17,6 @@ class CaselistSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         actions.logIn('RO')
     }
 

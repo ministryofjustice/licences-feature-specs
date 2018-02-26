@@ -22,7 +22,6 @@ class ProposedAddressSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         testData.loadLicence('eligibility/unstarted')
         actions.logIn('CA')
     }
@@ -64,7 +63,6 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'Can view eligibility checks when already started'() {
 
         given: 'Opt out form already done'
-        testData.deleteLicences()
         testData.loadLicence('eligibility/optedOut')
 
         when: 'I view the eligibility checks page'

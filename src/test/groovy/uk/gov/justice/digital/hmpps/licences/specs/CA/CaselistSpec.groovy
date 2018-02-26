@@ -18,7 +18,6 @@ class CaselistSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         actions.logIn('CA')
     }
 
@@ -65,7 +64,6 @@ class CaselistSpec extends GebReportingSpec {
     def 'Shows correct status message when #type'() {
 
         given: 'a licence exists'
-        testData.deleteLicences()
         testData.loadLicence(sample)
 
         when: 'I view the caselist'

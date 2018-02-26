@@ -15,8 +15,21 @@ class TestData {
         licences.deleteAll()
     }
 
+    def deleteLicence(nomisId) {
+        licences.delete(nomisId)
+    }
+
     def loadLicence(filename, nomisId = 'A0001XX') {
-        def sampleText = TestData.class.getResource("/licences/${filename}.json").text
+
+        deleteLicence(nomisId)
+
+        def licenceFile = TestData.class.getResource("/licences/${filename}.json")
+
+        if(licenceFile == null){
+            throw new Exception("No licence file found: '${filename}'")
+        }
+
+        def sampleText = licenceFile.text
         def sample = new JsonSlurper().parseText(sampleText)
         createLicenceWithJsonString(nomisId, sample.status, JsonOutput.toJson(sample.licence))
     }

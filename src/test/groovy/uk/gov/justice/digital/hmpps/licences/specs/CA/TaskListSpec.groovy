@@ -21,7 +21,6 @@ class TaskListSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         actions.logIn('CA')
     }
 
@@ -73,6 +72,9 @@ class TaskListSpec extends GebReportingSpec {
 
     def 'Shows buttons for eligibility check and print address form'() {
 
+        given: 'An unstarted licence'
+        testData.loadLicence('eligibility/unstarted')
+
         when: 'I view the page'
         actions.toTaskListPageFor('A0001XX')
         at TaskListPage
@@ -99,7 +101,6 @@ class TaskListSpec extends GebReportingSpec {
     def 'Change answers link shown when eligibility check done'() {
 
         given: 'Eligibility checks already done'
-        testData.deleteLicences()
         testData.loadLicence('eligibility/done')
 
         when: 'I view the tasklist page'

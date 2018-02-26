@@ -18,7 +18,6 @@ class ReportingInstructionsSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         testData.loadLicence('processing-ro/unstarted')
         actions.logIn('RO')
     }

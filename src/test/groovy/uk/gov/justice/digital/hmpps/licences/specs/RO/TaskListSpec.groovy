@@ -7,6 +7,7 @@ import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
+import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.SendPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
@@ -34,7 +35,6 @@ class TaskListSpec extends GebReportingSpec {
     ]
 
     def setupSpec() {
-        testData.deleteLicences()
         actions.logIn('RO')
     }
 
@@ -86,6 +86,9 @@ class TaskListSpec extends GebReportingSpec {
 
     def 'Shows start button for all tasks'() {
 
+        given: 'An unprocessed licence'
+        testData.loadLicence('processing-ro/unstarted')
+
         when: 'I view the page'
         actions.toTaskListPageFor('A0001XX')
         at TaskListPage
@@ -104,10 +107,6 @@ class TaskListSpec extends GebReportingSpec {
         actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
-        and: 'A licence exists for the nomis id'
-        testData.deleteLicences()
-        testData.loadLicence('processing-ro/unstarted')
-
         when: 'I start the task'
         taskListAction(task).click()
 
@@ -125,13 +124,12 @@ class TaskListSpec extends GebReportingSpec {
         tasks.address    | ProposedAddressReviewPage
         tasks.conditions | StandardConditionsPage
         tasks.risk       | RiskManagementPage
-        //tasks.reporting             | ReportingInstructionsPage
+        tasks.reporting  | ReportingInstructionsPage
     }
 
     def 'Shows view button for tasks that have been started'() {
 
         given: 'Tasks started except reporting instructions'
-        testData.deleteLicences()
         testData.loadLicence('processing-ro/risks-no')
 
         when: 'I view the page'
@@ -151,7 +149,6 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows Submit button when all tasks are done'() {
 
         given: 'All tasks done'
-        testData.deleteLicences()
         testData.loadLicence('processing-ro/done')
 
         when: 'I view the page'

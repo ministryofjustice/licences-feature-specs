@@ -19,7 +19,6 @@ class EligibilityCheckSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         testData.loadLicence('eligibility/unstarted')
         actions.logIn('CA')
     }
@@ -63,7 +62,6 @@ class EligibilityCheckSpec extends GebReportingSpec {
     def 'Can view eligibility checks when already started'() {
 
         given: 'Eligibility checks already done'
-        testData.deleteLicences()
         testData.loadLicence('eligibility/unsuitable')
 
         when: 'I view the eligibility checks page'
