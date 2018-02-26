@@ -19,5 +19,11 @@ class ProposedAddressReviewPage extends Page {
 
         landlordConsentRadios { $(name: "consent").module(RadioButtons) }
         manageSafelyRadios { $(name: "deemedSafe").module(RadioButtons) }
+        electricitySupplyRadios { $(name: "electricity").module(RadioButtons) }
+        homeVisitRadios { $(name: "homeVisitConducted").module(RadioButtons) }
+
+        landlordConsentForm(required: false) { $("#consentForm") }
+        managedSafelyForm(required: false) { $("#managedSafelyForm") }
+
     }
 }
