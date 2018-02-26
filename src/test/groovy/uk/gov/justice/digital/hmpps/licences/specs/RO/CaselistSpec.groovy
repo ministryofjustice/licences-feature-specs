@@ -17,7 +17,6 @@ class CaselistSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         actions.logIn('RO')
     }
 
@@ -39,7 +38,7 @@ class CaselistSpec extends GebReportingSpec {
     }
 
     @Stage
-    def 'Shows licence case summary details'() {
+    def 'Shows licence case summary details (from nomis)'() {
 
         given:
         def offenderDetails = [

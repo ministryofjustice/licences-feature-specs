@@ -15,20 +15,35 @@ class TestData {
         licences.deleteAll()
     }
 
-    def createLicence(Map data, status = '') {
-        checkAndCreateLicence(JsonOutput.toJson(data), data.nomisId, status)
+    def deleteLicence(nomisId) {
+        licences.delete(nomisId)
     }
 
-    def createLicenceWithJson(nomisId, String data, status = '') {
-        checkAndCreateLicence(data, nomisId, status)
-    }
+    def loadLicence(filename, nomisId = 'A0001XX') {
 
-    private checkAndCreateLicence(json, id, status) {
-        if (findLicenceFor(id) != null) {
-            throw new Error('Licence already exists for id: ' + id)
+        deleteLicence(nomisId)
+
+        def licenceFile = TestData.class.getResource("/licences/${filename}.json")
+
+        if(licenceFile == null){
+            throw new Exception("No licence file found: '${filename}'")
         }
 
-        licences.create(json, id, status)
+        def sampleText = licenceFile.text
+        def sample = new JsonSlurper().parseText(sampleText)
+        createLicenceWithJsonString(nomisId, sample.status, JsonOutput.toJson(sample.licence))
+    }
+
+    def createLicenceWithJsonString(nomisId, status, String json) {
+        checkAndCreateLicence(nomisId, status, json)
+    }
+
+    private checkAndCreateLicence(nomisId, status, json) {
+        if (findLicenceFor(nomisId) != null) {
+            throw new Error('Licence already exists for nomisId: ' + nomisId)
+        }
+
+        licences.create(nomisId, status, json)
     }
 
     def findLicenceFor(nomisId) {
@@ -42,9 +57,5 @@ class TestData {
         def licenceJson = new JsonSlurper().parseText(licenceText)
         println licenceJson
         return licenceJson
-    }
-
-    def findLicenceStatusFor(nomisId) {
-        return licences.find(nomisId).STATUS
     }
 }

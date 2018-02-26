@@ -2,11 +2,16 @@ package uk.gov.justice.digital.hmpps.licences.util
 
 import geb.Browser
 import spock.lang.Shared
+import uk.gov.justice.digital.hmpps.licences.pages.AdditionalConditionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.CurfewHoursPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.BassReferralPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
 import uk.gov.justice.digital.hmpps.licences.pages.HdcOptOutPage
+import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.StandardConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.SigninPage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
@@ -79,6 +84,41 @@ class Actions {
         Browser.drive {
             go '/hdc/curfew/curfewAddressReview/' + nomisId
             at ProposedAddressReviewPage
+        }
+    }
+
+    def toStandardConditionsPageFor(nomisId) {
+        Browser.drive {
+            go 'hdc/licenceConditions/standard/' + nomisId
+            at StandardConditionsPage
+        }
+    }
+
+    def toAdditionalConditionsPageFor(nomisId) {
+        Browser.drive {
+            go 'hdc/licenceConditions/additionalConditions/' + nomisId
+            at AdditionalConditionsPage
+        }
+    }
+
+    def toRiskManagementPageFor(nomisId) {
+        Browser.drive {
+            go 'hdc/risk/riskManagement/' + nomisId
+            at RiskManagementPage
+        }
+    }
+
+    def toReportingInstructionsPageFor(nomisId) {
+        Browser.drive {
+            go 'hdc/reporting/reportingInstructions/' + nomisId
+            at ReportingInstructionsPage
+        }
+    }
+
+     def toCurfewHoursPageFor(nomisId) {
+        Browser.drive {
+            go 'hdc/curfew/curfewHours/' + nomisId
+            at CurfewHoursPage
         }
     }
 }

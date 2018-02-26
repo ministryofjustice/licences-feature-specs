@@ -21,7 +21,6 @@ class TaskListSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         actions.logIn('CA')
     }
 
@@ -30,7 +29,7 @@ class TaskListSpec extends GebReportingSpec {
     }
 
     @Stage
-    def 'Shows details of the prisoner'() {
+    def 'Shows details of the prisoner (from nomis)'() {
 
         given:
         def prisonerDetails = [
@@ -73,6 +72,9 @@ class TaskListSpec extends GebReportingSpec {
 
     def 'Shows buttons for eligibility check and print address form'() {
 
+        given: 'An unstarted licence'
+        testData.loadLicence('eligibility/unstarted')
+
         when: 'I view the page'
         actions.toTaskListPageFor('A0001XX')
         at TaskListPage
@@ -99,15 +101,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'Change answers link shown when eligibility check done'() {
 
         given: 'Eligibility checks already done'
-        testData.deleteLicences()
-        testData.createLicence([
-                'nomisId'    : 'A0001XX',
-                'eligibility' : [
-                        'excluded': ['decision': 'No'],
-                        'suitability': ['decision': 'Yes'],
-                        'crdTime': ['decision': 'Yes']
-                ]
-        ], 'ELIGIBILITY')
+        testData.loadLicence('eligibility/done')
 
         when: 'I view the tasklist page'
         actions.toTaskListPageFor('A0001XX')
@@ -127,8 +121,8 @@ class TaskListSpec extends GebReportingSpec {
 
         then: 'I see the eligibility answers'
         excludedAnswer.text() == 'No'
-        unsuitableAnswer.text() == 'Yes'
-        crdTimeAnswer.text() == 'Yes'
+        unsuitableAnswer.text() == 'No'
+        crdTimeAnswer.text() == 'No'
 
     }
 
@@ -145,7 +139,7 @@ class TaskListSpec extends GebReportingSpec {
         printEligibilityFormButton.click()
 
         then: 'I do not see the change answers option'
-        !eligibilityCheckUpdateLink.isDisplayed() // not sure this will work
+        !eligibilityCheckUpdateLink.isDisplayed()
     }
 
     @PendingFeature

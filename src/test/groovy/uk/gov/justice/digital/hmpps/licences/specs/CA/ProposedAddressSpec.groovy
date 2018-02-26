@@ -22,8 +22,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
-        testData.createLicence(['nomisId': 'A0001XX'], 'ELIGIBILITY')
+        testData.loadLicence('eligibility/unstarted')
         actions.logIn('CA')
     }
 
@@ -64,18 +63,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'Can view eligibility checks when already started'() {
 
         given: 'Opt out form already done'
-        testData.deleteLicences()
-        testData.createLicence([
-                'nomisId'        : 'A0001XX',
-                'eligibility'    : [
-                        'excluded'  : ['decision': 'No'],
-                        'unsuitable': ['decision': 'No']
-                ],
-                'proposedAddress': [
-                        optOut: ['decision': 'Yes',
-                                 'reason'  : 'Reason']
-                ]
-        ])
+        testData.loadLicence('eligibility/optedOut')
 
         when: 'I view the eligibility checks page'
         actions.toOptOutPageFor('A0001XX')
@@ -84,7 +72,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         then: 'I see the previous values'
         decisionRadios.checked == 'Yes'
         detailsForm.isDisplayed()
-        detailsForm == 'Reason'
+        detailsForm == 'Reason for opt out'
 
     }
 

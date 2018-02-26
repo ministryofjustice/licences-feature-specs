@@ -1,10 +1,10 @@
 package uk.gov.justice.digital.hmpps.licences.specs.RO
 
 import geb.spock.GebReportingSpec
-import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
+import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -18,7 +18,6 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         actions.logIn('RO')
     }
 
@@ -29,16 +28,16 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     def 'Shows address details' () {
 
         given: 'A licence record with a proposed curfew address'
-        testData.createLicenceWithJson('A0001XX', '{"proposedAddress":{"optOut":{"decision":"No"},"bassReferral":{"decision":"No"},"curfewAddress":{"addressLine1":"street","addressLine2":"","addressTown":"town","postCode":"PC11PC","telephone":"4444444","electricity":"Yes","occupier":{"name":"","age":"","relationship":""},"residents":[{"name":"","age":"","relation":""},{"name":"","age":"","relation":""},{"name":"","age":"","relation":""}]}}}')
+        testData.loadLicence('processing-ro/unstarted')
 
         when: 'I go to the address review page'
         actions.toAddressReviewPageFor('A0001XX')
         at ProposedAddressReviewPage
 
         then: 'I see the address details'
-        street.text() == 'street'
-        town.text() == 'town'
-        postCode.text() == 'PC11PC'
+        street.text() == 'Street'
+        town.text() == 'Town'
+        postCode.text() == 'AB1 1AB'
 
         // todo these all need formatting/capitalising
         // todo check other values
@@ -49,56 +48,98 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
         when: 'At address review page'
         at ProposedAddressReviewPage
 
-        then:
+        then: 'Options not set'
         landlordConsentRadios.checked == null
         manageSafelyRadios.checked == null
     }
 
-    @PendingFeature
     def 'Further questions not shown when landlord consent is no' () {
 
+        when: 'At address review page'
+        at ProposedAddressReviewPage
+
+        then: 'I do not see the further questions'
+        !landlordConsentForm.isDisplayed()
     }
 
-    @PendingFeature
     def 'Further questions shown when landlord consent is yes' () {
 
+        when: 'At address review page'
+        at ProposedAddressReviewPage
+
+        and: 'I select yes for excluded'
+        landlordConsentRadios.checked = 'Yes'
+
+        then: 'I see the further questions'
+        landlordConsentForm.isDisplayed()
     }
 
-    @PendingFeature
-    def 'Electricity supply answer previously given by CA' () { // is this really what we are meant to do? seems odd.
-
-    }
-
-    @PendingFeature
     def 'Further details not shown when managed safely is yes' () {
 
+        when: 'At address review page'
+        at ProposedAddressReviewPage
+
+        then: 'I do not see the further questions'
+        !managedSafelyForm.isDisplayed()
     }
 
-    @PendingFeature
-    def 'Further details shown when landlord consent is no' () {
+    def 'Further details shown when managed safely is no' () {
 
+        when: 'At address review page'
+        at ProposedAddressReviewPage
+
+        and: 'I select yes for excluded'
+        manageSafelyRadios.checked = 'No'
+
+        then: 'I see the further questions'
+        managedSafelyForm.isDisplayed()
     }
 
-    @PendingFeature
     def 'Modified choices are not saved on return to tasklist' () {
 
+        given:  'At address review page'
+        at ProposedAddressReviewPage
+
+        when: 'I select new options'
+        landlordConsentRadios.checked = 'Yes'
+        manageSafelyRadios.checked = 'Yes'
+
+        and: 'I choose return to tasklist'
+        find('#backBtn').click()
+        at TaskListPage
+
+        and: 'I view the address review page'
+        actions.toAddressReviewPageFor('A0001XX')
+        at ProposedAddressReviewPage
+
+        then: 'I see the original values'
+        landlordConsentRadios.checked == null
+        manageSafelyRadios.checked == null
     }
 
     def 'Modified choices are saved after save and continue' () {
 
-        given: 'At address review page'
-        actions.toAddressReviewPageFor('A0001XX')
 
-        when: 'I enter new values'
+        given:  'At address review page'
+        at ProposedAddressReviewPage
+
+        when: 'I select new options'
         landlordConsentRadios.checked = 'Yes'
+        electricitySupplyRadios.checked = 'Yes'
+        landlordConsentRadios.checked = 'Yes'
+        homeVisitRadios.checked = 'No'
 
         and: 'I save and continue'
         find('#continueBtn').click()
 
         and: 'I return to the address review page'
         actions.toAddressReviewPageFor('A0001XX')
+        at ProposedAddressReviewPage
 
         then: 'I see the previously entered values'
         landlordConsentRadios.checked == 'Yes'
+        electricitySupplyRadios.checked == 'Yes'
+        landlordConsentRadios.checked == 'Yes'
+        homeVisitRadios.checked == 'No'
     }
 }

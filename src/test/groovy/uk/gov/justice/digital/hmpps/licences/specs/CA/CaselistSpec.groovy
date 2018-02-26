@@ -3,6 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.specs.CA
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
+import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
@@ -17,7 +18,6 @@ class CaselistSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
         actions.logIn('CA')
     }
 
@@ -39,7 +39,7 @@ class CaselistSpec extends GebReportingSpec {
     }
 
     @Stage
-    def 'Shows licence case summary details'() {
+    def 'Shows licence case summary details (from nomis)'() {
 
         given:
         def offenderDetails = [
@@ -60,16 +60,24 @@ class CaselistSpec extends GebReportingSpec {
         }
     }
 
-    def 'Shows in progress status when licence record exists and tasks have started'() {
+    @Unroll
+    def 'Shows correct status message when #type'() {
 
         given: 'a licence exists'
-        testData.createLicenceWithJson('A0001XX', '{"nomisId": "A0001XX", "licence": {"eligibility": { "excluded": "No"}}}', 'ELIGIBILITY')
+        testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        via CaselistPage
+        to CaselistPage
 
         then: ' The status indicates that the processing has begun'
-        hdcEligible[0].find('.status').text() == 'Eligibility checks ongoing'
+        hdcEligible[0].find('.status').text() == status
+
+        where:
+        type         | sample                    | status
+        'Unstarted'  | 'eligibility/started'     | 'Eligibility checks ongoing'
+        'Excluded'   | 'eligibility/excluded'    | 'Excluded (Ineligible)'
+        'Opted out'  | 'eligibility/optedOut'    | 'Opted out'
+        'Sent to RO' | 'processing-ro/unstarted' | 'Submitted to RO'
     }
 
 }

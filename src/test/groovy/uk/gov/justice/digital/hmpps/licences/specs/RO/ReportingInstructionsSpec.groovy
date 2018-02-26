@@ -1,11 +1,9 @@
 package uk.gov.justice.digital.hmpps.licences.specs.RO
 
 import geb.spock.GebReportingSpec
-import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
-import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -20,8 +18,7 @@ class ReportingInstructionsSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.deleteLicences()
-        testData.createLicence(['nomisId': 'A0001XX'], 'ELIGIBILITY')
+        testData.loadLicence('processing-ro/unstarted')
         actions.logIn('RO')
     }
 
@@ -29,7 +26,6 @@ class ReportingInstructionsSpec extends GebReportingSpec {
         actions.logOut()
     }
 
-    @PendingFeature
     def 'Reporting instructions initially blank' () {
 
         given: 'At task list page'
@@ -43,17 +39,66 @@ class ReportingInstructionsSpec extends GebReportingSpec {
         at ReportingInstructionsPage
 
         and: 'The options are unset'
-        // todo
-        assert(false)
+        name.value() == ''
+        street.value() == ''
+        town.value() == ''
+        postcode.value() == ''
+        telephone.value() == ''
     }
 
-    @PendingFeature
     def 'Modified Reporting instructions not saved on return to tasklist' () {
 
+        given:  'At reporting instructions page'
+        at ReportingInstructionsPage
+
+        when: 'I enter new values'
+        name << 'sample name'
+        street << 'sample street'
+        town << 'sample town'
+        postcode << 'AB1 1AB'
+        telephone << '0123456789'
+
+        and: 'I choose return to tasklist'
+        find('#backBtn').click()
+        at TaskListPage
+
+        and: 'I view the reporting instructions page'
+        actions.toReportingInstructionsPageFor('A0001XX')
+        at ReportingInstructionsPage
+
+        then: 'I see the original values'
+        name.value() == ''
+        street.value() == ''
+        town.value() == ''
+        postcode.value() == ''
+        telephone.value() == ''
     }
 
-    @PendingFeature
-    def 'Modified Reporting instructions saved on save and continue' () {
+    def 'Modified choices are saved after save and continue' () {
+
+        given:  'At reporting instructions page'
+        at ReportingInstructionsPage
+
+        when: 'I enter new values'
+        name << 'sample name'
+        street << 'sample street'
+        town << 'sample town'
+        postcode << 'AB1 1AB'
+        telephone << '0123456789'
+
+        and: 'I save and continue'
+        find('#continueBtn').click()
+
+        and: 'I return to the reporting instructions page'
+        actions.toReportingInstructionsPageFor('A0001XX')
+        at ReportingInstructionsPage
+
+        then: 'I see the previously entered values'
+        name.value() == 'sample name'
+        street.value() == 'sample street'
+        town.value() == 'sample town'
+        postcode.value() == 'AB1 1AB'
+        telephone.value() == '0123456789'
 
     }
 }

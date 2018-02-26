@@ -1,0 +1,26 @@
+{
+  "status": "ELIGIBILITY",
+  "licence": {
+    "eligibility": {
+      "excluded": {
+        "decision": "No"
+      },
+      "suitability": {
+        "decision": "No"
+      },
+      "crdTime": {
+        "decision": "No"
+      }
+    },
+    "proposedAddress": {
+      "optOut": {
+        "decision": "No"
+      },
+      "bassReferral": {
+        "decision": "Yes",
+        "proposedTown": "Bass Town",
+        "proposedCounty": "Bass County"
+      }
+    }
+  }
+}
