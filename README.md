@@ -18,6 +18,11 @@ Note that you can set values for the Database environment variables in a config.
 The Licences application must be running at Licences_URI, and must be connected to a database and a nomis api or
 suitable mocks.
 
+Note that for running against Mock or Stage in CircleCI we need to supply environment specific values for properties
+such as TEST_DB_USER. In the Circle CI environment variables we supply Stage specific variants eg TEST_DB_USER_STAGE.
+In .circleci/config.yml we take TEST_DB_USER_STAGE and use it tro replace TEST_DB_USER eg
+export TEST_DB_USER="$TEST_DB_USER_STAGE"
+
 ## Execution
 
 In src.test/resources/GebConfig.groovy you can change from headless mode (Phantom JS)
