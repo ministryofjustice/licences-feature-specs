@@ -39,6 +39,7 @@ jobs:
           command: |
             export LICENCES_URI="$LICENCES_URI_STAGE"
             export TEST_DB="$TEST_DB_STAGE"
+            export TEST_DB_USER="$TEST_DB_USER_STAGE"
             export TEST_DB_PASS="$TEST_DB_PASS_STAGE"
             export TEST_DB_SERVER="$TEST_DB_SERVER_STAGE"
             ./gradlew clean stageTest
