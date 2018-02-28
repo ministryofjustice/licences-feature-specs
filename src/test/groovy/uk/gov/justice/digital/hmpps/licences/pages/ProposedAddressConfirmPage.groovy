@@ -13,6 +13,7 @@ class ProposedAddressConfirmPage extends Page {
     static content = {
         header { module(HeaderModule) }
         addressDetails { $("#preferred-addressDetails") }
+        altAddressDetails { $("#alternative-addressDetails") }
         editDetails { $("#editLink") }
     }
 }

@@ -175,12 +175,12 @@ class ProposedAddressSpec extends GebReportingSpec {
                 '#preferred-address1'                : 'Address 1',
                 '#preferred-address2'                : 'Address 2',
                 '#preferred-addressTown'             : 'Town',
-                '#preferred-addressPostCode'        : 'Post code',
+                '#preferred-addressPostCode'         : 'Post code',
                 '#preferred-telephone'               : '001',
 
                 '#preferred-occupierName'            : 'Name',
                 '#preferred-occupierAge'             : '12',
-                '#preferred-occupierRelation'         : 'Relation',
+                '#preferred-occupierRelation'        : 'Relation',
                 '#preferred-cautionedAgainstResident': 'No',
                 '#preferred-electricity'             : 'Yes'
 
@@ -191,6 +191,56 @@ class ProposedAddressSpec extends GebReportingSpec {
             assert addressDetails.find(item).text() == value
         }
 
+    }
+
+    def 'I can enter values for an alternative address' () {
+        given: 'I am on the proposed curfew address page'
+        actions.toCurfewAddressPage('A0001XX')
+        at ProposedAddressPage
+
+        when: 'I select to add an alternative address'
+        alternativeAddress.checked = 'Yes'
+
+        then: 'I see the form for an alternative address'
+        alternativeAddressForm.isDisplayed()
+
+        when: 'I enter details for this address'
+        altAddress1 = 'Address 1'
+        altAddress2 = 'Address 2'
+        altTown = 'Town'
+        altPostCode = 'Post code'
+        altTelephone = '001'
+        altOccupierName = 'Name'
+        altOccupierAge = '12'
+        altOccupierRelation = 'Relation'
+        altElectricityRadios.checked = 'Yes'
+        altCautionedRadios.checked = 'No'
+
+        then: 'I click to save and continue'
+        find('#continueBtn').click()
+
+        and: 'I see the confirm address page'
+        at ProposedAddressConfirmPage
+
+        def addressInput = [
+                '#alternative-address1'                : 'Address 1',
+                '#alternative-address2'                : 'Address 2',
+                '#alternative-addressTown'             : 'Town',
+                '#alternative-addressPostCode'         : 'Post code',
+                '#alternative-telephone'               : '001',
+
+                '#alternative-occupierName'            : 'Name',
+                '#alternative-occupierAge'             : '12',
+                '#alternative-occupierRelation'        : 'Relation',
+                '#alternative-cautionedAgainstResident': 'No',
+                '#alternative-electricity'             : 'Yes'
+
+        ]
+
+        and: 'I see the expected data for the address'
+        addressInput.each { item, value ->
+            assert altAddressDetails.find(item).text() == value
+        }
     }
 
     def 'I can submit the address to the RO' () {
