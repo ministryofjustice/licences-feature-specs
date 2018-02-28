@@ -156,7 +156,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         when: 'I fill in the form and save'
         address1 = 'Address 1'
         address2 = 'Address 2'
-        addressTown = 'Town'
+        town = 'Town'
         postCode = 'Post code'
         telephone = '001'
         occupierName = 'Name'
@@ -172,17 +172,17 @@ class ProposedAddressSpec extends GebReportingSpec {
         and: 'I see the address details entered'
 
         def addressInput = [
-                '#address1'                : 'Address 1',
-                '#address2'                : 'Address 2',
-                '#addressTown'             : 'Town',
-                '#addressPostCode'        : 'Post code',
-                '#telephone'               : '001',
+                '#preferred-address1'                : 'Address 1',
+                '#preferred-address2'                : 'Address 2',
+                '#preferred-addressTown'             : 'Town',
+                '#preferred-addressPostCode'        : 'Post code',
+                '#preferred-telephone'               : '001',
 
-                '#occupierName'            : 'Name',
-                '#occupierAge'             : '12',
-                '#occupierRelation'         : 'Relation',
-                '#cautionedAgainstResident': 'No',
-                '#electricity'             : 'Yes'
+                '#preferred-occupierName'            : 'Name',
+                '#preferred-occupierAge'             : '12',
+                '#preferred-occupierRelation'         : 'Relation',
+                '#preferred-cautionedAgainstResident': 'No',
+                '#preferred-electricity'             : 'Yes'
 
         ]
 

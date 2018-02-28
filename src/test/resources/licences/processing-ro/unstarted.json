@@ -20,35 +20,37 @@
         "decision": "No"
       },
       "curfewAddress": {
-        "addressLine1": "Street",
-        "addressLine2": "",
-        "addressTown": "Town",
-        "postCode": "AB1 1AB",
-        "telephone": "0123 456789",
-        "electricity": "Yes",
-        "occupier": {
-          "name": "Main Occupier",
-          "age": "21",
-          "relationship": "Brother"
-        },
-        "residents": [
-          {
-            "name": "Other resident",
-            "age": "10",
-            "relation": "Son"
+        "preferred": {
+          "addressLine1": "Street",
+          "addressLine2": "",
+          "addressTown": "Town",
+          "postCode": "AB1 1AB",
+          "telephone": "0123 456789",
+          "electricity": "Yes",
+          "occupier": {
+            "name": "Main Occupier",
+            "age": "21",
+            "relationship": "Brother"
           },
-          {
-            "name": "",
-            "age": "",
-            "relation": ""
-          },
-          {
-            "name": "",
-            "age": "",
-            "relation": ""
-          }
-        ],
-        "cautionedAgainstResident": "No"
+          "residents": [
+            {
+              "name": "Other resident",
+              "age": "10",
+              "relation": "Son"
+            },
+            {
+              "name": "",
+              "age": "",
+              "relation": ""
+            },
+            {
+              "name": "",
+              "age": "",
+              "relation": ""
+            }
+          ],
+          "cautionedAgainstResident": "No"
+        }
       }
     }
   }
