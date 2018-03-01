@@ -48,15 +48,18 @@ class TaskListSpec extends GebReportingSpec {
         given:
         def prisonerDetails = [
                 '#prisonerName'        : 'Andrews, Mark',
-                '#prisonerAliases'     : 'Marky Andrews',
                 '#prisonerPrisonNumber': 'A0001XX',
 
                 '#prisonerDob'         : '22/10/1989',
-                '#prisonerLocation'    : 'Licence Auto Test Prison',
+                //'#prisonerLocation'    : 'Licence Auto Test Prison',
                 '#prisonerOffences'    : "Cause exceed max permitted wt of artic' vehicle - No of axles/configuration (No MOT/Manufacturer's Plate)",
 
                 '#prisonerCrd'         : '15/10/2019',
                 '#prisonerHdced'       : '13/07/2019',
+                '#prisonerSed'         : '01/08/2019',
+                '#prisonerLed'         : '02/08/2019',
+                '#prisonerPssed'       : '03/08/2019',
+
                 '#prisonerComName'     : 'Jessy Jones',
 
                 '#prisonerPhotoDate'   : 'Uploaded: 05/07/2017'
