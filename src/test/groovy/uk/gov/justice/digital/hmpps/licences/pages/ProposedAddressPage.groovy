@@ -13,19 +13,34 @@ class ProposedAddressPage extends Page {
     static content = {
         header { module(HeaderModule) }
 
-        electricityRadios { $(name: "electricity").module(RadioButtons) }
-        cautionedRadios { $(name: "cautionedAgainstResident").module(RadioButtons) }
+        electricityRadios { $(name: "preferred[electricity]").module(RadioButtons) }
+        cautionedRadios { $(name: "preferred[cautionedAgainstResident]").module(RadioButtons) }
+        alternativeAddress { $(name: "alternativeAddress").module(RadioButtons) }
+        altElectricityRadios(required: false) { $(name: "alternative[electricity]").module(RadioButtons) }
+        altCautionedRadios(required: false) { $(name: "alternative[cautionedAgainstResident]").module(RadioButtons) }
 
-        address1 { $("#addressLine1") }
-        address2 { $("#addressLine2") }
-        town { $("#addressTown") }
-        postCode { $("#postCode") }
-        telephone { $("#telephone") }
+        address1 { $("#preferred-addressLine1") }
+        address2 { $("#preferred-addressLine2") }
+        town { $("#preferred-addressTown") }
+        postCode { $("#preferred-postCode") }
+        telephone { $("#preferred-telephone") }
 
-        occupierName { $("#occupierName") }
-        occupierAge { $("#occupierAge") }
-        occupierRelation { $("#occupierRelationship") }
+        occupierName { $("#preferred-occupierName") }
+        occupierAge { $("#preferred-occupierAge") }
+        occupierRelation { $("#preferred-occupierRelationship") }
 
         otherResidents { $(".otherResident") }
+
+        alternativeAddressForm(required: false) { $('#alternativeAddress')}
+
+        altAddress1(required: false) { $("#alternative-addressLine1") }
+        altAddress2(required: false) { $("#alternative-addressLine2") }
+        altTown(required: false) { $("#alternative-addressTown") }
+        altPostCode(required: false) { $("#alternative-postCode") }
+        altTelephone(required: false) { $("#alternative-telephone") }
+
+        altOccupierName(required: false) { $("#alternative-occupierName") }
+        altOccupierAge(required: false) { $("#alternative-occupierAge") }
+        altOccupierRelation(required: false) { $("#alternative-occupierRelationship") }
     }
 }

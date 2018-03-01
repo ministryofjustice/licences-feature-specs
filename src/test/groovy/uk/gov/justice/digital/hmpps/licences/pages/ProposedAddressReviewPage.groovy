@@ -13,9 +13,9 @@ class ProposedAddressReviewPage extends Page {
     static content = {
         header { module(HeaderModule) }
 
-        street(required: false) { $("#address1") }
-        town(required: false) { $("#addressTown") }
-        postCode(required: false) { $("#addressPostCode") }
+        street(required: false) { $("#preferred-address1") }
+        town(required: false) { $("#preferred-addressTown") }
+        postCode(required: false) { $("#preferred-addressPostCode") }
 
         landlordConsentRadios { $(name: "consent").module(RadioButtons) }
         manageSafelyRadios { $(name: "deemedSafe").module(RadioButtons) }
