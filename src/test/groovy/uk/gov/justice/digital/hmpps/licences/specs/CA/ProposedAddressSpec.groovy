@@ -243,6 +243,44 @@ class ProposedAddressSpec extends GebReportingSpec {
         }
     }
 
+    def 'I can enter extra residents to addresses' () {
+        given: 'I am on the proposed curfew address page'
+        actions.toCurfewAddressPage('A0001XX')
+        at ProposedAddressPage
+
+        when: 'I click to add another resident'
+        otherResidents.click()
+
+        then: 'Another resident is added to the list'
+        $(name: 'preferred[residents][3][name]').isDisplayed()
+
+        when: 'I set values'
+        $('input', name: 'preferred[residents][3][name]').value('Name')
+        $('input', name: 'preferred[residents][3][age]').value('Age')
+        $('input', name: 'preferred[residents][3][relation]').value('Relation')
+
+        and: 'I select to add a resident to an alternative address'
+        alternativeAddress.checked = 'Yes'
+        altOtherResidents.click()
+
+        and: 'I add values for that resident'
+        $('input', name: 'alternative[residents][3][name]').value('AltName')
+        $('input', name: 'alternative[residents][3][age]').value('AltAge')
+        $('input', name: 'alternative[residents][3][relation]').value('AltRelation')
+
+        and: 'I click to save and continue'
+        find('#continueBtn').click()
+
+        then: 'I see the values on the confirm address page'
+        at ProposedAddressConfirmPage
+        $('#preferred-resident-name-3').text() == 'Name'
+        $('#preferred-resident-age-3').text() == 'Age'
+        $('#preferred-resident-relation-3').text() == 'Relation'
+        $('#alternative-resident-name-3').text() == 'AltName'
+        $('#alternative-resident-age-3').text() == 'AltAge'
+        $('#alternative-resident-relation-3').text() == 'AltRelation'
+    }
+
     def 'I can submit the address to the RO' () {
         given: 'On confirm address page'
         at ProposedAddressConfirmPage
