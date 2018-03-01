@@ -119,7 +119,7 @@ class EligibilityCheckSpec extends GebReportingSpec {
 
         then: 'I see 4 reason options'
         unsuitableReasonsForm.isDisplayed()
-        unsuitableReasons.size() == 4
+        unsuitableReasons.size() == 5
     }
 
     def 'Modified choices are saved after save and continue'() {
