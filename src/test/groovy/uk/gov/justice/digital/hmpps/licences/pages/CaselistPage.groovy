@@ -6,7 +6,7 @@ import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 class CaselistPage extends Page {
 
     static at = {
-        $("#pageHeading").text() == 'HDC eligible prisoners'
+        $("#pageHeading").text() == 'HDC eligible offenders'
     }
 
     static content = {
