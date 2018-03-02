@@ -29,7 +29,7 @@ class ProposedAddressPage extends Page {
         occupierAge { $("#preferred-occupierAge") }
         occupierRelation { $("#preferred-occupierRelationship") }
 
-        otherResidents { $(".otherResident") }
+        otherResidents { $(".otherResidentsInput", 0).find('a') }
 
         alternativeAddressForm(required: false) { $('#alternativeAddress')}
 
@@ -42,5 +42,6 @@ class ProposedAddressPage extends Page {
         altOccupierName(required: false) { $("#alternative-occupierName") }
         altOccupierAge(required: false) { $("#alternative-occupierAge") }
         altOccupierRelation(required: false) { $("#alternative-occupierRelationship") }
+        altOtherResidents { $(".otherResidentsInput", 1).find('a') }
     }
 }
