@@ -13,10 +13,8 @@ class ProposedAddressPage extends Page {
     static content = {
         header { module(HeaderModule) }
 
-        electricityRadios { $(name: "preferred[electricity]").module(RadioButtons) }
         cautionedRadios { $(name: "preferred[cautionedAgainstResident]").module(RadioButtons) }
         alternativeAddress { $(name: "alternativeAddress").module(RadioButtons) }
-        altElectricityRadios(required: false) { $(name: "alternative[electricity]").module(RadioButtons) }
         altCautionedRadios(required: false) { $(name: "alternative[cautionedAgainstResident]").module(RadioButtons) }
 
         address1 { $("#preferred-addressLine1") }

@@ -162,7 +162,6 @@ class ProposedAddressSpec extends GebReportingSpec {
         occupierName = 'Name'
         occupierAge = '12'
         occupierRelation = 'Relation'
-        electricityRadios.checked = 'Yes'
         cautionedRadios.checked = 'No'
         find('#continueBtn').click()
 
@@ -181,9 +180,7 @@ class ProposedAddressSpec extends GebReportingSpec {
                 '#preferred-occupierName'            : 'Name',
                 '#preferred-occupierAge'             : '12',
                 '#preferred-occupierRelation'        : 'Relation',
-                '#preferred-cautionedAgainstResident': 'No',
-                '#preferred-electricity'             : 'Yes'
-
+                '#preferred-cautionedAgainstResident': 'No'
         ]
 
         then: 'I see the expected data for the address'
@@ -213,7 +210,6 @@ class ProposedAddressSpec extends GebReportingSpec {
         altOccupierName = 'Name'
         altOccupierAge = '12'
         altOccupierRelation = 'Relation'
-        altElectricityRadios.checked = 'Yes'
         altCautionedRadios.checked = 'No'
 
         then: 'I click to save and continue'
@@ -232,9 +228,7 @@ class ProposedAddressSpec extends GebReportingSpec {
                 '#alternative-occupierName'            : 'Name',
                 '#alternative-occupierAge'             : '12',
                 '#alternative-occupierRelation'        : 'Relation',
-                '#alternative-cautionedAgainstResident': 'No',
-                '#alternative-electricity'             : 'Yes'
-
+                '#alternative-cautionedAgainstResident': 'No'
         ]
 
         and: 'I see the expected data for the address'
