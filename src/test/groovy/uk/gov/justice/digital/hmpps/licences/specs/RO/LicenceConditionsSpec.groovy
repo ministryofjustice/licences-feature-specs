@@ -144,32 +144,4 @@ class LicenceConditionsSpec extends GebReportingSpec {
         conditionsItem('NOCONTACTASSOCIATE').checked
         $("#groupsOrOrganisation").value() == 'sample input'
     }
-
-    def 'Saved values shown on the review screen' () {
-
-        when: 'I have already entered some conditions'
-        at AdditionalConditionsPage
-
-        and: 'I save and continue'
-        find('#continueBtn').click()
-
-        then: 'I see the licence details page'
-        at LicenceDetailsPage
-
-        and: 'I see the previously selected values'
-        additionalConditions.size() == 2
-        $('div.additionalContent').find(text: contains('sample input')).size() == 1
-    }
-
-    def 'Add another condition button returns to additional conditions page' () {
-
-        given: 'On licence details page'
-        at LicenceDetailsPage
-
-        when: 'I choose to add another condition'
-        find('#addAnother').click()
-
-        then: 'I see the additional conditions page'
-        at AdditionalConditionsPage
-    }
 }
