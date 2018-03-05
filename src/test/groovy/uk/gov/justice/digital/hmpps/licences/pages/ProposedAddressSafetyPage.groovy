@@ -4,10 +4,10 @@ import geb.Page
 import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class ProposedAddressReviewPage extends Page {
+class ProposedAddressSafetyPage extends Page {
 
     static at = {
-        browser.currentUrl.contains('/curfewAddressReview/')
+        browser.currentUrl.contains('/addressSafety/')
     }
 
     static content = {
@@ -17,10 +17,8 @@ class ProposedAddressReviewPage extends Page {
         town(required: false) { $("#preferred-addressTown") }
         postCode(required: false) { $("#preferred-addressPostCode") }
 
-        landlordConsentRadios { $(name: "consent").module(RadioButtons) }
-        electricitySupplyRadios(required: false) { $(name: "electricity").module(RadioButtons) }
-        homeVisitRadios(required: false) { $(name: "homeVisitConducted").module(RadioButtons) }
+        manageSafelyRadios { $(name: "deemedSafe").module(RadioButtons) }
+        reason(required: false) { $("#reason") }
 
-        landlordConsentForm(required: false) { $("#consentForm") }
     }
 }
