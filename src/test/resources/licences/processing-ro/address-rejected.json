@@ -55,9 +55,11 @@
     },
     "curfew": {
       "curfewAddressReview": {
-        "consent": "No",
+        "consent": "No"
+      },
+      "addressSafety": {
         "deemedSafe": "No",
-        "safetyDetails": "Managed safely details"
+        "reason": "Managed safely details"
       }
     }
   }

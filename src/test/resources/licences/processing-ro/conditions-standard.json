@@ -57,7 +57,9 @@
       "curfewAddressReview": {
         "consent": "Yes",
         "electricity": "Yes",
-        "homeVisitConducted": "Yes",
+        "homeVisitConducted": "Yes"
+      },
+      "addressSafety": {
         "deemedSafe": "Yes"
       },
       "curfewHours": {
