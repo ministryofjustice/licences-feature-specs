@@ -5,6 +5,7 @@ import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.CurfewHoursPage
+import uk.gov.justice.digital.hmpps.licences.pages.LicenceDetailsPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressSafetyPage
 import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
@@ -75,6 +76,12 @@ class RoJourneySpec extends GebReportingSpec {
 
         then:
         at ReportingInstructionsPage
+
+        when:
+        find('#continueBtn').click()
+
+        then:
+        at LicenceDetailsPage
 
         when:
         find('#continueBtn').click()

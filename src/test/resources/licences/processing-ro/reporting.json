@@ -34,7 +34,7 @@
           },
           "residents": [
             {
-              "name": "Other resident",
+              "name": "Other Resident",
               "age": "10",
               "relation": "Son"
             },
@@ -44,9 +44,9 @@
               "relation": ""
             },
             {
-              "name": "",
-              "age": "",
-              "relation": ""
+              "name": "Yet Another",
+              "age": "20",
+              "relation": "Wife"
             }
           ],
           "cautionedAgainstResident": "No"
@@ -63,8 +63,8 @@
         "deemedSafe": "Yes"
       },
       "curfewHours": {
-        "mondayFrom": "19:00",
-        "mondayUntil": "07:00",
+        "mondayFrom": "21:22",
+        "mondayUntil": "08:09",
         "tuesdayFrom": "19:00",
         "tuesdayUntil": "07:00",
         "wednesdayFrom": "19:00",
@@ -75,8 +75,8 @@
         "fridayUntil": "07:00",
         "saturdayFrom": "19:00",
         "saturdayUntil": "07:00",
-        "sundayFrom": "19:00",
-        "sundayUntil": "07:00"
+        "sundayFrom": "18:19",
+        "sundayUntil": "06:07"
       }
     },
     "licenceConditions": {
