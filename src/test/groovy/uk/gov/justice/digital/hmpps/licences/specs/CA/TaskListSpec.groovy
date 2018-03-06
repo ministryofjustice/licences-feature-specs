@@ -31,34 +31,26 @@ class TaskListSpec extends GebReportingSpec {
     @Stage
     def 'Shows details of the prisoner (from nomis)'() {
 
-        given:
-        def prisonerDetails = [
-                '#prisonerName'        : 'Andrews, Mark',
-                '#prisonerPrisonNumber': 'A0001XX',
-
-                '#prisonerDob'         : '22/10/1989',
-                //'#prisonerLocation'    : 'Licence Auto Test Prison',
-                '#prisonerOffences'    : "Cause exceed max permitted wt of artic' vehicle - No of axles/configuration (No MOT/Manufacturer's Plate)",
-
-                '#prisonerCrd'         : '15/10/2019',
-                '#prisonerHdced'       : '13/07/2019',
-            //    '#prisonerSed'         : '01/08/2019',
-            //    '#prisonerLed'         : '02/08/2019',
-            //    '#prisonerPssed'       : '03/08/2019',
-
-                '#prisonerComName'     : 'Jessy Jones',
-
-                '#prisonerPhotoDate'   : 'Uploaded: 05/07/2017'
-        ]
-
         when: 'I view the task list page'
         actions.toTaskListPageFor('A0001XX')
         at TaskListPage
 
-        then: 'I see the expected prisoner details data'
-        prisonerDetails.each { item, value ->
-            assert prisonerPersonalDetails.find(item).text() == value
-        }
+        then: 'I see the expected offender details data'
+        offender.details.name == 'Andrews, Mark'
+        offender.details.nomisId == 'A0001XX'
+        offender.details.dob == '22/10/1989'
+        offender.details.roName == 'Jessy Jones'
+        offender.details.externalLocation == 'Licence Auto Test Prison'
+        offender.details.offences == "Cause exceed max permitted wt of artic' vehicle - No of axles/configuration (No MOT/Manufacturer's Plate)"
+        offender.details.crd == '15/10/2019'
+        offender.details.hdced == '13/07/2019'
+        offender.details.photoDate == 'Uploaded: 05/07/2017'
+
+//        Pending stage data
+//        offender.details.internalLocation == 'A-1-1'
+//        offender.details.sed == '01/08/2019'
+//        offender.details.led == '02/08/2019'
+//        offender.details.pssed == '03/08/2019'
     }
 
     def 'Back link goes back to case list'() {
