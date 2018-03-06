@@ -267,12 +267,12 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         then: 'I see the values on the confirm address page'
         at ProposedAddressConfirmPage
-        $('#preferred-resident-name-3').text() == 'Name'
-        $('#preferred-resident-age-3').text() == 'Age'
-        $('#preferred-resident-relation-3').text() == 'Relation'
-        $('#alternative-resident-name-3').text() == 'AltName'
-        $('#alternative-resident-age-3').text() == 'AltAge'
-        $('#alternative-resident-relation-3').text() == 'AltRelation'
+        $('#preferred-resident-name-0').text() == 'Name'
+        $('#preferred-resident-age-0').text() == 'Age'
+        $('#preferred-resident-relation-0').text() == 'Relation'
+        $('#alternative-resident-name-0').text() == 'AltName'
+        $('#alternative-resident-age-0').text() == 'AltAge'
+        $('#alternative-resident-relation-0').text() == 'AltRelation'
     }
 
     def 'I can submit the address to the RO' () {
