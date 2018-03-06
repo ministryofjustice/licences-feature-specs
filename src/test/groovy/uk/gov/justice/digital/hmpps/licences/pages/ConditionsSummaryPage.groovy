@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.pages
 
 import geb.Page
 import geb.module.Checkbox
+import uk.gov.justice.digital.hmpps.licences.modules.ConditionsSummaryModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class ConditionsSummaryPage extends Page {
@@ -12,15 +13,6 @@ class ConditionsSummaryPage extends Page {
 
     static content = {
         header { module(HeaderModule) }
-
-        additionalConditions(required: false) { $('div.additional') }
-        additionalConditionsContent(required: false) { $('div.additionalContent') }
-
-        additionalConditionsWithText(required: false) { toFind ->
-            $('div.additionalContent').find(text: contains(toFind))
-        }
-
-        editConditionLinks { $('a', text: 'Edit condition') }
-        deleteConditionLinks { $('input', value: 'Delete') }
+        conditions { module(ConditionsSummaryModule) }
     }
 }
