@@ -165,10 +165,11 @@ class LicenceDetailsSpec extends GebReportingSpec {
         at page
 
         where:
-        section      | page
-        'address'    | ProposedAddressReviewPage
-        'conditions' | AdditionalConditionsPage
-        'risk'       | RiskManagementPage
-        'reporting'  | ReportingInstructionsPage
+        section       | page
+        'address'     | ProposedAddressReviewPage
+        'curfewHours' | CurfewHoursPage
+        'conditions'  | AdditionalConditionsPage
+        'risk'        | RiskManagementPage
+        'reporting'   | ReportingInstructionsPage
     }
 }
