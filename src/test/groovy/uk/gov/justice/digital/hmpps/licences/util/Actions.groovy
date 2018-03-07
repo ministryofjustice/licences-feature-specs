@@ -3,6 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.util
 import geb.Browser
 import spock.lang.Shared
 import uk.gov.justice.digital.hmpps.licences.pages.AdditionalConditionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.AddressProposedPage
 import uk.gov.justice.digital.hmpps.licences.pages.ConditionsSummaryPage
 import uk.gov.justice.digital.hmpps.licences.pages.CurfewHoursPage
 import uk.gov.justice.digital.hmpps.licences.pages.LicenceDetailsPage
@@ -72,6 +73,13 @@ class Actions {
         Browser.drive {
             go '/hdc/proposedAddress/bassReferral/' + nomisId
             at BassReferralPage
+        }
+    }
+
+    def toAddressProposedPage(nomisId) {
+        Browser.drive {
+            go '/hdc/proposedAddress/addressProposed/' + nomisId
+            at AddressProposedPage
         }
     }
 
