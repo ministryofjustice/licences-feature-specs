@@ -3,6 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.specs.CA
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.AddressProposedPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressConfirmPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
@@ -88,13 +89,29 @@ class ProposedAddressSpec extends GebReportingSpec {
         at TaskListPage
     }
 
-    def 'The BASS referral page is shown next if opt out is No' () {
+    def 'The address proposed question page is shown next if opt out is No' () {
 
         when: 'I view the opt out page'
         actions.toOptOutPageFor('A0001XX')
         at HdcOptOutPage
 
         and: 'I select to not opt out'
+        decisionRadios.checked = 'No'
+        find('#continueBtn').click()
+
+        then: 'I see the address proposed form'
+        at AddressProposedPage
+
+        and: 'Nothing is selected'
+        decisionRadios.checked == null
+    }
+
+    def 'The BASS referral page is shown next if address proposed is No' () {
+
+        given: 'On address proposed page'
+        at AddressProposedPage
+
+        when: 'I select to not propose an address'
         decisionRadios.checked = 'No'
         find('#continueBtn').click()
 
@@ -135,13 +152,13 @@ class ProposedAddressSpec extends GebReportingSpec {
         at TaskListPage
     }
 
-    def 'The proposed address form is shown next if BASS referral is No' () {
-        when: 'I view the opt out page'
-        actions.toBassReferralPage('A0001XX')
-        at BassReferralPage
+    def 'The proposed address form is shown next if address proposed is Yes' () {
+        when: 'I view the address proposed page'
+        actions.toAddressProposedPage('A0001XX')
+        at AddressProposedPage
 
-        and: 'I select no'
-        decisionRadios.checked = 'No'
+        and: 'I select yes'
+        decisionRadios.checked = 'Yes'
         find('#continueBtn').click()
 
         then: 'I see the proposed Address Form'

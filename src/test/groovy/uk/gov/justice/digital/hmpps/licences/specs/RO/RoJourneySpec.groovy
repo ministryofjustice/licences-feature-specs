@@ -31,7 +31,7 @@ class RoJourneySpec extends GebReportingSpec {
     def cleanupSpec() {
         actions.logOut()
     }
-
+    @PendingFeature
     def 'From first task, choosing save and continue presents task pages in order' () {
 
         given: 'A licence record ready to process'
