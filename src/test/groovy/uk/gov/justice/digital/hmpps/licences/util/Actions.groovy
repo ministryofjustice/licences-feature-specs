@@ -91,49 +91,49 @@ class Actions {
 
     def toStandardConditionsPageFor(nomisId) {
         Browser.drive {
-            go 'hdc/licenceConditions/standard/' + nomisId
+            go '/hdc/licenceConditions/standard/' + nomisId
             at StandardConditionsPage
         }
     }
 
     def toAdditionalConditionsPageFor(nomisId) {
         Browser.drive {
-            go 'hdc/licenceConditions/additionalConditions/' + nomisId
+            go '/hdc/licenceConditions/additionalConditions/' + nomisId
             at AdditionalConditionsPage
         }
     }
 
     def toConditionsSummaryPageFor(nomisId) {
         Browser.drive {
-            go 'hdc/licenceConditions/conditionsSummary/' + nomisId
+            go '/hdc/licenceConditions/conditionsSummary/' + nomisId
             at ConditionsSummaryPage
         }
     }
 
     def toRiskManagementPageFor(nomisId) {
         Browser.drive {
-            go 'hdc/risk/riskManagement/' + nomisId
+            go '/hdc/risk/riskManagement/' + nomisId
             at RiskManagementPage
         }
     }
 
     def toReportingInstructionsPageFor(nomisId) {
         Browser.drive {
-            go 'hdc/reporting/reportingInstructions/' + nomisId
+            go '/hdc/reporting/reportingInstructions/' + nomisId
             at ReportingInstructionsPage
         }
     }
 
     def toCurfewHoursPageFor(nomisId) {
         Browser.drive {
-            go 'hdc/curfew/curfewHours/' + nomisId
+            go '/hdc/curfew/curfewHours/' + nomisId
             at CurfewHoursPage
         }
     }
 
     def toLicenceDetailsPageFor(nomisId) {
         Browser.drive {
-            go 'hdc/licenceDetails/' + nomisId
+            go '/hdc/licenceDetails/' + nomisId
             at LicenceDetailsPage
         }
     }
