@@ -99,6 +99,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         at LicenceDetailsPage
 
         then: 'I see the curfew hours details'
+        curfewHours('First Night') == '18:30 - 10:11'
         curfewHours('Monday') == '21:22 - 08:09'
         curfewHours('Tuesday') == '19:00 - 07:00'
         curfewHours('Wednesday') == '19:00 - 07:00'
