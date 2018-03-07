@@ -62,7 +62,7 @@ class LicenceDetailsPage extends Page {
 
 
         curfewHours { day ->
-            $("#${day.toLowerCase()}").text()
+            $("#${day.uncapitalize().replaceAll("\\s","")}").text()
         }
 
         riskAnswers {
