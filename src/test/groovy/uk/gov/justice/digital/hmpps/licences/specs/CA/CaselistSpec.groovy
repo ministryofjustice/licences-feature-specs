@@ -80,4 +80,22 @@ class CaselistSpec extends GebReportingSpec {
         'Sent to RO' | 'processing-ro/unstarted' | 'Submitted to RO'
     }
 
+    @Unroll
+    def 'Shows status in #style when status is #status'() {
+
+        given: 'A licence where #condition'
+        testData.loadLicence(sample)
+
+        when: 'I view the caselist'
+        via CaselistPage
+
+        then: 'The status is marked with #style'
+        hdcEligible[0].find(css).text() == status
+
+        where:
+        status                 | style      | sample                           | css
+        'Address not suitable' | 'bold red' | 'processing-ca/address-rejected' | '.terminalStateAlert'
+        // 'Postponed'          | 'bold'     | 'processing-ca/postponed'        | 'terminalStateWarn'
+
+    }
 }
