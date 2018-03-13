@@ -1,13 +1,15 @@
-package uk.gov.justice.digital.hmpps.licences.pages
+package uk.gov.justice.digital.hmpps.licences.pages.assessment
 
 import geb.Page
 import geb.module.Checkbox
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class AdditionalConditionsPage extends Page {
+class LicenceConditionsAdditionalPage extends Page {
+
+    static url = '/hdc/licenceConditions/additionalConditions'
 
     static at = {
-        browser.currentUrl.contains('/additionalConditions/')
+        browser.currentUrl.contains(url)
     }
 
     static content = {

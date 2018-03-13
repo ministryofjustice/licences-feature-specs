@@ -5,12 +5,12 @@ import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.Stage
-import uk.gov.justice.digital.hmpps.licences.pages.AdditionalConditionsPage
-import uk.gov.justice.digital.hmpps.licences.pages.CurfewHoursPage
-import uk.gov.justice.digital.hmpps.licences.pages.LicenceDetailsPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
-import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
-import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsAdditionalPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewHoursPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceDetailsPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewAddressReviewPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.ReportingInstructionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -26,7 +26,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
     def setupSpec() {
         testData.loadLicence('processing-ro/reporting')
         actions.logIn('RO')
-        actions.toLicenceDetailsPageFor('A0001XX')
+        to LicenceDetailsPage, 'A0001XX'
     }
 
     def cleanupSpec() {
@@ -155,8 +155,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
     def 'Shows link to change #section details'() {
 
         given: 'Viewing licence details summary'
-        actions.toLicenceDetailsPageFor('A0001XX')
-        at LicenceDetailsPage
+        to LicenceDetailsPage, 'A0001XX'
 
         when: 'I click the change details link for a section'
         changeDetailsLink(section).click()
@@ -166,9 +165,9 @@ class LicenceDetailsSpec extends GebReportingSpec {
 
         where:
         section       | page
-        'address'     | ProposedAddressReviewPage
+        'address'     | CurfewAddressReviewPage
         'curfewHours' | CurfewHoursPage
-        'conditions'  | AdditionalConditionsPage
+        'conditions'  | LicenceConditionsAdditionalPage
         'risk'        | RiskManagementPage
         'reporting'   | ReportingInstructionsPage
     }

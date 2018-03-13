@@ -6,8 +6,10 @@ import uk.gov.justice.digital.hmpps.licences.modules.PrisonerDetailsModule
 
 class TaskListPage extends Page {
 
+    static url = '/hdc/taskList'
+
     static at = {
-        browser.currentUrl.contains('/hdc/taskList/')
+        browser.currentUrl.contains(url)
     }
 
     static content = {
@@ -32,7 +34,7 @@ class TaskListPage extends Page {
 
         taskListActions(required: false) { $('.taskListAction') }
 
-        taskListAction{ taskName ->
+        taskListAction(required: false){ taskName ->
             $('h2', text: contains(taskName)).closest('div').find('.taskListAction')
         }
     }

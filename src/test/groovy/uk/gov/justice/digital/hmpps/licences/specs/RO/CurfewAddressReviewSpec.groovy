@@ -3,14 +3,14 @@ package uk.gov.justice.digital.hmpps.licences.specs.RO
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressReviewPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressSafetyPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewAddressReviewPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewAddressSafetyPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
-class ProposedAddressReviewSpec extends GebReportingSpec {
+class CurfewAddressReviewSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
@@ -32,8 +32,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
         testData.loadLicence('processing-ro/unstarted')
 
         when: 'I go to the address review page'
-        actions.toAddressReviewPageFor('A0001XX')
-        at ProposedAddressReviewPage
+        to CurfewAddressReviewPage, 'A0001XX'
 
         then: 'I see the address details'
         street.text() == 'Street'
@@ -47,7 +46,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     def 'Confirmation options initially unselected' () {
 
         when: 'At address review page'
-        at ProposedAddressReviewPage
+        at CurfewAddressReviewPage
 
         then: 'Options not set'
         landlordConsentRadios.checked == null
@@ -56,7 +55,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     def 'Further questions not shown when landlord consent is no' () {
 
         when: 'At address review page'
-        at ProposedAddressReviewPage
+        at CurfewAddressReviewPage
 
         then: 'I do not see the further questions'
         !landlordConsentForm.isDisplayed()
@@ -65,7 +64,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     def 'Further questions shown when landlord consent is yes' () {
 
         when: 'At address review page'
-        at ProposedAddressReviewPage
+        at CurfewAddressReviewPage
 
         and: 'I select yes for consent'
         landlordConsentRadios.checked = 'Yes'
@@ -77,7 +76,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     def 'Address safety form is shown if landlord consent is given' () {
 
         when: 'At address review page'
-        at ProposedAddressReviewPage
+        at CurfewAddressReviewPage
 
         and: 'I select yes for consent'
         landlordConsentRadios.checked = 'Yes'
@@ -86,13 +85,13 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         then: 'I move to the address safey page'
-        at ProposedAddressSafetyPage
+        at CurfewAddressSafetyPage
     }
 
     def 'Reason not shown when managed safely is yes or yes, pending' () {
 
         when: 'At address review page'
-        at ProposedAddressSafetyPage
+        at CurfewAddressSafetyPage
 
         then: 'I do not see the reason form'
         !reason.isDisplayed()
@@ -108,7 +107,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     def 'Reason is shown when managed safely is no' () {
 
         when: 'At address review page'
-        at ProposedAddressSafetyPage
+        at CurfewAddressSafetyPage
 
         and: 'I select yes for excluded'
         manageSafelyRadios.checked = 'No'
@@ -121,8 +120,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
 
         given:  'At address review page'
         testData.loadLicence('processing-ro/unstarted')
-        actions.toAddressReviewPageFor('A0001XX')
-        at ProposedAddressReviewPage
+        to CurfewAddressReviewPage, 'A0001XX'
 
         when: 'I select new options'
         landlordConsentRadios.checked = 'Yes'
@@ -132,8 +130,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the address review page'
-        actions.toAddressReviewPageFor('A0001XX')
-        at ProposedAddressReviewPage
+        to CurfewAddressReviewPage, 'A0001XX'
 
         then: 'I see the original values'
         landlordConsentRadios.checked == null
@@ -142,8 +139,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
     def 'Modified choices are saved after save and continue' () {
 
         given:  'At address review page'
-        actions.toAddressReviewPageFor('A0001XX')
-        at ProposedAddressReviewPage
+        to CurfewAddressReviewPage, 'A0001XX'
 
         when: 'I select new options'
         landlordConsentRadios.checked = 'Yes'
@@ -154,7 +150,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         then: 'I move to the address safety page'
-        at ProposedAddressSafetyPage
+        at CurfewAddressSafetyPage
 
         when: 'I select that the address is safe'
         manageSafelyRadios = 'Yes'
@@ -163,8 +159,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         and: 'I move to the address review page'
-        actions.toAddressReviewPageFor('A0001XX')
-        at ProposedAddressReviewPage
+        to CurfewAddressReviewPage, 'A0001XX'
 
         then: 'I see the previously entered values'
         landlordConsentRadios.checked == 'Yes'
@@ -173,7 +168,7 @@ class ProposedAddressReviewSpec extends GebReportingSpec {
 
         when: 'I click save and continue'
         find('#continueBtn').click()
-        at ProposedAddressSafetyPage
+        at CurfewAddressSafetyPage
 
         then: 'I see the entered value'
         manageSafelyRadios == 'Yes'

@@ -3,7 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.specs.RO
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -29,8 +29,7 @@ class RiskManagementSpec extends GebReportingSpec {
     def 'Options initially blank' () {
 
         given: 'At task list page'
-        actions.toTaskListPageFor('A0001XX')
-        at TaskListPage
+        to TaskListPage, 'A0001XX'
 
         when: 'I start the risk management task'
         taskListAction('Risk management and victim liaison').click()
@@ -103,8 +102,7 @@ class RiskManagementSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the risk management page'
-        actions.toRiskManagementPageFor('A0001XX')
-        at RiskManagementPage
+        to RiskManagementPage, 'A0001XX'
 
         then: 'I see the original values'
         riskManagementRadios.checked == null
@@ -125,8 +123,7 @@ class RiskManagementSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         and: 'I return to the risk management page'
-        actions.toRiskManagementPageFor('A0001XX')
-        at RiskManagementPage
+        to RiskManagementPage, 'A0001XX'
 
         then: 'I see the previously entered values'
         riskManagementRadios.checked == 'Yes'

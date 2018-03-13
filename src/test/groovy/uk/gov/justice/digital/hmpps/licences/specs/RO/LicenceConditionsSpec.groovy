@@ -4,6 +4,9 @@ import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.*
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsAdditionalPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsStandardPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -28,20 +31,19 @@ class LicenceConditionsSpec extends GebReportingSpec {
     def 'Standard conditions page shown first' () {
 
         given: 'At task list page'
-        actions.toTaskListPageFor('A0001XX')
-        at TaskListPage
+        to TaskListPage, 'A0001XX'
 
         when: 'I start the additional conditions task'
         taskListAction('Additional conditions').click()
 
         then: 'I see the standard conditions page'
-        at StandardConditionsPage
+        at LicenceConditionsStandardPage
     }
 
     def 'Options initially unset' () {
 
         when: 'I view the standard conditions page'
-        at StandardConditionsPage
+        at LicenceConditionsStandardPage
 
         then:
         additionalConditionsRadios.checked == null
@@ -50,7 +52,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
     def 'When additional conditions NOT required, does NOT show additional conditions page' () {
 
         given: 'At standard page'
-        at StandardConditionsPage
+        at LicenceConditionsStandardPage
 
         when: 'I select no additional conditions'
         additionalConditionsRadios = 'No'
@@ -65,8 +67,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
     def 'When additional conditions required, shows additional conditions page' () {
 
         when: 'I view the standard conditions page'
-        actions.toStandardConditionsPageFor('A0001XX')
-        at StandardConditionsPage
+        to LicenceConditionsStandardPage, 'A0001XX'
 
         and: 'I select additional conditions required'
         additionalConditionsRadios = 'Yes'
@@ -75,13 +76,13 @@ class LicenceConditionsSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         then: 'I see the additional conditions page'
-        at AdditionalConditionsPage
+        at LicenceConditionsAdditionalPage
     }
 
     def 'Additional conditions initially unset' () {
 
         when: 'At additional conditions page'
-        at AdditionalConditionsPage
+        at LicenceConditionsAdditionalPage
 
         then: 'Options not set'
         conditions.every { !it.value() }
@@ -90,7 +91,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
     def 'Select a condition reveals the input form' () {
 
         when: 'At additional conditions page'
-        at AdditionalConditionsPage
+        at LicenceConditionsAdditionalPage
 
         then: 'The input form is not shown'
         !$("#groupsOrOrganisation").isDisplayed()
@@ -106,7 +107,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
     def 'Modified additional conditions not saved on return to tasklist' () {
 
         when: 'At additional conditions page'
-        at AdditionalConditionsPage
+        at LicenceConditionsAdditionalPage
 
         and: 'I select some conditions'
         $("form").additionalConditions = ['NOCONTACTPRISONER', 'NOCONTACTASSOCIATE', 'NORESIDE']
@@ -116,8 +117,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the additional conditions page'
-        actions.toAdditionalConditionsPageFor('A0001XX')
-        at AdditionalConditionsPage
+        to LicenceConditionsAdditionalPage, 'A0001XX'
 
         then: 'Options not set'
         conditions.every { !it.value() }
@@ -126,7 +126,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
     def 'Modified Additional conditions saved on save and continue' () {
 
         when: 'At additional conditions page'
-        at AdditionalConditionsPage
+        at LicenceConditionsAdditionalPage
 
         and: 'I select some conditions'
         $("form").additionalConditions = ['NOCONTACTPRISONER', 'NOCONTACTASSOCIATE']
@@ -137,7 +137,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
 
         and: 'I view the additional conditions page'
         actions.toAdditionalConditionsPageFor('A0001XX')
-        at AdditionalConditionsPage
+        at LicenceConditionsAdditionalPage
 
         then: 'I see the previously entered values'
         conditionsItem('NOCONTACTPRISONER').checked

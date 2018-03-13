@@ -3,8 +3,8 @@ package uk.gov.justice.digital.hmpps.licences.specs.RO
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.modules.ConditionsSummaryModule
-import uk.gov.justice.digital.hmpps.licences.pages.*
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsAdditionalPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsSummaryPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -31,8 +31,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         testData.loadLicence('processing-ro/conditions-multiple')
 
         when: 'I view the conditions summary page'
-        actions.toConditionsSummaryPageFor('A0001XX')
-        at ConditionsSummaryPage
+        to LicenceConditionsSummaryPage, 'A0001XX'
 
         then: 'I see the previously selected values'
         conditions.additionalConditions.size() == 5
@@ -42,20 +41,20 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
     def 'Add another condition button returns to additional conditions page' () {
 
         given: 'On the conditions summary page'
-        at ConditionsSummaryPage
+        at LicenceConditionsSummaryPage
 
         when: 'I choose to add another condition'
         find('#addAnother').click()
 
         then: 'I see the additional conditions page'
-        at AdditionalConditionsPage
+        at LicenceConditionsAdditionalPage
     }
 
     def 'Edit condition returns to the additional conditions screen' () {
 
         when: 'I view the conditions summary page'
         find('#continueBtn').click()
-        at ConditionsSummaryPage
+        at LicenceConditionsSummaryPage
 
         then: 'I see an edit condition link for each condition in the sample licence we loaded'
         conditions.editConditionLinks.size() == 5
@@ -69,7 +68,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         conditions.editConditionLinks[0].click()
 
         then: 'I see the additional conditions screen'
-        at AdditionalConditionsPage
+        at LicenceConditionsAdditionalPage
 
         and: 'The link goes to the named anchor for the condition'
         browser.currentUrl.endsWith('#NOCONTACTPRISONER')
@@ -79,7 +78,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
 
         when: 'I view the conditions summary page'
         find('#continueBtn').click()
-        at ConditionsSummaryPage
+        at LicenceConditionsSummaryPage
 
         then: 'I see a delete condition link for each condition'
         conditions. deleteConditionLinks.size() == 5
@@ -91,7 +90,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         conditions.deleteConditionLinks[3].click()
 
         then: 'I return to the conditions summary page'
-        at ConditionsSummaryPage
+        at LicenceConditionsSummaryPage
 
         and: 'The deleted condition is no longer shown'
         conditions.additionalConditions.size() == 4
@@ -102,7 +101,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
     def 'Can also delete bespoke conditions' () {
 
         given: 'Viewing the conditions summary'
-        at ConditionsSummaryPage
+        at LicenceConditionsSummaryPage
 
         and: 'I can see the bespoke condition'
         conditions.additionalConditions.size() == 4

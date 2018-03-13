@@ -1,13 +1,14 @@
-package uk.gov.justice.digital.hmpps.licences.pages
+package uk.gov.justice.digital.hmpps.licences.pages.review
 
 import geb.Page
-import org.openqa.selenium.Keys
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class CurfewHoursPage extends Page {
+class ReviewRiskPage extends Page {
+
+    static url = '/hdc/review/risk'
 
     static at = {
-        browser.currentUrl.contains('/curfewHours/')
+        browser.currentUrl.contains(url)
     }
 
     static content = {

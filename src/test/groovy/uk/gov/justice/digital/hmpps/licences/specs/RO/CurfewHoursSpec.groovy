@@ -1,11 +1,9 @@
 package uk.gov.justice.digital.hmpps.licences.specs.RO
 
 import geb.spock.GebReportingSpec
-import org.openqa.selenium.Keys
 import spock.lang.Shared
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.CurfewHoursPage
-import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewHoursPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -30,8 +28,7 @@ class CurfewHoursSpec extends GebReportingSpec {
     def 'Curfew hours initially shows defaults of 7pm to 7am' () {
 
         when: 'I view the curfew hours page'
-        actions.toCurfewHoursPageFor('A0001XX')
-        at CurfewHoursPage
+        to CurfewHoursPage, 'A0001XX'
 
         then: 'I see the default values'
         $('#mondayFrom').value() == '19:00'
@@ -47,8 +44,7 @@ class CurfewHoursSpec extends GebReportingSpec {
         testData.loadLicence('processing-ro/address-approved-curfew-hours')
 
         when: 'I view the curfew hours page'
-        actions.toCurfewHoursPageFor('A0001XX')
-        at CurfewHoursPage
+        to CurfewHoursPage, 'A0001XX'
 
         then: 'I see the save values'
         $('#mondayFrom').value() == '21:22'

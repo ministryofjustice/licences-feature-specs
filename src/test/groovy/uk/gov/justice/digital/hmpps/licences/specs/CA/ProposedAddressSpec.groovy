@@ -3,13 +3,13 @@ package uk.gov.justice.digital.hmpps.licences.specs.CA
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.AddressProposedPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressPage
-import uk.gov.justice.digital.hmpps.licences.pages.ProposedAddressConfirmPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAdressAddressProposedPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressCurfewAddressPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressConfirmPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.SendPage
-import uk.gov.justice.digital.hmpps.licences.pages.HdcOptOutPage
-import uk.gov.justice.digital.hmpps.licences.pages.BassReferralPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressOptOutPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressBassReferralPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -34,8 +34,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'Starts with opt out page with nothing selected'() {
 
         when: 'I view the opt out page'
-        actions.toOptOutPageFor('A0001XX')
-        at HdcOptOutPage
+        to ProposedAddressOptOutPage, 'A0001XX'
 
         then: 'Neither radio option is selected'
         decisionRadios.checked == null
@@ -66,9 +65,8 @@ class ProposedAddressSpec extends GebReportingSpec {
         given: 'Opt out form already done'
         testData.loadLicence('eligibility/optedOut')
 
-        when: 'I view the eligibility checks page'
-        actions.toOptOutPageFor('A0001XX')
-        at HdcOptOutPage
+        when: 'I view the opt out page'
+        to ProposedAddressOptOutPage, 'A0001XX'
 
         then: 'I see the previous values'
         decisionRadios.checked == 'Yes'
@@ -79,7 +77,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     def 'The task list is shown next if opt out is Yes' () {
         given: 'On opt out page'
-        at HdcOptOutPage
+        at ProposedAddressOptOutPage
 
         when: 'I select to opt out'
         decisionRadios.checked = 'Yes'
@@ -92,15 +90,14 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'The address proposed question page is shown next if opt out is No' () {
 
         when: 'I view the opt out page'
-        actions.toOptOutPageFor('A0001XX')
-        at HdcOptOutPage
+        to ProposedAddressOptOutPage, 'A0001XX'
 
         and: 'I select to not opt out'
         decisionRadios.checked = 'No'
         find('#continueBtn').click()
 
         then: 'I see the address proposed form'
-        at AddressProposedPage
+        at ProposedAdressAddressProposedPage
 
         and: 'Nothing is selected'
         decisionRadios.checked == null
@@ -109,14 +106,14 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'The BASS referral page is shown next if address proposed is No' () {
 
         given: 'On address proposed page'
-        at AddressProposedPage
+        at ProposedAdressAddressProposedPage
 
         when: 'I select to not propose an address'
         decisionRadios.checked = 'No'
         find('#continueBtn').click()
 
         then: 'I see the BASS referral form'
-        at BassReferralPage
+        at ProposedAddressBassReferralPage
 
         and: 'Nothing is selected'
         decisionRadios.checked == null
@@ -142,7 +139,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     def 'The task list is shown next if BASS referral is Yes' () {
         given: 'On BASS referral page'
-        at BassReferralPage
+        at ProposedAddressBassReferralPage
 
         when: 'I select yes'
         decisionRadios.checked = 'Yes'
@@ -154,21 +151,20 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     def 'The proposed address form is shown next if address proposed is Yes' () {
         when: 'I view the address proposed page'
-        actions.toAddressProposedPage('A0001XX')
-        at AddressProposedPage
+        to ProposedAdressAddressProposedPage, 'A0001XX'
 
         and: 'I select yes'
         decisionRadios.checked = 'Yes'
         find('#continueBtn').click()
 
         then: 'I see the proposed Address Form'
-        at ProposedAddressPage
+        at ProposedAddressCurfewAddressPage
     }
 
     def 'Entered values are saved after save and continue' () {
 
         given: 'On Curfew Address page'
-        at ProposedAddressPage
+        at ProposedAddressCurfewAddressPage
 
         when: 'I fill in the form and save'
         address1 = 'Address 1'
@@ -209,8 +205,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     def 'I can enter values for an alternative address' () {
         given: 'I am on the proposed curfew address page'
-        actions.toCurfewAddressPage('A0001XX')
-        at ProposedAddressPage
+        to ProposedAddressCurfewAddressPage, 'A0001XX'
 
         when: 'I select to add an alternative address'
         alternativeAddress.checked = 'Yes'
@@ -256,8 +251,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     def 'I can enter extra residents to addresses' () {
         given: 'I am on the proposed curfew address page'
-        actions.toCurfewAddressPage('A0001XX')
-        at ProposedAddressPage
+        to ProposedAddressCurfewAddressPage, 'A0001XX'
 
         when: 'I click to add another resident'
         otherResidents.click()

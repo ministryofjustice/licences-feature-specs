@@ -1,22 +1,22 @@
 package uk.gov.justice.digital.hmpps.licences.specs.CA
 
 import geb.spock.GebReportingSpec
-import spock.lang.Ignore
 import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
-import uk.gov.justice.digital.hmpps.licences.pages.EligibilityCheckPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.EligibilityExclusionPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
-class TaskListSpec extends GebReportingSpec {
+class EligibilityTaskListSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
+
     @Shared
     Actions actions = new Actions()
 
@@ -32,8 +32,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows details of the prisoner (from nomis)'() {
 
         when: 'I view the task list page'
-        actions.toTaskListPageFor('A0001XX')
-        at TaskListPage
+        to TaskListPage, 'A0001XX'
 
         then: 'I see the expected offender details data'
         offender.details.name == 'Andrews, Mark'
@@ -71,8 +70,7 @@ class TaskListSpec extends GebReportingSpec {
         testData.loadLicence('eligibility/unstarted')
 
         when: 'I view the page'
-        actions.toTaskListPageFor('A0001XX')
-        at TaskListPage
+        to TaskListPage, 'A0001XX'
 
         then: 'I see a start button for the eligibility check'
         eligibilityCheckStartButton.value() == 'Start'
@@ -90,7 +88,7 @@ class TaskListSpec extends GebReportingSpec {
         eligibilityCheckStartButton.click()
 
         then: 'I see the eligibility check page'
-        at EligibilityCheckPage
+        at EligibilityExclusionPage
     }
 
     def 'Change answers link shown when eligibility check done'() {
@@ -99,8 +97,7 @@ class TaskListSpec extends GebReportingSpec {
         testData.loadLicence('eligibility/done')
 
         when: 'I view the tasklist page'
-        actions.toTaskListPageFor('A0001XX')
-        at TaskListPage
+        to TaskListPage, 'A0001XX'
 
         then: 'I see the change answers link'
         eligibilityCheckUpdateLink.text() == 'Change these answers'
@@ -118,7 +115,29 @@ class TaskListSpec extends GebReportingSpec {
         excludedAnswer.text() == 'No'
         unsuitableAnswer.text() == 'No'
         crdTimeAnswer.text() == 'No'
+    }
 
+    def 'Address check start button is not shown when offender is #condition'() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/${condition}")
+        to TaskListPage, 'A0001XX'
+
+        then: 'The address check start button is not shown'
+        !taskListAction('Proposed address / opt out request').isDisplayed()
+
+        where:
+        condition << ['unstarted', 'excluded', 'unsuitable', 'insufficientTime']
+    }
+
+    def 'Address check start button is shown when elgibile'() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/eligible")
+        to TaskListPage, 'A0001XX'
+
+        then: 'The address check start button is shown'
+        taskListAction('Proposed address / opt out request').isDisplayed()
     }
 
     @PendingFeature

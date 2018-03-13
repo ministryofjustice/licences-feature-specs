@@ -14,6 +14,7 @@ class CaselistSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
+
     @Shared
     Actions actions = new Actions()
 
@@ -95,7 +96,7 @@ class CaselistSpec extends GebReportingSpec {
         where:
         status                 | style      | sample                           | css
         'Address not suitable' | 'bold red' | 'processing-ca/address-rejected' | '.terminalStateAlert'
-        // 'Postponed'          | 'bold'     | 'processing-ca/postponed'        | 'terminalStateWarn'
+        'Postponed'            | 'bold'     | 'processing-ca/postponed'        | '.terminalStateWarn'
 
     }
 }

@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs.RO
+package uk.gov.justice.digital.hmpps.licences.specs.CA
 
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
@@ -9,19 +9,16 @@ import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.ReportingInstructionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
-import uk.gov.justice.digital.hmpps.licences.pages.SendPage
-import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsStandardPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
-class TaskListSpec extends GebReportingSpec {
+class FinalChecksTaskListSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
-
     @Shared
     Actions actions = new Actions()
 
@@ -31,11 +28,13 @@ class TaskListSpec extends GebReportingSpec {
             conditions: 'Additional conditions',
             risk      : 'Risk management and victim liaison',
             reporting : 'Reporting instructions',
-            submit    : 'Submit to PCA'
+            final     : 'Final checks',
+            postpone  : 'Postponement',
+            submit    : 'Submit to decision maker'
     ]
 
     def setupSpec() {
-        actions.logIn('RO')
+        actions.logIn('CA')
     }
 
     def cleanupSpec() {
@@ -78,19 +77,28 @@ class TaskListSpec extends GebReportingSpec {
         at CaselistPage
     }
 
-    def 'Shows start button for all tasks'() {
+    def 'Shows buttons for all tasks except submit, with correct label'() {
 
-        given: 'An unprocessed licence'
-        testData.loadLicence('processing-ro/unstarted')
+        given: 'An licence ready for final checks'
+        testData.loadLicence('processing-ca/unstarted')
 
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 4 task buttons'
-        taskListActions.size() == 4
+        then: 'I see 6 task buttons'
+        taskListActions.size() == 6
 
-        and: 'The buttons all say Start'
-        taskListActions.every { it.text() == 'Start' }
+        and: 'The tasks for reviewing RO input have View buttons'
+        taskListAction(tasks.address).text() == 'View'
+        taskListAction(tasks.conditions).text() == 'View'
+        taskListAction(tasks.risk).text() == 'View'
+        taskListAction(tasks.reporting).text() == 'View'
+
+        and: 'The final checks task has a Start buttons'
+        taskListAction(tasks.final).text() == 'Start'
+
+        and: 'The postpone task has a Postpone buttons'
+        taskListAction(tasks.final).text() == 'Postpone'
     }
 
     @Unroll
@@ -117,98 +125,7 @@ class TaskListSpec extends GebReportingSpec {
         tasks.conditions | LicenceConditionsStandardPage
         tasks.risk       | RiskManagementPage
         tasks.reporting  | ReportingInstructionsPage
-    }
-
-    def 'Shows view button for tasks that have been started'() {
-
-        given: 'Tasks started except reporting instructions'
-        testData.loadLicence('processing-ro/risks-no')
-
-        when: 'I view the page'
-        to TaskListPage, 'A0001XX'
-
-        then: 'I see 4 task buttons (no submit button shown)'
-        taskListActions.size() == 4
-
-        and: 'The buttons for started tasks all say View'
-        taskListAction(tasks.address).text() == 'View'
-        taskListAction(tasks.conditions).text() == 'View'
-        taskListAction(tasks.risk).text() == 'View'
-        taskListAction(tasks.reporting).text() == 'Start'
-    }
-
-    def 'Shows Submit button when all tasks are done'() {
-
-        given: 'All tasks done'
-        testData.loadLicence('processing-ro/done')
-
-        when: 'I view the page'
-        to TaskListPage, 'A0001XX'
-
-        then: 'I see 5 task buttons'
-        taskListActions.size() == 5
-
-        and: 'There is a submit to OMU button'
-        taskListAction(tasks.submit).text() == 'Continue'
-    }
-
-    // @Stage todo prep data on stage
-    def 'I can submit the licence back to the CA'() {
-
-        given: 'At task list'
-        to TaskListPage, 'A0001XX'
-
-        when: 'I press submit to PCA'
-        taskListAction(tasks.submit).click()
-
-        then: 'I see the submit to CA page'
-        at SendPage
-
-        and: 'I see contact details for the prison'
-        prison.text() == 'HMP Licence Test Prison'
-        phones.size() == 2
-
-        and: 'I can click to submit'
-        find('#continueBtn').click()
-
-        then: 'I see the confirmation page'
-        at SentPage
-
-        when: 'I click return to task list'
-        find('#backBtn').click()
-
-        then: 'I return to the tasklist'
-        at TaskListPage
+        tasks.final      | FinalChecksPage
+        tasks.postpone   | postponePage
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

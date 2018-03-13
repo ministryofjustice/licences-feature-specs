@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.pages
+package uk.gov.justice.digital.hmpps.licences.pages.assessment
 
 import geb.Page
 import geb.module.RadioButtons
@@ -6,8 +6,10 @@ import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class RiskManagementPage extends Page {
 
+    static url = '/hdc/risk/riskManagement'
+
     static at = {
-        browser.currentUrl.contains('/riskManagement/')
+        browser.currentUrl.contains(url)
     }
 
     static content = {

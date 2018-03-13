@@ -1,13 +1,15 @@
-package uk.gov.justice.digital.hmpps.licences.pages
+package uk.gov.justice.digital.hmpps.licences.pages.eligibility
 
 import geb.Page
 import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class HdcOptOutPage extends Page {
+class ProposedAddressOptOutPage extends Page {
+
+    static url = '/hdc/proposedAddress/optOut'
 
     static at = {
-        browser.currentUrl.contains('/hdc/proposedAddress/optOut/')
+        browser.currentUrl.contains(url)
     }
 
     static content = {

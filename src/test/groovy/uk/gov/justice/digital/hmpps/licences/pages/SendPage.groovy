@@ -5,8 +5,10 @@ import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class SendPage extends Page {
 
+    static url = '/hdc/send'
+
     static at = {
-        browser.currentUrl.contains('/hdc/send/')
+        browser.currentUrl.contains(url)
     }
 
     static content = {

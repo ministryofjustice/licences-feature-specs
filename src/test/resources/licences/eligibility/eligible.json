@@ -1,0 +1,16 @@
+{
+  "status": "ELIGIBILITY",
+  "licence": {
+    "eligibility": {
+      "excluded": {
+        "decision": "No"
+      },
+      "suitability": {
+        "decision": "No"
+      },
+      "crdTime": {
+        "decision": "No"
+      }
+    }
+  }
+}

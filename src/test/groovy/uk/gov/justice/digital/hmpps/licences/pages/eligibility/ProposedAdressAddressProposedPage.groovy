@@ -1,13 +1,15 @@
-package uk.gov.justice.digital.hmpps.licences.pages
+package uk.gov.justice.digital.hmpps.licences.pages.eligibility
 
 import geb.Page
 import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class AddressProposedPage extends Page {
+class ProposedAdressAddressProposedPage extends Page {
+
+    static url = '/hdc/proposedAddress/addressProposed'
 
     static at = {
-        browser.currentUrl.contains('/hdc/proposedAddress/addressProposed/')
+        browser.currentUrl.contains(url)
     }
 
     static content = {

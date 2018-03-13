@@ -1,13 +1,15 @@
-package uk.gov.justice.digital.hmpps.licences.pages
+package uk.gov.justice.digital.hmpps.licences.pages.assessment
 
 import geb.Page
 import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class ProposedAddressSafetyPage extends Page {
+class CurfewAddressSafetyPage extends Page {
+
+    static url = '/hdc/curfew/addressSafety'
 
     static at = {
-        browser.currentUrl.contains('/addressSafety/')
+        browser.currentUrl.contains(url)
     }
 
     static content = {

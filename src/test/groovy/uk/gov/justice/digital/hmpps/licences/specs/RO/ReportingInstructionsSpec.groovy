@@ -3,7 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.specs.RO
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
-import uk.gov.justice.digital.hmpps.licences.pages.ReportingInstructionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.ReportingInstructionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -29,8 +29,7 @@ class ReportingInstructionsSpec extends GebReportingSpec {
     def 'Reporting instructions initially blank' () {
 
         given: 'At task list page'
-        actions.toTaskListPageFor('A0001XX')
-        at TaskListPage
+        to TaskListPage, 'A0001XX'
 
         when: 'I start the reporting instructions task'
         taskListAction('Reporting instructions').click()
@@ -63,8 +62,7 @@ class ReportingInstructionsSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the reporting instructions page'
-        actions.toReportingInstructionsPageFor('A0001XX')
-        at ReportingInstructionsPage
+        to ReportingInstructionsPage, 'A0001XX'
 
         then: 'I see the original values'
         name.value() == ''
@@ -90,8 +88,7 @@ class ReportingInstructionsSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         and: 'I return to the reporting instructions page'
-        actions.toReportingInstructionsPageFor('A0001XX')
-        at ReportingInstructionsPage
+        to ReportingInstructionsPage, 'A0001XX'
 
         then: 'I see the previously entered values'
         name.value() == 'sample name'
