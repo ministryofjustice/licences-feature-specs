@@ -24,6 +24,9 @@ class TaskListPage extends Page {
         unsuitableAnswer(required: false)  { $('#unsuitableAnswer') }
         crdTimeAnswer(required: false)  { $('#crdTimeAnswer') }
 
+        seriousOffenceAnswer(required: false)  { $('#seriousOffenceAnswer') }
+        onRemandAnswer(required: false)  { $('#onRemandAnswer') }
+
         printEligibilityFormButton(required: false) { $('#eligibilityFormPrint') }
         eligibilityFormPrintStatusText(required: false) { $('#eligibilityFormPrintStatusText') }
         eligibilityFormPrintStatusIcon(required: false) { $('#eligibilityFormPrintStatusIcon') }

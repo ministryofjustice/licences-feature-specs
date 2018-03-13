@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.pages.finalchecks
 
 import geb.Page
+import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class FinalChecksSeriousOffencePage extends Page {
@@ -12,6 +13,9 @@ class FinalChecksSeriousOffencePage extends Page {
     }
 
     static content = {
+
         header { module(HeaderModule) }
+
+        seriousOffenceRadios  { $(name: "decision").module(RadioButtons) }
     }
 }

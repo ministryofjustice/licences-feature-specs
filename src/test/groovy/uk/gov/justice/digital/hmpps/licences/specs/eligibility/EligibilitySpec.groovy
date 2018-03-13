@@ -28,7 +28,7 @@ class EligibilitySpec extends GebReportingSpec {
         actions.logOut()
     }
 
-    def 'Starts with nothing selected because there is no default '() {
+    def 'Starts with nothing selected because there is no default'() {
 
         when: 'I view the eligibility checks page'
         to EligibilityExclusionPage, 'A0001XX'
