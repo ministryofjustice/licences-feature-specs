@@ -136,8 +136,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         and: 'I view the additional conditions page'
-        actions.toAdditionalConditionsPageFor('A0001XX')
-        at LicenceConditionsAdditionalPage
+        to LicenceConditionsAdditionalPage, 'A0001XX'
 
         then: 'I see the previously entered values'
         conditionsItem('NOCONTACTPRISONER').checked

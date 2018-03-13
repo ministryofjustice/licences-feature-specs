@@ -78,7 +78,7 @@ class TaskListSpec extends GebReportingSpec {
         at CaselistPage
     }
 
-    def 'Shows start button for all tasks'() {
+    def 'Shows start button for all tasks except submit'() {
 
         given: 'An unprocessed licence'
         testData.loadLicence('processing-ro/unstarted')
@@ -86,15 +86,16 @@ class TaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 4 task buttons'
-        taskListActions.size() == 4
+        then: 'I see 4 task buttons and the submit button'
+        taskListActions.size() == 5
 
         and: 'The buttons all say Start'
-        taskListActions.every { it.text() == 'Start' }
+        taskListActions.take(4).every { it.text() == 'Start' }
+        taskListActions.last().text() == 'Continue'
     }
 
     @Unroll
-    def '#task button links to #page'() {
+    def '#task button links to page'() {
 
         given: 'Viewing task list'
         to TaskListPage, 'A0001XX'
@@ -127,8 +128,8 @@ class TaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 4 task buttons (no submit button shown)'
-        taskListActions.size() == 4
+        then: 'I see 4 task buttons and the submit button'
+        taskListActions.size() == 5
 
         and: 'The buttons for started tasks all say View'
         taskListAction(tasks.address).text() == 'View'
@@ -137,10 +138,10 @@ class TaskListSpec extends GebReportingSpec {
         taskListAction(tasks.reporting).text() == 'Start'
     }
 
-    def 'Shows Submit button when all tasks are done'() {
+    def 'Shows Submit button even when tasks are not done'() {
 
-        given: 'All tasks done'
-        testData.loadLicence('processing-ro/done')
+        given: 'Tasks not all done'
+        testData.loadLicence('processing-ro/unstarted')
 
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
@@ -155,10 +156,11 @@ class TaskListSpec extends GebReportingSpec {
     // @Stage todo prep data on stage
     def 'I can submit the licence back to the CA'() {
 
-        given: 'At task list'
-        to TaskListPage, 'A0001XX'
+        given: 'All tasks done'
+        testData.loadLicence('processing-ro/done')
 
         when: 'I press submit to PCA'
+        to TaskListPage, 'A0001XX'
         taskListAction(tasks.submit).click()
 
         then: 'I see the submit to CA page'

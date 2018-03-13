@@ -6,11 +6,15 @@ import spock.lang.Stepwise
 import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewAddressReviewPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.ReportingInstructionsPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsStandardPage
+import uk.gov.justice.digital.hmpps.licences.pages.SendPage
+import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksPostponePage
+import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksSeriousOffencePage
+import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewAddressPage
+import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewConditionsPage
+import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewReportingPage
+import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewRiskPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -77,7 +81,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         at CaselistPage
     }
 
-    def 'Shows buttons for all tasks except submit, with correct label'() {
+    def 'Shows buttons for all tasks with correct label'() {
 
         given: 'An licence ready for final checks'
         testData.loadLicence('processing-ca/unstarted')
@@ -86,19 +90,19 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         to TaskListPage, 'A0001XX'
 
         then: 'I see 6 task buttons'
-        taskListActions.size() == 6
+        taskListActions.size() == 7
 
         and: 'The tasks for reviewing RO input have View buttons'
-        taskListAction(tasks.address).text() == 'View'
-        taskListAction(tasks.conditions).text() == 'View'
-        taskListAction(tasks.risk).text() == 'View'
-        taskListAction(tasks.reporting).text() == 'View'
+        taskListActions.take(4).every { it.text() == 'View' }
 
-        and: 'The final checks task has a Start buttons'
+        and: 'The final checks task has a Start button'
         taskListAction(tasks.final).text() == 'Start'
 
-        and: 'The postpone task has a Postpone buttons'
-        taskListAction(tasks.final).text() == 'Postpone'
+        and: 'The postpone task has a Postpone button'
+        taskListAction(tasks.postpone).text() == 'Postpone'
+
+        and: 'The submit task has a Continue button'
+        taskListAction(tasks.submit).text() == 'Continue'
     }
 
     @Unroll
@@ -121,11 +125,36 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
 
         where:
         task             | page
-        tasks.address    | CurfewAddressReviewPage
-        tasks.conditions | LicenceConditionsStandardPage
-        tasks.risk       | RiskManagementPage
-        tasks.reporting  | ReportingInstructionsPage
-        tasks.final      | FinalChecksPage
-        tasks.postpone   | postponePage
+        tasks.address    | ReviewAddressPage
+        tasks.conditions | ReviewConditionsPage
+        tasks.risk       | ReviewRiskPage
+        tasks.reporting  | ReviewReportingPage
+        tasks.final      | FinalChecksSeriousOffencePage
+        tasks.postpone   | FinalChecksPostponePage
+        tasks.submit     | SendPage
+    }
+
+    def 'I can submit the licence to the DM'() {
+
+        given: 'At task list'
+        to TaskListPage, 'A0001XX'
+
+        when: 'I press submit to decision maker'
+        taskListAction(tasks.submit).click()
+
+        then: 'I see the submit to DM page'
+        at SendPage
+
+        and: 'I can click to submit'
+        find('#continueBtn').click()
+
+        then: 'I see the confirmation page'
+        at SentPage
+
+        when: 'I click return to task list'
+        find('#backBtn').click()
+
+        then: 'I return to the tasklist'
+        at TaskListPage
     }
 }
