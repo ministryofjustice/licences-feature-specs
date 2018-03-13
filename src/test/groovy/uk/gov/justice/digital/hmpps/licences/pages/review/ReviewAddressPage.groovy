@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.pages.review
 
 import geb.Page
+import uk.gov.justice.digital.hmpps.licences.modules.CurfewDetailsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class ReviewAddressPage extends Page {
@@ -13,5 +14,7 @@ class ReviewAddressPage extends Page {
 
     static content = {
         header { module(HeaderModule) }
+
+        curfew { module(CurfewDetailsModule) }
     }
 }

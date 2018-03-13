@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs.RO
+package uk.gov.justice.digital.hmpps.licences.specs.assessment
 
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
@@ -35,12 +35,10 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
         to CurfewAddressReviewPage, 'A0001XX'
 
         then: 'I see the address details'
-        street.text() == 'Street'
-        town.text() == 'Town'
-        postCode.text() == 'AB1 1AB'
-
-        // todo these all need formatting/capitalising
-        // todo check other values
+        curfew.address.line1 == 'Street'
+        curfew.address.town == 'Town'
+        curfew.address.postCode == 'AB1 1AB'
+        curfew.address.telephone == '0123 456789'
     }
 
     def 'Confirmation options initially unselected' () {

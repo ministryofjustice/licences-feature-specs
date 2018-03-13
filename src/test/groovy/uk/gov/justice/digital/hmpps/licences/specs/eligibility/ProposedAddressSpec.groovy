@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs.CA
+package uk.gov.justice.digital.hmpps.licences.specs.eligibility
 
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
@@ -138,6 +138,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     }
 
     def 'The task list is shown next if BASS referral is Yes' () {
+
         given: 'On BASS referral page'
         at ProposedAddressBassReferralPage
 
@@ -150,6 +151,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     }
 
     def 'The proposed address form is shown next if address proposed is Yes' () {
+
         when: 'I view the address proposed page'
         to ProposedAdressAddressProposedPage, 'A0001XX'
 
@@ -164,65 +166,63 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'Entered values are saved after save and continue' () {
 
         given: 'On Curfew Address page'
-        at ProposedAddressCurfewAddressPage
+        to ProposedAddressCurfewAddressPage, 'A0001XX'
 
         when: 'I fill in the form and save'
-        address1 = 'Address 1'
-        address2 = 'Address 2'
-        town = 'Town'
-        postCode = 'Post code'
-        telephone = '001'
-        occupierName = 'Name'
-        occupierAge = '12'
-        occupierRelation = 'Relation'
+
+        address.preferred.line1.value('Address 1')
+        address.preferred.line2.value('Address 2')
+        address.preferred.town.value('Town')
+        address.preferred.postCode.value('Post code')
+        address.preferred.telephone .value('001')
+
+        occupier.preferred.name.value('Name')
+        occupier.preferred.age.value('11')
+        occupier.preferred.relation.value('Relation')
+
         cautionedRadios.checked = 'No'
+
         find('#continueBtn').click()
 
         then: 'I see the confirm address page'
         at ProposedAddressConfirmPage
 
-        and: 'I see the address details entered'
+        and: 'I see the expected data for the address'
+        address.preferred.line1.text() == 'Address 1'
+        address.preferred.line2.text()  == 'Address 2'
+        address.preferred.town.text()  == 'Town'
+        address.preferred.postCode.text()  == 'Post code'
+        address.preferred.telephone.text()  == '001'
 
-        def addressInput = [
-                '#preferred-address1'                : 'Address 1',
-                '#preferred-address2'                : 'Address 2',
-                '#preferred-addressTown'             : 'Town',
-                '#preferred-addressPostCode'         : 'Post code',
-                '#preferred-telephone'               : '001',
-
-                '#preferred-occupierName'            : 'Name',
-                '#preferred-occupierAge'             : '12',
-                '#preferred-occupierRelation'        : 'Relation',
-                '#preferred-cautionedAgainstResident': 'No'
-        ]
-
-        then: 'I see the expected data for the address'
-        addressInput.each { item, value ->
-            assert addressDetails.find(item).text() == value
-        }
-
+        occupier.preferred.name.text()  == 'Name'
+        occupier.preferred.age.text()  == '11'
+        occupier.preferred.relation.text()  == 'Relation'
+        occupier.preferred.cautioned.text()  == 'No'
     }
 
     def 'I can enter values for an alternative address' () {
+
         given: 'I am on the proposed curfew address page'
         to ProposedAddressCurfewAddressPage, 'A0001XX'
 
         when: 'I select to add an alternative address'
-        alternativeAddress.checked = 'Yes'
+        alternativeAddressRadios.checked = 'Yes'
 
         then: 'I see the form for an alternative address'
         alternativeAddressForm.isDisplayed()
 
         when: 'I enter details for this address'
-        altAddress1 = 'Address 1'
-        altAddress2 = 'Address 2'
-        altTown = 'Town'
-        altPostCode = 'Post code'
-        altTelephone = '001'
-        altOccupierName = 'Name'
-        altOccupierAge = '12'
-        altOccupierRelation = 'Relation'
-        altCautionedRadios.checked = 'No'
+        address.alternative.line1.value('Alternative 1')
+        address.alternative.line2.value('Alternative 2')
+        address.alternative.town.value('Alternative Town')
+        address.alternative.postCode.value('Alt code')
+        address.alternative.telephone.value('002')
+
+        occupier.alternative.name.value('Alternative Name')
+        occupier.alternative.age.value('22')
+        occupier.alternative.relation.value('Alternative Relation')
+
+        cautionedRadiosAlternative.checked = 'No'
 
         then: 'I click to save and continue'
         find('#continueBtn').click()
@@ -230,63 +230,60 @@ class ProposedAddressSpec extends GebReportingSpec {
         and: 'I see the confirm address page'
         at ProposedAddressConfirmPage
 
-        def addressInput = [
-                '#alternative-address1'                : 'Address 1',
-                '#alternative-address2'                : 'Address 2',
-                '#alternative-addressTown'             : 'Town',
-                '#alternative-addressPostCode'         : 'Post code',
-                '#alternative-telephone'               : '001',
-
-                '#alternative-occupierName'            : 'Name',
-                '#alternative-occupierAge'             : '12',
-                '#alternative-occupierRelation'        : 'Relation',
-                '#alternative-cautionedAgainstResident': 'No'
-        ]
-
         and: 'I see the expected data for the address'
-        addressInput.each { item, value ->
-            assert altAddressDetails.find(item).text() == value
-        }
+        address.alternative.line1.text()  == 'Alternative 1'
+        address.alternative.line2.text()  == 'Alternative 2'
+        address.alternative.town.text()  == 'Alternative Town'
+        address.alternative.postCode.text() == 'Alt code'
+        address.alternative.telephone.text()  == '002'
+
+        occupier.alternative.name.text()  == 'Alternative Name'
+        occupier.alternative.age.text()  == '22'
+        occupier.alternative.relation.text()  == 'Alternative Relation'
+        occupier.alternative.cautioned.text()  == 'No'
     }
 
     def 'I can enter extra residents to addresses' () {
+
         given: 'I am on the proposed curfew address page'
         to ProposedAddressCurfewAddressPage, 'A0001XX'
 
         when: 'I click to add another resident'
-        otherResidents.click()
+        addResidentLink.click()
 
         then: 'Another resident is added to the list'
         $(name: 'preferred[residents][3][name]').isDisplayed()
 
         when: 'I set values'
         $('input', name: 'preferred[residents][3][name]').value('Name')
-        $('input', name: 'preferred[residents][3][age]').value('Age')
+        $('input', name: 'preferred[residents][3][age]').value('11')
         $('input', name: 'preferred[residents][3][relation]').value('Relation')
 
         and: 'I select to add a resident to an alternative address'
-        alternativeAddress.checked = 'Yes'
-        altOtherResidents.click()
+        alternativeAddressRadios.checked = 'Yes'
+        addResidentLinkAlternative.click()
 
         and: 'I add values for that resident'
-        $('input', name: 'alternative[residents][3][name]').value('AltName')
-        $('input', name: 'alternative[residents][3][age]').value('AltAge')
-        $('input', name: 'alternative[residents][3][relation]').value('AltRelation')
+        $('input', name: 'alternative[residents][3][name]').value('Alternative Name')
+        $('input', name: 'alternative[residents][3][age]').value('22')
+        $('input', name: 'alternative[residents][3][relation]').value('Alternative Relation')
 
         and: 'I click to save and continue'
         find('#continueBtn').click()
 
         then: 'I see the values on the confirm address page'
         at ProposedAddressConfirmPage
-        $('#preferred-resident-name-0').text() == 'Name'
-        $('#preferred-resident-age-0').text() == 'Age'
-        $('#preferred-resident-relation-0').text() == 'Relation'
-        $('#alternative-resident-name-0').text() == 'AltName'
-        $('#alternative-resident-age-0').text() == 'AltAge'
-        $('#alternative-resident-relation-0').text() == 'AltRelation'
+        residents.preferred[0].name == 'Name'
+        residents.preferred[0].age == '11'
+        residents.preferred[0].relation == 'Relation'
+
+        residents.alternative[0].name == 'Alternative Name'
+        residents.alternative[0].age == '22'
+        residents.alternative[0].relation == 'Alternative Relation'
     }
 
     def 'I can submit the address to the RO' () {
+
         given: 'On confirm address page'
         at ProposedAddressConfirmPage
 

@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.pages.review
 
 import geb.Page
+import uk.gov.justice.digital.hmpps.licences.modules.ConditionsSummaryModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class ReviewConditionsPage extends Page {
@@ -12,6 +13,11 @@ class ReviewConditionsPage extends Page {
     }
 
     static content = {
+
         header { module(HeaderModule) }
+
+        conditions { module(ConditionsSummaryModule) }
     }
+
+
 }

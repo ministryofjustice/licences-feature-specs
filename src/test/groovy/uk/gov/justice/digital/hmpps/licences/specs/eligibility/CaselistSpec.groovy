@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs.CA
+package uk.gov.justice.digital.hmpps.licences.specs.eligibility
 
 import geb.spock.GebReportingSpec
 import spock.lang.Shared

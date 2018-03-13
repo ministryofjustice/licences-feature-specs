@@ -2,7 +2,10 @@ package uk.gov.justice.digital.hmpps.licences.pages.eligibility
 
 import geb.Page
 import geb.module.RadioButtons
+import uk.gov.justice.digital.hmpps.licences.modules.AddressDetailsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
+import uk.gov.justice.digital.hmpps.licences.modules.OccupierDetailsModule
+import uk.gov.justice.digital.hmpps.licences.modules.ResidentDetailsModule
 
 class ProposedAddressCurfewAddressPage extends Page {
 
@@ -13,35 +16,21 @@ class ProposedAddressCurfewAddressPage extends Page {
     }
 
     static content = {
+
         header { module(HeaderModule) }
 
+        address { module(AddressDetailsModule) }
+        occupier { module(OccupierDetailsModule) }
+        residents { module(ResidentDetailsModule) }
+
         cautionedRadios { $(name: "preferred[cautionedAgainstResident]").module(RadioButtons) }
-        alternativeAddress { $(name: "alternativeAddress").module(RadioButtons) }
-        altCautionedRadios(required: false) { $(name: "alternative[cautionedAgainstResident]").module(RadioButtons) }
+        cautionedRadiosAlternative(required: false) { $(name: "alternative[cautionedAgainstResident]").module(RadioButtons) }
 
-        address1 { $("#preferred-addressLine1") }
-        address2 { $("#preferred-addressLine2") }
-        town { $("#preferred-addressTown") }
-        postCode { $("#preferred-postCode") }
-        telephone { $("#preferred-telephone") }
-
-        occupierName { $("#preferred-occupierName") }
-        occupierAge { $("#preferred-occupierAge") }
-        occupierRelation { $("#preferred-occupierRelationship") }
-
-        otherResidents { $(".otherResidentsInput", 0).find('a') }
+        alternativeAddressRadios { $(name: "alternativeAddress").module(RadioButtons) }
 
         alternativeAddressForm(required: false) { $('#alternativeAddress')}
 
-        altAddress1(required: false) { $("#alternative-addressLine1") }
-        altAddress2(required: false) { $("#alternative-addressLine2") }
-        altTown(required: false) { $("#alternative-addressTown") }
-        altPostCode(required: false) { $("#alternative-postCode") }
-        altTelephone(required: false) { $("#alternative-telephone") }
-
-        altOccupierName(required: false) { $("#alternative-occupierName") }
-        altOccupierAge(required: false) { $("#alternative-occupierAge") }
-        altOccupierRelation(required: false) { $("#alternative-occupierRelationship") }
-        altOtherResidents { $(".otherResidentsInput", 1).find('a') }
+        addResidentLink { $(".otherResidentsInput", 0).find('a') }
+        addResidentLinkAlternative { $(".otherResidentsInput", 1).find('a') }
     }
 }

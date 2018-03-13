@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.pages.review
 
 import geb.Page
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
+import uk.gov.justice.digital.hmpps.licences.modules.RiskDetailsModule
 
 class ReviewRiskPage extends Page {
 
@@ -12,6 +13,9 @@ class ReviewRiskPage extends Page {
     }
 
     static content = {
+
         header { module(HeaderModule) }
+
+        risk { module(RiskDetailsModule) }
     }
 }

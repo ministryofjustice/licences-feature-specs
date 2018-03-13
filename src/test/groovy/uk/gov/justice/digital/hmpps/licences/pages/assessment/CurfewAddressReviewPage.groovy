@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.pages.assessment
 
 import geb.Page
 import geb.module.RadioButtons
+import uk.gov.justice.digital.hmpps.licences.modules.CurfewDetailsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class CurfewAddressReviewPage extends Page {
@@ -13,11 +14,10 @@ class CurfewAddressReviewPage extends Page {
     }
 
     static content = {
+
         header { module(HeaderModule) }
 
-        street(required: false) { $("#preferred-address1") }
-        town(required: false) { $("#preferred-addressTown") }
-        postCode(required: false) { $("#preferred-addressPostCode") }
+        curfew { module(CurfewDetailsModule) }
 
         landlordConsentRadios { $(name: "consent").module(RadioButtons) }
         electricitySupplyRadios(required: false) { $(name: "electricity").module(RadioButtons) }

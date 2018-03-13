@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs.RO
+package uk.gov.justice.digital.hmpps.licences.specs.assessment
 
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
@@ -63,33 +63,33 @@ class LicenceDetailsSpec extends GebReportingSpec {
         at LicenceDetailsPage
 
         then: 'I see the address details'
-        address.line1 == 'Street'
-        address.town == 'Town'
-        address.postCode == 'AB1 1AB'
-        address.telephone == '0123 456789'
+        curfew.address.line1 == 'Street'
+        curfew.address.town == 'Town'
+        curfew.address.postCode == 'AB1 1AB'
+        curfew.address.telephone == '0123 456789'
 
         and: 'I see the occupier details'
-        occupier.name == 'Main Occupier'
-        occupier.age == '21'
-        occupier.relation == 'Brother'
+        curfew.occupier.name == 'Main Occupier'
+        curfew.occupier.age == '21'
+        curfew.occupier.relation == 'Brother'
 
         and: 'I see the other residents details'
-        residents.size() == 2
+        curfew.residents.size() == 2
 
-        residents[0].name == 'Other Resident'
-        residents[0].age == '10'
-        residents[0].relation == 'Son'
+        curfew.residents[0].name == 'Other Resident'
+        curfew.residents[0].age == '10'
+        curfew.residents[0].relation == 'Son'
 
-        residents[1].name == 'Yet Another'
-        residents[1].age == '20'
-        residents[1].relation == 'Wife'
+        curfew.residents[1].name == 'Yet Another'
+        curfew.residents[1].age == '20'
+        curfew.residents[1].relation == 'Wife'
 
         and: 'I see the review details'
-        reviewAnswers.cautioned == 'No'
-        reviewAnswers.consent == 'Yes'
-        reviewAnswers.homeVisit == 'Yes'
-        reviewAnswers.electricity == 'Yes'
-        reviewAnswers.safety == 'Yes'
+        curfew.reviewAnswers.cautioned == 'No'
+        curfew.reviewAnswers.consent == 'Yes'
+        curfew.reviewAnswers.homeVisit == 'Yes'
+        curfew.reviewAnswers.electricity == 'Yes'
+        curfew.reviewAnswers.safety == 'Yes'
 
     }
 
@@ -99,14 +99,14 @@ class LicenceDetailsSpec extends GebReportingSpec {
         at LicenceDetailsPage
 
         then: 'I see the curfew hours details'
-        curfewHours('First Night') == '18:30 - 10:11'
-        curfewHours('Monday') == '21:22 - 08:09'
-        curfewHours('Tuesday') == '19:00 - 07:00'
-        curfewHours('Wednesday') == '19:00 - 07:00'
-        curfewHours('Thursday') == '19:00 - 07:00'
-        curfewHours('Friday') == '19:00 - 07:00'
-        curfewHours('Saturday') == '19:00 - 07:00'
-        curfewHours('Sunday') == '18:19 - 06:07'
+        curfew.curfewHours('First Night') == '18:30 - 10:11'
+        curfew.curfewHours('Monday') == '21:22 - 08:09'
+        curfew.curfewHours('Tuesday') == '19:00 - 07:00'
+        curfew.curfewHours('Wednesday') == '19:00 - 07:00'
+        curfew.curfewHours('Thursday') == '19:00 - 07:00'
+        curfew.curfewHours('Friday') == '19:00 - 07:00'
+        curfew.curfewHours('Saturday') == '19:00 - 07:00'
+        curfew.curfewHours('Sunday') == '18:19 - 06:07'
     }
 
     def 'Shows conditions details'() {
@@ -130,9 +130,9 @@ class LicenceDetailsSpec extends GebReportingSpec {
         at LicenceDetailsPage
 
         then: 'I see the risk management details'
-        riskAnswers.planningActions == 'No'
-        riskAnswers.information == 'No'
-        riskAnswers.victimLiaison == 'No'
+        risk.answers.planningActions == 'No'
+        risk.answers.information == 'No'
+        risk.answers.victimLiaison == 'No'
     }
 
     def 'Shows reporting details'() {
@@ -142,13 +142,13 @@ class LicenceDetailsSpec extends GebReportingSpec {
 
         then: 'I see the reporting details'
 
-        reportingName == 'Reporting Name'
+        reporting.name == 'Reporting Name'
 
-        reportingAddress.line1 == 'Street'
-        reportingAddress.town == 'Town'
-        reportingAddress.postCode == 'AB1 1AB'
+        reporting.address.line1 == 'Street'
+        reporting.address.town == 'Town'
+        reporting.address.postCode == 'AB1 1AB'
 
-        reportingAddress.telephone == '0123 456789'
+        reporting.address.telephone == '0123 456789'
     }
 
     @Unroll
