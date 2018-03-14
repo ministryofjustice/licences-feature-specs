@@ -50,7 +50,7 @@ class ReviewRiskSpec extends GebReportingSpec {
         then: 'I see the risk management details'
         risk.answers.planningActionsDetail == 'Risk details'
         risk.answers.informationDetail == 'Information details'
-        risk.answers.victimLiaisonDetail == 'Planning details'
+        risk.answers.victimLiaisonDetail == 'Victim details'
     }
 
 }
