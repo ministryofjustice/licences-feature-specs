@@ -35,13 +35,19 @@ class ReviewConditionsSpec extends GebReportingSpec {
         to ReviewConditionsPage, 'A0001XX'
 
         then: 'I see the licence conditions details'
-        conditions.additionalConditions.size() == 2
+        conditions.additionalConditions.size() == 3
 
         conditions.additionalConditionsTitle[0] == 'Condition 1'
         conditions.additionalConditionsName[0] == 'Technology -- Cameras and photos'
 
         conditions.additionalConditionsTitle[1] == 'Condition 2'
         conditions.additionalConditionsContent[1] == 'First bespoke condition'
+
+        conditions.additionalConditionsTitle[2] == 'Condition 3'
+        conditions.additionalConditionsContent[2] == 'Second bespoke condition'
+
+        conditions.additionalConditionsApproved[0] == 'Approved'
+        conditions.additionalConditionsApproved[1] == 'Not approved'
     }
 
     def 'Shows message when no additional conditions entered by RO'() {

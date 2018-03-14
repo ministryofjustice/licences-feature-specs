@@ -92,6 +92,10 @@
         {
           "text": "First bespoke condition",
           "approved": "Yes"
+        },
+        {
+          "text": "Second bespoke condition",
+          "approved": "No"
         }
       ]
     },

@@ -9,8 +9,9 @@ class ConditionsSummaryModule extends Module {
 
         additionalConditions(required: false) { $('div.additional') }
 
-        additionalConditionsTitle(required: false) { $('div.additionalTitle')*.text() }
-        additionalConditionsName(required: false) { $('div.additionalName')*.text() }
+        additionalConditionsTitle(required: false) { $('span.additionalTitle')*.text() }
+        additionalConditionsName(required: false) { $('span.additionalName')*.text() }
+        additionalConditionsApproved(required: false) { $('span.additionalApproved')*.text() }
         additionalConditionsContent(required: false) { $('div.additionalContent')*.text() }
 
         editConditionLinks { $('a', text: 'Edit condition') }
