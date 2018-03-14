@@ -100,13 +100,10 @@ class FinalChecksSpec extends GebReportingSpec {
         when: 'I view the task list'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see the the final check status summary'
-        seriousOffenceAnswer.text() == 'The prisoner is under investigation or been charged for a serious offence in custody'
-        onRemandAnswer.text() == 'The prisoner is on remand'
+        then: 'I see the the final check status summary with alert styling'
+        seriousOffenceAnswer.classes().contains('alert')
+        onRemandAnswer.classes().contains('alert')
 
-        and: 'The summary has the alert styling on the word "is"'
-        seriousOffenceAnswer.find('.alert').text() == 'is'
-        onRemandAnswer.find('.alert').text() == 'is'
     }
 
 }
