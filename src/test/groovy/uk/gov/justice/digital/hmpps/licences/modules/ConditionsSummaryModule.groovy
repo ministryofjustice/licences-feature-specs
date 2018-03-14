@@ -15,5 +15,7 @@ class ConditionsSummaryModule extends Module {
 
         editConditionLinks { $('a', text: 'Edit condition') }
         deleteConditionLinks { $('input', value: 'Delete') }
+
+        message(required: false) { $('#message').text() }
     }
 }

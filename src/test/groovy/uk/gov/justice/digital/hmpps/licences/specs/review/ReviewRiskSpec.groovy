@@ -25,7 +25,7 @@ class ReviewRiskSpec extends GebReportingSpec {
         actions.logOut()
     }
 
-    def 'Shows risk details eneered by RO'() {
+    def 'Shows risk answers entered by RO'() {
 
         given: 'A licence ready for final checks'
         testData.loadLicence('finalchecks/final-checks')
@@ -33,10 +33,24 @@ class ReviewRiskSpec extends GebReportingSpec {
         when: 'I view the page'
         to ReviewRiskPage, 'A0001XX'
 
-        then: 'I see the risk management details'
+        then: 'I see the risk management answers'
         risk.answers.planningActions == 'No'
         risk.answers.information == 'No'
         risk.answers.victimLiaison == 'No'
+    }
+
+    def 'Also shows risk details entered by RO when there are risk issues'() {
+
+        given: 'A licence ready for final checks'
+        testData.loadLicence('finalchecks/risks')
+
+        when: 'I view the page'
+        to ReviewRiskPage, 'A0001XX'
+
+        then: 'I see the risk management details'
+        risk.answers.planningActionsDetail == 'Risk details'
+        risk.answers.informationDetail == 'Information details'
+        risk.answers.victimLiaisonDetail == 'Planning details'
     }
 
 }

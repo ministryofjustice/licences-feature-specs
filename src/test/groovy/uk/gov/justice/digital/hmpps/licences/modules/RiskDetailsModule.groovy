@@ -10,11 +10,11 @@ class RiskDetailsModule extends Module {
         answers {
             [
                     planningActions      : $("#planningActions").text(),
-                    planningActionsDetail: $("#planningActionsDetail").text(),
+                    planningActionsDetail: $("#planningActionsDetails").text(),
                     information          : $("#awaitingInformation").text(),
-                    informationDetail    : $("#awaitingInformationDetail").text(),
+                    informationDetail    : $("#awaitingInformationDetails").text(),
                     victimLiaison        : $("#victimLiaison").text(),
-                    victimLiaisonDetail  : $("#victimLiaisonDetail").text()
+                    victimLiaisonDetail  : $("#victimLiaisonDetails").text()
             ]
         }
     }

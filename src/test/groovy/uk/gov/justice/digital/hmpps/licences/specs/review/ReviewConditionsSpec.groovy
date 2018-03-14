@@ -44,4 +44,15 @@ class ReviewConditionsSpec extends GebReportingSpec {
         conditions.additionalConditionsContent[1] == 'First bespoke condition'
     }
 
+    def 'Shows message when no additional conditions entered by RO'() {
+
+        given: 'A licence ready for final checks'
+        testData.loadLicence('finalchecks/no-conditions')
+
+        when: 'I view the page'
+        to ReviewConditionsPage, 'A0001XX'
+
+        then: 'I see the licence conditions details'
+        conditions.message == 'No additional conditions have been selected.'
+    }
 }
