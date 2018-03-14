@@ -29,7 +29,7 @@ class ReviewConditionsSpec extends GebReportingSpec {
     def 'Shows conditions details entered by RO'() {
 
         given: 'A licence ready for final checks'
-        testData.loadLicence('finalchecks/final-checks')
+        testData.loadLicence('review/normal')
 
         when: 'I view the page'
         to ReviewConditionsPage, 'A0001XX'
@@ -47,7 +47,7 @@ class ReviewConditionsSpec extends GebReportingSpec {
     def 'Shows message when no additional conditions entered by RO'() {
 
         given: 'A licence ready for final checks'
-        testData.loadLicence('finalchecks/no-conditions')
+        testData.loadLicence('review/no-conditions')
 
         when: 'I view the page'
         to ReviewConditionsPage, 'A0001XX'

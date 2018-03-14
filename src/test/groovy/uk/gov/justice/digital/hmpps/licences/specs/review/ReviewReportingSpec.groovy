@@ -28,7 +28,7 @@ class ReviewReportingSpec extends GebReportingSpec {
     def 'Shows reporting details entered by RO'() {
 
         given: 'A licence ready for final checks'
-        testData.loadLicence('finalchecks/final-checks')
+        testData.loadLicence('review/normal')
 
         when: 'I view the page'
         to ReviewReportingPage, 'A0001XX'

@@ -28,7 +28,7 @@ class ReviewRiskSpec extends GebReportingSpec {
     def 'Shows risk answers entered by RO'() {
 
         given: 'A licence ready for final checks'
-        testData.loadLicence('finalchecks/final-checks')
+        testData.loadLicence('review/normal')
 
         when: 'I view the page'
         to ReviewRiskPage, 'A0001XX'
@@ -42,7 +42,7 @@ class ReviewRiskSpec extends GebReportingSpec {
     def 'Also shows risk details entered by RO when there are risk issues'() {
 
         given: 'A licence ready for final checks'
-        testData.loadLicence('finalchecks/risks')
+        testData.loadLicence('review/risks')
 
         when: 'I view the page'
         to ReviewRiskPage, 'A0001XX'

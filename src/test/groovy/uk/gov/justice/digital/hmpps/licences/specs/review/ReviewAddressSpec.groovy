@@ -37,7 +37,7 @@ class ReviewAddressSpec extends GebReportingSpec {
     def 'Shows values entered by RO'() {
 
         given: 'A licence ready for final checks'
-        testData.loadLicence('finalchecks/final-checks')
+        testData.loadLicence('review/normal')
 
         when: 'I view the page'
         to ReviewAddressPage, 'A0001XX'
