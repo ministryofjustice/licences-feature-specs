@@ -2,7 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.pages
 
 import geb.Page
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
-import uk.gov.justice.digital.hmpps.licences.modules.PrisonerDetailsModule
+import uk.gov.justice.digital.hmpps.licences.modules.OffenderDetailsModule
 
 class TaskListPage extends Page {
 
@@ -15,7 +15,7 @@ class TaskListPage extends Page {
     static content = {
         header { module(HeaderModule) }
 
-        offender { module(PrisonerDetailsModule) }
+        offender { module(OffenderDetailsModule) }
 
         eligibilityCheckStartButton(required: false) { $('#eligibilityCheckStart') }
         eligibilityCheckUpdateLink(required: false) { $('#eligibilityCheckUpdate') }

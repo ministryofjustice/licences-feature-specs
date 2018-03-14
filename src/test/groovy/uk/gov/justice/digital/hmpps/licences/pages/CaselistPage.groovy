@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.pages
 
 import geb.Page
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
+import uk.gov.justice.digital.hmpps.licences.modules.OffenderSummaryModule
 
 class CaselistPage extends Page {
 
@@ -10,7 +11,10 @@ class CaselistPage extends Page {
     }
 
     static content = {
+
         header { module(HeaderModule) }
+
+        offenders { module(OffenderSummaryModule) }
 
         hdcEligible(required: false) { $('tr.hdcEligible') }
 

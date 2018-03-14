@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs.eligibility
+package uk.gov.justice.digital.hmpps.licences.specs.decision
 
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
@@ -14,12 +14,12 @@ class CaselistSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
-
+    
     @Shared
     Actions actions = new Actions()
 
     def setupSpec() {
-        actions.logIn('CA')
+        actions.logIn('DM')
     }
 
     def cleanupSpec() {
@@ -35,7 +35,7 @@ class CaselistSpec extends GebReportingSpec {
         when: 'I view the caselist'
         via CaselistPage
 
-        then: 'I see one HDC eligible prisoner'
+        then: 'I see one HDC eligible prisoners'
         hdcEligible.size() == 1
     }
 
@@ -48,7 +48,7 @@ class CaselistSpec extends GebReportingSpec {
         then: 'I see the expected data for the prisoner'
         offenders.summary[0].name == 'Andrews, Mark'
         offenders.summary[0].nomisId == 'A0001XX'
-        offenders.summary[0].location == 'A-1-1 - Licence Auto Test Prison'
+        offenders.summary[0].location == 'Licence Auto Test Prison'
         offenders.summary[0].hdced == '13/07/2019'
         offenders.summary[0].crd == '15/10/2019'
         offenders.summary[0].status == 'Not Started'
@@ -67,11 +67,10 @@ class CaselistSpec extends GebReportingSpec {
         hdcEligible[0].find('.status').text() == status
 
         where:
-        type         | sample                 | status
-        'Unstarted'  | 'eligibility/started'  | 'Eligibility checks ongoing'
-        'Excluded'   | 'eligibility/excluded' | 'Excluded (Ineligible)'
-        'Opted out'  | 'eligibility/optedOut' | 'Opted out'
-        'Sent to RO' | 'assessment/unstarted' | 'Submitted to RO'
+        type        | sample               | status
+        'Unstarted' | 'decision/unstarted' | 'Awaiting decision'
+        'Approved'  | 'decision/approved'  | 'Approved'
+        'Refused'   | 'decision/refused'   | 'Refused'
     }
 
     @Unroll
@@ -88,29 +87,11 @@ class CaselistSpec extends GebReportingSpec {
 
         where:
         stage           | label      | sample                  | value
-        'UNSTARTED'     | 'does'     | 'unstarted/unstarted'   | 1
-        'ELIGIBILITY'   | 'does'     | 'eligibility/unstarted' | 1
+        'UNSTARTED'     | 'does not' | 'unstarted/unstarted'   | 0
+        'ELIGIBILITY'   | 'does not' | 'eligibility/unstarted' | 0
         'PROCESSING_RO' | 'does not' | 'assessment/unstarted'  | 0
-        'PROCESSING_CA' | 'does'     | 'finalchecks/unstarted' | 1
-        'APPROVAL'      | 'does not' | 'decision/unstarted'    | 0
-        'DECIDED'       | 'does not' | 'decision/approved'     | 0
-    }
-
-    @Unroll
-    def 'Shows status in #style when status is #status'() {
-
-        given: 'A licence where #condition'
-        testData.loadLicence(sample)
-
-        when: 'I view the caselist'
-        via CaselistPage
-
-        then: 'The status is marked with #style'
-        hdcEligible[0].find(css).text() == status
-
-        where:
-        status                 | style      | sample                         | css
-        'Address not suitable' | 'bold red' | 'finalchecks/address-rejected' | '.terminalStateAlert'
-        'Postponed'            | 'bold'     | 'finalchecks/postponed'        | '.terminalStateWarn'
+        'PROCESSING_CA' | 'does not' | 'finalchecks/unstarted' | 0
+        'APPROVAL'      | 'does'     | 'decision/unstarted'    | 1
+        'DECIDED'       | 'does'     | 'decision/approved'     | 1
     }
 }

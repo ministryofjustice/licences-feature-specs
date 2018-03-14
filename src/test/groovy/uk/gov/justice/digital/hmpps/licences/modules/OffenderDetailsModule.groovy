@@ -3,7 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.modules
 import geb.Module
 
 
-class PrisonerDetailsModule extends Module {
+class OffenderDetailsModule extends Module {
 
     static content = {
 
