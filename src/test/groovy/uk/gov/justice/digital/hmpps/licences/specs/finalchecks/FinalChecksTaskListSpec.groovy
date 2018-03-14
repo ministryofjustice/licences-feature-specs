@@ -130,7 +130,6 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         tasks.risk       | ReviewRiskPage
         tasks.reporting  | ReviewReportingPage
         tasks.final      | FinalChecksSeriousOffencePage
-        tasks.postpone   | FinalChecksPostponePage
         tasks.submit     | SendPage
     }
 
