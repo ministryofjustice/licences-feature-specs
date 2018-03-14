@@ -92,4 +92,21 @@ class FinalChecksSpec extends GebReportingSpec {
         onRemandAnswer.text() == 'The prisoner is not on remand'
     }
 
+    def 'Tasklist shows answers with alert styling when answers are Yes' () {
+
+        given: 'Serious Offence and On Remand'
+        testData.loadLicence('finalchecks/serious-offence-on-remand')
+
+        when: 'I view the task list'
+        to TaskListPage, 'A0001XX'
+
+        then: 'I see the the final check status summary'
+        seriousOffenceAnswer.text() == 'The prisoner is under investigation or been charged for a serious offence in custody'
+        onRemandAnswer.text() == 'The prisoner is on remand'
+
+        and: 'The summary has the alert styling on the word "is"'
+        seriousOffenceAnswer.find('.alert').text() == 'is'
+        onRemandAnswer.find('.alert').text() == 'is'
+    }
+
 }
