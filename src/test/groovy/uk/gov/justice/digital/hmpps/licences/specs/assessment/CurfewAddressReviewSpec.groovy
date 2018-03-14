@@ -29,7 +29,7 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
     def 'Shows address details' () {
 
         given: 'A licence record with a proposed curfew address'
-        testData.loadLicence('processing-ro/unstarted')
+        testData.loadLicence('assessment/unstarted')
 
         when: 'I go to the address review page'
         to CurfewAddressReviewPage, 'A0001XX'
@@ -117,7 +117,7 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
     def 'Modified choices are not saved on return to tasklist' () {
 
         given:  'At address review page'
-        testData.loadLicence('processing-ro/unstarted')
+        testData.loadLicence('assessment/unstarted')
         to CurfewAddressReviewPage, 'A0001XX'
 
         when: 'I select new options'

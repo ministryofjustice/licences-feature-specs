@@ -20,7 +20,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.loadLicence('processing-ro/unstarted')
+        testData.loadLicence('assessment/unstarted')
         actions.logIn('RO')
     }
 

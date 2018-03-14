@@ -17,7 +17,7 @@ class CurfewHoursSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.loadLicence('processing-ro/unstarted')
+        testData.loadLicence('assessment/unstarted')
         actions.logIn('RO')
     }
 
@@ -41,7 +41,7 @@ class CurfewHoursSpec extends GebReportingSpec {
     def 'Shows previously saved values' () {
 
         given: 'a licence containing curfew hours details'
-        testData.loadLicence('processing-ro/address-approved-curfew-hours')
+        testData.loadLicence('assessment/address-approved-curfew-hours')
 
         when: 'I view the curfew hours page'
         to CurfewHoursPage, 'A0001XX'

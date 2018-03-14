@@ -28,7 +28,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
     def 'Saved values shown on the review screen' () {
 
         given: 'I have already entered some conditions'
-        testData.loadLicence('processing-ro/conditions-multiple')
+        testData.loadLicence('assessment/conditions-multiple')
 
         when: 'I view the conditions summary page'
         to LicenceConditionsSummaryPage, 'A0001XX'

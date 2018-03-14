@@ -39,7 +39,7 @@ class FinalChecksSpec extends GebReportingSpec {
     def 'Serious offence starts with nothing selected'() {
 
         given: 'A licence ready for final checks'
-        testData.loadLicence('processing-ca/unstarted')
+        testData.loadLicence('finalchecks/unstarted')
 
         when: 'I view the serious offence page'
         to FinalChecksSeriousOffencePage, 'A0001XX'
@@ -51,7 +51,7 @@ class FinalChecksSpec extends GebReportingSpec {
     def 'Shows previously saved values'() {
 
         given: 'Serious offence already done'
-        testData.loadLicence('processing-ca/serious-offence')
+        testData.loadLicence('finalchecks/serious-offence')
 
         when: 'I view the serious offence page'
         to FinalChecksSeriousOffencePage, 'A0001XX'
@@ -63,7 +63,7 @@ class FinalChecksSpec extends GebReportingSpec {
     def 'On remand shown next' () {
 
         given: 'Serious offence already done'
-        testData.loadLicence('processing-ca/serious-offence')
+        testData.loadLicence('finalchecks/serious-offence')
 
         when: 'I view the serious offence page'
         to FinalChecksSeriousOffencePage, 'A0001XX'

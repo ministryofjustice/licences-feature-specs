@@ -21,7 +21,7 @@ class ApprovalSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.loadLicence('approval/unstarted')
+        testData.loadLicence('decision/unstarted')
         actions.logIn('DM')
     }
 
@@ -66,7 +66,7 @@ class ApprovalSpec extends GebReportingSpec {
     def 'Shows previously saved values'() {
 
         given: 'Approval already done'
-        testData.loadLicence('approval/approved')
+        testData.loadLicence('decision/approved')
 
         when: 'I view the approval page'
         to ApprovalReleasePage, 'A0001XX'

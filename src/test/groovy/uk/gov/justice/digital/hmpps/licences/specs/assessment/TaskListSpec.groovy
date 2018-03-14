@@ -81,7 +81,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows start button for all tasks except submit'() {
 
         given: 'An unprocessed licence'
-        testData.loadLicence('processing-ro/unstarted')
+        testData.loadLicence('assessment/unstarted')
 
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
@@ -123,7 +123,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows view button for tasks that have been started'() {
 
         given: 'Tasks started except reporting instructions'
-        testData.loadLicence('processing-ro/risks-no')
+        testData.loadLicence('assessment/risks-no')
 
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
@@ -141,7 +141,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows Submit button even when tasks are not done'() {
 
         given: 'Tasks not all done'
-        testData.loadLicence('processing-ro/unstarted')
+        testData.loadLicence('assessment/unstarted')
 
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
@@ -157,7 +157,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'I can submit the licence back to the CA'() {
 
         given: 'All tasks done'
-        testData.loadLicence('processing-ro/done')
+        testData.loadLicence('assessment/done')
 
         when: 'I press submit to PCA'
         to TaskListPage, 'A0001XX'

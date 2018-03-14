@@ -28,7 +28,7 @@ class ReviewRiskSpec extends GebReportingSpec {
     def 'Shows risk details eneered by RO'() {
 
         given: 'A licence ready for final checks'
-        testData.loadLicence('processing-ca/final-checks')
+        testData.loadLicence('finalchecks/final-checks')
 
         when: 'I view the page'
         to ReviewRiskPage, 'A0001XX'

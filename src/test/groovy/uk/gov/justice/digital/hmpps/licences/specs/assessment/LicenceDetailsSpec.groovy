@@ -24,7 +24,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setupSpec() {
-        testData.loadLicence('processing-ro/reporting')
+        testData.loadLicence('assessment/reporting')
         actions.logIn('RO')
         to LicenceDetailsPage, 'A0001XX'
     }

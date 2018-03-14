@@ -84,7 +84,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     def 'Shows buttons for all tasks with correct label'() {
 
         given: 'An licence ready for final checks'
-        testData.loadLicence('processing-ca/unstarted')
+        testData.loadLicence('finalchecks/unstarted')
 
         when: 'I view the page'
         to TaskListPage, 'A0001XX'

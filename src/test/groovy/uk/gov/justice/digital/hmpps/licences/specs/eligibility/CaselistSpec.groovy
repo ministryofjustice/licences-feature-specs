@@ -78,7 +78,7 @@ class CaselistSpec extends GebReportingSpec {
         'Unstarted'  | 'eligibility/started'     | 'Eligibility checks ongoing'
         'Excluded'   | 'eligibility/excluded'    | 'Excluded (Ineligible)'
         'Opted out'  | 'eligibility/optedOut'    | 'Opted out'
-        'Sent to RO' | 'processing-ro/unstarted' | 'Submitted to RO'
+        'Sent to RO' | 'assessment/unstarted' | 'Submitted to RO'
     }
 
     @Unroll
@@ -95,8 +95,8 @@ class CaselistSpec extends GebReportingSpec {
 
         where:
         status                 | style      | sample                           | css
-        'Address not suitable' | 'bold red' | 'processing-ca/address-rejected' | '.terminalStateAlert'
-        'Postponed'            | 'bold'     | 'processing-ca/postponed'        | '.terminalStateWarn'
+        'Address not suitable' | 'bold red' | 'finalchecks/address-rejected' | '.terminalStateAlert'
+        'Postponed'            | 'bold'     | 'finalchecks/postponed'        | '.terminalStateWarn'
 
     }
 }
