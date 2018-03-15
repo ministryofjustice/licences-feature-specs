@@ -75,6 +75,24 @@ class CaselistSpec extends GebReportingSpec {
     }
 
     @Unroll
+    def 'Shows status in #style when status is #status'() {
+
+        given: 'A licence where #condition'
+        testData.loadLicence(sample)
+
+        when: 'I view the caselist'
+        via CaselistPage
+
+        then: 'The status is marked with #style'
+        hdcEligible[0].find(css).text() == status
+
+        where:
+        status                 | style      | sample                         | css
+        'Address not suitable' | 'bold red' | 'finalchecks/address-rejected' | '.terminalStateAlert'
+        'Postponed'            | 'bold'     | 'finalchecks/postponed'        | '.terminalStateWarn'
+    }
+
+    @Unroll
     def '#label show button when stage is #stage'() {
 
         given: 'A licence'
@@ -97,20 +115,21 @@ class CaselistSpec extends GebReportingSpec {
     }
 
     @Unroll
-    def 'Shows status in #style when status is #status'() {
+    'Shows #label button when status is #status'() {
 
-        given: 'A licence where #condition'
+        given: 'A licence'
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
         via CaselistPage
 
-        then: 'The status is marked with #style'
-        hdcEligible[0].find(css).text() == status
+        then: 'Button label depends on status'
+        find('a.button').text() == label
 
         where:
-        status                 | style      | sample                         | css
-        'Address not suitable' | 'bold red' | 'finalchecks/address-rejected' | '.terminalStateAlert'
-        'Postponed'            | 'bold'     | 'finalchecks/postponed'        | '.terminalStateWarn'
+        status         | label   | sample
+        'Not started'  | 'Start' | 'eligibility/unstarted'
+        'Final checks' | 'Start' | 'finalchecks/unstarted'
+        'Postponed'    | 'View'  | 'finalchecks/postponed'
     }
 }

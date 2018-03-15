@@ -8,21 +8,22 @@ class OccupierDetailsModule extends Module {
     static content = {
 
         preferred {
-            [
-                    name     : $("#preferredoccupierName"),
-                    age      : $("#preferredoccupierAge"),
-                    relation : $("#preferredoccupierRelation"),
-                    cautioned: $("#preferredcautioned")
-            ]
+            occupier('preferred')
         }
 
         alternative {
+            occupier('alternative')
+        }
+
+        occupier { type ->
             [
-                    name     : $("#alternativeoccupierName"),
-                    age      : $("#alternativeoccupierAge"),
-                    relation : $("#alternativeoccupierRelation"),
-                    cautioned: $("#alternativecautioned")
+                    name     : $("#${type}-occupierName"),
+                    age      : $("#${type}-occupierAge"),
+                    relation : $("#${type}-occupierRelation"),
+                    cautioned: $("#${type}-cautioned")
             ]
         }
+
+
     }
 }

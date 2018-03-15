@@ -115,13 +115,14 @@ class LicenceDetailsSpec extends GebReportingSpec {
         at LicenceDetailsPage
 
         then: 'I see the licence conditions details'
-        conditions.additionalConditions.size() == 2
+        conditions.additional.size() == 2
 
-        conditions.additionalConditionsTitle[0] == 'Condition 1'
-        conditions.additionalConditionsName[0] == 'Technology -- Cameras and photos'
+        conditions.additional[0].number == 'Condition 1'
+        conditions.additional[0].title == 'Technology -- Cameras and photos'
 
-        conditions.additionalConditionsTitle[1] == 'Condition 2'
-        conditions.additionalConditionsContent[1] == 'First bespoke condition'
+        conditions.additional[1].number == 'Condition 2'
+        conditions.additional[1].content == 'First bespoke condition'
+
     }
 
     def 'Shows risk management details'() {

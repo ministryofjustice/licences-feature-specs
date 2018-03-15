@@ -9,39 +9,39 @@ class CurfewDetailsModule extends Module {
 
         address {
             [
-                    line1    : $("#address1").text(),
-                    line2    : $("#address2").text(),
-                    town     : $("#town").text(),
-                    postCode : $("#postCode").text(),
-                    telephone: $("#telephone").text()
+                    line1    : $("#curfew-address1").text(),
+                    line2    : $("#curfew-address2").text(),
+                    town     : $("#curfew-town").text(),
+                    postCode : $("#curfew-postCode").text(),
+                    telephone: $("#curfew-telephone").text()
             ]
         }
 
         occupier {
             [
-                    name    : $("#occupierName").text(),
-                    age     : $("#occupierAge").text(),
-                    relation: $("#occupierRelation").text(),
+                    name    : $("#curfew-occupierName").text(),
+                    age     : $("#curfew-occupierAge").text(),
+                    relation: $("#curfew-occupierRelation").text(),
             ]
         }
 
         residents {
             $('div.resident').collect { resident ->
                 [
-                        name    : resident.find(id: startsWith("residentName-")).text(),
-                        age     : resident.find(id: startsWith("residentAge-")).text(),
-                        relation: resident.find(id: startsWith("residentRelation-")).text()
+                        name    : resident.find(id: startsWith("curfew-residentName-")).text(),
+                        age     : resident.find(id: startsWith("curfew-residentAge-")).text(),
+                        relation: resident.find(id: startsWith("curfew-residentRelation-")).text()
                 ]
             }
         }
 
         reviewAnswers {
             [
-                    cautioned  : $("#cautioned").text(),
-                    consent    : $("#consent").text(),
-                    homeVisit  : $("#homeVisit").text(),
-                    electricity: $("#electricity").text(),
-                    safety     : $("#deemedSafe").text()
+                    cautioned  : $("#curfew-cautioned").text(),
+                    consent    : $("#curfew-consent").text(),
+                    homeVisit  : $("#curfew-homeVisit").text(),
+                    electricity: $("#curfew-electricity").text(),
+                    safety     : $("#curfew-deemedSafe").text()
             ]
         }
 

@@ -34,8 +34,8 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         to LicenceConditionsSummaryPage, 'A0001XX'
 
         then: 'I see the previously selected values'
-        conditions.additionalConditions.size() == 5
-        conditions.additionalConditionsContent[3].contains('sample input')
+        conditions.additional.size() == 5
+        conditions.additional[3].content.contains('sample input')
     }
 
     def 'Add another condition button returns to additional conditions page' () {
@@ -57,15 +57,17 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         at LicenceConditionsSummaryPage
 
         then: 'I see an edit condition link for each condition in the sample licence we loaded'
-        conditions.editConditionLinks.size() == 5
-        conditions.editConditionLinks[0].getAttribute('href').endsWith('#NOCONTACTPRISONER')
-        conditions.editConditionLinks[1].getAttribute('href').endsWith('#NORESIDE')
-        conditions.editConditionLinks[2].getAttribute('href').endsWith('#NOTIFYRELATIONSHIP')
-        conditions.editConditionLinks[3].getAttribute('href').endsWith('#HOMEVISITS')
-        conditions.editConditionLinks[4].getAttribute('href').endsWith('#bespoke-0')
+
+        conditions.additional.every { it.editControl != null }
+
+        conditions.additional[0].editControl.getAttribute('href').endsWith('#NOCONTACTPRISONER')
+        conditions.additional[1].editControl.getAttribute('href').endsWith('#NORESIDE')
+        conditions.additional[2].editControl.getAttribute('href').endsWith('#NOTIFYRELATIONSHIP')
+        conditions.additional[3].editControl.getAttribute('href').endsWith('#HOMEVISITS')
+        conditions.additional[4].editControl.getAttribute('href').endsWith('#bespoke-0')
 
         when: 'I click edit condition'
-        conditions.editConditionLinks[0].click()
+        conditions.additional[0].editControl.click()
 
         then: 'I see the additional conditions screen'
         at LicenceConditionsAdditionalPage
@@ -81,21 +83,19 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         at LicenceConditionsSummaryPage
 
         then: 'I see a delete condition link for each condition'
-        conditions. deleteConditionLinks.size() == 5
+        conditions.additional.every { it.deleteControl != null }
 
         and: 'I see the condition that will be deleted'
-        conditions.additionalConditionsContent[3].contains('sample input')
+        conditions.additional[3].content.contains('sample input')
 
         when: 'I click delete'
-        conditions.deleteConditionLinks[3].click()
+        conditions.additional[3].deleteControl.click()
 
         then: 'I return to the conditions summary page'
         at LicenceConditionsSummaryPage
 
         and: 'The deleted condition is no longer shown'
-        conditions.additionalConditions.size() == 4
-        conditions.editConditionLinks.size() == 4
-        conditions.deleteConditionLinks.size() == 4
+        conditions.additional.size() == 4
     }
 
     def 'Can also delete bespoke conditions' () {
@@ -104,15 +104,13 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         at LicenceConditionsSummaryPage
 
         and: 'I can see the bespoke condition'
-        conditions.additionalConditions.size() == 4
-        conditions.additionalConditionsContent[3].contains('bespoke text')
+        conditions.additional.size() == 4
+        conditions.additional[3].content.contains('bespoke text')
 
         when: 'I delete the bespoke condition'
-        conditions.deleteConditionLinks[3].click()
+        conditions.additional[3].deleteControl.click()
 
         then: 'The deleted condition is no longer shown'
-        conditions.additionalConditions.size() == 3
-        conditions.editConditionLinks.size() == 3
-        conditions.deleteConditionLinks.size() == 3
+        conditions.additional.size() == 3
     }
 }

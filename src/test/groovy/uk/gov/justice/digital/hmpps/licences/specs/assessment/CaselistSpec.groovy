@@ -68,7 +68,7 @@ class CaselistSpec extends GebReportingSpec {
 
         where:
         type        | sample                 | status
-        'Unstarted' | 'assessment/unstarted'   | 'Awaiting assessment'
+        'Unstarted' | 'assessment/unstarted' | 'Awaiting assessment'
         'Doing'     | 'assessment/reporting' | 'Assessment ongoing'
         'Done'      | 'assessment/done'      | 'Assessment ongoing'
     }
@@ -93,5 +93,23 @@ class CaselistSpec extends GebReportingSpec {
         'PROCESSING_CA' | 'does not' | 'finalchecks/unstarted' | 0
         'APPROVAL'      | 'does not' | 'decision/unstarted'    | 0
         'DECIDED'       | 'does not' | 'decision/approved'     | 0
+    }
+
+    @Unroll
+    'Shows #label button when status is #status'() {
+
+        given: 'A licence'
+        testData.loadLicence(sample)
+
+        when: 'I view the caselist'
+        via CaselistPage
+
+        then: 'Button label depends on status'
+        find('a.button').text() == label
+
+        where:
+        status                | label   | sample
+        'Awaiting assessment' | 'Start' | 'assessment/unstarted'
+        'Assessment ongoing'  | 'View'  | 'assessment/reporting'
     }
 }

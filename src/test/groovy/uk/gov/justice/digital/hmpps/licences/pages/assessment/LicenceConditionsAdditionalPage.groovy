@@ -13,6 +13,7 @@ class LicenceConditionsAdditionalPage extends Page {
     }
 
     static content = {
+
         header { module(HeaderModule) }
 
         conditions(required: false) { $(name: "additionalConditions") }

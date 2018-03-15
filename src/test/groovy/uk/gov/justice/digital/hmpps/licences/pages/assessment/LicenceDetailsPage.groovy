@@ -4,6 +4,7 @@ import geb.Page
 import uk.gov.justice.digital.hmpps.licences.modules.ConditionsSummaryModule
 import uk.gov.justice.digital.hmpps.licences.modules.CurfewDetailsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
+import uk.gov.justice.digital.hmpps.licences.modules.OccupierDetailsModule
 import uk.gov.justice.digital.hmpps.licences.modules.OffenderDetailsModule
 import uk.gov.justice.digital.hmpps.licences.modules.ReportingDetailsModule
 import uk.gov.justice.digital.hmpps.licences.modules.RiskDetailsModule

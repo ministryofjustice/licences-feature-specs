@@ -14,7 +14,10 @@ class LicenceConditionsSummaryPage extends Page {
     }
 
     static content = {
+
         header { module(HeaderModule) }
+
         conditions { module(ConditionsSummaryModule) }
+
     }
 }

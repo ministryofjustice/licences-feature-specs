@@ -7,8 +7,6 @@ class OffenderDetailsModule extends Module {
 
     static content = {
 
-        prisonerPersonalDetails { $('#personalDetails') }
-
         details {
             [
                     name            : $("#prisonerName").text(),

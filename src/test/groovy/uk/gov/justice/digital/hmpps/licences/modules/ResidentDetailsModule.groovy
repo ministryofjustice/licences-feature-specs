@@ -7,22 +7,20 @@ class ResidentDetailsModule extends Module {
 
     static content = {
 
-       preferred {
-            $('div.resident.preferred').collect { resident ->
-                [
-                        name    : resident.find(id: startsWith("preferredresidentName-")).text(),
-                        age     : resident.find(id: startsWith("preferredresidentAge-")).text(),
-                        relation: resident.find(id: startsWith("preferredresidentRelation-")).text()
-                ]
-            }
+        preferred {
+            resident('preferred')
         }
 
         alternative {
-            $('div.resident.alternative').collect { resident ->
+            resident('alternative')
+        }
+
+        resident { type ->
+            $("div.resident.${type}").collect { resident ->
                 [
-                        name    : resident.find(id: startsWith("alternativeresidentName-")).text(),
-                        age     : resident.find(id: startsWith("alternativeresidentAge-")).text(),
-                        relation: resident.find(id: startsWith("alternativeresidentRelation-")).text()
+                        name    : resident.find(id: startsWith("${type}-residentName-")).text(),
+                        age     : resident.find(id: startsWith("${type}-residentAge-")).text(),
+                        relation: resident.find(id: startsWith("${type}-residentRelation-")).text()
                 ]
             }
         }

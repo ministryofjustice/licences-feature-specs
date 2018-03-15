@@ -7,16 +7,20 @@ class ConditionsSummaryModule extends Module {
 
     static content = {
 
-        additionalConditions(required: false) { $('div.additional') }
-
-        additionalConditionsTitle(required: false) { $('span.additionalTitle')*.text() }
-        additionalConditionsName(required: false) { $('span.additionalName')*.text() }
-        additionalConditionsApproved(required: false) { $('span.additionalApproved')*.text() }
-        additionalConditionsContent(required: false) { $('div.additionalContent')*.text() }
-
-        editConditionLinks { $('a', text: 'Edit condition') }
-        deleteConditionLinks { $('input', value: 'Delete') }
-
         message(required: false) { $('#message').text() }
+
+        additional {
+            $("div.additional").collect { condition ->
+                [
+                        number       : condition.find('span.number').text(),
+                        title        : condition.find('span.title').text(),
+                        approved     : condition.find('span.approved').text(),
+                        content      : condition.find('div.content').text(),
+
+                        editControl  : condition.find('a', text: 'Edit condition'),
+                        deleteControl: condition.find('input', value: 'Delete')
+                ]
+            }
+        }
     }
 }

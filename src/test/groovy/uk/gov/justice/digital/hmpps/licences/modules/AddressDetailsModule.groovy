@@ -8,22 +8,20 @@ class AddressDetailsModule extends Module {
     static content = {
 
         preferred {
-            [
-                    line1    : $("#preferredaddress1"),
-                    line2    : $("#preferredaddress2"),
-                    town     : $("#preferredtown"),
-                    postCode : $("#preferredpostCode"),
-                    telephone: $("#preferredtelephone")
-            ]
+            address('preferred')
         }
 
         alternative {
+            address('alternative')
+        }
+
+        address { type ->
             [
-                    line1    : $("#alternativeaddress1"),
-                    line2    : $("#alternativeaddress2"),
-                    town     : $("#alternativetown"),
-                    postCode : $("#alternativepostCode"),
-                    telephone: $("#alternativetelephone")
+                    line1    : $("#${type}-address1"),
+                    line2    : $("#${type}-address2"),
+                    town     : $("#${type}-town"),
+                    postCode : $("#${type}-postCode"),
+                    telephone: $("#${type}-telephone")
             ]
         }
     }

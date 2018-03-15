@@ -14,7 +14,7 @@ class CaselistSpec extends GebReportingSpec {
 
     @Shared
     TestData testData = new TestData()
-    
+
     @Shared
     Actions actions = new Actions()
 
@@ -93,5 +93,24 @@ class CaselistSpec extends GebReportingSpec {
         'PROCESSING_CA' | 'does not' | 'finalchecks/unstarted' | 0
         'APPROVAL'      | 'does'     | 'decision/unstarted'    | 1
         'DECIDED'       | 'does'     | 'decision/approved'     | 1
+    }
+
+    @Unroll
+    'Shows #label button when status is #status'() {
+
+        given: 'A licence'
+        testData.loadLicence(sample)
+
+        when: 'I view the caselist'
+        via CaselistPage
+
+        then: 'Button label depends on status'
+        find('a.button').text() == label
+
+        where:
+        status              | label   | sample
+        'Awaiting decision' | 'Start' | 'decision/unstarted'
+        'Approved'          | 'View'  | 'decision/approved'
+        'Refused'           | 'View'  | 'decision/refused'
     }
 }
