@@ -51,7 +51,7 @@ class CaselistSpec extends GebReportingSpec {
         offenders.summary[0].location == 'Licence Auto Test Prison'
         offenders.summary[0].hdced == '13/07/2019'
         offenders.summary[0].crd == '15/10/2019'
-        offenders.summary[0].status == 'Not Started'
+        offenders.summary[0].status == 'Not started'
     }
 
     @Unroll
