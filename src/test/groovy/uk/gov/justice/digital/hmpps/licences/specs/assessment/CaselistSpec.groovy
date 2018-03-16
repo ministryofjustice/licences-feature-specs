@@ -74,28 +74,6 @@ class CaselistSpec extends GebReportingSpec {
     }
 
     @Unroll
-    def '#label show button when stage is #stage'() {
-
-        given: 'A licence'
-        testData.loadLicence(sample)
-
-        when: 'I view the caselist'
-        via CaselistPage
-
-        then: 'Button depends on stage'
-        find('a.button').size() == value
-
-        where:
-        stage           | label      | sample                  | value
-        'UNSTARTED'     | 'does not' | 'unstarted/unstarted'   | 0
-        'ELIGIBILITY'   | 'does not' | 'eligibility/unstarted' | 0
-        'PROCESSING_RO' | 'does'     | 'assessment/unstarted'  | 1
-        'PROCESSING_CA' | 'does not' | 'finalchecks/unstarted' | 0
-        'APPROVAL'      | 'does not' | 'decision/unstarted'    | 0
-        'DECIDED'       | 'does not' | 'decision/approved'     | 0
-    }
-
-    @Unroll
     'Shows #label button when status is #status'() {
 
         given: 'A licence'
@@ -111,5 +89,43 @@ class CaselistSpec extends GebReportingSpec {
         status                | label   | sample
         'Awaiting assessment' | 'Start' | 'assessment/unstarted'
         'Assessment ongoing'  | 'View'  | 'assessment/reporting'
+    }
+
+    @Unroll
+    def 'Does not show button when stage is #stage'() {
+
+        given: 'A licence'
+        testData.loadLicence(sample)
+
+        when: 'I view the caselist'
+        via CaselistPage
+
+        then: 'Button depends on stage'
+        find('a.button').size() == 0
+
+        where:
+        stage         | sample
+        'UNSTARTED'   | 'unstarted/unstarted'
+        'ELIGIBILITY' | 'eligibility/unstarted'
+    }
+
+    @Unroll
+    def 'Button links to #target when stage is #stage'() {
+
+        given: 'A licence'
+        testData.loadLicence(sample)
+
+        when: 'I view the caselist'
+        via CaselistPage
+
+        then: 'Button target depends on stage'
+        find('a.button').getAttribute('href').contains(target)
+
+        where:
+        stage           | sample                  | target
+        'PROCESSING_RO' | 'assessment/unstarted'  | '/taskList'
+        'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence'
+        'APPROVAL'      | 'decision/unstarted'    | '/review/licence'
+        'DECIDED'       | 'decision/approved'     | '/review/licence'
     }
 }
