@@ -72,4 +72,21 @@ class ReviewAddressSpec extends GebReportingSpec {
         curfew.reviewAnswers.safety == 'Yes'
     }
 
+    @Unroll
+    def 'Does not show subsequent questions when rejected for #reason'() {
+
+        given: 'Address rejected for a reason'
+        testData.loadLicence(sample)
+
+        when: 'I view the page'
+        to ReviewAddressPage, 'A0001XX'
+
+        then: 'I see the review questions up to the point of rejection'
+        curfew.reviewAnswers == answers
+
+        where:
+        reason           | sample                                    | answers
+        'no consent'     | 'assessment/address-rejected'             | [consent: 'No', electricity: null, homeVisit: null, safety: null, cautioned: 'No']
+        'no electricity' | 'assessment/address-rejected-electricity' | [consent: 'Yes', electricity: 'No', homeVisit: null, safety: null, cautioned: 'No']
+    }
 }
