@@ -5,12 +5,7 @@ import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.Stage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsAdditionalPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewHoursPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceDetailsPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewAddressReviewPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.ReportingInstructionsPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.*
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -171,5 +166,23 @@ class LicenceDetailsSpec extends GebReportingSpec {
         'conditions'  | LicenceConditionsAdditionalPage
         'risk'        | RiskManagementPage
         'reporting'   | ReportingInstructionsPage
+    }
+
+    def 'Does not show other sections when address is rejected'() {
+
+        given: 'A licence with rejected address'
+        testData.loadLicence('assessment/address-rejected')
+
+        when: 'I view the page'
+        to LicenceDetailsPage, 'A0001XX'
+
+        then: 'I see the address detail'
+        $('#curfewAddressDetails').isDisplayed();
+
+        and: 'I do not see the other sections'
+        ! $('#curfewHoursDetails').isDisplayed();
+        ! $('#conditionsDetails').isDisplayed();
+        ! $('#riskDetails').isDisplayed();
+        ! $('#reportingDetails').isDisplayed();
     }
 }

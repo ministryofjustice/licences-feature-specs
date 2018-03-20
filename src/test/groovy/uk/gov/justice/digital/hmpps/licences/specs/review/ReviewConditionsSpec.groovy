@@ -61,4 +61,5 @@ class ReviewConditionsSpec extends GebReportingSpec {
         then: 'I see the licence conditions details'
         conditions.message == 'No additional conditions have been selected.'
     }
+
 }

@@ -156,4 +156,17 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         then: 'I return to the tasklist'
         at TaskListPage
     }
+
+
+    def 'When address has been rejected other licence review tasks not shown'() {
+
+        given: 'The address has been rejected'
+        testData.loadLicence('finalchecks/address-rejected')
+
+        when: 'I view the tasklist'
+        to TaskListPage, 'A0001XX'
+
+        then: 'I see only address, final checks, postpone, submit'
+        taskListActions.size() == 4
+    }
 }
