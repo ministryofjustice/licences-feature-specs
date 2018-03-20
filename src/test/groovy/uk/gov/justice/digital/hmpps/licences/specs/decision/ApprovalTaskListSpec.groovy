@@ -50,7 +50,7 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 6 task buttons'
+        then: 'I see the right number of task buttons'
         taskListActions.size() == 5
 
         and: 'The tasks for reviewing RO and CA input have View buttons'
