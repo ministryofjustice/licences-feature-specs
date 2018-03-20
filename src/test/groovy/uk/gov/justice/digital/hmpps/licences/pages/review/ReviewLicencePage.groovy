@@ -22,9 +22,9 @@ class ReviewLicencePage extends Page {
 
         offender { module(OffenderDetailsModule) }
 
-        conditions { module(ConditionsSummaryModule) }
-
         curfew { module(CurfewDetailsModule) }
+
+        conditions { module(ConditionsSummaryModule) }
 
         risk { module(RiskDetailsModule) }
 

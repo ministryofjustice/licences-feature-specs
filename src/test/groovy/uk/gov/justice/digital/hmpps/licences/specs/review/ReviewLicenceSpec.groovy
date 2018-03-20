@@ -4,7 +4,6 @@ import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewLicencePage
-import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewRiskPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -35,5 +34,23 @@ class ReviewLicenceSpec extends GebReportingSpec {
 
         then: 'I do not see change details links'
         $('a', id: contains('EditLink')).size() == 0
+    }
+
+    def 'Does not show other sections when address is rejected'() {
+
+        given: 'A licence with rejected address'
+        testData.loadLicence('review/address-rejected')
+
+        when: 'I view the page'
+        to ReviewLicencePage, 'A0001XX'
+
+        then: 'I see the address detail'
+        $('#curfewAddressDetails').isDisplayed();
+
+        and: 'I do not see the other sections'
+        ! $('#curfewHoursDetails').isDisplayed();
+        ! $('#conditionsDetails').isDisplayed();
+        ! $('#riskDetails').isDisplayed();
+        ! $('#reportingDetails').isDisplayed();
     }
 }

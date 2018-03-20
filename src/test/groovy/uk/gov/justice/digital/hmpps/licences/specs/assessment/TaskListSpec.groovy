@@ -182,6 +182,23 @@ class TaskListSpec extends GebReportingSpec {
         then: 'I return to the case list'
         at CaselistPage
     }
+
+    def 'Rejecting address obviates subsequent tasks but still allows submission'() {
+
+        given: 'The address has been rejected'
+        testData.loadLicence('assessment/address-rejected')
+
+        when: 'I view the tasklist'
+        to TaskListPage, 'A0001XX'
+
+        then: 'I see only the address and submit tasks'
+        taskListActions.size() == 2
+        taskListAction(tasks.address).text() == 'View'
+        taskListAction(tasks.submit).text() == 'Continue'
+
+        and: 'The licence is ready to submit'
+        $('#submitPcaStatus').text() == 'Ready to submit'
+    }
 }
 
 

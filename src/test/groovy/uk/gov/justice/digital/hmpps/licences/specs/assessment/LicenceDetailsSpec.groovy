@@ -5,12 +5,8 @@ import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.Stage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsAdditionalPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewHoursPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceDetailsPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewAddressReviewPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.ReportingInstructionsPage
-import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.*
+import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewAddressPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -49,10 +45,10 @@ class LicenceDetailsSpec extends GebReportingSpec {
         offender.details.crd == '15/10/2019'
         offender.details.hdced == '13/07/2019'
         offender.details.photoDate == 'Uploaded: 05/07/2017'
+        offender.details.internalLocation == 'A-1-1'
+        offender.details.sed == '24/05/2019'
 
 //        Pending stage data
-//        offender.details.internalLocation == 'A-1-1'
-//        offender.details.sed == '01/08/2019'
 //        offender.details.led == '02/08/2019'
 //        offender.details.pssed == '03/08/2019'
     }
@@ -171,5 +167,41 @@ class LicenceDetailsSpec extends GebReportingSpec {
         'conditions'  | LicenceConditionsAdditionalPage
         'risk'        | RiskManagementPage
         'reporting'   | ReportingInstructionsPage
+    }
+
+    def 'Does not show other sections when address is rejected'() {
+
+        given: 'A licence with rejected address'
+        testData.loadLicence('assessment/address-rejected')
+
+        when: 'I view the page'
+        to LicenceDetailsPage, 'A0001XX'
+
+        then: 'I see the address detail'
+        $('#curfewAddressDetails').isDisplayed();
+
+        and: 'I do not see the other sections'
+        !$('#curfewHoursDetails').isDisplayed();
+        !$('#conditionsDetails').isDisplayed();
+        !$('#riskDetails').isDisplayed();
+        !$('#reportingDetails').isDisplayed();
+    }
+
+    @Unroll
+    def 'Does not show subsequent questions when rejected for #reason'() {
+
+        given: 'Address rejected for a reason'
+        testData.loadLicence(sample)
+
+        when: 'I view the page'
+        to LicenceDetailsPage, 'A0001XX'
+
+        then: 'I see the review questions up to the point of rejection'
+        curfew.reviewAnswers == answers
+
+        where:
+        reason           | sample                                    | answers
+        'no consent'     | 'assessment/address-rejected'             | [consent: 'No', electricity: null, homeVisit: null, safety: null, cautioned: 'No']
+        'no electricity' | 'assessment/address-rejected-electricity' | [consent: 'Yes', electricity: 'No', homeVisit: null, safety: null, cautioned: 'No']
     }
 }

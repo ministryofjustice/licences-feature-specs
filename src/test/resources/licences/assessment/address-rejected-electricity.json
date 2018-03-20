@@ -1,0 +1,68 @@
+{
+  "status": "PROCESSING_RO",
+  "licence": {
+    "eligibility": {
+      "excluded": {
+        "decision": "No"
+      },
+      "suitability": {
+        "decision": "No"
+      },
+      "crdTime": {
+        "decision": "No"
+      }
+    },
+    "proposedAddress": {
+      "optOut": {
+        "decision": "No"
+      },
+      "bassReferral": {
+        "decision": "No"
+      },
+      "curfewAddress": {
+        "preferred": {
+          "addressLine1": "Street",
+          "addressLine2": "",
+          "addressTown": "Town",
+          "postCode": "AB1 1AB",
+          "telephone": "0123 456789",
+          "electricity": "Yes",
+          "occupier": {
+            "name": "Main Occupier",
+            "age": "21",
+            "relationship": "Brother"
+          },
+          "residents": [
+            {
+              "name": "Other resident",
+              "age": "10",
+              "relation": "Son"
+            },
+            {
+              "name": "",
+              "age": "",
+              "relation": ""
+            },
+            {
+              "name": "",
+              "age": "",
+              "relation": ""
+            }
+          ],
+          "cautionedAgainstResident": "No"
+        }
+      }
+    },
+    "curfew": {
+      "curfewAddressReview": {
+        "consent": "Yes",
+        "electricity": "No",
+        "homeVisit": "Yes"
+      },
+      "addressSafety": {
+        "deemedSafe": "No",
+        "reason": "Managed safely details"
+      }
+    }
+  }
+}
