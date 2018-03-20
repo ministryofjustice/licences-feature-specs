@@ -3,6 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.specs.eligibility
 import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAdressAddressProposedPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressConfirmPage
@@ -299,10 +300,10 @@ class ProposedAddressSpec extends GebReportingSpec {
         then: 'I move to confirmation page'
         at SentPage
 
-        when: 'I click return to task list'
+        when: 'I click return to case list'
         find('#backBtn').click()
 
-        then: 'I return to the tasklist'
-        at TaskListPage
+        then: 'I return to the case list'
+        at CaselistPage
     }
 }
