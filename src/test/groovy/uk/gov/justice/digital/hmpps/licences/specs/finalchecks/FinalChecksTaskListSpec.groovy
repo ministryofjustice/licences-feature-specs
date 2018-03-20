@@ -150,10 +150,10 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         then: 'I see the confirmation page'
         at SentPage
 
-        when: 'I click return to task list'
+        when: 'I click return to case list'
         find('#backBtn').click()
 
-        then: 'I return to the tasklist'
-        at TaskListPage
+        then: 'I return to the case list'
+        at CaselistPage
     }
 }
