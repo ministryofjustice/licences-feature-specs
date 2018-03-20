@@ -11,7 +11,7 @@ import uk.gov.justice.digital.hmpps.licences.modules.RiskDetailsModule
 
 class LicenceDetailsPage extends Page {
 
-    static url = '/hdc/licenceDetails'
+    static url = '/hdc/review/licenceDetails'
 
     static at = {
         browser.currentUrl.contains(url)
