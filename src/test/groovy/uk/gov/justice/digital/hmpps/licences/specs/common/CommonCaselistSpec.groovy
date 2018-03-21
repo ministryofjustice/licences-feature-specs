@@ -31,16 +31,19 @@ class CommonCaselistSpec extends GebReportingSpec {
 
         given: 'No licences started'
         actions.logIn(user)
-        testData.deleteLicences()
+        testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        via CaselistPage
+        via CaselistPage, 'ready'
 
         then: 'I see one HDC eligible prisoner'
         hdcEligible.size() == 1
 
         where:
-        user << ['CA', 'RO', 'DM']
+        user | sample
+        'CA' | 'eligibility/unstarted'
+        'RO' | 'assessment/unstarted'
+        'DM' | 'decision/unstarted'
     }
 
     @Unroll
@@ -49,17 +52,20 @@ class CommonCaselistSpec extends GebReportingSpec {
 
         when: 'I view the case list'
         actions.logIn(user)
-        via CaselistPage
+        testData.loadLicence(sample)
+        via CaselistPage, 'ready'
 
         then: 'I see the expected data for the prisoner'
         offenders.summary[0].name == 'Andrews, Mark'
         offenders.summary[0].nomisId == 'A0001XX'
         offenders.summary[0].location == 'A-1-1 - Licence Auto Test Prison'
         offenders.summary[0].hdced == '13/07/2019'
-        offenders.summary[0].status == 'Not started'
 
         where:
-        user << ['CA', 'RO', 'DM']
+        user | sample
+        'CA' | 'eligibility/unstarted'
+        'RO' | 'assessment/unstarted'
+        'DM' | 'decision/unstarted'
     }
 
     @Unroll
@@ -67,15 +73,16 @@ class CommonCaselistSpec extends GebReportingSpec {
 
         when: 'I view the caselist'
         actions.logIn(user)
-        via CaselistPage
+        testData.loadLicence(sample)
+        via CaselistPage, ready
 
         then: 'I see the right date'
         offenders.summary[0].crdArd == expected
 
         where:
-        user | present    | choose | expected
-        'CA' | 'CRD, ARD' | 'CRD'  | '15/10/2019'
-        'RO' | 'CRD'      | 'CRD'  | '15/10/2019'
-        'DM' | 'ARD'      | 'ARD'  | '02/02/2020'
+        user | present    | choose | expected     | sample
+        'CA' | 'CRD, ARD' | 'CRD'  | '15/10/2019' | 'eligibility/unstarted'
+        'RO' | 'CRD'      | 'CRD'  | '15/10/2019' | 'assessment/unstarted'
+        'DM' | 'ARD'      | 'ARD'  | '02/02/2020' | 'decision/unstarted'
     }
 }

@@ -87,17 +87,17 @@ class CaselistSpec extends GebReportingSpec {
         given: 'A licence'
         testData.loadLicence(sample)
 
-        when: 'I view the caselist'
-        via CaselistPage
+        when: 'I view the caselist tab'
+        to CaselistPage, tab
 
         then: 'Button target depends on stage'
         find('a.button').getAttribute('href').contains(target)
 
         where:
-        stage           | sample                  | target
-        'PROCESSING_RO' | 'assessment/unstarted'  | '/taskList'
-        'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence'
-        'APPROVAL'      | 'decision/unstarted'    | '/review/licence'
-        'DECIDED'       | 'decision/approved'     | '/review/licence'
+        stage           | sample                  | target            | tab
+        'PROCESSING_RO' | 'assessment/unstarted'  | '/taskList'       | 'ready'
+        'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence' | 'submittedPca'
+        'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'submittedPca'
+        'DECIDED'       | 'decision/approved'     | '/review/licence' | 'active'
     }
 }

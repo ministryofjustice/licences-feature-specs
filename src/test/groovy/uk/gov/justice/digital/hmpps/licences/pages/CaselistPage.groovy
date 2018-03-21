@@ -23,7 +23,7 @@ class CaselistPage extends Page {
         }
 
         viewTabFor { tabName ->
-            $('a', href: contains(tabName)).click()
+            $('a', href: tabName).click()
         }
     }
 
