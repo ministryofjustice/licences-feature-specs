@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.specs.common
 
 import geb.spock.GebReportingSpec
+import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
@@ -68,13 +69,14 @@ class CommonCaselistSpec extends GebReportingSpec {
         'DM' | 'decision/unstarted'
     }
 
+    @Ignore
     @Unroll
     def 'Chooses #choose when #present available'() {
 
         when: 'I view the caselist'
         actions.logIn(user)
         testData.loadLicence(sample)
-        via CaselistPage, ready
+        via CaselistPage, 'ready'
 
         then: 'I see the right date'
         offenders.summary[0].crdArd == expected
