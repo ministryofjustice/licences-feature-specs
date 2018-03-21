@@ -21,6 +21,10 @@ class CaselistPage extends Page {
         viewTaskListFor { nomisId ->
             $('a', href: contains(nomisId)).click()
         }
+
+        viewTabFor { tabName ->
+            $('a', href: contains(tabName)).click()
+        }
     }
 
 }

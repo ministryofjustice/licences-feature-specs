@@ -52,10 +52,10 @@ class CaselistTabSpec extends GebReportingSpec {
         to CaselistPage
 
         then: 'I see the right number of prisoners in each tab'
-        // tab('Ready to process').click()
+        // viewTabFor('Ready to process')
         hdcEligible.size() == 10
 
-        // tab('Approved').click()
+        // viewTabFor('Approved')
         // etc
     }
 
