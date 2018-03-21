@@ -19,19 +19,19 @@ class CaselistTabSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     @Shared
-            licences = [
-                    'A0001XX': 'eligibility/unstarted',
-                    'A0002XX': 'assessment/unstarted',
-                    'A0003XX': 'finalchecks/unstarted',
-                    'A0004XX': 'finalchecks/postponed',
-                    'A0005XX': 'decision/unstarted',
-                    'A0006XX': 'decision/approved',
-                    'A0007XX': 'decision/refused',
+    def licences = [
+            'A0001XX': 'eligibility/unstarted',
+            'A0002XX': 'assessment/unstarted',
+            'A0003XX': 'finalchecks/unstarted',
+            'A0004XX': 'finalchecks/postponed',
+            'A0005XX': 'decision/unstarted',
+            'A0006XX': 'decision/approved',
+            'A0007XX': 'decision/refused',
 
-                    'A0008XX': 'eligibility/started',
-                    'A0009XX': 'assessment/reporting',
-                    'A0010XX': 'decision/address-rejected',
-            ]
+            'A0008XX': 'eligibility/started',
+            'A0009XX': 'assessment/reporting',
+            'A0010XX': 'decision/address-rejected',
+    ]
 
     def setupSpec() {
         licences.each { nomisId, file ->
