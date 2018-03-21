@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.specs.common
 
 import geb.spock.GebReportingSpec
+import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
@@ -52,7 +53,7 @@ class CaselistTabSpec extends GebReportingSpec {
         and: 'Now I can log in as XX_USER_MULTI and see lots of records'
     }
 
-
+    @PendingFeature
     def 'shows licences on tabs'() {
 
         given: 'logged in as CA'
