@@ -14,7 +14,7 @@ class OffenderSummaryModule extends Module {
                         nomisId : offender.find('.offenderNo').text(),
                         location: offender.find('.location').text(),
                         hdced   : offender.find('.hdced').text(),
-                        crd     : offender.find('.crd').text(),
+                        crdArd     : offender.find('.crd').text(),
                         status  : offender.find('.status').text(),
                 ]
             }

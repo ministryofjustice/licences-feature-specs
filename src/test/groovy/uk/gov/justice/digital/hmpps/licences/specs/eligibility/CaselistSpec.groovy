@@ -27,34 +27,6 @@ class CaselistSpec extends GebReportingSpec {
         actions.logOut()
     }
 
-    @Stage
-    def 'Shows the caseload of HDC eligible prisoners'() {
-
-        given: 'No licences started'
-        testData.deleteLicences()
-
-        when: 'I view the caselist'
-        via CaselistPage
-
-        then: 'I see one HDC eligible prisoner'
-        hdcEligible.size() == 1
-    }
-
-    @Stage
-    def 'Shows licence case summary details (from nomis)'() {
-
-        when: 'I view the case list'
-        via CaselistPage
-
-        then: 'I see the expected data for the prisoner'
-        offenders.summary[0].name == 'Andrews, Mark'
-        offenders.summary[0].nomisId == 'A0001XX'
-        offenders.summary[0].location == 'A-1-1 - Licence Auto Test Prison'
-        offenders.summary[0].hdced == '13/07/2019'
-        offenders.summary[0].crd == '15/10/2019'
-        offenders.summary[0].status == 'Not started'
-    }
-
     @Unroll
     def 'Shows correct status message when #type'() {
 

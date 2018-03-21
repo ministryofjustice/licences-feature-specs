@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.licences.specs
+package uk.gov.justice.digital.hmpps.licences.specs.common
 
 import geb.spock.GebReportingSpec
 import groovy.json.JsonSlurper
