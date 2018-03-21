@@ -43,6 +43,16 @@ class CaselistTabSpec extends GebReportingSpec {
         actions.logOut()
     }
 
+    def 'put some licences in my database'() {
+
+        when: 'I want some sample licences in my local DB'
+
+        then: 'I can just run this test'
+
+        and: 'Now I can log in as XX_USER_MULTI and see lots of records'
+    }
+
+
     def 'shows licences on tabs'() {
 
         given: 'logged in as CA'
