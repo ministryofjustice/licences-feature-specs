@@ -15,7 +15,9 @@ class Actions {
             'CA'      : 'CA_USER_TEST',
             'CA_MULTI': 'CA_USER_MULTI',
             'RO'      : 'RO_USER_TEST',
+            'RO_MULTI'      : 'RO_USER_MULTI',
             'DM'      : 'DM_USER_TEST',
+            'DM_MULTI'      : 'DM_USER_MULTI',
             'NONE'    : 'NONE'
     ]
 
