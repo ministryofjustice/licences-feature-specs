@@ -68,23 +68,4 @@ class CommonCaselistSpec extends GebReportingSpec {
         'RO' | 'assessment/unstarted'
         'DM' | 'decision/unstarted'
     }
-
-    @Ignore
-    @Unroll
-    def 'Chooses #choose when #present available'() {
-
-        when: 'I view the caselist'
-        actions.logIn(user)
-        testData.loadLicence(sample)
-        via CaselistPage, 'ready'
-
-        then: 'I see the right date'
-        offenders.summary[0].crdArd == expected
-
-        where:
-        user | present    | choose | expected     | sample
-        'CA' | 'CRD, ARD' | 'CRD'  | '15/10/2019' | 'eligibility/unstarted'
-        'RO' | 'CRD'      | 'CRD'  | '15/10/2019' | 'assessment/unstarted'
-        'DM' | 'ARD'      | 'ARD'  | '02/02/2020' | 'decision/unstarted'
-    }
 }

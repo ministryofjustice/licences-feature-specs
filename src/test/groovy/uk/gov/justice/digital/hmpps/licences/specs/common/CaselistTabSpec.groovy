@@ -53,24 +53,64 @@ class CaselistTabSpec extends GebReportingSpec {
         and: 'Now I can log in as XX_USER_MULTI and see lots of records'
     }
 
-    @PendingFeature
-    def 'shows licences on tabs'() {
+    @Unroll
+    def 'shows some licences on the #tab tab for CA'() {
 
-        given: 'logged in as CA'
+        given: 'logged in'
         actions.logIn('CA_MULTI')
 
         when: 'I view the caselist'
-        to CaselistPage
+        to CaselistPage, tab
 
         then: 'I see the right number of prisoners in each tab'
-        // viewTabFor('Ready to process')
-        hdcEligible.size() == 10
+        hdcEligible.size() == count
 
-        // viewTabFor('Approved')
-        // etc
+        where:
+        tab           | count
+        'ready'       | 2
+        'submittedRo' | 2
+        'finalChecks' | 2
+        'submittedDm' | 2
+        'approved'    | 1
+        'refused'     | 1
     }
 
-    // log in as RO_MULTI
+    @Unroll
+    def 'shows some licences on the #tab tab for RO'() {
 
-    // etc
+        given: 'logged in'
+        actions.logIn('RO_MULTI')
+
+        when: 'I view the caselist'
+        to CaselistPage, tab
+
+        then: 'I see the right number of prisoners in each tab'
+        hdcEligible.size() == count
+
+        where:
+        tab            | count
+        'ready'        | 2
+        'submittedPca' | 3
+        'postponed'    | 1
+        'active'       | 2
+    }
+
+    @Unroll
+    def 'shows some licences on the #tab tab for DM'() {
+
+        given: 'logged in'
+        actions.logIn('DM_MULTI')
+
+        when: 'I view the caselist'
+        to CaselistPage, tab
+
+        then: 'I see the right number of prisoners in each tab'
+        hdcEligible.size() == count
+
+        where:
+        tab        | count
+        'ready'    | 2
+        'approved' | 1
+        'refused'  | 1
+    }
 }
