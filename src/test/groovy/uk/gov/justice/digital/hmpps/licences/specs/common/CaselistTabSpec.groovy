@@ -35,6 +35,7 @@ class CaselistTabSpec extends GebReportingSpec {
     ]
 
     def setupSpec() {
+        testData.deleteLicences()
         licences.each { nomisId, file ->
             testData.loadLicence(file, nomisId)
         }
@@ -79,6 +80,7 @@ class CaselistTabSpec extends GebReportingSpec {
     def 'shows some licences on the #tab tab for RO'() {
 
         given: 'logged in'
+        actions.logOut()
         actions.logIn('RO_MULTI')
 
         when: 'I view the caselist'
@@ -99,6 +101,7 @@ class CaselistTabSpec extends GebReportingSpec {
     def 'shows some licences on the #tab tab for DM'() {
 
         given: 'logged in'
+        actions.logOut()
         actions.logIn('DM_MULTI')
 
         when: 'I view the caselist'
