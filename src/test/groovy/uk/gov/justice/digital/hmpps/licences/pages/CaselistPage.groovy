@@ -25,6 +25,10 @@ class CaselistPage extends Page {
         viewTabFor { tabName ->
             $('a', href: tabName).click()
         }
+
+        paginateNext(required: false) {$('#pagination a.next')}
+        paginatePrev(required: false) {$('#pagination a.prev')}
+        paginationText(required: false) {$('#paginationInfo')}
     }
 
 }

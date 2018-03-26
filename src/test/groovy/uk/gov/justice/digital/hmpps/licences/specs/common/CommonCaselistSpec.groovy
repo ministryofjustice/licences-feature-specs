@@ -19,7 +19,7 @@ class CommonCaselistSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     def setup() {
-
+        testData.deleteLicences()
     }
 
     def cleanup() {
@@ -67,5 +67,38 @@ class CommonCaselistSpec extends GebReportingSpec {
         'CA' | 'eligibility/unstarted'
         'RO' | 'assessment/unstarted'
         'DM' | 'decision/unstarted'
+    }
+
+    def 'paginates large lists'() {
+
+        when: 'I view the case list'
+        actions.logOut()
+        actions.logIn('CA_MULTI')
+        via CaselistPage, 'ready'
+
+        then: 'I see the first 20 offenders'
+        hdcEligible.size() == 22
+        hdcEligible.getAt(19).isDisplayed() == true
+        hdcEligible.getAt(20).isDisplayed() == false
+        hdcEligible.getAt(21).isDisplayed() == false
+        paginationText.text().contains('Offenders 1 - 20 of 22')
+
+        when: 'I click the next link'
+        paginateNext.click()
+
+        then: 'I see the 20th offender and the rest are hidden'
+        hdcEligible.getAt(19).isDisplayed() == false
+        hdcEligible.getAt(20).isDisplayed() == true
+        hdcEligible.getAt(21).isDisplayed() == true
+        paginationText.text().contains('Offenders 21 - 22 of 22')
+
+        when: 'I click the previous link'
+        paginatePrev.click()
+
+        then: 'I see the fist 20 offenders are displayed again'
+        hdcEligible.getAt(19).isDisplayed() == true
+        hdcEligible.getAt(20).isDisplayed() == false
+        hdcEligible.getAt(21).isDisplayed() == false
+        paginationText.text().contains('Offenders 1 - 20 of 22')
     }
 }

@@ -68,7 +68,7 @@ class CaselistTabSpec extends GebReportingSpec {
 
         where:
         tab           | count
-        'ready'       | 2
+        'ready'       | 14
         'submittedRo' | 2
         'finalChecks' | 2
         'submittedDm' | 2
