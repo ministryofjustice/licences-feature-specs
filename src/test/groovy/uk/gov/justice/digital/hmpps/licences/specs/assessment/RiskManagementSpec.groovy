@@ -88,27 +88,6 @@ class RiskManagementSpec extends GebReportingSpec {
         victimLiaisonForm.isDisplayed()
     }
 
-    def 'Modified options not saved on return to tasklist' () {
-
-        given:  'At risk management page'
-        at RiskManagementPage
-
-        when: 'I select new options'
-        riskManagementRadios.checked = 'Yes'
-        victimLiaisonRadios.checked = 'Yes'
-
-        and: 'I choose return to tasklist'
-        find('#backBtn').click()
-        at TaskListPage
-
-        and: 'I view the risk management page'
-        to RiskManagementPage, 'A0001XX'
-
-        then: 'I see the original values'
-        riskManagementRadios.checked == null
-        victimLiaisonRadios.checked == null
-    }
-
     def 'Modified choices are saved after save and continue' () {
 
 

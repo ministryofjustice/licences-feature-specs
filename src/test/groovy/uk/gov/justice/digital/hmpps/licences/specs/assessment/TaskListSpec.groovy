@@ -106,12 +106,6 @@ class TaskListSpec extends GebReportingSpec {
         then: 'I see the journey page'
         at page
 
-        when: 'I click back'
-        find('#backBtn').click()
-
-        then: 'I return to the tasklist'
-        at TaskListPage
-
         where:
         task             | page
         tasks.address    | CurfewAddressReviewPage

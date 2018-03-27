@@ -58,7 +58,7 @@ class ReportingInstructionsSpec extends GebReportingSpec {
         telephone << '0123456789'
 
         and: 'I choose return to tasklist'
-        find('#backBtn').click()
+        find('.link-back', 0).click()
         at TaskListPage
 
         and: 'I view the reporting instructions page'
