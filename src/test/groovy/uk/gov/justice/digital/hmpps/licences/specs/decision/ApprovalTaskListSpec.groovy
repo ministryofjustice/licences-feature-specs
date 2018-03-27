@@ -51,10 +51,10 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         to TaskListPage, 'A0001XX'
 
         then: 'I see the right number of task buttons'
-        taskListActions.size() == 5
+        taskListActions.size() == 6
 
         and: 'The tasks for reviewing RO and CA input have View buttons'
-        taskListActions.take(4).every { it.text() == 'View' }
+        taskListActions.take(5).every { it.text() == 'View' }
 
         and: 'The final decision task has a Continue button'
         taskListAction(tasks.decision).text() == 'Continue'

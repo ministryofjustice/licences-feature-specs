@@ -12,6 +12,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksPostponePage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksSeriousOffencePage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewAddressPage
+import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewCurfewHoursPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewReportingPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewRiskPage
@@ -28,13 +29,14 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
 
     @Shared
     def tasks = [
-            address   : 'Proposed curfew address',
-            conditions: 'Additional conditions',
-            risk      : 'Risk management and victim liaison',
-            reporting : 'Reporting instructions',
-            final     : 'Final checks',
-            postpone  : 'Postponement',
-            submit    : 'Submit to decision maker'
+            address    : 'Proposed curfew address',
+            curfewHours: 'Curfew hours',
+            conditions : 'Additional conditions',
+            risk       : 'Risk management and victim liaison',
+            reporting  : 'Reporting instructions',
+            final      : 'Final checks',
+            postpone   : 'Postponement',
+            submit     : 'Submit to decision maker'
     ]
 
     def setupSpec() {
@@ -89,11 +91,11 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 6 task buttons'
-        taskListActions.size() == 7
+        then: 'I see 7 task buttons'
+        taskListActions.size() == 8
 
         and: 'The tasks for reviewing RO input have View buttons'
-        taskListActions.take(4).every { it.text() == 'View' }
+        taskListActions.take(5).every { it.text() == 'View' }
 
         and: 'The final checks task has a Start button'
         taskListAction(tasks.final).text() == 'Start'
@@ -124,13 +126,14 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         at TaskListPage
 
         where:
-        task             | page
-        tasks.address    | ReviewAddressPage
-        tasks.conditions | ReviewConditionsPage
-        tasks.risk       | ReviewRiskPage
-        tasks.reporting  | ReviewReportingPage
-        tasks.final      | FinalChecksSeriousOffencePage
-        tasks.submit     | SendPage
+        task              | page
+        tasks.address     | ReviewAddressPage
+        tasks.curfewHours | ReviewCurfewHoursPage
+        tasks.conditions  | ReviewConditionsPage
+        tasks.risk        | ReviewRiskPage
+        tasks.reporting   | ReviewReportingPage
+        tasks.final       | FinalChecksSeriousOffencePage
+        tasks.submit      | SendPage
     }
 
     def 'I can submit the licence to the DM'() {

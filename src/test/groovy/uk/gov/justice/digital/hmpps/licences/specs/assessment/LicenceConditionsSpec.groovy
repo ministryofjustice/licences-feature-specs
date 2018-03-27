@@ -60,8 +60,8 @@ class LicenceConditionsSpec extends GebReportingSpec {
         and: 'I continue'
         find('#continueBtn').click()
 
-        then: 'I see the risk management page'
-        at RiskManagementPage
+        then: 'I see the tasklist'
+        at TaskListPage
     }
 
     def 'When additional conditions required, shows additional conditions page' () {
