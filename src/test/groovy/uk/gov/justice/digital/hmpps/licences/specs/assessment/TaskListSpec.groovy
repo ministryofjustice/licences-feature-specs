@@ -7,6 +7,7 @@ import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewAddressReviewPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceDetailsPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.ReportingInstructionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.SendPage
@@ -156,6 +157,12 @@ class TaskListSpec extends GebReportingSpec {
         when: 'I press submit to PCA'
         to TaskListPage, 'A0001XX'
         taskListAction(tasks.submit).click()
+
+        then: 'I see the licence details page'
+        at LicenceDetailsPage
+
+        when: 'I click continue'
+        find('#continueBtn').click()
 
         then: 'I see the submit to CA page'
         at SendPage
