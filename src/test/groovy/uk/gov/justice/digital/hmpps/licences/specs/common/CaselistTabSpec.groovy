@@ -90,11 +90,11 @@ class CaselistTabSpec extends GebReportingSpec {
         hdcEligible.size() == count
 
         where:
-        tab            | count
-        'ready'        | 2
-        'submittedPca' | 3
-        'postponed'    | 1
-        'active'       | 2
+        tab           | count
+        'ready'       | 2
+        'finalChecks' | 2
+        'submittedDm' | 2
+        'active'      | 2
     }
 
     @Unroll

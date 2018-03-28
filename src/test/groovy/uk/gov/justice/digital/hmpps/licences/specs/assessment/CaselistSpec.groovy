@@ -96,8 +96,8 @@ class CaselistSpec extends GebReportingSpec {
         where:
         stage           | sample                  | target            | tab
         'PROCESSING_RO' | 'assessment/unstarted'  | '/taskList'       | 'ready'
-        'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence' | 'submittedPca'
-        'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'submittedPca'
+        'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence' | 'finalChecks'
+        'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'submittedDm'
         'DECIDED'       | 'decision/approved'     | '/review/licence' | 'active'
     }
 }
