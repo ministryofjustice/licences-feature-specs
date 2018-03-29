@@ -129,7 +129,6 @@ class EligibilitySpec extends GebReportingSpec {
         crdTimeAnswer.text() == 'Yes'
     }
 
-    @PendingFeature
     def 'Returns to task list when excluded' () {
 
         given: 'On the eligibility checks page'
@@ -148,7 +147,6 @@ class EligibilitySpec extends GebReportingSpec {
         crdTimeAnswer.text() == 'N/A'
     }
 
-    @PendingFeature
     def 'Returns to task list when unsuitable' () {
 
         given: 'On the eligibility checks page'
