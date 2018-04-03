@@ -32,6 +32,7 @@ class CaselistTabSpec extends GebReportingSpec {
             'A0008XX': 'eligibility/started',
             'A0009XX': 'assessment/reporting',
             'A0010XX': 'decision/address-rejected',
+            'A0011XX': 'eligibility/optedOut',
     ]
 
     def setupSpec() {
@@ -68,12 +69,12 @@ class CaselistTabSpec extends GebReportingSpec {
 
         where:
         tab           | count
-        'ready'       | 14
+        'ready'       | 13
         'submittedRo' | 2
         'finalChecks' | 2
         'submittedDm' | 2
-        'approved'    | 1
-        'refused'     | 1
+        'optedOut'    | 1
+        'decided'     | 2
     }
 
     @Unroll

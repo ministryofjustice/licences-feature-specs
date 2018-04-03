@@ -44,7 +44,7 @@ class CaselistSpec extends GebReportingSpec {
         type         | sample                 | status                       | tab
         'Unstarted'  | 'eligibility/started'  | 'Eligibility checks ongoing' | 'ready'
         'Excluded'   | 'eligibility/excluded' | 'Excluded (Ineligible)'      | 'ready'
-        'Opted out'  | 'eligibility/optedOut' | 'Opted out'                  | 'ready'
+        'Opted out'  | 'eligibility/optedOut' | 'Opted out'                  | 'optedOut'
         'Sent to RO' | 'assessment/unstarted' | 'Submitted to RO'            | 'submittedRo'
     }
 
@@ -86,7 +86,7 @@ class CaselistSpec extends GebReportingSpec {
         'PROCESSING_RO' | 'assessment/unstarted'  | '/review/licence' | 'submittedRo'
         'PROCESSING_CA' | 'finalchecks/unstarted' | '/taskList'       | 'finalChecks'
         'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'submittedDm'
-        'DECIDED'       | 'decision/approved'     | '/review/licence' | 'approved'
+        'DECIDED'       | 'decision/approved'     | '/review/licence' | 'decided'
     }
 
     def 'Review button shows licence review with return to caselist option'() {
