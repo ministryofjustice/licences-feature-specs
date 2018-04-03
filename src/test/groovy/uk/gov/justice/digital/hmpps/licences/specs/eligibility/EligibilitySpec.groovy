@@ -54,9 +54,9 @@ class EligibilitySpec extends GebReportingSpec {
         and: 'I select yes for excluded'
         excludedRadios.checked = 'Yes'
 
-        then: 'I see 7 reason options'
+        then: 'I see 8 reason options'
         excludedReasonsForm.isDisplayed()
-        excludedReasons.size() == 7
+        excludedReasons.size() == 8
     }
 
     def 'Shows previously saved values'() {
