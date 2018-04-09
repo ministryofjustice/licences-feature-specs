@@ -253,21 +253,21 @@ class ProposedAddressSpec extends GebReportingSpec {
         addResidentLink.click()
 
         then: 'Another resident is added to the list'
-        $(name: 'preferred[residents][3][name]').isDisplayed()
+        $(name: '[addresses][0][residents][3][name]').isDisplayed()
 
         when: 'I set values'
-        $('input', name: 'preferred[residents][3][name]').value('Name')
-        $('input', name: 'preferred[residents][3][age]').value('11')
-        $('input', name: 'preferred[residents][3][relation]').value('Relation')
+        $('input', name: '[addresses][0][residents][3][name]').value('Name')
+        $('input', name: '[addresses][0][residents][3][age]').value('11')
+        $('input', name: '[addresses][0][residents][3][relation]').value('Relation')
 
         and: 'I select to add a resident to an alternative address'
         alternativeAddressRadios.checked = 'Yes'
         addResidentLinkAlternative.click()
 
         and: 'I add values for that resident'
-        $('input', name: 'alternative[residents][3][name]').value('Alternative Name')
-        $('input', name: 'alternative[residents][3][age]').value('22')
-        $('input', name: 'alternative[residents][3][relation]').value('Alternative Relation')
+        $('input', name: '[addresses][1][residents][3][name]').value('Alternative Name')
+        $('input', name: '[addresses][1][residents][3][age]').value('22')
+        $('input', name: '[addresses][1][residents][3][relation]').value('Alternative Relation')
 
         and: 'I click to save and continue'
         find('#continueBtn').click()

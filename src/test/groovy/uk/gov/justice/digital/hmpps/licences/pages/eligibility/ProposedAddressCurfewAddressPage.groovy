@@ -23,8 +23,8 @@ class ProposedAddressCurfewAddressPage extends Page {
         occupier { module(OccupierDetailsModule) }
         residents { module(ResidentDetailsModule) }
 
-        cautionedRadios { $(name: "preferred[cautionedAgainstResident]").module(RadioButtons) }
-        cautionedRadiosAlternative(required: false) { $(name: "alternative[cautionedAgainstResident]").module(RadioButtons) }
+        cautionedRadios { $(name: "[addresses][0][cautionedAgainstResident]").module(RadioButtons) }
+        cautionedRadiosAlternative(required: false) { $(name: "[addresses][1][cautionedAgainstResident]").module(RadioButtons) }
 
         alternativeAddressRadios { $(name: "alternativeAddress").module(RadioButtons) }
 

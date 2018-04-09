@@ -127,7 +127,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
 
         where:
         task              | page
-        tasks.address     | ReviewAddressPage
+      //  tasks.address     | ReviewAddressPage
         tasks.curfewHours | ReviewCurfewHoursPage
         tasks.conditions  | ReviewConditionsPage
         tasks.risk        | ReviewRiskPage

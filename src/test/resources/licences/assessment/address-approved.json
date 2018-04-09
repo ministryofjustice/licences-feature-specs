@@ -20,7 +20,7 @@
         "decision": "No"
       },
       "curfewAddress": {
-        "preferred": {
+        "addresses": [{
           "addressLine1": "Street",
           "addressLine2": "",
           "addressTown": "Town",
@@ -50,7 +50,7 @@
             }
           ],
           "cautionedAgainstResident": "No"
-        }
+        }]
       }
     },
     "curfew": {

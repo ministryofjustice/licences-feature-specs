@@ -8,19 +8,19 @@ class ResidentDetailsModule extends Module {
     static content = {
 
         preferred {
-            resident('preferred')
+            resident('0')
         }
 
         alternative {
-            resident('alternative')
+            resident('1')
         }
 
         resident { type ->
-            $("div.resident.${type}").collect { resident ->
+            $("div.resident.type${type}").collect { resident ->
                 [
-                        name    : resident.find(id: startsWith("${type}-residentName-")).text(),
-                        age     : resident.find(id: startsWith("${type}-residentAge-")).text(),
-                        relation: resident.find(id: startsWith("${type}-residentRelation-")).text()
+                        name    : resident.find(id: startsWith("residentName-${type}")).text(),
+                        age     : resident.find(id: startsWith("residentAge-${type}")).text(),
+                        relation: resident.find(id: startsWith("residentRelation-${type}")).text()
                 ]
             }
         }
