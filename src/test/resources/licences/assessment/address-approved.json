@@ -26,7 +26,6 @@
           "addressTown": "Town",
           "postCode": "AB1 1AB",
           "telephone": "0123 456789",
-          "electricity": "Yes",
           "occupier": {
             "name": "Main Occupier",
             "age": "21",
@@ -49,18 +48,12 @@
               "relation": ""
             }
           ],
-          "cautionedAgainstResident": "No"
+          "cautionedAgainstResident": "No",
+          "consent": "Yes",
+          "electricity": "Yes",
+          "homeVisitConducted": "Yes",
+          "deemedSafe": "Yes"
         }]
-      }
-    },
-    "curfew": {
-      "curfewAddressReview": {
-        "consent": "Yes",
-        "electricity": "Yes",
-        "homeVisitConducted": "Yes"
-      },
-      "addressSafety": {
-        "deemedSafe": "Yes"
       }
     }
   }
