@@ -49,13 +49,9 @@
               "relation": ""
             }
           ],
-          "cautionedAgainstResident": "No"
+          "cautionedAgainstResident": "No",
+          "consent": "No"
         }]
-      }
-    },
-    "curfew": {
-      "curfewAddressReview": {
-        "consent": "No"
       }
     }
   }

@@ -49,17 +49,11 @@
               "relation": ""
             }
           ],
-          "cautionedAgainstResident": "No"
+          "cautionedAgainstResident": "No",
+          "consent": "No",
+          "deemedSafe": "No",
+          "reason": "Managed safely details",
         }]
-      }
-    },
-    "curfew": {
-      "curfewAddressReview": {
-        "consent": "No"
-      },
-      "addressSafety": {
-        "deemedSafe": "No",
-        "reason": "Managed safely details"
       }
     }
   }

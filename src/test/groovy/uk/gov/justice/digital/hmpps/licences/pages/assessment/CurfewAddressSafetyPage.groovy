@@ -20,7 +20,7 @@ class CurfewAddressSafetyPage extends Page {
         postCode(required: false) { $("#preferred-addressPostCode") }
 
         manageSafelyRadios { $(name: "deemedSafe").module(RadioButtons) }
-        reason(required: false) { $("#reason") }
+        reason(required: false) { $("#unsafeReason") }
 
     }
 }

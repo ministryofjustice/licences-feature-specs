@@ -49,19 +49,15 @@
               "relation": "Wife"
             }
           ],
-          "cautionedAgainstResident": "No"
+          "cautionedAgainstResident": "No",
+          "consent": "Yes",
+          "electricity": "Yes",
+          "homeVisitConducted": "Yes",
+          "deemedSafe": "Yes"
         }]
       }
     },
     "curfew": {
-      "curfewAddressReview": {
-        "consent": "Yes",
-        "electricity": "Yes",
-        "homeVisitConducted": "Yes"
-      },
-      "addressSafety": {
-        "deemedSafe": "Yes"
-      },
       "curfewHours": {
         "firstNightFrom": "18:30",
         "firstNightUntil": "10:11",

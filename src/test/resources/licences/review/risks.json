@@ -38,14 +38,10 @@
               "age": "11"
             }
           ],
-          "cautionedAgainstResident": "No"
+          "cautionedAgainstResident": "No",
+          "consent": "No"
         }],
         "alternativeAddress": "No"
-      }
-    },
-    "curfew": {
-      "curfewAddressReview": {
-        "consent": "No"
       }
     },
     "risk": {
