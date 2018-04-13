@@ -32,7 +32,7 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
         testData.loadLicence('assessment/unstarted')
 
         when: 'I go to the address review page'
-        to CurfewAddressReviewPage, '0', 'A0001XX'
+        to CurfewAddressReviewPage, 'A0001XX'
 
         then: 'I see the address details'
         curfew.address.line1 == 'Street'
@@ -118,7 +118,7 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
 
         given:  'At address review page'
         testData.loadLicence('assessment/unstarted')
-        to CurfewAddressReviewPage, '0', 'A0001XX'
+        to CurfewAddressReviewPage, 'A0001XX'
 
         when: 'I select new options'
         landlordConsentRadios.checked = 'Yes'
@@ -128,7 +128,7 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I view the address review page'
-        to CurfewAddressReviewPage, '0', 'A0001XX'
+        to CurfewAddressReviewPage, 'A0001XX'
 
         then: 'I see the original values'
         landlordConsentRadios.checked == null
@@ -137,7 +137,7 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
     def 'Modified choices are saved after save and continue' () {
 
         given:  'At address review page'
-        to CurfewAddressReviewPage, '0', 'A0001XX'
+        to CurfewAddressReviewPage, 'A0001XX'
 
         when: 'I select new options'
         landlordConsentRadios.checked = 'Yes'
@@ -157,7 +157,7 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         and: 'I move to the address review page'
-        to CurfewAddressReviewPage, '0', 'A0001XX'
+        to CurfewAddressReviewPage, 'A0001XX'
 
         then: 'I see the previously entered values'
         landlordConsentRadios.checked == 'Yes'
