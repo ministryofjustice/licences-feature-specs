@@ -87,8 +87,8 @@ class TaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 4 task buttons and the submit button'
-        taskListActions.size() == 6
+        then: 'I see the task buttons and the submit button'
+        taskListActions.size() == 7
 
         and: 'The buttons all say Start'
         taskListActions.take(5).every { it.text() == 'Start' }
@@ -123,8 +123,8 @@ class TaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 4 task buttons and the submit button'
-        taskListActions.size() == 6
+        then: 'I see the task buttons and the submit button'
+        taskListActions.size() == 7
 
         and: 'The buttons for started tasks all say View'
         taskListAction(tasks.address).text() == 'View'
@@ -141,8 +141,8 @@ class TaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 5 task buttons'
-        taskListActions.size() == 6
+        then: 'I see the task buttons'
+        taskListActions.size() == 7
 
         and: 'There is a submit to OMU button'
         taskListAction(tasks.submit).text() == 'Continue'
