@@ -1,5 +1,5 @@
 {
-  "status": "PROCESSING_CA",
+  "stage": "PROCESSING_CA",
   "licence": {
     "eligibility": {
       "excluded": {

@@ -39,13 +39,13 @@ class Database {
         sql.execute("DELETE FROM LICENCES WHERE NOMIS_ID like (?)", nomisId)
     }
 
-    def create(nomisId, status, licence) {
+    def create(nomisId, stage, licence) {
         if (!nomisId.endsWith('XX')) {
             println 'Nomis ID must end with XX for stage tests'
             return
         }
         println "create $licence : $nomisId"
-        sql.execute('INSERT INTO LICENCES VALUES (?,?,?)', [licence, nomisId, status])
+        sql.execute('INSERT INTO LICENCES VALUES (?,?,?)', [licence, nomisId, stage])
     }
 
     def find(nomisId) {

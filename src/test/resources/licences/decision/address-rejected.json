@@ -1,5 +1,5 @@
 {
-  "status": "APPROVAL",
+  "stage": "APPROVAL",
   "licence": {
     "eligibility": {
       "excluded": {

@@ -1,5 +1,5 @@
 {
-  "status": "ELIGIBILITY",
+  "stage": "ELIGIBILITY",
   "licence": {
     "eligibility": {
       "excluded": {

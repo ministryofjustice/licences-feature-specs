@@ -1,5 +1,5 @@
 {
-  "status": "DECIDED",
+  "stage": "DECIDED",
   "licence": {
     "eligibility": {
       "excluded": {
