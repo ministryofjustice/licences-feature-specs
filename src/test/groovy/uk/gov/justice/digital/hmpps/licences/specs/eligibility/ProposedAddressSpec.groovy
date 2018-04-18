@@ -201,49 +201,6 @@ class ProposedAddressSpec extends GebReportingSpec {
         occupier.preferred.cautioned.text()  == 'No'
     }
 
-    def 'I can enter values for an alternative address' () {
-
-        given: 'I am on the proposed curfew address page'
-        to ProposedAddressCurfewAddressPage, 'A0001XX'
-
-        when: 'I select to add an alternative address'
-        alternativeAddressRadios.checked = 'Yes'
-
-        then: 'I see the form for an alternative address'
-        alternativeAddressForm.isDisplayed()
-
-        when: 'I enter details for this address'
-        address.alternative.line1.value('Alternative 1')
-        address.alternative.line2.value('Alternative 2')
-        address.alternative.town.value('Alternative Town')
-        address.alternative.postCode.value('Alt code')
-        address.alternative.telephone.value('002')
-
-        occupier.alternative.name.value('Alternative Name')
-        occupier.alternative.age.value('22')
-        occupier.alternative.relation.value('Alternative Relation')
-
-        cautionedRadiosAlternative.checked = 'No'
-
-        then: 'I click to save and continue'
-        find('#continueBtn').click()
-
-        and: 'I see the confirm address page'
-        at ProposedAddressConfirmPage
-
-        and: 'I see the expected data for the address'
-        address.alternative.line1.text()  == 'Alternative 1'
-        address.alternative.line2.text()  == 'Alternative 2'
-        address.alternative.town.text()  == 'Alternative Town'
-        address.alternative.postCode.text() == 'Alt code'
-        address.alternative.telephone.text()  == '002'
-
-        occupier.alternative.name.text()  == 'Alternative Name'
-        occupier.alternative.age.text()  == '22'
-        occupier.alternative.relation.text()  == 'Alternative Relation'
-        occupier.alternative.cautioned.text()  == 'No'
-    }
-
     def 'I can enter extra residents to addresses' () {
 
         given: 'I am on the proposed curfew address page'
@@ -260,15 +217,6 @@ class ProposedAddressSpec extends GebReportingSpec {
         $('input', name: '[addresses][0][residents][3][age]').value('11')
         $('input', name: '[addresses][0][residents][3][relation]').value('Relation')
 
-        and: 'I select to add a resident to an alternative address'
-        alternativeAddressRadios.checked = 'Yes'
-        addResidentLinkAlternative.click()
-
-        and: 'I add values for that resident'
-        $('input', name: '[addresses][1][residents][3][name]').value('Alternative Name')
-        $('input', name: '[addresses][1][residents][3][age]').value('22')
-        $('input', name: '[addresses][1][residents][3][relation]').value('Alternative Relation')
-
         and: 'I click to save and continue'
         find('#continueBtn').click()
 
@@ -277,10 +225,6 @@ class ProposedAddressSpec extends GebReportingSpec {
         residents.preferred[0].name == 'Name'
         residents.preferred[0].age == '11'
         residents.preferred[0].relation == 'Relation'
-
-        residents.alternative[0].name == 'Alternative Name'
-        residents.alternative[0].age == '22'
-        residents.alternative[0].relation == 'Alternative Relation'
     }
 
     def 'I can submit the address to the RO' () {
