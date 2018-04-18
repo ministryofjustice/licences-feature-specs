@@ -31,19 +31,19 @@ class TestData {
 
         def sampleText = licenceFile.text
         def sample = new JsonSlurper().parseText(sampleText)
-        createLicenceWithJsonString(nomisId, sample.status, JsonOutput.toJson(sample.licence))
+        createLicenceWithJsonString(nomisId, sample.stage, JsonOutput.toJson(sample.licence))
     }
 
-    def createLicenceWithJsonString(nomisId, status, String json) {
-        checkAndCreateLicence(nomisId, status, json)
+    def createLicenceWithJsonString(nomisId, stage, String json) {
+        checkAndCreateLicence(nomisId, stage, json)
     }
 
-    private checkAndCreateLicence(nomisId, status, json) {
+    private checkAndCreateLicence(nomisId, stage, json) {
         if (findLicenceFor(nomisId) != null) {
             throw new Error('Licence already exists for nomisId: ' + nomisId)
         }
 
-        licences.create(nomisId, status, json)
+        licences.create(nomisId, stage, json)
     }
 
     def findLicenceFor(nomisId) {

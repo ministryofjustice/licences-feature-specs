@@ -1,5 +1,5 @@
 {
-  "status": "PROCESSING_RO",
+  "stage": "PROCESSING_RO",
   "licence": {
     "eligibility": {
       "excluded": {
