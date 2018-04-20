@@ -91,8 +91,15 @@
       },
       "bespoke": [
         {
-          "text": "bespoke text",
+          "text": "bespoke text 1",
           "approved": "Yes"
+        },
+        {
+          "text": "bespoke text 2"
+        },
+        {
+          "text": "bespoke text 3",
+          "approved": "No"
         }
       ]
     }
