@@ -34,8 +34,16 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         to LicenceConditionsSummaryPage, 'A0001XX'
 
         then: 'I see the previously selected values'
-        conditions.additional.size() == 5
+        conditions.additional.size() == 7
         conditions.additional[3].content.contains('sample input')
+
+        conditions.additional[4].number.contains('Condition 5')
+        conditions.additional[4].title.contains('Bespoke')
+        conditions.additional[4].approved.contains('Approved')
+        conditions.additional[4].content.contains('bespoke text 1')
+
+        conditions.additional[5].approved.contains('Not approved')
+        conditions.additional[6].approved.contains('Not approved')
     }
 
     def 'Add another condition button returns to additional conditions page' () {
@@ -95,7 +103,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         at LicenceConditionsSummaryPage
 
         and: 'The deleted condition is no longer shown'
-        conditions.additional.size() == 4
+        conditions.additional.size() == 6
     }
 
     def 'Can also delete bespoke conditions' () {
@@ -111,6 +119,6 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         conditions.additional[3].deleteControl.click()
 
         then: 'The deleted condition is no longer shown'
-        conditions.additional.size() == 3
+        conditions.additional.size() == 5
     }
 }
