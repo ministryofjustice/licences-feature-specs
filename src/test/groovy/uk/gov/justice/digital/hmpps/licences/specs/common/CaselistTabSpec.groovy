@@ -38,7 +38,7 @@ class CaselistTabSpec extends GebReportingSpec {
     def setupSpec() {
         testData.deleteLicences()
         licences.each { nomisId, file ->
-            testData.loadLicence(file, nomisId)
+            testData.addLicence(file, nomisId)
         }
     }
 
