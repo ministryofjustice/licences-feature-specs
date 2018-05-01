@@ -9,8 +9,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache:
-          key: gradle-cache-{{ checksum "build.gradle" }}
+#      - restore_cache:
+#          key: gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: feature tests for mock
           command: ./gradlew clean mockTest
@@ -32,8 +32,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache:
-          key: gradle-cache-{{ checksum "build.gradle" }}
+#      - restore_cache:
+#          key: gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: feature tests for stage
           command: |
