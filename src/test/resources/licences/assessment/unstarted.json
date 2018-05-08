@@ -35,17 +35,17 @@
             {
               "name": "Other resident",
               "age": "10",
-              "relation": "Son"
+              "relationship": "Son"
             },
             {
               "name": "",
               "age": "",
-              "relation": ""
+              "relationship": ""
             },
             {
               "name": "",
               "age": "",
-              "relation": ""
+              "relationship": ""
             }
           ],
           "cautionedAgainstResident": "No"

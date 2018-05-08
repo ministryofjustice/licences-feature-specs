@@ -18,9 +18,9 @@ class ResidentDetailsModule extends Module {
         resident { type ->
             $("div.resident.type${type}").collect { resident ->
                 [
-                        name    : resident.find(id: startsWith("residentName-${type}")).text(),
-                        age     : resident.find(id: startsWith("residentAge-${type}")).text(),
-                        relation: resident.find(id: startsWith("residentRelation-${type}")).text()
+                        name        : resident.find(id: startsWith("residentName-${type}")).text(),
+                        age         : resident.find(id: startsWith("residentAge-${type}")).text(),
+                        relationship: resident.find(id: startsWith("residentRelation-${type}")).text()
                 ]
             }
         }
