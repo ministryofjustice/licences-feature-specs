@@ -10,6 +10,7 @@ class LicencesUi {
     def dbDatabase
 
     LicencesUi() {
+        properties = new Properties()
         loadProperties()
 
         dbServer = System.env.TEST_DB_SERVER ?: properties.TEST_DB_SERVER
@@ -19,9 +20,16 @@ class LicencesUi {
     }
 
     def loadProperties() {
-        properties = new Properties()
-        new File('config.properties').withInputStream {
-            properties.load(it)
+        def fileName = 'config.properties'
+
+        File configFile = new File(fileName)
+
+        if (configFile.isFile()) {
+            configFile.withInputStream {
+                properties.load(it)
+            }
+        } else {
+            println "No config file '$fileName'"
         }
     }
 }
