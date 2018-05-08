@@ -34,7 +34,7 @@
           "residents": [
             {
               "name": "Other Resident",
-              "relation": "Son",
+              "relationship": "Son",
               "age": "11"
             }
           ],

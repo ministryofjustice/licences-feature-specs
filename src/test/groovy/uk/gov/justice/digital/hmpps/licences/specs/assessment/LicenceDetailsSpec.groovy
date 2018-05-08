@@ -95,14 +95,22 @@ class LicenceDetailsSpec extends GebReportingSpec {
         at LicenceDetailsPage
 
         then: 'I see the curfew hours details'
-        curfew.curfewHours('First Night') == '18:30 - 10:11'
-        curfew.curfewHours('Monday') == '21:22 - 08:09'
-        curfew.curfewHours('Tuesday') == '19:00 - 07:00'
-        curfew.curfewHours('Wednesday') == '19:00 - 07:00'
-        curfew.curfewHours('Thursday') == '19:00 - 07:00'
-        curfew.curfewHours('Friday') == '19:00 - 07:00'
-        curfew.curfewHours('Saturday') == '19:00 - 07:00'
-        curfew.curfewHours('Sunday') == '18:19 - 06:07'
+        curfew.curfewHours('First Night From') == '18:30'
+        curfew.curfewHours('First Night Until') == '10:11'
+        curfew.curfewHours('Monday From') == '21:22'
+        curfew.curfewHours('Monday Until') == '08:09'
+        curfew.curfewHours('Tuesday From') == '19:00'
+        curfew.curfewHours('Tuesday Until') == '07:00'
+        curfew.curfewHours('Wednesday From') == '19:00'
+        curfew.curfewHours('Wednesday Until') == '07:00'
+        curfew.curfewHours('Thursday From') == '19:00'
+        curfew.curfewHours('Thursday Until') == '07:00'
+        curfew.curfewHours('Friday From') == '19:00'
+        curfew.curfewHours('Friday Until') == '07:00'
+        curfew.curfewHours('Saturday From') == '19:00'
+        curfew.curfewHours('Saturday Until') == '07:00'
+        curfew.curfewHours('Sunday From') == '18:19'
+        curfew.curfewHours('Sunday Until') == '06:07'
     }
 
     def 'Shows conditions details'() {

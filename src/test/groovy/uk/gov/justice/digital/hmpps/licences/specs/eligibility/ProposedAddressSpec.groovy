@@ -179,7 +179,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         occupier.preferred.name.value('Name')
         occupier.preferred.age.value('11')
-        occupier.preferred.relation.value('Relation')
+        occupier.preferred.relationship.value('Relation')
 
         cautionedRadios.checked = 'No'
 
@@ -197,7 +197,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         occupier.preferred.name.text()  == 'Name'
         occupier.preferred.age.text()  == '11'
-        occupier.preferred.relation.text()  == 'Relation'
+        occupier.preferred.relationship.text()  == 'Relation'
         occupier.preferred.cautioned.text()  == 'No'
     }
 
@@ -215,7 +215,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         when: 'I set values'
         $('input', name: '[addresses][0][residents][3][name]').value('Name')
         $('input', name: '[addresses][0][residents][3][age]').value('11')
-        $('input', name: '[addresses][0][residents][3][relation]').value('Relation')
+        $('input', name: '[addresses][0][residents][3][relationship]').value('Relation')
 
         and: 'I click to save and continue'
         find('#continueBtn').click()
@@ -224,7 +224,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         at ProposedAddressConfirmPage
         residents.preferred[0].name == 'Name'
         residents.preferred[0].age == '11'
-        residents.preferred[0].relation == 'Relation'
+        residents.preferred[0].relationship == 'Relation'
     }
 
     def 'I can submit the address to the RO' () {
