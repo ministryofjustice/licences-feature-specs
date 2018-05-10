@@ -62,7 +62,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         curfew.address.line1 == 'Street'
         curfew.address.town == 'Town'
         curfew.address.postCode == 'AB1 1AB'
-        curfew.address.telephone == '0123 456789'
+        curfew.address.telephone == '0123456789'
 
         and: 'I see the occupier details'
         curfew.occupier.name == 'Main Occupier'
@@ -153,7 +153,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         reporting.address.town == 'Town'
         reporting.address.postCode == 'AB1 1AB'
 
-        reporting.address.telephone == '0123 456789'
+        reporting.address.telephone == '0123456789'
     }
 
     @Unroll
