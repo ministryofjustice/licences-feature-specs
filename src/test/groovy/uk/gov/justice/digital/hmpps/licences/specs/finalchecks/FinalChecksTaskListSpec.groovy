@@ -86,7 +86,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     def 'Shows buttons for all tasks with correct label'() {
 
         given: 'An licence ready for final checks'
-        testData.loadLicence('finalchecks/unstarted')
+        testData.loadLicence('finalchecks/final-checks')
 
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
@@ -102,6 +102,18 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
 
         and: 'The postpone task has a Postpone button'
         taskListAction(tasks.postpone).value() == 'Postpone'  // NB value, not text - button, not link
+    }
+
+    def 'Shows submit button when all tasks done'() {
+
+        given: 'An licence ready for final checks'
+        testData.loadLicence('finalchecks/final-checks-done')
+
+        when: 'I view the page'
+        to TaskListPage, 'A0001XX'
+
+        then: 'I see 7 task buttons'
+        taskListActions.size() == 9
 
         and: 'The submit task has a Continue button'
         taskListAction(tasks.submit).text() == 'Continue'
@@ -127,7 +139,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
 
         where:
         task              | page
-      //  tasks.address     | ReviewAddressPage
+        tasks.address     | ReviewAddressPage
         tasks.curfewHours | ReviewCurfewHoursPage
         tasks.conditions  | ReviewConditionsPage
         tasks.risk        | ReviewRiskPage
@@ -159,7 +171,6 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         then: 'I return to the case list'
         at CaselistPage
     }
-
 
     def 'When address has been rejected other licence review tasks not shown'() {
 

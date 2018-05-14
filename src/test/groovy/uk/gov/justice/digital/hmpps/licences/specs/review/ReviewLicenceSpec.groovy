@@ -27,7 +27,7 @@ class ReviewLicenceSpec extends GebReportingSpec {
     def 'Does not show change details links when user is RO but processing stage is not with RO'() {
 
         given: 'A licence ready for final checks'
-        testData.loadLicence('finalchecks/final-checks')
+        testData.loadLicence('finalchecks/final-checks-done')
 
         when: 'I view the page'
         to ReviewLicencePage, 'A0001XX'
