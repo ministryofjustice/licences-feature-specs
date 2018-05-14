@@ -70,4 +70,4 @@ workflows:
               only:
                 - master
     jobs:
-      - accept-stage
+      - accept_stage
