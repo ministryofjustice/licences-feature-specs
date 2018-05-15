@@ -10,6 +10,8 @@ class CaselistPage extends Page {
         $("#pageHeading").text() == 'HDC eligible offenders'
     }
 
+    static url = '/caseList'
+
     static content = {
 
         header { module(HeaderModule) }
