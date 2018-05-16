@@ -88,7 +88,7 @@ class FinalChecksSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I see the summary test for the saved values'
-        seriousOffenceAnswer.text() == 'The offender is under investigation or been charged for a serious offence in custody'
+        seriousOffenceAnswer.text() == 'The offender has been referred to the police or other law enforcement agency or to the independent adjudicator (IA) in relation to an alleged offence committed during the current sentence and the matter remains unresolved'
         onRemandAnswer.text() == 'The offender is not on remand'
     }
 
