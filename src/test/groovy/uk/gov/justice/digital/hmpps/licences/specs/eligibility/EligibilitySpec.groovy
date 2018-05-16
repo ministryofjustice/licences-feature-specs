@@ -160,6 +160,7 @@ class EligibilitySpec extends GebReportingSpec {
         and: 'I choose unsuitable'
         at EligibilitySuitabilityPage
         unsuitableRadios.checked = 'Yes'
+        unsuitableReasonsItem(0).check()
         find('#continueBtn').click()
 
         then: 'I am taken to the task list'

@@ -20,10 +20,10 @@ class EligibilitySuitabilityPage extends Page {
 
         unsuitableReasonsForm(required: false) { $("#unsuitableForm") }
 
-        unsuitableReasons(required: false) { $(name: "reason") }
+        unsuitableReasons(required: false) { $(name: "reason[]") }
 
         unsuitableReasonsItem { int number ->
-            $("input", number, name: "reason").module(Checkbox)
+            $("input", number, name: "reason[]").module(Checkbox)
         }
     }
 }
