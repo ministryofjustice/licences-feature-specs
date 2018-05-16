@@ -88,8 +88,8 @@ class FinalChecksSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I see the summary test for the saved values'
-        seriousOffenceAnswer.text() == 'The prisoner is under investigation or been charged for a serious offence in custody'
-        onRemandAnswer.text() == 'The prisoner is not on remand'
+        seriousOffenceAnswer.text() == 'The offender is under investigation or been charged for a serious offence in custody'
+        onRemandAnswer.text() == 'The offender is not on remand'
     }
 
     def 'Tasklist shows answers with alert styling when answers are Yes' () {
