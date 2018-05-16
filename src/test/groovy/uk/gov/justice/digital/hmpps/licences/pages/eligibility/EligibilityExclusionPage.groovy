@@ -20,10 +20,10 @@ class EligibilityExclusionPage extends Page {
 
         excludedReasonsForm(required: false) { $("#excludedForm") }
 
-        excludedReasons(required: false) { $(name: "reason") }
+        excludedReasons(required: false) { $(name: "reason[]") }
 
         excludedReasonsItem { int number ->
-            $("input", number, name: "reason").module(Checkbox)
+            $("input", number, name: "reason[]").module(Checkbox)
         }
     }
 }

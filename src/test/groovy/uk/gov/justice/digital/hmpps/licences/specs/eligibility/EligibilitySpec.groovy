@@ -136,6 +136,7 @@ class EligibilitySpec extends GebReportingSpec {
 
         when: 'I choose excluded'
         excludedRadios.checked = 'Yes'
+        excludedReasonsItem(0).check()
         find('#continueBtn').click()
 
         then: 'I am taken to the task list'
