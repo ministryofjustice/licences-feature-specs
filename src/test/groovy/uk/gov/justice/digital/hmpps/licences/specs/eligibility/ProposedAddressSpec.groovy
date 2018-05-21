@@ -164,9 +164,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         at ProposedAddressCurfewAddressPage
     }
 
-    def
-
-    'Entered values are saved after save and continue' () {
+    def 'Entered values are saved after save and continue' () {
 
         given: 'On Curfew Address page'
         to ProposedAddressCurfewAddressPage, 'A0001XX'
@@ -221,11 +219,49 @@ class ProposedAddressSpec extends GebReportingSpec {
         and: 'I click to save and continue'
         find('#continueBtn').click()
 
-        then: 'I see the values on the confirm address page'
+        then: 'I see the values on the review page'
         at ReviewCurfewAddressPage
         curfew.residents[0].name == 'Name'
         curfew.residents[0].age == '11'
         curfew.residents[0].relationship == 'Relation'
+    }
+
+    def 'Input is validated on the review page' () {
+
+        given: 'On Curfew Address page'
+        to ProposedAddressCurfewAddressPage, 'A0001XX'
+
+        when: 'I omit a required field'
+        address.preferred.line1.value('')
+        find('#continueBtn').click()
+
+        then: 'I see the review page'
+        at ReviewCurfewAddressPage
+
+        and: 'I see the error details'
+        errorSummary.isDisplayed()
+        $('#address1-curfew-error').isDisplayed()
+
+        when: 'I click on the correct address link'
+        correctAddressLink.click()
+
+        then: 'I see the Curfew Address page'
+        at ProposedAddressCurfewAddressPage
+
+        when: 'I enter a value for the missed field'
+        address.preferred.line1.value('Address 1')
+        find('#continueBtn').click()
+
+        then: 'I see the review page with no errors'
+        at ReviewCurfewAddressPage
+        !errorSummary.isDisplayed()
+        !$('#address1-curfew-error').isDisplayed()
+
+        and: 'Can click to continue'
+        find('#continueBtn').click()
+
+        then: 'I see the send page'
+        at SendPage
     }
 
     def 'I can submit the address to the RO' () {

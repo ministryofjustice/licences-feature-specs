@@ -16,5 +16,9 @@ class ReviewCurfewAddressPage extends Page {
         header { module(HeaderModule) }
 
         curfew { module(CurfewDetailsModule) }
+
+        errorSummary(required: false) { $(".error-summary") }
+
+        correctAddressLink(required: false) { $("#correctAddressLink") }
     }
 }
