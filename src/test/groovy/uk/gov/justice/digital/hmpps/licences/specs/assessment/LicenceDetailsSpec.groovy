@@ -67,18 +67,18 @@ class LicenceDetailsSpec extends GebReportingSpec {
         and: 'I see the occupier details'
         curfew.occupier.name == 'Main Occupier'
         curfew.occupier.age == '21'
-        curfew.occupier.relation == 'Brother'
+        curfew.occupier.relationship == 'Brother'
 
         and: 'I see the other residents details'
         curfew.residents.size() == 2
 
         curfew.residents[0].name == 'Other Resident'
         curfew.residents[0].age == '10'
-        curfew.residents[0].relation == 'Son'
+        curfew.residents[0].relationship == 'Son'
 
         curfew.residents[1].name == 'Yet Another'
         curfew.residents[1].age == '20'
-        curfew.residents[1].relation == 'Wife'
+        curfew.residents[1].relationship == 'Wife'
 
         and: 'I see the review details'
         curfew.reviewAnswers.cautioned == 'No'

@@ -6,12 +6,12 @@ import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAdressAddressProposedPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressCurfewAddressPage
-import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressConfirmPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.SendPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressOptOutPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressBassReferralPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -164,7 +164,9 @@ class ProposedAddressSpec extends GebReportingSpec {
         at ProposedAddressCurfewAddressPage
     }
 
-    def 'Entered values are saved after save and continue' () {
+    def
+
+    'Entered values are saved after save and continue' () {
 
         given: 'On Curfew Address page'
         to ProposedAddressCurfewAddressPage, 'A0001XX'
@@ -174,7 +176,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         address.preferred.line1.value('Address 1')
         address.preferred.line2.value('Address 2')
         address.preferred.town.value('Town')
-        address.preferred.postCode.value('Post code')
+        address.preferred.postCode.value('S1 4JQ')
         address.preferred.telephone .value('001')
 
         occupier.preferred.name.value('Name')
@@ -185,20 +187,19 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         find('#continueBtn').click()
 
-        then: 'I see the confirm address page'
-        at ProposedAddressConfirmPage
+        then: 'I see the review page'
+        at ReviewCurfewAddressPage
 
         and: 'I see the expected data for the address'
-        address.preferred.line1.text() == 'Address 1'
-        address.preferred.line2.text()  == 'Address 2'
-        address.preferred.town.text()  == 'Town'
-        address.preferred.postCode.text()  == 'Post code'
-        address.preferred.telephone.text()  == '001'
+        curfew.address.line1 == 'Address 1'
+        curfew.address.line2  == 'Address 2'
+        curfew.address.town  == 'Town'
+        curfew.address.postCode  == 'S1 4JQ'
+        curfew.address.telephone  == '001'
 
-        occupier.preferred.name.text()  == 'Name'
-        occupier.preferred.age.text()  == '11'
-        occupier.preferred.relationship.text()  == 'Relation'
-        occupier.preferred.cautioned.text()  == 'No'
+        curfew.occupier.name  == 'Name'
+        curfew.occupier.age  == '11'
+        curfew.occupier.relationship  == 'Relation'
     }
 
     def 'I can enter extra residents to addresses' () {
@@ -221,16 +222,16 @@ class ProposedAddressSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         then: 'I see the values on the confirm address page'
-        at ProposedAddressConfirmPage
-        residents.preferred[0].name == 'Name'
-        residents.preferred[0].age == '11'
-        residents.preferred[0].relationship == 'Relation'
+        at ReviewCurfewAddressPage
+        curfew.residents[0].name == 'Name'
+        curfew.residents[0].age == '11'
+        curfew.residents[0].relationship == 'Relation'
     }
 
     def 'I can submit the address to the RO' () {
 
         given: 'On confirm address page'
-        at ProposedAddressConfirmPage
+        at ReviewCurfewAddressPage
 
         when: 'I press save and continue'
         find('#continueBtn').click()
