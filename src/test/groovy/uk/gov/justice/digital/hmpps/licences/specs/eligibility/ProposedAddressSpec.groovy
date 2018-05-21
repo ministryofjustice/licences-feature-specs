@@ -266,16 +266,10 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     def 'I can submit the address to the RO' () {
 
-        given: 'On confirm address page'
-        at ReviewCurfewAddressPage
-
-        when: 'I press save and continue'
-        find('#continueBtn').click()
-
-        then: 'I see the submit to RO page'
+        given: 'On the send page'
         at SendPage
 
-        and: 'I can click to submit'
+        when: 'I can click to submit'
         find('#continueBtn').click()
 
         then: 'I move to confirmation page'
