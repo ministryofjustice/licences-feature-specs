@@ -19,18 +19,18 @@ class CurfewDetailsModule extends Module {
 
         occupier {
             [
-                    name    : $("#occupierName-curfew").text(),
-                    age     : $("#occupierAge-curfew").text(),
-                    relation: $("#occupierRelation-curfew").text(),
+                    name        : $("#occupierName-curfew").text(),
+                    age         : $("#occupierAge-curfew").text(),
+                    relationship: $("#occupierRelation-curfew").text(),
             ]
         }
 
         residents {
             $('div.resident').collect { resident ->
                 [
-                        name    : resident.find(id: startsWith("residentName-curfew-")).text(),
-                        age     : resident.find(id: startsWith("residentAge-curfew-")).text(),
-                        relation: resident.find(id: startsWith("residentRelation-curfew-")).text()
+                        name        : resident.find(id: startsWith("residentName-curfew-")).text(),
+                        age         : resident.find(id: startsWith("residentAge-curfew-")).text(),
+                        relationship: resident.find(id: startsWith("residentRelation-curfew-")).text()
                 ]
             }
         }
@@ -46,7 +46,7 @@ class CurfewDetailsModule extends Module {
         }
 
         curfewHours { day ->
-            $("#${day.uncapitalize().replaceAll("\\s","")}").text()
+            $("#${day.uncapitalize().replaceAll("\\s", "")}").text()
         }
     }
 }
