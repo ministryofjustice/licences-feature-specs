@@ -143,4 +143,54 @@ class LicenceConditionsSpec extends GebReportingSpec {
         conditionsItem('NOCONTACTASSOCIATE').checked
         $("#groupsOrOrganisation").value() == 'sample input'
     }
+
+    def 'I can add bespoke conditions' () {
+        given: 'I am on the additional conditions page'
+        to LicenceConditionsAdditionalPage, 'A0001XX'
+
+        and: 'I enter a bespoke condition'
+        bespokeCondition(0).value('Bespoke 1')
+
+        and: 'I save and continue'
+        find('#continueBtn').click()
+
+        when: 'I view the additional conditions page'
+        to LicenceConditionsAdditionalPage, 'A0001XX'
+
+        then: 'I see the previously entered values'
+        bespokeCondition(0).value() == 'Bespoke 1'
+    }
+
+    def 'I can add multiple bespoke conditions' () {
+        given: 'I am on the additional conditions page'
+        to LicenceConditionsAdditionalPage, 'A0001XX'
+
+        when: 'I click to add another 2 bespoke conditions'
+        $('#addBespokeButton').click()
+        $('#addBespokeButton').click()
+
+        then: 'I see 2 more bespoke conditions text boxes'
+        bespokeCondition(1).isDisplayed()
+        bespokeCondition(2).isDisplayed()
+
+        when: 'I input new conditions'
+        bespokeCondition(1).value('Bespoke 2')
+        bespokeCondition(2).value('Bespoke 3')
+
+        and: 'I click to remove one'
+        $('a.removeBespoke', 1).click()
+
+        then: 'The bespoke condition box is not displayed'
+        !bespokeCondition(1).isDisplayed()
+
+        when: 'I click to continue'
+        find('#continueBtn').click()
+
+        and: 'I return to the additional conditions page'
+        to LicenceConditionsAdditionalPage, 'A0001XX'
+
+        then: 'I see the previously entered values'
+        bespokeCondition(0).value() == 'Bespoke 1'
+        bespokeCondition(1).value() == 'Bespoke 3'
+    }
 }

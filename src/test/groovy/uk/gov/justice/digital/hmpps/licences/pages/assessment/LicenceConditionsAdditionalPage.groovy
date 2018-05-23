@@ -21,5 +21,9 @@ class LicenceConditionsAdditionalPage extends Page {
         conditionsItem { conditionValue ->
             $("input", value: conditionValue, name: "additionalConditions").module(Checkbox)
         }
+
+        bespokeCondition(required: false) { index ->
+            $('textarea', name: 'bespokeConditions['+index+'][text]')
+        }
     }
 }
