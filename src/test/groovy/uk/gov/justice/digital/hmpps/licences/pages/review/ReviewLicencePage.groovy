@@ -29,5 +29,7 @@ class ReviewLicencePage extends Page {
         risk { module(RiskDetailsModule) }
 
         reporting { module(ReportingDetailsModule) }
+
+        createLicenceControl(required: false) {$('#createPdf')}
     }
 }
