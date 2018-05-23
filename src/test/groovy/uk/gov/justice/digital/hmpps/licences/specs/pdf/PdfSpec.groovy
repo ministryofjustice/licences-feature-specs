@@ -81,8 +81,11 @@ class PdfSpec extends GebReportingSpec {
 
         then: 'I see some missing details'
         missingDetails*.text().containsAll([
-                'Reporting address town',
-                'Reporting address postcode'
+                'LED',
+                'TUSED',
+                'Reporting at',
+                'Reporting on',
+                'Monitoring company telephone number'
         ])
     }
 }
