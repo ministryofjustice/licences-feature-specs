@@ -30,6 +30,9 @@ jobs:
           destination: mock/junit-reports
   accept_stage:
     <<: *defaults
+    branches:
+      only:
+        - master
     steps:
       - checkout
       - restore_cache:
