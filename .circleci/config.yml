@@ -61,8 +61,3 @@ workflows:
             branches:
               only:
                 - master
-      - accept_stage:
-          filters:
-            branches:
-              only:
-                - master
