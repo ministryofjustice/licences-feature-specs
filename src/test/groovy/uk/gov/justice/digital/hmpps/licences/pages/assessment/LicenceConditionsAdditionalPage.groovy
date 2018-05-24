@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.pages.assessment
 
 import geb.Page
 import geb.module.Checkbox
+import uk.gov.justice.digital.hmpps.licences.modules.BespokeConditionsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
 class LicenceConditionsAdditionalPage extends Page {
@@ -21,5 +22,7 @@ class LicenceConditionsAdditionalPage extends Page {
         conditionsItem { conditionValue ->
             $("input", value: conditionValue, name: "additionalConditions").module(Checkbox)
         }
+
+        bespoke { module(BespokeConditionsModule) }
     }
 }
