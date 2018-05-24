@@ -7,6 +7,7 @@ import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.AddressRejectedPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.EligibilityExclusionPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -130,7 +131,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         condition << ['unstarted', 'excluded', 'unsuitable', 'insufficientTime']
     }
 
-    def 'Address check start button is shown when elgibile'() {
+    def 'Address check start button is shown when eligibile'() {
 
         when: 'Viewing the tasklist'
         testData.loadLicence("eligibility/eligible")
@@ -138,6 +139,19 @@ class EligibilityTaskListSpec extends GebReportingSpec {
 
         then: 'The address check start button is shown'
         taskListAction('Proposed address / opt out request').isDisplayed()
+    }
+
+    def 'When address is rejected, the address button links to rejection form  '() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/addressRejected")
+        to TaskListPage, 'A0001XX'
+
+        and: 'I click the address action'
+        taskListAction('Proposed address / opt out request').click()
+
+        then: 'I see the address rejected form'
+        at AddressRejectedPage
     }
 
     @PendingFeature
