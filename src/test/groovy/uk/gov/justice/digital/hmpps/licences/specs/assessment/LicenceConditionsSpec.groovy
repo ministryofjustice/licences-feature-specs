@@ -166,8 +166,8 @@ class LicenceConditionsSpec extends GebReportingSpec {
         to LicenceConditionsAdditionalPage, 'A0001XX'
 
         when: 'I click to add another 2 bespoke conditions'
-        $('#addBespokeButton').click()
-        $('#addBespokeButton').click()
+        find('.addBespokeButton').click()
+        find('.addBespokeButton').click()
 
         then: 'I see 2 more bespoke conditions text boxes'
         bespoke.conditions.size == 3
