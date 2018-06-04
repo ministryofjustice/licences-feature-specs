@@ -28,7 +28,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         actions.logOut()
     }
 
-    def 'Standard conditions page shown first' () {
+    def 'Standard conditions page shown first'() {
 
         given: 'At task list page'
         to TaskListPage, 'A0001XX'
@@ -40,7 +40,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         at LicenceConditionsStandardPage
     }
 
-    def 'Options initially unset' () {
+    def 'Options initially unset'() {
 
         when: 'I view the standard conditions page'
         at LicenceConditionsStandardPage
@@ -49,7 +49,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         additionalConditionsRadios.checked == null
     }
 
-    def 'When additional conditions NOT required, does NOT show additional conditions page' () {
+    def 'When additional conditions NOT required, does NOT show additional conditions page'() {
 
         given: 'At standard page'
         at LicenceConditionsStandardPage
@@ -64,7 +64,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         at TaskListPage
     }
 
-    def 'When additional conditions required, shows additional conditions page' () {
+    def 'When additional conditions required, shows additional conditions page'() {
 
         when: 'I view the standard conditions page'
         to LicenceConditionsStandardPage, 'A0001XX'
@@ -79,16 +79,19 @@ class LicenceConditionsSpec extends GebReportingSpec {
         at LicenceConditionsAdditionalPage
     }
 
-    def 'Additional conditions initially unset' () {
+    def 'Additional conditions initially unset'() {
 
         when: 'At additional conditions page'
         at LicenceConditionsAdditionalPage
 
         then: 'Options not set'
         conditions.every { !it.value() }
+
+        and: 'I see the right number of conditions'
+        conditions.size() == 31
     }
 
-    def 'Select a condition reveals the input form' () {
+    def 'Select a condition reveals the input form'() {
 
         when: 'At additional conditions page'
         at LicenceConditionsAdditionalPage
@@ -104,7 +107,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
     }
 
 
-    def 'Modified additional conditions not saved on return to tasklist' () {
+    def 'Modified additional conditions not saved on return to tasklist'() {
 
         when: 'At additional conditions page'
         at LicenceConditionsAdditionalPage
@@ -123,7 +126,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         conditions.every { !it.value() }
     }
 
-    def 'Modified Additional conditions saved on save and continue' () {
+    def 'Modified Additional conditions saved on save and continue'() {
 
         when: 'At additional conditions page'
         at LicenceConditionsAdditionalPage
@@ -144,7 +147,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         $("#groupsOrOrganisation").value() == 'sample input'
     }
 
-    def 'I can add bespoke conditions' () {
+    def 'I can add bespoke conditions'() {
         given: 'I am on the additional conditions page'
         to LicenceConditionsAdditionalPage, 'A0001XX'
 
@@ -161,7 +164,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         bespoke.conditions[0].value == 'Bespoke 1'
     }
 
-    def 'I can add multiple bespoke conditions' () {
+    def 'I can add multiple bespoke conditions'() {
         given: 'I am on the additional conditions page'
         to LicenceConditionsAdditionalPage, 'A0001XX'
 
