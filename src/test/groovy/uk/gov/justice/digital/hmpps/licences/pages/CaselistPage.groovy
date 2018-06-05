@@ -28,6 +28,8 @@ class CaselistPage extends Page {
             $('a', href: tabName).click()
         }
 
+        searchOffenderControl(required: false){ $('#searchOffenderLink')}
+
         paginateNext(required: false) {$('#pagination a.next')}
         paginatePrev(required: false) {$('#pagination a.prev')}
         paginationText(required: false) {$('#paginationInfo')}

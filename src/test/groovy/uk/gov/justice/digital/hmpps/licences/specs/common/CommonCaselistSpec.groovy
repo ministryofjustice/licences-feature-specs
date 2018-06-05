@@ -101,4 +101,27 @@ class CommonCaselistSpec extends GebReportingSpec {
         hdcEligible.getAt(21).isDisplayed() == false
         paginationText.text().contains('Offenders 1 - 20 of 22')
     }
+
+    def 'Search for offenders is available for RO'() {
+
+        when: 'I view the case list as an RO'
+        actions.logIn('RO')
+        via CaselistPage, 'ready'
+
+        then: 'I see the search for an offender option'
+        searchOffenderControl.isDisplayed()
+    }
+
+    def 'Search for offenders is not available when not RO'() {
+
+        when: 'I view the case list as an RO'
+        actions.logIn(user)
+        via CaselistPage, 'ready'
+
+        then: 'I see the search for an offender option'
+        !searchOffenderControl.isDisplayed()
+
+        where:
+        user << ['CA', 'DM']
+    }
 }
