@@ -113,6 +113,9 @@
       },
       "seriousOffence": {
         "decision": "No"
+      },
+      "confiscationOrder": {
+        "decision": "No"
       }
     }
   }
