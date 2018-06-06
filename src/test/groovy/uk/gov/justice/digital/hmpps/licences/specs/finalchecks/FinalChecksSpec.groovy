@@ -11,6 +11,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.EligibilityExclusionPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksOnRemandPage
+import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksConfiscationOrderPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksPostponePage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksSeriousOffencePage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewAddressPage
@@ -75,13 +76,26 @@ class FinalChecksSpec extends GebReportingSpec {
         at FinalChecksOnRemandPage
     }
 
-    def 'Saved answers shown on tasklist' () {
+    def 'Confiscation order shown next' () {
 
-        given: 'Viewing on remand page'
+        given: 'On on remand page'
         at FinalChecksOnRemandPage
 
         when: 'I choose a value and continue'
         onRemandRadios.checked = 'No'
+        find('#continueBtn').click()
+
+        then: 'I see the confiscation order page'
+        at FinalChecksConfiscationOrderPage
+    }
+
+    def 'Saved answers shown on tasklist' () {
+
+        given: 'Viewing confiscation order page'
+        at FinalChecksConfiscationOrderPage
+
+        when: 'I choose a value and continue'
+        confiscationOrderRadios.checked = 'No'
         find('#continueBtn').click()
 
         then: 'I see the task list'
@@ -90,6 +104,7 @@ class FinalChecksSpec extends GebReportingSpec {
         and: 'I see the summary test for the saved values'
         seriousOffenceAnswer.text() == 'The offender is under investigation or been charged for a serious offence in custody'
         onRemandAnswer.text() == 'The offender is not on remand'
+        confiscationOrderAnswer.text() == 'The offender is not subject to a confiscation order'
     }
 
     def 'Tasklist shows answers with alert styling when answers are Yes' () {
@@ -103,6 +118,7 @@ class FinalChecksSpec extends GebReportingSpec {
         then: 'I see the the final check status summary with alert styling'
         seriousOffenceAnswer.classes().contains('alert')
         onRemandAnswer.classes().contains('alert')
+        confiscationOrderAnswer.classes().contains('alert')
 
     }
 
