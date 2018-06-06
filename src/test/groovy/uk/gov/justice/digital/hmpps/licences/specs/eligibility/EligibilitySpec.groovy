@@ -117,7 +117,7 @@ class EligibilitySpec extends GebReportingSpec {
         at EligibilityTimeCheckPage
 
         and: 'I select new remaining time options and save'
-        crdTimeRadios.checked = 'Yes'
+        crdTimeRadios.checked = 'No'
         find('#continueBtn').click()
 
         then: 'I return to the task list page'
@@ -126,7 +126,7 @@ class EligibilitySpec extends GebReportingSpec {
         and: 'I can see my saved answers'
         excludedAnswer.text() == 'No'
         unsuitableAnswer.text() == 'No'
-        crdTimeAnswer.text() == 'Yes'
+        crdTimeAnswer.text() == 'No'
     }
 
     def 'Returns to task list when excluded' () {
