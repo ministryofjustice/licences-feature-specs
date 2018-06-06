@@ -26,6 +26,7 @@ class TaskListPage extends Page {
 
         seriousOffenceAnswer(required: false)  { $('#seriousOffenceAnswer') }
         onRemandAnswer(required: false)  { $('#onRemandAnswer') }
+        confiscationOrderAnswer(required: false)  { $('#confiscationOrderAnswer') }
 
         printEligibilityFormButton(required: false) { $('#eligibilityFormPrint') }
         eligibilityFormPrintStatusText(required: false) { $('#eligibilityFormPrintStatusText') }

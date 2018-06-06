@@ -113,6 +113,9 @@
       },
       "onRemand": {
         "decision": "Yes"
+      },
+      "confiscationOrder": {
+        "decision": "Yes"
       }
     }
   }
