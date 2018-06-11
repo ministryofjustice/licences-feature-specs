@@ -15,3 +15,8 @@ build/
 gradlew.bat
 out/
 gradle/wrapper/gradle-wrapper.properties
+.classpath
+.project
+.settings/
+.vscode/
+bin/
