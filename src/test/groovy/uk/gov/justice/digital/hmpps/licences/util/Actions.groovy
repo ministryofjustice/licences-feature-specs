@@ -8,9 +8,6 @@ import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 
 class Actions {
 
-    @Shared
-    LicencesUi licencesUi = new LicencesUi()
-
     def users = [
             'CA'      : 'CA_USER_TEST',
             'CA_MULTI': 'CA_USER_MULTI',

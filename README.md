@@ -8,20 +8,9 @@ see http://www.gebish.org/manual/current/
 The following environment variables must be set:
 
 * LICENCES_URI - root URI for the Licences application. Defaults to `http://localhost:3000`
-* TEST_DB_SERVER - eg localhost
-* TEST_DB_USER - eg SA
-* TEST_DB_PASS - eg password
-* TEST_DB - eg licences
-
-Note that you can set values for the Database environment variables in a config.properties file in the project root.
 
 The Licences application must be running at Licences_URI, and must be connected to a database and a nomis api or
 suitable mocks.
-
-Note that for running against Mock or Stage in CircleCI we need to supply environment specific values for properties
-such as TEST_DB_USER. In the Circle CI environment variables we supply Stage specific variants eg TEST_DB_USER_STAGE.
-In .circleci/config.yml we take TEST_DB_USER_STAGE and use it tro replace TEST_DB_USER eg
-export TEST_DB_USER="$TEST_DB_USER_STAGE"
 
 ## Execution
 
@@ -41,7 +30,7 @@ Run with gradle or execute a specific test using your IDE.
 * See http://www.gebish.org/manual/current/
 * See http://spockframework.org/spock/docs/1.1/all_in_one.html
 
-* Where specs relae to a particular user type, put them in a subdir named for that user type
+* Where specs relate to a particular user type, put them in a subdir named for that user type
 * Use the PageObject style
 * Prefer `@Stepwise` because it's a bit faster
 
@@ -68,7 +57,7 @@ duplication.
 
 ### Test Data
 
-Automated tests emply user accounts specific for automated testing eg CA_USER_TEST.
+Automated tests employ user accounts specific for automated testing eg CA_USER_TEST.
 
 They also use a naming convention to identify test data exclusive to automated tests. Any test data for
 an automated test should use a Nomis ID / offender number ending with 'XX' eg `A0001XX` 
