@@ -4,6 +4,9 @@ see http://www.gebish.org/manual/current/
 
 ## Pre-Requisites
 
+### Webdriver
+Install current versions of phantomjs and chromedriver
+
 ### Environment
 The following environment variables must be set:
 
