@@ -23,6 +23,7 @@ class TaskListPage extends Page {
         excludedAnswer(required: false)  { $('#excludedAnswer') }
         unsuitableAnswer(required: false)  { $('#unsuitableAnswer') }
         crdTimeAnswer(required: false)  { $('#crdTimeAnswer') }
+        exceptionalCircumstanceAnswer(required: false)  { $('#exceptionalCircumstances') }
 
         seriousOffenceAnswer(required: false)  { $('#seriousOffenceAnswer') }
         onRemandAnswer(required: false)  { $('#onRemandAnswer') }

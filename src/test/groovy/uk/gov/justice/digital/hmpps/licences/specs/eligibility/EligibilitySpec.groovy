@@ -4,6 +4,7 @@ import geb.spock.GebReportingSpec
 import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.EligibilityExceptionalCircumstancesPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.EligibilityExclusionPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.EligibilityTimeCheckPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.EligibilitySuitabilityPage
@@ -163,12 +164,27 @@ class EligibilitySpec extends GebReportingSpec {
         unsuitableReasonsItem(0).check()
         find('#continueBtn').click()
 
+        then: 'I see the exceptional circumstances page'
+        at EligibilityExceptionalCircumstancesPage
+
+        when: 'I choose an answer'
+        exceptionalCircumstancesRadios.checked = 'Yes'
+        find('#continueBtn').click()
+
+        then: 'I am taken to the crd time page'
+        at EligibilityTimeCheckPage
+
+        when: 'I choose an answer'
+        crdTimeRadios.checked = 'No'
+        find('#continueBtn').click()
+
         then: 'I am taken to the task list'
         at TaskListPage
 
-        and: 'Subsequent answers are NA'
+        and: 'Subsequent answers are as answered'
         excludedAnswer.text() == 'No'
         unsuitableAnswer.text() == 'Yes'
-        crdTimeAnswer.text() == 'N/A'
+        exceptionalCircumstanceAnswer.text() == 'Yes'
+        crdTimeAnswer.text() == 'No'
     }
 }
