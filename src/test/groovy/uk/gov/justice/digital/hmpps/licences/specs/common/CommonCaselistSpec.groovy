@@ -114,11 +114,11 @@ class CommonCaselistSpec extends GebReportingSpec {
 
     def 'Search for offenders is not available when not RO'() {
 
-        when: 'I view the case list as an RO'
+        when: 'I view the case list and I am not an RO'
         actions.logIn(user)
         via CaselistPage, 'ready'
 
-        then: 'I see the search for an offender option'
+        then: 'I do not see the search for an offender option'
         !searchOffenderControl.isDisplayed()
 
         where:
