@@ -184,18 +184,8 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         find('#continueBtn').click()
 
-        then: 'I see the review page'
-        at ReviewCurfewAddressPage
-
-        and: 'I see the expected data for the address'
-        curfew.address.line1 == 'Address 1'
-        curfew.address.line2  == 'Address 2'
-        curfew.address.town  == 'Town'
-        curfew.address.postCode  == 'S1 4JQ'
-        curfew.address.telephone  == '001'
-
-        curfew.occupier.name  == 'Name'
-        curfew.occupier.relationship  == 'Relation'
+        then: 'I see the task list'
+        at TaskListPage
     }
 
     def 'I can enter extra residents to addresses' () {
@@ -221,59 +211,22 @@ class ProposedAddressSpec extends GebReportingSpec {
         at TaskListPage
     }
 
-    def 'Input is validated on the review page' () {
-
-        given: 'On Curfew Address page'
-        to ProposedAddressCurfewAddressPage, 'A0001XX'
-
-        when: 'I omit a required field'
-        address.preferred.line1.value('')
-        find('#continueBtn').click()
-
-        then: 'I see the review page'
-        at ReviewCurfewAddressPage
-
-        and: 'I see the error details'
-        errors.heading.isDisplayed()
-        $('#address1-curfew-error').isDisplayed()
-
-        when: 'I click on the correct address link'
-        correctAddressLink.click()
-
-        then: 'I see the Curfew Address page'
-        at ProposedAddressCurfewAddressPage
-
-        when: 'I enter a value for the missed field'
-        address.preferred.line1.value('Address 1')
-        find('#continueBtn').click()
-
-        then: 'I see the review page with no errors'
-        at ReviewCurfewAddressPage
-        !errors.heading.isDisplayed()
-        !$('#address1-curfew-error').isDisplayed()
-
-        and: 'Can click to continue'
-        find('#continueBtn').click()
-
-        then: 'I see the send page'
-        at SendPage
-    }
 
     def 'I can submit the address to the RO' () {
 
-        given: 'On the send page'
-        at SendPage
+        given: 'On the task list page'
+        at TaskListPage
 
-        when: 'I can click to submit'
+        when: 'I can click to continue to submission'
         find('#continueBtn').click()
 
         then: 'I move to confirmation page'
-        at SentPage
+        at SendPage
 
         when: 'I click return to case list'
         find('#backBtn').click()
 
-        then: 'I return to the case list'
-        at CaselistPage
+        then: 'I return to the task list'
+        at TaskListPage
     }
 }
