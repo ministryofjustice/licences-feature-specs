@@ -239,7 +239,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         at ReviewCurfewAddressPage
 
         and: 'I see the error details'
-        errorSummary.isDisplayed()
+        errors.heading.isDisplayed()
         $('#address1-curfew-error').isDisplayed()
 
         when: 'I click on the correct address link'
@@ -254,7 +254,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         then: 'I see the review page with no errors'
         at ReviewCurfewAddressPage
-        !errorSummary.isDisplayed()
+        !errors.heading.isDisplayed()
         !$('#address1-curfew-error').isDisplayed()
 
         and: 'Can click to continue'
