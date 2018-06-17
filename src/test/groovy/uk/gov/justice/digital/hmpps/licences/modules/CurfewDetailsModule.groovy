@@ -20,7 +20,6 @@ class CurfewDetailsModule extends Module {
         occupier {
             [
                     name        : $("#occupierName-curfew").text(),
-                    age         : $("#occupierAge-curfew").text(),
                     relationship: $("#occupierRelation-curfew").text(),
             ]
         }

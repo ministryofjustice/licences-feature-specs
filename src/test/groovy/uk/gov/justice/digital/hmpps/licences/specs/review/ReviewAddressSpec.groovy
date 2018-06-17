@@ -40,7 +40,6 @@ class ReviewAddressSpec extends GebReportingSpec {
 
         and: 'I see the occupier details'
         curfew.occupier.name == 'Main Occupier'
-        curfew.occupier.age == '21'
         curfew.occupier.relationship == 'Brother'
 
         and: 'I see the other residents details'

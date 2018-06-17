@@ -178,7 +178,6 @@ class ProposedAddressSpec extends GebReportingSpec {
         address.preferred.telephone .value('001')
 
         occupier.preferred.name.value('Name')
-        occupier.preferred.age.value('11')
         occupier.preferred.relationship.value('Relation')
 
         cautionedRadios.checked = 'No'
@@ -196,7 +195,6 @@ class ProposedAddressSpec extends GebReportingSpec {
         curfew.address.telephone  == '001'
 
         curfew.occupier.name  == 'Name'
-        curfew.occupier.age  == '11'
         curfew.occupier.relationship  == 'Relation'
     }
 
