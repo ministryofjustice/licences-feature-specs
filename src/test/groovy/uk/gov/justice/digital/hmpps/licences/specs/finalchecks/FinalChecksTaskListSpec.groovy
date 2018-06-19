@@ -91,8 +91,8 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 9 task buttons'
-        taskListActions.size() == 9
+        then: 'I see 8 task buttons'
+        taskListActions.size() == 8
 
         and: 'The tasks for reviewing RO input have View buttons'
         taskListActions.take(5).every { it.text() == 'View' }
@@ -112,8 +112,8 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see 8 task buttons'
-        taskListActions.size() == 8
+        then: 'I see 9 task buttons'
+        taskListActions.size() == 9
 
         and: 'The submit task has a Continue button'
         taskListAction(tasks.submit).text() == 'Continue'
