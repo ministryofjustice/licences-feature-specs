@@ -217,11 +217,8 @@ class ProposedAddressSpec extends GebReportingSpec {
         and: 'I click to save and continue'
         find('#continueBtn').click()
 
-        then: 'I see the values on the review page'
-        at ReviewCurfewAddressPage
-        curfew.residents[0].name == 'Name'
-        curfew.residents[0].age == '11'
-        curfew.residents[0].relationship == 'Relation'
+        then: 'I see the task list'
+        at TaskListPage
     }
 
     def 'Input is validated on the review page' () {
