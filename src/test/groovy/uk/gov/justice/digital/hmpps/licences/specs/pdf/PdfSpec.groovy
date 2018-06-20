@@ -77,7 +77,7 @@ class PdfSpec extends GebReportingSpec {
         testData.loadLicence('decision/approved-missing')
 
         when: 'I begin creating the PDF licence'
-        to CreatePdfStartPage, 'A0001XX'
+        to CreatePdfStartPage, 'hdc_ap_pss', 'A0001XX'
 
         then: 'I see some missing details'
         missingDetails*.text().containsAll([
