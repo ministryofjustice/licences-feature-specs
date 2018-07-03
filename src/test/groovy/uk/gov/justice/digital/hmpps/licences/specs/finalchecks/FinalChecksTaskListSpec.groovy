@@ -180,7 +180,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         when: 'I view the tasklist'
         to TaskListPage, 'A0001XX'
 
-        then: 'I see only address, final checks, postpone, submit'
-        taskListActions.size() == 4
+        then: 'I see only address, postpone, submit'
+        taskListActions.size() == 3
     }
 }
