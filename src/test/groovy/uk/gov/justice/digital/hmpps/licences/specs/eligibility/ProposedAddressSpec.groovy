@@ -145,6 +145,8 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         when: 'I select yes'
         decisionRadios.checked = 'Yes'
+        proposedTownInput = 'Town'
+        proposedCountyInput = 'County'
         find('#continueBtn').click()
 
         then: 'I see the task list'
