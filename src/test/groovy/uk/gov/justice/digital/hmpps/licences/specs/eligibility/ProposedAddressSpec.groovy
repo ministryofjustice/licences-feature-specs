@@ -219,7 +219,13 @@ class ProposedAddressSpec extends GebReportingSpec {
         given: 'On the task list page'
         at TaskListPage
 
-        when: 'I can click to continue to submission'
+        when: 'I click to continue to submission'
+        find('#continueBtn').click()
+
+        then: 'I see the review page'
+        at ReviewCurfewAddressPage
+
+        when: 'I click to continue'
         find('#continueBtn').click()
 
         then: 'I move to confirmation page'
