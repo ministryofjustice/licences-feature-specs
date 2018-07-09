@@ -19,7 +19,7 @@ class SigninPage extends Page{
             assert $('form').username == user
             assert $('form').password == 'password123456'
 
-            assert $('#submit').text() == 'Login'
+            assert $('#submit').text() == 'Sign in'
 
             $('#submit').click()
         }
