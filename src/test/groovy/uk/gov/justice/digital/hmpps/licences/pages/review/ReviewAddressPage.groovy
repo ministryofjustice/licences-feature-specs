@@ -16,5 +16,10 @@ class ReviewAddressPage extends Page {
         header { module(HeaderModule) }
 
         curfew { module(CurfewDetailsModule) }
+
+        withdrawConsent(required: false) {$('#withdrawConsent')}
+        withdrawAddress(required: false) {$('#withdrawAddress')}
+
+        errorSummary(required: false) {$('#error-summary-heading')}
     }
 }

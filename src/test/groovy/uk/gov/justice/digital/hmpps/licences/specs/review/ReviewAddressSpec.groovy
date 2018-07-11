@@ -4,7 +4,9 @@ import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewAddressPage
+import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksAddressWithdrawnPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -77,5 +79,58 @@ class ReviewAddressSpec extends GebReportingSpec {
         reason           | sample                                    | answers
         'no consent'     | 'assessment/address-rejected'             | [consent: 'No', electricity: null, homeVisit: null, safety: null, cautioned: 'No']
         'no electricity' | 'assessment/address-rejected-electricity' | [consent: 'Yes', electricity: 'No', homeVisit: null, safety: null, cautioned: 'No']
+    }
+
+    def 'Address can be withdrawn'() {
+
+        given: 'A licence ready for final checks'
+        testData.loadLicence('review/normal')
+
+        when: 'I view the page'
+        to ReviewAddressPage, 'A0001XX'
+
+        then: 'I see the withdrawal buttons'
+        withdrawAddress.isDisplayed()
+
+        when: 'I click one of the buttons'
+        withdrawAddress.click()
+
+        then: 'I see the address review page'
+        at FinalChecksAddressWithdrawnPage
+
+        when: 'I select not to add a new address'
+        addAddressRadios = "No"
+        find('#continueBtn').click()
+
+        then: 'I see the ReviewAddressPage'
+        at ReviewAddressPage
+
+        and: 'I see that the address has been withdrawn'
+        errorSummary.text().contains('withdrawn this address')
+    }
+
+    def 'A new address can be withdrawn'() {
+
+        given: 'A licence ready for final checks'
+        testData.loadLicence('review/normal')
+
+        when: 'I view the page'
+        to ReviewAddressPage, 'A0001XX'
+
+        then: 'I see the withdrawal buttons'
+        withdrawAddress.isDisplayed()
+
+        when: 'I click one of the buttons'
+        withdrawAddress.click()
+
+        then: 'I see the address review page'
+        at FinalChecksAddressWithdrawnPage
+
+        when: 'I select not to add a new address'
+        addAddressRadios = "Yes"
+        find('#continueBtn').click()
+
+        then: 'I see the ReviewAddressPage'
+        at ProposedAddressCurfewAddressPage
     }
 }
