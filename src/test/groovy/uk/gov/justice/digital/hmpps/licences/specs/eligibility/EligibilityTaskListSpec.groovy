@@ -100,7 +100,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         to TaskListPage, 'A0001XX'
 
         then: 'I see the change answers link'
-        eligibilityCheckUpdateLink.text() == 'Change these answers'
+        eligibilityCheckUpdateLink.text() == 'Change'
     }
 
     def 'Eligibility answers shown after eligibility check done'() {
