@@ -4,6 +4,7 @@ import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
+import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksAddressWithdrawnPage
@@ -86,7 +87,7 @@ class ReviewAddressSpec extends GebReportingSpec {
         given: 'A licence ready for final checks'
         testData.loadLicence('review/normal')
 
-        when: 'I view the page'
+        when: 'I view the address review page'
         to ReviewAddressPage, 'A0001XX'
 
         then: 'I see the withdrawal buttons'
@@ -95,17 +96,21 @@ class ReviewAddressSpec extends GebReportingSpec {
         when: 'I click one of the buttons'
         withdrawAddress.click()
 
-        then: 'I see the address review page'
+        then: 'I see the address withdrawn page'
         at FinalChecksAddressWithdrawnPage
 
         when: 'I select not to add a new address'
         addAddressRadios = "No"
         find('#continueBtn').click()
 
-        then: 'I see the ReviewAddressPage'
-        at ReviewAddressPage
+        then: 'I go to the tasklist'
+        at TaskListPage
 
-        and: 'I see that the address has been withdrawn'
+        when: 'I click to go into the address task'
+        taskListAction('Proposed curfew address').click()
+
+        then: 'I see that the address has been withdrawn'
+        at ReviewAddressPage
         errorSummary.text().contains('withdrawn this address')
     }
 
@@ -114,7 +119,7 @@ class ReviewAddressSpec extends GebReportingSpec {
         given: 'A licence ready for final checks'
         testData.loadLicence('review/normal')
 
-        when: 'I view the page'
+        when: 'I view the address review page'
         to ReviewAddressPage, 'A0001XX'
 
         then: 'I see the withdrawal buttons'
@@ -123,14 +128,14 @@ class ReviewAddressSpec extends GebReportingSpec {
         when: 'I click one of the buttons'
         withdrawAddress.click()
 
-        then: 'I see the address review page'
+        then: 'I see the address withdrawn page'
         at FinalChecksAddressWithdrawnPage
 
-        when: 'I select not to add a new address'
+        when: 'I select to add a new address'
         addAddressRadios = "Yes"
         find('#continueBtn').click()
 
-        then: 'I see the ReviewAddressPage'
+        then: 'I see to the ProposedAddressCurfewAddressPage'
         at ProposedAddressCurfewAddressPage
     }
 }
