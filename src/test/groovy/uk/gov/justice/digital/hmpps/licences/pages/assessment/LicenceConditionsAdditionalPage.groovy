@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.pages.assessment
 
 import geb.Page
 import geb.module.Checkbox
+import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.BespokeConditionsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
@@ -23,6 +24,7 @@ class LicenceConditionsAdditionalPage extends Page {
             $("input", value: conditionValue, name: "additionalConditions").module(Checkbox)
         }
 
+        addBespokeRadios { $(name: "bespokeDecision").module(RadioButtons) }
         bespoke { module(BespokeConditionsModule) }
     }
 }

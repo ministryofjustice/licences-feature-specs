@@ -42,7 +42,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         conditions.additional[4].approved.contains('Approved')
         conditions.additional[4].content.contains('bespoke text 1')
 
-        conditions.additional[5].approved.contains('Not approved')
+        conditions.additional[5].approved.contains('Say if the PPCS approved the bespoke conditions')
         conditions.additional[6].approved.contains('Not approved')
     }
 
