@@ -30,7 +30,7 @@ class CaselistSpec extends GebReportingSpec {
     def 'Shows correct status message when #type'() {
 
         given: 'a licence exists in a particular state'
-        testData.loadLicence(sample)ded
+        testData.loadLicence(sample)
 
         when: 'I view the caselist'
         to CaselistPage
