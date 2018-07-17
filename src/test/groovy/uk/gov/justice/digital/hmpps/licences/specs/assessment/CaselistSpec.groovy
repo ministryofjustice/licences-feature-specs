@@ -30,7 +30,7 @@ class CaselistSpec extends GebReportingSpec {
     def 'Shows correct status message when #type'() {
 
         given: 'a licence exists in a particular state'
-        testData.loadLicence(sample)
+        testData.loadLicence(sample)ded
 
         when: 'I view the caselist'
         to CaselistPage
@@ -40,7 +40,7 @@ class CaselistSpec extends GebReportingSpec {
 
         where:
         type        | sample                 | status
-        'Unstarted' | 'assessment/unstarted' | 'Awaiting assessment'
+        'Unstarted' | 'assessment/unstarted' | 'Ready to check'
         'Doing'     | 'assessment/reporting' | 'Assessment ongoing'
         'Done'      | 'assessment/done'      | 'Assessment ongoing'
     }
@@ -58,9 +58,9 @@ class CaselistSpec extends GebReportingSpec {
         find('a.button').text() == label
 
         where:
-        status                | label   | sample
-        'Awaiting assessment' | 'Start' | 'assessment/unstarted'
-        'Assessment ongoing'  | 'View'  | 'assessment/reporting'
+        status               | label   | sample
+        'Ready to check'     | 'Start' | 'assessment/unstarted'
+        'Assessment ongoing' | 'View'  | 'assessment/reporting'
     }
 
     @Unroll

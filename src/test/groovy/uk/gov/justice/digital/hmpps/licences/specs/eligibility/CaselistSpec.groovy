@@ -41,11 +41,11 @@ class CaselistSpec extends GebReportingSpec {
         hdcEligible[0].find('.status').text() == status
 
         where:
-        type         | sample                 | status                       | tab
-        'Unstarted'  | 'eligibility/started'  | 'Eligibility checks ongoing' | 'ready'
-        'Excluded'   | 'eligibility/excluded' | 'Excluded (Ineligible)'      | 'ready'
-        'Opted out'  | 'eligibility/optedOut' | 'Opted out'                  | 'optedOut'
-        'Sent to RO' | 'assessment/unstarted' | 'Submitted to RO'            | 'submittedRo'
+        type         | sample                 | status                     | tab
+        'Unstarted'  | 'eligibility/started'  | 'Checking eligibility'     | 'ready'
+        'Excluded'   | 'eligibility/excluded' | 'Excluded (Ineligible)'    | 'ready'
+        'Opted out'  | 'eligibility/optedOut' | 'Opted out'                | 'optedOut'
+        'Sent to RO' | 'assessment/unstarted' | 'With responsible officer' | 'submittedRo'
     }
 
     @Unroll
