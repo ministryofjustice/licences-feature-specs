@@ -152,6 +152,7 @@ class LicenceConditionsSpec extends GebReportingSpec {
         to LicenceConditionsAdditionalPage, 'A0001XX'
 
         and: 'I enter a bespoke condition'
+        addBespokeRadios = 'Yes'
         bespoke.conditions[0].input << 'Bespoke 1'
 
         and: 'I save and continue'
