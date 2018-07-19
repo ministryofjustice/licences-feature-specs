@@ -36,7 +36,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         at LicenceDetailsPage
 
         then: 'I see the expected offender details data'
-        offender.details.name == 'Andrews, Mark'
+        offender.details.name == 'Mark Andrews'
         offender.details.nomisId == 'A0001XX'
         offender.details.dob == '22/10/1989'
         offender.details.roName == 'Jessy Jones'

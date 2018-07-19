@@ -57,7 +57,7 @@ class CommonCaselistSpec extends GebReportingSpec {
         via CaselistPage, 'ready'
 
         then: 'I see the expected data for the prisoner'
-        offenders.summary[0].name == 'Andrews, Mark'
+        offenders.summary[0].name == 'Mark Andrews'
         offenders.summary[0].nomisId == 'A0001XX'
         offenders.summary[0].location == 'A-1-1 - Licence Auto Test Prison'
         offenders.summary[0].hdced == '13/07/2019'
