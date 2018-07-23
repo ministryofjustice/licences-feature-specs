@@ -51,7 +51,7 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         to TaskListPage, 'A0001XX'
 
         then: 'I see the right number of task buttons'
-        taskListActions.size() == 6
+        taskListActions.size() == 7
 
         and: 'The tasks for reviewing RO and CA input have View buttons'
         taskListActions.take(5).every { it.text() == 'View' }
@@ -70,6 +70,6 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         to TaskListPage, 'A0001XX'
 
         then: 'I see only address, final checks, decision'
-        taskListActions.size() == 2 // final checks has no button
+        taskListActions.size() == 3 // final checks has no button
     }
 }
