@@ -167,9 +167,9 @@ class TaskListSpec extends GebReportingSpec {
         then: 'I see the submit to CA page'
         at SendPage
 
-        and: 'I see contact details for the prison'
+        and: 'I see contact details for the prison (only first BUS phone shown)'
         prison.text() == 'HMP Licence Test Prison'
-        phones.size() == 2
+        phones.size() == 1
 
         and: 'I can click to submit'
         find('#continueBtn').click()
