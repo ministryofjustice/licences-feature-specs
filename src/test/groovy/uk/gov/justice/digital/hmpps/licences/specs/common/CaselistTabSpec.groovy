@@ -71,10 +71,9 @@ class CaselistTabSpec extends GebReportingSpec {
         tab           | count
         'ready'       | 13
         'submittedRo' | 2
-        'finalChecks' | 2
+        'reviewCase'  | 2
         'submittedDm' | 2
-        'optedOut'    | 1
-        'decided'     | 2
+        'create'      | 1
     }
 
     @Unroll
@@ -91,11 +90,11 @@ class CaselistTabSpec extends GebReportingSpec {
         hdcEligible.size() == count
 
         where:
-        tab           | count
-        'ready'       | 2
-        'finalChecks' | 2
-        'submittedDm' | 2
-        'active'      | 2
+        tab          | count
+        'ready'      | 1
+        'checking'   | 1
+        'withPrison' | 4
+        'approved'   | 1
     }
 
     @Unroll
@@ -112,9 +111,9 @@ class CaselistTabSpec extends GebReportingSpec {
         hdcEligible.size() == count
 
         where:
-        tab        | count
-        'ready'    | 2
-        'approved' | 1
-        'refused'  | 1
+        tab         | count
+        'ready'     | 2
+        'approved'  | 1
+        'postponed' | 1
     }
 }

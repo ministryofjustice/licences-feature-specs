@@ -44,7 +44,6 @@ class CaselistSpec extends GebReportingSpec {
         type         | sample                 | status                     | tab
         'Unstarted'  | 'eligibility/started'  | 'Checking eligibility'     | 'ready'
         'Excluded'   | 'eligibility/excluded' | 'Excluded (Ineligible)'    | 'ready'
-        'Opted out'  | 'eligibility/optedOut' | 'Opted out'                | 'optedOut'
         'Sent to RO' | 'assessment/unstarted' | 'With responsible officer' | 'submittedRo'
     }
 
@@ -63,8 +62,8 @@ class CaselistSpec extends GebReportingSpec {
         where:
         status         | label   | sample                  | tab
         'Not started'  | 'Start' | 'eligibility/unstarted' | 'ready'
-        'Final checks' | 'Start' | 'finalchecks/unstarted' | 'finalChecks'
-        'Postponed'    | 'View'  | 'finalchecks/postponed' | 'finalChecks'
+        'Final checks' | 'Start' | 'finalchecks/unstarted' | 'reviewCase'
+        'Postponed'    | 'View'  | 'finalchecks/postponed' | 'reviewCase'
     }
 
     @Unroll
@@ -84,9 +83,9 @@ class CaselistSpec extends GebReportingSpec {
         'UNSTARTED'     | 'unstarted/unstarted'   | '/taskList'       | 'ready'
         'ELIGIBILITY'   | 'eligibility/unstarted' | '/taskList'       | 'ready'
         'PROCESSING_RO' | 'assessment/unstarted'  | '/review/licence' | 'submittedRo'
-        'PROCESSING_CA' | 'finalchecks/unstarted' | '/taskList'       | 'finalChecks'
+        'PROCESSING_CA' | 'finalchecks/unstarted' | '/taskList'       | 'reviewCase'
         'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'submittedDm'
-        'DECIDED'       | 'decision/approved'     | '/review/licence' | 'decided'
+        'DECIDED'       | 'decision/approved'     | '/taskList' | 'create'
     }
 
     def 'Review button shows licence review with return to caselist option'() {

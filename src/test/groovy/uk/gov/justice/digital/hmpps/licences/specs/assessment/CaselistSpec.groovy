@@ -33,16 +33,16 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        to CaselistPage
+        to CaselistPage, tab
 
         then: 'The appropriate status is shown'
         hdcEligible[0].find('.status').text() == status
 
         where:
-        type        | sample                 | status
-        'Unstarted' | 'assessment/unstarted' | 'Ready to check'
-        'Doing'     | 'assessment/reporting' | 'Assessment ongoing'
-        'Done'      | 'assessment/done'      | 'Assessment ongoing'
+        type        | sample                 | status               | tab
+        'Unstarted' | 'assessment/unstarted' | 'Ready to check'     | 'ready'
+        'Doing'     | 'assessment/reporting' | 'Assessment ongoing' | 'checking'
+        'Done'      | 'assessment/done'      | 'Assessment ongoing' | 'checking'
     }
 
     @Unroll
@@ -52,15 +52,15 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        via CaselistPage
+        via CaselistPage, tab
 
         then: 'Button label depends on status'
         find('a.button').text() == label
 
         where:
-        status               | label   | sample
-        'Ready to check'     | 'Start' | 'assessment/unstarted'
-        'Assessment ongoing' | 'View'  | 'assessment/reporting'
+        status               | label   | sample                 | tab
+        'Ready to check'     | 'Start' | 'assessment/unstarted' | 'ready'
+        'Assessment ongoing' | 'View'  | 'assessment/reporting' | 'checking'
     }
 
     @Unroll
@@ -96,8 +96,8 @@ class CaselistSpec extends GebReportingSpec {
         where:
         stage           | sample                  | target            | tab
         'PROCESSING_RO' | 'assessment/unstarted'  | '/taskList'       | 'ready'
-        'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence' | 'finalChecks'
-        'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'submittedDm'
-        'DECIDED'       | 'decision/approved'     | '/review/licence' | 'active'
+        'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence' | 'withPrison'
+        'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'withPrison'
+        'DECIDED'       | 'decision/approved'     | '/review/licence' | 'approved'
     }
 }
