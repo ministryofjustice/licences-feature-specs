@@ -39,10 +39,10 @@ class CaselistSpec extends GebReportingSpec {
         hdcEligible[0].find('.status').text() == status
 
         where:
-        type        | sample               | status              | tab
-        'Unstarted' | 'decision/unstarted' | 'Awaiting decision' | 'ready'
-        'Approved'  | 'decision/approved'  | 'Approved'          | 'approved'
-        'Refused'   | 'decision/refused'   | 'Refused'           | 'refused'
+        type        | sample                  | status              | tab
+        'Unstarted' | 'decision/unstarted'    | 'Awaiting decision' | 'ready'
+        'Approved'  | 'decision/approved'     | 'Approved'          | 'approved'
+        'Postponed' | 'finalchecks/postponed' | 'Postponed'         | 'postponed'
     }
 
     @Unroll
@@ -58,10 +58,9 @@ class CaselistSpec extends GebReportingSpec {
         find('a.button').text() == label
 
         where:
-        status              | label   | sample               | tab
-        'Awaiting decision' | 'Start' | 'decision/unstarted' | 'ready'
-        'Approved'          | 'View'  | 'decision/approved'  | 'approved'
-        'Refused'           | 'View'  | 'decision/refused'   | 'refused'
+        status              | label   | sample                  | tab
+        'Awaiting decision' | 'Start' | 'decision/unstarted'    | 'ready'
+        'Approved'          | 'View'  | 'decision/approved'     | 'approved'
     }
 
     @Unroll
@@ -82,6 +81,7 @@ class CaselistSpec extends GebReportingSpec {
         'ELIGIBILITY'   | 'eligibility/unstarted'
         'PROCESSING_RO' | 'assessment/unstarted'
         'PROCESSING_CA' | 'finalchecks/unstarted'
+        'PROCESSING_CA' | 'finalchecks/postponed'
     }
 
     @Unroll
