@@ -86,7 +86,7 @@ class CaselistSpec extends GebReportingSpec {
         'PROCESSING_RO' | 'assessment/unstarted'  | '/review/licence' | 'submittedRo'
         'PROCESSING_CA' | 'finalchecks/unstarted' | '/taskList'       | 'finalChecks'
         'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'submittedDm'
-        'DECIDED'       | 'decision/approved'     | '/review/licence' | 'decided'
+        'DECIDED'       | 'decision/approved'     | '/taskList'       | 'decided'
     }
 
     def 'Review button shows licence review with return to caselist option'() {
