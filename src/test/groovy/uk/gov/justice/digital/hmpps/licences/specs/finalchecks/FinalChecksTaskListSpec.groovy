@@ -51,24 +51,21 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     def 'Shows details of the prisoner (from nomis)'() {
 
         when: 'I view the task list page'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'I see the expected offender details data'
         offender.details.name == 'Mark Andrews'
-        offender.details.nomisId == 'A0001XX'
+        offender.details.nomisId == 'A5001DY'
         offender.details.dob == '22/10/1989'
         offender.details.roName == 'Jessy Jones'
-        offender.details.externalLocation == 'Licence Auto Test Prison'
+        offender.details.externalLocation == 'HMP Albany'
         offender.details.offences == "Cause exceed max permitted wt of artic' vehicle - No of axles/configuration (No MOT/Manufacturer's Plate)"
         offender.details.crd == '15/10/2019'
-        offender.details.hdced == '13/07/2019'
-        offender.details.photoDate == 'Uploaded: 05/07/2017'
-
-//        Pending stage data
-//        offender.details.internalLocation == 'A-1-1'
-//        offender.details.sed == '01/08/2019'
-//        offender.details.led == '02/08/2019'
-//        offender.details.pssed == '03/08/2019'
+        offender.details.hdced == '23/08/2019'
+        offender.details.internalLocation == 'T-T1-001'
+        offender.details.sed == '24/05/2020'
+        offender.details.led == '02/05/2020'
+        offender.details.pssed == '15/10/2020'
     }
 
     def 'Back link goes back to case list'() {
@@ -89,7 +86,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/final-checks')
 
         when: 'I view the page'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'I see 8 task buttons'
         taskListActions.size() == 8
@@ -110,7 +107,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/final-checks-done')
 
         when: 'I view the page'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'I see 9 task buttons'
         taskListActions.size() == 9
@@ -123,7 +120,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     def '#task button links to #page'() {
 
         given: 'Viewing task list'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         when: 'I start the task'
         taskListAction(task).click()
@@ -151,7 +148,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     def 'I can submit the licence to the DM'() {
 
         given: 'At task list'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         when: 'I press submit to decision maker'
         taskListAction(tasks.submit).click()
@@ -178,7 +175,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/address-rejected')
 
         when: 'I view the tasklist'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'I see only address, postpone, submit'
         taskListActions.size() == 3

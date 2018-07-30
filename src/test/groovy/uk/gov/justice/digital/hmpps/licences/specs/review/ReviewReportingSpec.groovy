@@ -31,7 +31,7 @@ class ReviewReportingSpec extends GebReportingSpec {
         testData.loadLicence('review/normal')
 
         when: 'I view the page'
-        to ReviewReportingPage, 'A0001XX'
+        to ReviewReportingPage, 'A5001DY'
 
         then: 'I see the reporting details'
 

@@ -28,7 +28,7 @@ class CurfewHoursSpec extends GebReportingSpec {
     def 'Curfew hours initially shows defaults of 7pm to 7am' () {
 
         when: 'I view the curfew hours page'
-        to CurfewHoursPage, 'A0001XX'
+        to CurfewHoursPage, 'A5001DY'
 
         then: 'I see the default values'
         $('#mondayFrom').value() == '19:00'
@@ -44,7 +44,7 @@ class CurfewHoursSpec extends GebReportingSpec {
         testData.loadLicence('assessment/address-approved-curfew-hours')
 
         when: 'I view the curfew hours page'
-        to CurfewHoursPage, 'A0001XX'
+        to CurfewHoursPage, 'A5001DY'
 
         then: 'I see the save values'
         $('#mondayFrom').value() == '21:22'

@@ -62,5 +62,3 @@ duplication.
 
 Automated tests employ user accounts specific for automated testing eg CA_USER_TEST.
 
-They also use a naming convention to identify test data exclusive to automated tests. Any test data for
-an automated test should use a Nomis ID / offender number ending with 'XX' eg `A0001XX` 

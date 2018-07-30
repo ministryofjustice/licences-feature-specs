@@ -24,11 +24,6 @@ class LicencesApi {
 
     def create(nomisId, sample) {
 
-        if (!nomisId.endsWith('XX')) {
-            println 'Nomis ID must end with XX for tests'
-            return
-        }
-
         println "create $sample"
         println "create/$nomisId"
 

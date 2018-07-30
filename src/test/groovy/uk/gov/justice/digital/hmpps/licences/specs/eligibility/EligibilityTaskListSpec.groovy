@@ -32,24 +32,21 @@ class EligibilityTaskListSpec extends GebReportingSpec {
     def 'Shows details of the prisoner (from nomis)'() {
 
         when: 'I view the task list page'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'I see the expected offender details data'
         offender.details.name == 'Mark Andrews'
-        offender.details.nomisId == 'A0001XX'
+        offender.details.nomisId == 'A5001DY'
         offender.details.dob == '22/10/1989'
         offender.details.roName == 'Jessy Jones'
-        offender.details.externalLocation == 'Licence Auto Test Prison'
+        offender.details.externalLocation == 'HMP Albany'
         offender.details.offences == "Cause exceed max permitted wt of artic' vehicle - No of axles/configuration (No MOT/Manufacturer's Plate)"
         offender.details.crd == '15/10/2019'
-        offender.details.hdced == '13/07/2019'
-        offender.details.photoDate == 'Uploaded: 05/07/2017'
-
-//        Pending stage data
-//        offender.details.internalLocation == 'A-1-1'
-//        offender.details.sed == '01/08/2019'
-//        offender.details.led == '02/08/2019'
-//        offender.details.pssed == '03/08/2019'
+        offender.details.hdced == '23/08/2019'
+        offender.details.internalLocation == 'T-T1-001'
+        offender.details.sed == '24/05/2020'
+        offender.details.led == '02/05/2020'
+        offender.details.pssed == '15/10/2020'
     }
 
     def 'Back link goes back to case list'() {
@@ -70,7 +67,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         testData.loadLicence('eligibility/unstarted')
 
         when: 'I view the page'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'I see a start button for the eligibility check'
         eligibilityCheckStartButton.value() == 'Start'
@@ -97,7 +94,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         testData.loadLicence('eligibility/done')
 
         when: 'I view the tasklist page'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'I see the change answers link'
         eligibilityCheckUpdateLink.text() == 'Change'
@@ -121,7 +118,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
 
         when: 'Viewing the tasklist'
         testData.loadLicence("eligibility/${condition}")
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'The address check start button is not shown'
         !taskListAction('Proposed address / opt out request').isDisplayed()
@@ -134,7 +131,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
 
         when: 'Viewing the tasklist'
         testData.loadLicence("eligibility/eligible")
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'The address check start button is shown'
         taskListAction('Proposed address / opt out request').isDisplayed()

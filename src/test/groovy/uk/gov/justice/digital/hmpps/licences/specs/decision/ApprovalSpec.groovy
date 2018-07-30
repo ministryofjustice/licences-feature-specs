@@ -32,7 +32,7 @@ class ApprovalSpec extends GebReportingSpec {
     def 'Starts with nothing selected because there is no default'() {
 
         when: 'I view the approval page'
-        to ApprovalReleasePage, 'A0001XX'
+        to ApprovalReleasePage, 'A5001DY'
 
         then: 'Neither radio option is selected'
         releaseRadios.checked == null
@@ -69,7 +69,7 @@ class ApprovalSpec extends GebReportingSpec {
         testData.loadLicence('decision/approved')
 
         when: 'I view the approval page'
-        to ApprovalReleasePage, 'A0001XX'
+        to ApprovalReleasePage, 'A5001DY'
 
         then: 'I see the previous values'
         releaseRadios.checked == 'Yes'
