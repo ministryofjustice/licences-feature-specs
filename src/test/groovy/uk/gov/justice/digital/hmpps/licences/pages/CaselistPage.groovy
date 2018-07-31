@@ -6,11 +6,11 @@ import uk.gov.justice.digital.hmpps.licences.modules.OffenderSummaryModule
 
 class CaselistPage extends Page {
 
-    static at = {
-        $("#pageHeading").text() == 'HDC eligible offenders'
-    }
-
     static url = '/caseList'
+
+    static at = {
+        browser.currentUrl.contains(url)
+    }
 
     static content = {
 
