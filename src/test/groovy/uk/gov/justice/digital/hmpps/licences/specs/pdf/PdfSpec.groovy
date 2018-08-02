@@ -37,7 +37,7 @@ class PdfSpec extends GebReportingSpec {
 
         when: 'I log in and view the licence details'
         actions.logIn(user)
-        to ReviewLicencePage, 'A0001XX'
+        to ReviewLicencePage, 'A5001DY'
 
         then: 'There is no option to create PDF'
         !createLicenceControl.isDisplayed()
@@ -53,7 +53,7 @@ class PdfSpec extends GebReportingSpec {
         testData.loadLicence('decision/refused')
 
         when: 'I view the licence details'
-        to ReviewLicencePage, 'A0001XX'
+        to ReviewLicencePage, 'A5001DY'
 
         then: 'There is no option to create PDF'
         !createLicenceControl.isDisplayed()
@@ -65,7 +65,7 @@ class PdfSpec extends GebReportingSpec {
         testData.loadLicence('decision/approved')
 
         when: 'I view the licence details'
-        to ReviewLicencePage, 'A0001XX'
+        to ReviewLicencePage, 'A5001DY'
 
         then: 'There is an option to create PDF'
         createLicenceControl.isDisplayed()
@@ -77,12 +77,10 @@ class PdfSpec extends GebReportingSpec {
         testData.loadLicence('decision/approved-missing')
 
         when: 'I begin creating the PDF licence'
-        to CreatePdfStartPage, 'hdc_ap_pss', 'A0001XX'
+        to CreatePdfStartPage, 'hdc_ap_pss', 'A5001DY'
 
         then: 'I see some missing details'
         missingDetails*.text().containsAll([
-                'LED',
-                'TUSED',
                 'Reporting at',
                 'Reporting on',
                 'Monitoring company telephone number'

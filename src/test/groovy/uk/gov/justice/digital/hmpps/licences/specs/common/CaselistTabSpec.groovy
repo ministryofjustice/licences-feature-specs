@@ -21,7 +21,7 @@ class CaselistTabSpec extends GebReportingSpec {
 
     @Shared
     def licences = [
-            'A0001XX': 'eligibility/unstarted',
+            'A5001DY': 'eligibility/unstarted',
             'A0002XX': 'assessment/unstarted',
             'A0003XX': 'finalchecks/unstarted',
             'A0004XX': 'finalchecks/postponed',

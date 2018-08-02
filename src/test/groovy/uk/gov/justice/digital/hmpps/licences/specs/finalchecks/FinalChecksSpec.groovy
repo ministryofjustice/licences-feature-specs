@@ -43,7 +43,7 @@ class FinalChecksSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/unstarted')
 
         when: 'I view the serious offence page'
-        to FinalChecksSeriousOffencePage, 'A0001XX'
+        to FinalChecksSeriousOffencePage, 'A5001DY'
 
         then: 'Neither radio option is selected'
         seriousOffenceRadios.checked == null
@@ -55,7 +55,7 @@ class FinalChecksSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/serious-offence')
 
         when: 'I view the serious offence page'
-        to FinalChecksSeriousOffencePage, 'A0001XX'
+        to FinalChecksSeriousOffencePage, 'A5001DY'
 
         then: 'I see the previous values'
         seriousOffenceRadios.checked == 'Yes'
@@ -67,7 +67,7 @@ class FinalChecksSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/serious-offence')
 
         when: 'I view the serious offence page'
-        to FinalChecksSeriousOffencePage, 'A0001XX'
+        to FinalChecksSeriousOffencePage, 'A5001DY'
 
         and: 'I continue'
         find('#continueBtn').click()
@@ -113,7 +113,7 @@ class FinalChecksSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/serious-offence-on-remand')
 
         when: 'I view the task list'
-        to TaskListPage, 'A0001XX'
+        to TaskListPage, 'A5001DY'
 
         then: 'I see the the final check status summary with alert styling'
         seriousOffenceAnswer.classes().contains('alert')

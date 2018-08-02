@@ -22,7 +22,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
     def setupSpec() {
         testData.loadLicence('assessment/reporting')
         actions.logIn('RO')
-        to LicenceDetailsPage, 'A0001XX'
+        to LicenceDetailsPage, 'A5001DY'
     }
 
     def cleanupSpec() {
@@ -37,20 +37,17 @@ class LicenceDetailsSpec extends GebReportingSpec {
 
         then: 'I see the expected offender details data'
         offender.details.name == 'Mark Andrews'
-        offender.details.nomisId == 'A0001XX'
+        offender.details.nomisId == 'A5001DY'
         offender.details.dob == '22/10/1989'
         offender.details.roName == 'Jessy Jones'
-        offender.details.externalLocation == 'Licence Auto Test Prison'
+        offender.details.externalLocation == 'HMP Albany'
         offender.details.offences == "Cause exceed max permitted wt of artic' vehicle - No of axles/configuration (No MOT/Manufacturer's Plate)"
         offender.details.crd == '15/10/2019'
-        offender.details.hdced == '13/07/2019'
-        offender.details.photoDate == 'Uploaded: 05/07/2017'
-        offender.details.internalLocation == 'A-1-1'
-        offender.details.sed == '24/05/2019'
-
-//        Pending stage data
-//        offender.details.led == '02/08/2019'
-//        offender.details.pssed == '03/08/2019'
+        offender.details.hdced == '23/08/2019'
+        offender.details.internalLocation == 'T-T1-001'
+        offender.details.sed == '24/05/2020'
+        offender.details.led == '02/05/2020'
+        offender.details.pssed == '15/10/2020'
     }
 
     def 'Shows address details'() {
@@ -159,7 +156,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
     def 'Shows link to change #section details'() {
 
         given: 'Viewing licence details summary'
-        to LicenceDetailsPage, 'A0001XX'
+        to LicenceDetailsPage, 'A5001DY'
 
         when: 'I click the change details link for a section'
         changeDetailsLink(section).click()
@@ -182,7 +179,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         testData.loadLicence('assessment/address-rejected')
 
         when: 'I view the page'
-        to LicenceDetailsPage, 'A0001XX'
+        to LicenceDetailsPage, 'A5001DY'
 
         then: 'I see the address detail'
         $('#curfewAddressDetails').isDisplayed();
@@ -201,7 +198,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the page'
-        to LicenceDetailsPage, 'A0001XX'
+        to LicenceDetailsPage, 'A5001DY'
 
         then: 'I see the review questions up to the point of rejection'
         curfew.reviewAnswers == answers

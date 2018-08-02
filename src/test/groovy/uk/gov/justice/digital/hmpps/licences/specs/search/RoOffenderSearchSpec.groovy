@@ -44,7 +44,7 @@ class RoOffenderSearchSpec extends GebReportingSpec {
         to SearchOffenderPage
 
         when: 'I submit a valid search'
-        search.input << 'A0001XX'
+        search.input << 'A5001DY'
         search.execute.click()
 
         then: 'I see the search results page'
@@ -57,7 +57,7 @@ class RoOffenderSearchSpec extends GebReportingSpec {
         at SearchOffenderResultsPage
 
         when: 'I submit a valid search'
-        search.input << 'A0001XX'
+        search.input << 'A5001DY'
         search.execute.click()
 
         then: 'I see the search results page'
