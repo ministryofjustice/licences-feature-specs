@@ -37,7 +37,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         conditions.additional.size() == 7
         conditions.additional[3].content.contains('sample input')
 
-        conditions.additional[4].number.contains('Condition 5')
+        conditions.additional[4].number.contains('5.')
         conditions.additional[4].title.contains('Bespoke')
         conditions.additional[4].approved.contains('Approved')
         conditions.additional[4].content.contains('bespoke text 1')
