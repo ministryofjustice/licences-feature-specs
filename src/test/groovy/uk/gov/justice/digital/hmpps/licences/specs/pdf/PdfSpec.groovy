@@ -3,6 +3,7 @@ package uk.gov.justice.digital.hmpps.licences.specs.pdf
 import geb.Browser
 import geb.spock.GebReportingSpec
 import groovyx.net.http.RESTClient
+import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
@@ -30,6 +31,7 @@ class PdfSpec extends GebReportingSpec {
         actions.logOut()
     }
 
+    @Ignore
     def 'No option to create PDF if not CA user'() {
 
         given: 'An approved licence'
@@ -46,6 +48,7 @@ class PdfSpec extends GebReportingSpec {
         user << ['RO', 'DM']
     }
 
+    @Ignore
     def 'No option to create PDF if not approved licence'() {
 
         given: 'A refused licence'
@@ -59,6 +62,7 @@ class PdfSpec extends GebReportingSpec {
         !createLicenceControl.isDisplayed()
     }
 
+    @Ignore
     def 'Option to create PDF for CA and approved licence'() {
 
         given: 'An approved licence'
@@ -71,6 +75,7 @@ class PdfSpec extends GebReportingSpec {
         createLicenceControl.isDisplayed()
     }
 
+    @Ignore
     def 'Shows missing values on confirmation page'() {
 
         given: 'An approved licence with some fields missing'
