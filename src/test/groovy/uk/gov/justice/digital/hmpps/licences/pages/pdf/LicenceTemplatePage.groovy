@@ -1,12 +1,13 @@
 package uk.gov.justice.digital.hmpps.licences.pages.pdf
 
 import geb.Page
+import geb.module.Select
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 import uk.gov.justice.digital.hmpps.licences.modules.OffenderDetailsModule
 
-class CreatePdfStartPage extends Page {
+class LicenceTemplatePage extends Page {
 
-    static url = '/hdc/pdf/view'
+    static url = '/hdc/pdf/select'
 
     static at = {
         browser.currentUrl.contains(url)
@@ -14,6 +15,6 @@ class CreatePdfStartPage extends Page {
 
     static content = {
 
-        missingDetails(required: false) { $('.missing') }
+        templateTypes { $(name: "decision").module(Select) }
     }
 }
