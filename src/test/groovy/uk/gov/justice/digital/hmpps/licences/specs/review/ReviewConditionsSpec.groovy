@@ -37,14 +37,14 @@ class ReviewConditionsSpec extends GebReportingSpec {
         then: 'I see the licence conditions details'
         conditions.additional.size() == 3
 
-        conditions.additional[0].number == 'Condition 1'
-        conditions.additional[0].title == 'Technology -- Cameras and photos'
+        conditions.additional[0].number == '1.'
+        conditions.additional[0].title == 'Technology: Cameras and photos'
 
-        conditions.additional[1].number == 'Condition 2'
+        conditions.additional[1].number == '2.'
         conditions.additional[1].content == 'First bespoke condition'
         conditions.additional[1].approved == 'Approved'
 
-        conditions.additional[2].number == 'Condition 3'
+        conditions.additional[2].number == '3.'
         conditions.additional[2].content == 'Second bespoke condition'
         conditions.additional[2].approved == 'Not approved'
 
