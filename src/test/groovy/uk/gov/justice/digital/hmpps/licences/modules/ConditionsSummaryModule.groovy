@@ -17,7 +17,7 @@ class ConditionsSummaryModule extends Module {
                         approved     : condition.find('span.approved').text(),
                         content      : condition.find('div.content').text(),
 
-                        editControl  : condition.find('a', text: 'Edit condition'),
+                        editControl  : condition.find('a', text: 'Change'),
                         deleteControl: condition.find('input', value: 'Delete')
                 ]
             }
