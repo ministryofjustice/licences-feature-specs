@@ -98,6 +98,6 @@ class CaselistSpec extends GebReportingSpec {
         'PROCESSING_RO' | 'assessment/unstarted'  | '/taskList'       | 'ready'
         'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence' | 'withPrison'
         'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'withPrison'
-        'DECIDED'       | 'decision/approved'     | '/review/licence' | 'approved'
+        'DECIDED'       | 'decision/approved'     | '/taskList'       | 'approved'
     }
 }
