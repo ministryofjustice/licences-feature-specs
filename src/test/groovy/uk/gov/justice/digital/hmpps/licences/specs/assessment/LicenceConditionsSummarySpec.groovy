@@ -68,20 +68,20 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
 
         conditions.additional.every { it.editControl != null }
 
-        conditions.additional[0].editControl.getAttribute('href').endsWith('#NOCONTACTPRISONER')
+        //conditions.additional[0].editControl.getAttribute('href').endsWith('#NOCONTACTPRISONER')
         conditions.additional[1].editControl.getAttribute('href').endsWith('#NORESIDE')
-        conditions.additional[2].editControl.getAttribute('href').endsWith('#NOTIFYRELATIONSHIP')
+        //conditions.additional[2].editControl.getAttribute('href').endsWith('#NOTIFYRELATIONSHIP')
         conditions.additional[3].editControl.getAttribute('href').endsWith('#HOMEVISITS')
         conditions.additional[4].editControl.getAttribute('href').endsWith('#bespoke-0')
 
         when: 'I click edit condition'
-        conditions.additional[0].editControl.click()
+        conditions.additional[1].editControl.click()
 
         then: 'I see the additional conditions screen'
         at LicenceConditionsAdditionalPage
 
         and: 'The link goes to the named anchor for the condition'
-        browser.currentUrl.endsWith('#NOCONTACTPRISONER')
+        browser.currentUrl.endsWith('#NORESIDE')
     }
 
     def 'Delete condition removes the condition and redisplays the summary screen' () {
