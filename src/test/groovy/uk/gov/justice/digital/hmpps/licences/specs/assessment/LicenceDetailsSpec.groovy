@@ -39,15 +39,6 @@ class LicenceDetailsSpec extends GebReportingSpec {
         offender.details.name == 'Mark Andrews'
         offender.details.nomisId == 'A5001DY'
         offender.details.dob == '22/10/1989'
-        offender.details.roName == 'Responsible Test Officer'
-        offender.details.externalLocation == 'HMP Albany'
-        offender.details.offences == "Cause exceed max permitted wt of artic' vehicle - No of axles/configuration (No MOT/Manufacturer's Plate)"
-        offender.details.crd == '15/10/2019'
-        offender.details.hdced == '23/08/2019'
-        offender.details.internalLocation == 'T-T1-001'
-        offender.details.sed == '24/05/2020'
-        offender.details.led == '02/05/2020'
-        offender.details.pssed == '15/10/2020'
     }
 
     def 'Shows address details'() {
