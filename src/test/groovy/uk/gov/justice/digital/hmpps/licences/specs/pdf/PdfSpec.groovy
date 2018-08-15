@@ -65,7 +65,7 @@ class PdfSpec extends GebReportingSpec {
 
         then: 'There is an option to create PDF'
         taskListAction('Create licence').isDisplayed()
-        taskListAction('Create licence').text() == 'Create licence PDF'
+        taskListAction('Create licence').text() == 'Continue'
     }
 
     def 'Create licence task leads to template selection'() {
