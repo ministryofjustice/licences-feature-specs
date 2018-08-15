@@ -9,6 +9,6 @@ class HeaderModule extends Module {
 
         user { $('#header-user').text() }
 
-        logoutLink {$('a', text: 'Logout')}
+        logoutLink {$('a', text: 'Sign out')}
     }
 }
