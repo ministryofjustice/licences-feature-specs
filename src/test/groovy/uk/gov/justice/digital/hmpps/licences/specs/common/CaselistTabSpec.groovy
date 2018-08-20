@@ -21,24 +21,24 @@ class CaselistTabSpec extends GebReportingSpec {
 
     @Shared
     def licences = [
-            'A5001DY': 'eligibility/unstarted',
-            'A0002XX': 'assessment/unstarted',
-            'A0003XX': 'finalchecks/unstarted',
-            'A0004XX': 'finalchecks/postponed',
-            'A0005XX': 'decision/unstarted',
-            'A0006XX': 'decision/approved',
-            'A0007XX': 'decision/refused',
+            '1': 'eligibility/unstarted',
+            '2': 'assessment/unstarted',
+            '3': 'finalchecks/unstarted',
+            '4': 'finalchecks/postponed',
+            '5': 'decision/unstarted',
+            '6': 'decision/approved',
+            '7': 'decision/refused',
 
-            'A0008XX': 'eligibility/started',
-            'A0009XX': 'assessment/reporting',
-            'A0010XX': 'decision/address-rejected',
-            'A0011XX': 'eligibility/optedOut',
+            '8': 'eligibility/started',
+            '9': 'assessment/reporting',
+            '10': 'decision/address-rejected',
+            '11': 'eligibility/optedOut',
     ]
 
     def setupSpec() {
         testData.deleteLicences()
-        licences.each { nomisId, file ->
-            testData.addLicence(file, nomisId)
+        licences.each { bookingId, file ->
+            testData.addLicence(file, bookingId)
         }
     }
 
