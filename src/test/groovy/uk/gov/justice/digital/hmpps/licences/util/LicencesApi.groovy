@@ -22,13 +22,13 @@ class LicencesApi {
         println("Status: " + response.status)
     }
 
-    def create(nomisId, sample) {
+    def create(bookingId, sample) {
 
         println "create $sample"
-        println "create/$nomisId"
+        println "create/$bookingId"
 
         def response = client.post(
-                path: "create/$nomisId",
+                path: "create/$bookingId",
                 contentType: JSON,
                 body: sample,
                 headers: [Accept: 'application/json']

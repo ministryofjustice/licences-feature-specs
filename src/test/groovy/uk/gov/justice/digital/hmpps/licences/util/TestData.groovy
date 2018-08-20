@@ -15,12 +15,12 @@ class TestData {
         licences.deleteAll()
     }
 
-    def loadLicence(filename, nomisId = 'A5001DY') {
+    def loadLicence(filename, bookingId = '1') {
         deleteLicences()
-        addLicence(filename, nomisId)
+        addLicence(filename, bookingId)
     }
 
-    def addLicence(filename, nomisId = 'A5001DY') {
+    def addLicence(filename, bookingId = '1') {
 
         def licenceFile = TestData.class.getResource("/licences/${filename}.json")
 
@@ -31,6 +31,6 @@ class TestData {
         def sampleText = licenceFile.text
         def sample = new JsonSlurper().parseText(sampleText)
 
-        licences.create(nomisId, sample)
+        licences.create(bookingId, sample)
     }
 }
