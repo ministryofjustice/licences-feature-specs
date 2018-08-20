@@ -31,7 +31,7 @@ class ReviewRiskSpec extends GebReportingSpec {
         testData.loadLicence('review/normal')
 
         when: 'I view the page'
-        to ReviewRiskPage, 'A5001DY'
+        to ReviewRiskPage, '1'
 
         then: 'I see the risk management answers'
         risk.answers.planningActions == 'No'
@@ -45,7 +45,7 @@ class ReviewRiskSpec extends GebReportingSpec {
         testData.loadLicence('review/risks')
 
         when: 'I view the page'
-        to ReviewRiskPage, 'A5001DY'
+        to ReviewRiskPage, '1'
 
         then: 'I see the risk management details'
         risk.answers.planningActionsDetail == 'Risk details'

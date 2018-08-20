@@ -32,7 +32,7 @@ class ReviewConditionsSpec extends GebReportingSpec {
         testData.loadLicence('review/normal')
 
         when: 'I view the page'
-        to ReviewConditionsPage, 'A5001DY'
+        to ReviewConditionsPage, '1'
 
         then: 'I see the licence conditions details'
         conditions.additional.size() == 3
@@ -56,7 +56,7 @@ class ReviewConditionsSpec extends GebReportingSpec {
         testData.loadLicence('review/no-conditions')
 
         when: 'I view the page'
-        to ReviewConditionsPage, 'A5001DY'
+        to ReviewConditionsPage, '1'
 
         then: 'I see the licence conditions details'
         conditions.message == 'No additional conditions have been selected.'

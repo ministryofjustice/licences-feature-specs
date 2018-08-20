@@ -31,7 +31,7 @@ class LicenceConditionsSummarySpec extends GebReportingSpec {
         testData.loadLicence('assessment/conditions-multiple')
 
         when: 'I view the conditions summary page'
-        to LicenceConditionsSummaryPage, 'A5001DY'
+        to LicenceConditionsSummaryPage, '1'
 
         then: 'I see the previously selected values'
         conditions.additional.size() == 7
