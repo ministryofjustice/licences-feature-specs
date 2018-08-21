@@ -22,7 +22,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
     def setupSpec() {
         testData.loadLicence('assessment/reporting')
         actions.logIn('RO')
-        to LicenceDetailsPage, 'A5001DY'
+        to LicenceDetailsPage, '1'
     }
 
     def cleanupSpec() {
@@ -147,7 +147,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
     def 'Shows link to change #section details'() {
 
         given: 'Viewing licence details summary'
-        to LicenceDetailsPage, 'A5001DY'
+        to LicenceDetailsPage, '1'
 
         when: 'I click the change details link for a section'
         changeDetailsLink(section).click()
@@ -170,7 +170,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         testData.loadLicence('assessment/address-rejected')
 
         when: 'I view the page'
-        to LicenceDetailsPage, 'A5001DY'
+        to LicenceDetailsPage, '1'
 
         then: 'I see the address detail'
         $('#curfewAddressDetails').isDisplayed();
@@ -189,7 +189,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the page'
-        to LicenceDetailsPage, 'A5001DY'
+        to LicenceDetailsPage, '1'
 
         then: 'I see the review questions up to the point of rejection'
         curfew.reviewAnswers == answers

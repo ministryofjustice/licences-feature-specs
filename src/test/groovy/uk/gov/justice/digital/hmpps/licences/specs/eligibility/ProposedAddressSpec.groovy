@@ -35,7 +35,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'Starts with opt out page with nothing selected'() {
 
         when: 'I view the opt out page'
-        to ProposedAddressOptOutPage, 'A5001DY'
+        to ProposedAddressOptOutPage, '1'
 
         then: 'Neither radio option is selected'
         decisionRadios.checked == null
@@ -67,7 +67,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         testData.loadLicence('eligibility/optedOut')
 
         when: 'I view the opt out page'
-        to ProposedAddressOptOutPage, 'A5001DY'
+        to ProposedAddressOptOutPage, '1'
 
         then: 'I see the previous values'
         decisionRadios.checked == 'Yes'
@@ -91,7 +91,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'The address proposed question page is shown next if opt out is No' () {
 
         when: 'I view the opt out page'
-        to ProposedAddressOptOutPage, 'A5001DY'
+        to ProposedAddressOptOutPage, '1'
 
         and: 'I select to not opt out'
         decisionRadios.checked = 'No'
@@ -156,7 +156,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'The proposed address form is shown next if address proposed is Yes' () {
 
         when: 'I view the address proposed page'
-        to ProposedAdressAddressProposedPage, 'A5001DY'
+        to ProposedAdressAddressProposedPage, '1'
 
         and: 'I select yes'
         decisionRadios.checked = 'Yes'
@@ -169,7 +169,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'Entered values are saved after save and continue' () {
 
         given: 'On Curfew Address page'
-        to ProposedAddressCurfewAddressPage, 'A5001DY'
+        to ProposedAddressCurfewAddressPage, '1'
 
         when: 'I fill in the form and save'
 
@@ -193,7 +193,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'I can enter extra residents to addresses' () {
 
         given: 'I am on the proposed curfew address page'
-        to ProposedAddressCurfewAddressPage, 'A5001DY'
+        to ProposedAddressCurfewAddressPage, '1'
 
         when: 'I click to add another resident'
         addResidentLink.click()
