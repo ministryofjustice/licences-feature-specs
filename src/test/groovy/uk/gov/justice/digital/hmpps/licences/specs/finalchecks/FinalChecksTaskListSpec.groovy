@@ -118,7 +118,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     }
 
     @Unroll
-    def '#task button links to #page'() {
+    def '#label button links to #page'() {
 
         given: 'Viewing task list'
         to TaskListPage, '1'
@@ -136,14 +136,14 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         at TaskListPage
 
         where:
-        task              | page
-        tasks.address     | ReviewAddressPage
-        tasks.curfewHours | ReviewCurfewHoursPage
-        tasks.conditions  | ReviewConditionsPage
-        tasks.risk        | RiskManagementPage
-        tasks.reporting   | ReviewReportingPage
-        tasks.final       | FinalChecksSeriousOffencePage
-        tasks.submit      | SendPage
+        label          | task              | page
+        'address'      | tasks.address     | ReviewAddressPage
+        'curfew'       | tasks.curfewHours | ReviewCurfewHoursPage
+        'conditions'   | tasks.conditions  | ReviewConditionsPage
+        'risk'         | tasks.risk        | RiskManagementPage
+        'reporting'    | tasks.reporting   | ReviewReportingPage
+        'final checks' | tasks.final       | FinalChecksSeriousOffencePage
+        'submit'       | tasks.submit      | SendPage
     }
 
     def 'I can submit the licence to the DM'() {
