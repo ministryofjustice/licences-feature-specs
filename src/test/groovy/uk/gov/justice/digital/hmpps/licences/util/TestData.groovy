@@ -15,12 +15,12 @@ class TestData {
         licences.deleteAll()
     }
 
-    def loadLicence(filename, bookingId = '1') {
+    def loadLicence(filename, bookingId = '1200635') {
         deleteLicences()
         addLicence(filename, bookingId)
     }
 
-    def addLicence(filename, bookingId = '1') {
+    def addLicence(filename, bookingId = '1200635') {
 
         def licenceFile = TestData.class.getResource("/licences/${filename}.json")
 

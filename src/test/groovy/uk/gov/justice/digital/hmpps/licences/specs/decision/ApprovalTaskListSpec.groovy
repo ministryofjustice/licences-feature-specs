@@ -48,7 +48,7 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         testData.loadLicence('decision/unstarted')
 
         when: 'I view the page'
-        to TaskListPage, '1'
+        to TaskListPage, '1200635'
 
         then: 'I see the right number of task buttons'
         taskListActions.size() == 7
@@ -67,7 +67,7 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         testData.loadLicence('decision/address-rejected')
 
         when: 'I view the tasklist'
-        to TaskListPage, '1'
+        to TaskListPage, '1200635'
 
         then: 'I see only address, final checks, decision'
         taskListActions.size() == 3 // final checks has no button

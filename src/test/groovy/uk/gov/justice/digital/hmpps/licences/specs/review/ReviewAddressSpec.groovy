@@ -33,7 +33,7 @@ class ReviewAddressSpec extends GebReportingSpec {
         testData.loadLicence('review/normal')
 
         when: 'I view the page'
-        to ReviewAddressPage, '1'
+        to ReviewAddressPage, '1200635'
 
         then: 'I see the address details'
         curfew.address.line1 == 'Street'
@@ -71,7 +71,7 @@ class ReviewAddressSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the page'
-        to ReviewAddressPage, '1'
+        to ReviewAddressPage, '1200635'
 
         then: 'I see the review questions up to the point of rejection'
         curfew.reviewAnswers == answers
@@ -88,7 +88,7 @@ class ReviewAddressSpec extends GebReportingSpec {
         testData.loadLicence('review/normal')
 
         when: 'I view the address review page'
-        to ReviewAddressPage, '1'
+        to ReviewAddressPage, '1200635'
 
         then: 'I see the withdrawal buttons'
         withdrawAddress.isDisplayed()
@@ -120,7 +120,7 @@ class ReviewAddressSpec extends GebReportingSpec {
         testData.loadLicence('review/normal')
 
         when: 'I view the address review page'
-        to ReviewAddressPage, '1'
+        to ReviewAddressPage, '1200635'
 
         then: 'I see the withdrawal buttons'
         withdrawAddress.isDisplayed()

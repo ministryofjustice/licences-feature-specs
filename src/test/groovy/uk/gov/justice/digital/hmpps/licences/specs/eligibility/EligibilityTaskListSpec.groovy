@@ -32,7 +32,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
     def 'Shows details of the prisoner (from nomis)'() {
 
         when: 'I view the task list page'
-        to TaskListPage, '1'
+        to TaskListPage, '1200635'
 
         then: 'I see the expected offender details data'
         offender.details.name == 'Mark Andrews'
@@ -67,7 +67,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         testData.loadLicence('eligibility/unstarted')
 
         when: 'I view the page'
-        to TaskListPage, '1'
+        to TaskListPage, '1200635'
 
         then: 'I see a start button for the eligibility check'
         eligibilityCheckStartButton.value() == 'Start'
@@ -94,7 +94,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         testData.loadLicence('eligibility/done')
 
         when: 'I view the tasklist page'
-        to TaskListPage, '1'
+        to TaskListPage, '1200635'
 
         then: 'I see the change answers link'
         eligibilityCheckUpdateLink.text() == 'Change'
@@ -118,7 +118,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
 
         when: 'Viewing the tasklist'
         testData.loadLicence("eligibility/${condition}")
-        to TaskListPage, '1'
+        to TaskListPage, '1200635'
 
         then: 'The address check start button is not shown'
         !taskListAction('Proposed address / opt out request').isDisplayed()
@@ -131,7 +131,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
 
         when: 'Viewing the tasklist'
         testData.loadLicence("eligibility/eligible")
-        to TaskListPage, '1'
+        to TaskListPage, '1200635'
 
         then: 'The address check start button is shown'
         taskListAction('Proposed address / opt out request').isDisplayed()
