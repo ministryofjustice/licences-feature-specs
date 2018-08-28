@@ -47,7 +47,7 @@ class TaskListSpec extends GebReportingSpec {
     def 'Shows details of the prisoner (from nomis)'() {
 
         when: 'I view the task list page'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the expected offender details data'
         offender.details.name == 'Mark Andrews'
@@ -82,7 +82,7 @@ class TaskListSpec extends GebReportingSpec {
         testData.loadLicence('assessment/unstarted')
 
         when: 'I view the page'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons and the submit button'
         taskListActions.size() == 7
@@ -96,7 +96,7 @@ class TaskListSpec extends GebReportingSpec {
     def '#task button links to page'() {
 
         given: 'Viewing task list'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         when: 'I start the task'
         taskListAction(task).click()
@@ -118,7 +118,7 @@ class TaskListSpec extends GebReportingSpec {
         testData.loadLicence('assessment/risks-no')
 
         when: 'I view the page'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons and the submit button'
         taskListActions.size() == 7
@@ -136,7 +136,7 @@ class TaskListSpec extends GebReportingSpec {
         testData.loadLicence('assessment/unstarted')
 
         when: 'I view the page'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons'
         taskListActions.size() == 7
@@ -152,7 +152,7 @@ class TaskListSpec extends GebReportingSpec {
         testData.loadLicence('assessment/done')
 
         when: 'I press submit to PCA'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
         taskListAction(tasks.submit).click()
 
         then: 'I see the licence details page'
@@ -187,7 +187,7 @@ class TaskListSpec extends GebReportingSpec {
         testData.loadLicence('assessment/address-rejected')
 
         when: 'I view the tasklist'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see only the address and submit tasks'
         taskListActions.size() == 2

@@ -52,7 +52,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     def 'Shows details of the prisoner (from nomis)'() {
 
         when: 'I view the task list page'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the expected offender details data'
         offender.details.name == 'Mark Andrews'
@@ -87,7 +87,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/final-checks')
 
         when: 'I view the page'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see 8 task buttons'
         taskListActions.size() == 8
@@ -108,7 +108,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/final-checks-done')
 
         when: 'I view the page'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see 9 task buttons'
         taskListActions.size() == 9
@@ -121,7 +121,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     def '#label button links to #page'() {
 
         given: 'Viewing task list'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         when: 'I start the task'
         taskListAction(task).click()
@@ -149,7 +149,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     def 'I can submit the licence to the DM'() {
 
         given: 'At task list'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         when: 'I press submit to decision maker'
         taskListAction(tasks.submit).click()
@@ -176,7 +176,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/address-rejected')
 
         when: 'I view the tasklist'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see only address, submit'
         taskListActions.size() == 2
