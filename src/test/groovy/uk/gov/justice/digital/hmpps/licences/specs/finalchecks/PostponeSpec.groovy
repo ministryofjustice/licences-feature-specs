@@ -31,7 +31,7 @@ class PostponeSpec extends GebReportingSpec {
         testData.loadLicence('finalchecks/unstarted')
 
         when: 'I view the tasklist'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         then: 'The button label is Postpone'
         taskListAction('Postponement').value() == 'Postpone'

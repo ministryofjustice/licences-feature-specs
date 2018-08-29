@@ -29,7 +29,7 @@ class RiskManagementSpec extends GebReportingSpec {
     def 'Options initially blank' () {
 
         given: 'At task list page'
-        to TaskListPage, '1200635'
+        to TaskListPage, testData.markAndrewsBookingId
 
         when: 'I start the risk management task'
         taskListAction('Risk management and victim liaison').click()
@@ -102,7 +102,7 @@ class RiskManagementSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         and: 'I return to the risk management page'
-        to RiskManagementPage, '1200635'
+        to RiskManagementPage, testData.markAndrewsBookingId
 
         then: 'I see the previously entered values'
         riskManagementRadios.checked == 'Yes'

@@ -20,8 +20,11 @@ class CaselistTabSpec extends GebReportingSpec {
     Actions actions = new Actions()
 
     @Shared
+    def markAndrews = testData.markAndrewsBookingId
+
+    @Shared
     def licences = [
-            '1200635': 'eligibility/unstarted',
+            (markAndrews): 'eligibility/unstarted',
             '2': 'assessment/unstarted',
             '3': 'finalchecks/unstarted',
             '4': 'finalchecks/postponed',
