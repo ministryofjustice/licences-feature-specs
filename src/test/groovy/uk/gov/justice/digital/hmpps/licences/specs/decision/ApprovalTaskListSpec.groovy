@@ -31,6 +31,7 @@ class ApprovalTaskListSpec extends GebReportingSpec {
             conditions: 'Additional conditions',
             risk      : 'Risk management and victim liaison',
             reporting : 'Reporting instructions',
+            returnPca : 'Return to PCA',
             decision  : 'Final decision'
     ]
 
@@ -60,8 +61,7 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         taskListAction(tasks.decision).text() == 'Start'
     }
 
-
-    def 'When address has been rejected other licence review tasks not shown'() {
+    def 'When address has been rejected, reduced task set shown'() {
 
         given: 'The address has been rejected'
         testData.loadLicence('decision/address-rejected')
@@ -69,7 +69,26 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         when: 'I view the tasklist'
         to TaskListPage, testData.markAndrewsBookingId
 
-        then: 'I see only address, final checks, decision'
-        taskListActions.size() == 3 // final checks has no button
+        then: 'I see only eligibility, address, return to PCA, refuse'
+        taskListActions.size() == 4
+
+        and: 'I can only refuse the licence'
+        taskListAction(tasks.decision).text() == 'Refuse HDC'
+    }
+
+
+    def 'When CRD time insufficent, reduced task set shown'() {
+
+        given: 'The address has been rejected'
+        testData.loadLicence('decision/insufficientTime')
+
+        when: 'I view the tasklist'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'I see only eligibility, refuse'
+        taskListActions.size() == 2
+
+        and: 'I can only refuse the licence'
+        taskListAction(tasks.decision).text() == 'Refuse HDC'
     }
 }
