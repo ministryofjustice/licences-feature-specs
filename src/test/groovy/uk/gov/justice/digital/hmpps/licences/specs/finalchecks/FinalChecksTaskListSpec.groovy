@@ -9,6 +9,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.SendPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewHoursPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksPostponePage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksSeriousOffencePage
@@ -138,7 +139,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         where:
         label          | task              | page
         'address'      | tasks.address     | ReviewAddressPage
-        'curfew'       | tasks.curfewHours | ReviewCurfewHoursPage
+        'curfew'       | tasks.curfewHours | CurfewHoursPage
         'conditions'   | tasks.conditions  | ReviewConditionsPage
         'risk'         | tasks.risk        | RiskManagementPage
         'reporting'    | tasks.reporting   | ReviewReportingPage
