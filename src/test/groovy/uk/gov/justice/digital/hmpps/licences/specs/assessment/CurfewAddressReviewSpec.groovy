@@ -124,7 +124,7 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
         landlordConsentRadios.checked = 'Yes'
 
         and: 'I choose return to tasklist'
-        find('#backBtn').click()
+        $('a', text: 'Back').click()
         at TaskListPage
 
         and: 'I view the address review page'
