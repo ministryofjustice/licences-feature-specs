@@ -5,12 +5,14 @@ import spock.lang.PendingFeature
 import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
+import spock.lang.Ignore
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
 @Stepwise
+@Ignore
 class CaselistTabSpec extends GebReportingSpec {
 
     @Shared
