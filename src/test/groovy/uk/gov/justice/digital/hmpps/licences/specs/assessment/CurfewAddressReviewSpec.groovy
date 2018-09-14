@@ -114,26 +114,6 @@ class CurfewAddressReviewSpec extends GebReportingSpec {
         reason.isDisplayed()
     }
 
-    def 'Modified choices are not saved on return to tasklist' () {
-
-        given:  'At address review page'
-        testData.loadLicence('assessment/unstarted')
-        to CurfewAddressReviewPage, testData.markAndrewsBookingId
-
-        when: 'I select new options'
-        landlordConsentRadios.checked = 'Yes'
-
-        and: 'I choose return to tasklist'
-        $('a', text: 'Back').click()
-        at TaskListPage
-
-        and: 'I view the address review page'
-        to CurfewAddressReviewPage, testData.markAndrewsBookingId
-
-        then: 'I see the original values'
-        landlordConsentRadios.checked == null
-    }
-
     def 'Modified choices are saved after save and continue' () {
 
         given:  'At address review page'
