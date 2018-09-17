@@ -32,7 +32,7 @@ class TaskListSpec extends GebReportingSpec {
             conditions: 'Additional conditions',
             risk      : 'Risk management and victim liaison',
             reporting : 'Reporting instructions',
-            submit    : 'Submit to PCA'
+            submit    : 'Submit to prison case admin'
     ]
 
     def setupSpec() {
