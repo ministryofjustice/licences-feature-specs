@@ -85,7 +85,7 @@ class TaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons and the submit button'
-        taskListActions.size() == 7
+        taskListActions.size() == 6
 
         and: 'The buttons all say Start'
         taskListActions.take(5).every { it.text() == 'Start' }
@@ -121,7 +121,7 @@ class TaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons and the submit button'
-        taskListActions.size() == 7
+        taskListActions.size() == 6
 
         and: 'The buttons for started tasks all say View'
         taskListAction(tasks.address).text() == 'View'
@@ -139,7 +139,7 @@ class TaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons'
-        taskListActions.size() == 7
+        taskListActions.size() == 6
 
         and: 'There is a submit to OMU button'
         taskListAction(tasks.submit).text() == 'Continue'
