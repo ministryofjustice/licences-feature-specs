@@ -190,8 +190,7 @@ class TaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see only the address and submit tasks'
-        taskListActions.size() == 2
-        taskListAction(tasks.address).text() == 'View'
+        taskListAction(tasks.address).text() == 'Change'
         taskListAction(tasks.submit).text() == 'Continue'
 
         and: 'The licence is ready to submit'
