@@ -159,7 +159,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         section       | page
         'address'     | CurfewAddressReviewPage
         'curfewHours' | CurfewHoursPage
-        'conditions'  | LicenceConditionsAdditionalPage
+        'conditions'  | LicenceConditionsStandardPage
         'risk'        | RiskManagementPage
         'reporting'   | ReportingInstructionsPage
     }
