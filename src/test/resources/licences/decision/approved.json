@@ -108,10 +108,13 @@
       }
     },
     "finalChecks": {
+      "onRemand": {
+        "decision": "No"
+      },
       "seriousOffence": {
         "decision": "No"
       },
-      "onRemand": {
+      "confiscationOrder": {
         "decision": "No"
       }
     },
