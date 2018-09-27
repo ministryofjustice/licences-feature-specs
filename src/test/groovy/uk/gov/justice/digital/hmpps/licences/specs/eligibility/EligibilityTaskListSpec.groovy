@@ -121,7 +121,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'The address check start button is not shown'
-        !taskListAction('Proposed address / opt out request').isDisplayed()
+        !taskListAction('Curfew address and opt out').isDisplayed()
 
         where:
         condition << ['unstarted', 'excluded', 'unsuitable', 'insufficientTime']
@@ -134,7 +134,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'The address check start button is shown'
-        taskListAction('Proposed address / opt out request').isDisplayed()
+        taskListAction('Curfew address and opt out').isDisplayed()
     }
 
     @PendingFeature
