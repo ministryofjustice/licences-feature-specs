@@ -82,8 +82,6 @@ class LicenceDetailsSpec extends GebReportingSpec {
         at LicenceDetailsPage
 
         then: 'I see the curfew hours details'
-        curfew.curfewHours('First Night From') == '18:30'
-        curfew.curfewHours('First Night Until') == '10:11'
         curfew.curfewHours('Monday From') == '21:22'
         curfew.curfewHours('Monday Until') == '08:09'
         curfew.curfewHours('Tuesday From') == '19:00'
