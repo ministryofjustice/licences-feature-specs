@@ -141,7 +141,7 @@ class CaTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I can only submit to RO'
-        $('h2', text: contains('Submit to responsible officer')).closest('div').text().contains('Ready to submit')
+        $('h2', text: contains('Submit curfew address')).closest('div').text().contains('Ready to submit')
     }
 }
 
