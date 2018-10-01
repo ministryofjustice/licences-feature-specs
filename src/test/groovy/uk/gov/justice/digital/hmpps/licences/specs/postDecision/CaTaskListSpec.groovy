@@ -72,7 +72,7 @@ class CaTaskListSpec extends GebReportingSpec {
         taskListActions.take(6).every { it.text() == 'View/Edit' }
 
         and: 'Final checks task is view only'
-        taskListAction(tasks.finalChecks).text() == 'View'
+        taskListAction(tasks.finalChecks).text() == 'Change'
 
         and: 'create licence is available'
         taskListAction(tasks.create).text() == 'Continue'

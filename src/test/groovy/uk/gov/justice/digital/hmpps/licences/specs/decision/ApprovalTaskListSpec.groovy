@@ -57,8 +57,8 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         and: 'The tasks for reviewing RO and CA input have View buttons'
         taskListActions.take(5).every { it.text() == 'View' }
 
-        and: 'The final decision task has a Start button'
-        taskListAction(tasks.decision).text() == 'Start'
+        and: 'The final decision task has a Continue button'
+        taskListAction(tasks.decision).text() == 'Continue'
     }
 
     def 'When address has been rejected, reduced task set shown'() {

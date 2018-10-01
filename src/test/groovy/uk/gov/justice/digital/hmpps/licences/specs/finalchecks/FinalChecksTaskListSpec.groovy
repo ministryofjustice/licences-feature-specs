@@ -97,7 +97,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         taskListActions.take(5)*.text() == ['View', 'View/Edit', 'View/Edit', 'View', 'View']
 
         and: 'The final checks task has a Start button'
-        taskListAction(tasks.final).text() == 'Start'
+        taskListAction(tasks.final).text() == 'Start now'
 
         and: 'The postpone task has a Postpone button'
         taskListAction(tasks.postpone).value() == 'Postpone'  // NB value, not text - button, not link

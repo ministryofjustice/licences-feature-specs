@@ -76,7 +76,7 @@ class TaskListSpec extends GebReportingSpec {
         at CaselistPage
     }
 
-    def 'Shows start button for all tasks except submit'() {
+    def 'Shows start now button for all tasks except submit'() {
 
         given: 'An unprocessed licence'
         testData.loadLicence('assessment/unstarted')
@@ -88,7 +88,7 @@ class TaskListSpec extends GebReportingSpec {
         taskListActions.size() == 6
 
         and: 'The buttons all say Start'
-        taskListActions.take(5).every { it.text() == 'Start' }
+        taskListActions.take(5).every { it.text() == 'Start now' }
         taskListActions.last().text() == 'Continue'
     }
 
@@ -112,7 +112,7 @@ class TaskListSpec extends GebReportingSpec {
         tasks.reporting  | ReportingInstructionsPage
     }
 
-    def 'Shows view button for tasks that have been started'() {
+    def 'Shows change link for tasks that have been started'() {
 
         given: 'Tasks started except reporting instructions'
         testData.loadLicence('assessment/risks-no')
@@ -123,11 +123,11 @@ class TaskListSpec extends GebReportingSpec {
         then: 'I see the task buttons and the submit button'
         taskListActions.size() == 6
 
-        and: 'The buttons for started tasks all say View'
-        taskListAction(tasks.address).text() == 'View'
-        taskListAction(tasks.conditions).text() == 'View'
-        taskListAction(tasks.risk).text() == 'View'
-        taskListAction(tasks.reporting).text() == 'Start'
+        and: 'The links for started tasks all say Change'
+        taskListAction(tasks.address).text() == 'Change'
+        taskListAction(tasks.conditions).text() == 'Change'
+        taskListAction(tasks.risk).text() == 'Change'
+        taskListAction(tasks.reporting).text() == 'Start now'
     }
 
     def 'Shows Submit button even when tasks are not done'() {

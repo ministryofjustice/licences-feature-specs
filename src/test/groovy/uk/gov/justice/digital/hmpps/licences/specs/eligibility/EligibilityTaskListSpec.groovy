@@ -136,41 +136,4 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         then: 'The address check start button is shown'
         taskListAction('Curfew address and opt out').isDisplayed()
     }
-
-    @PendingFeature
-    def 'Change answers option removed after form is printed'() {
-
-        given: 'Eligibility checks already done'
-        // follow on from previous
-
-        when: 'I view the task page'
-        at TaskListPage
-
-        and: 'I press the print form button'
-        printEligibilityFormButton.click()
-
-        then: 'I do not see the change answers option'
-        !eligibilityCheckUpdateLink.isDisplayed()
-    }
-
-    @PendingFeature
-    def 'Form printed status shown after form is printed'() {
-
-        given: 'Form has been printed'
-        // follow on from previous
-
-        when: 'I view the task page'
-        at TaskListPage
-
-        then: 'I see the form printed text'
-        eligibilityFormPrintStatusText.conatins('printed')
-
-        and: 'I see the form printed status'
-        eligibilityFormPrintStatusIcon.isDisplayed()
-
-        and: 'The form print button text is updated'
-        printAddressFormButton.text() == 'Print form again'
-    }
-
-
 }
