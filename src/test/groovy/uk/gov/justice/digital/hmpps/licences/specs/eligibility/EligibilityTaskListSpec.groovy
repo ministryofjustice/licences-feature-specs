@@ -61,7 +61,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         at CaselistPage
     }
 
-    def 'Shows buttons for eligibility check and print address form'() {
+    def 'Initially shows eligibility check task'() {
 
         given: 'An unstarted licence'
         testData.loadLicence('eligibility/unstarted')
@@ -71,9 +71,6 @@ class EligibilityTaskListSpec extends GebReportingSpec {
 
         then: 'I see a start button for the eligibility check'
         eligibilityCheckStartButton.value() == 'Start'
-
-//        and: 'I see a print button for the proposed address form'
-//        printAddressFormButton.text() == 'Print form'
     }
 
     def 'Start eligibility check button goes to eligibility check page'() {
@@ -114,26 +111,76 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         crdTimeAnswer.text() == 'No'
     }
 
-    def 'Address check start button is not shown when offender is #condition'() {
+    def 'Does not show Inform Offender task when eligibility task not complete'() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/started")
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'The inform offender task is shown'
+        !taskListAction('Inform the offender').isDisplayed()
+    }
+
+    def 'Shows Inform Offender task when not eligible'() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/excluded")
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'The inform offender task is shown'
+        taskListAction('Inform the offender').isDisplayed()
+    }
+
+    def 'Shows Inform Offender task when eligibility task complete'() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/eligible")
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'The inform offender task is shown'
+        taskListAction('Inform the offender').isDisplayed()
+    }
+
+    def 'Address check task is not shown when offender is #condition'() {
 
         when: 'Viewing the tasklist'
         testData.loadLicence("eligibility/${condition}")
         to TaskListPage, testData.markAndrewsBookingId
 
-        then: 'The address check start button is not shown'
+        then: 'The address check task is not shown'
         !taskListAction('Curfew address and opt out').isDisplayed()
 
         where:
         condition << ['unstarted', 'excluded', 'unsuitable', 'insufficientTime']
     }
 
-    def 'Address check start button is shown when elgibile'() {
+    def 'Address check task is shown when elgibile'() {
 
         when: 'Viewing the tasklist'
         testData.loadLicence("eligibility/eligible")
         to TaskListPage, testData.markAndrewsBookingId
 
-        then: 'The address check start button is shown'
+        then: 'The address check task is shown'
         taskListAction('Curfew address and opt out').isDisplayed()
+    }
+
+    def 'Submit task shown once address task is started'() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/optedOutNo")
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'The submit task is shown'
+        $('h2', text: contains('Submit curfew address')).isDisplayed()
+    }
+
+    def 'Inform offender task is hidden once address task is started'() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/optedOutNo")
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'The submit task is shown'
+        !taskListAction('Inform the offender').isDisplayed()
     }
 }
