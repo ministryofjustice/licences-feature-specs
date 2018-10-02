@@ -60,10 +60,10 @@ class CaselistSpec extends GebReportingSpec {
         find('a.button').text() == label
 
         where:
-        status         | label   | sample                  | tab
-        'Not started'  | 'Start' | 'eligibility/unstarted' | 'ready'
-        'Final checks' | 'Start' | 'finalchecks/unstarted' | 'reviewCase'
-        'Postponed'    | 'View'  | 'finalchecks/postponed' | 'reviewCase'
+        status        | label       | sample                  | tab
+        'Not started' | 'Start now' | 'eligibility/unstarted' | 'ready'
+        'Review case' | 'Continue'  | 'finalchecks/unstarted' | 'reviewCase'
+        'Postponed'   | 'Change'    | 'finalchecks/postponed' | 'reviewCase'
     }
 
     @Unroll
@@ -85,7 +85,7 @@ class CaselistSpec extends GebReportingSpec {
         'PROCESSING_RO' | 'assessment/unstarted'  | '/review/licence' | 'submittedRo'
         'PROCESSING_CA' | 'finalchecks/unstarted' | '/taskList'       | 'reviewCase'
         'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'submittedDm'
-        'DECIDED'       | 'decision/approved'     | '/taskList' | 'create'
+        'DECIDED'       | 'decision/approved'     | '/taskList'       | 'create'
     }
 
     def 'Review button shows licence review with return to caselist option'() {

@@ -39,10 +39,10 @@ class CaselistSpec extends GebReportingSpec {
         hdcEligible[0].find('.status').text() == status
 
         where:
-        type        | sample                  | status              | tab
-        'Unstarted' | 'decision/unstarted'    | 'Awaiting decision' | 'ready'
-        'Approved'  | 'decision/approved'     | 'Approved'          | 'approved'
-        'Postponed' | 'finalchecks/postponed' | 'Postponed'         | 'postponed'
+        type        | sample                  | status          | tab
+        'Unstarted' | 'decision/unstarted'    | 'Make decision' | 'ready'
+        'Approved'  | 'decision/approved'     | 'Approved'      | 'approved'
+        'Postponed' | 'finalchecks/postponed' | 'Postponed'     | 'postponed'
     }
 
     @Unroll
@@ -58,9 +58,9 @@ class CaselistSpec extends GebReportingSpec {
         find('a.button').text() == label
 
         where:
-        status              | label   | sample                  | tab
-        'Awaiting decision' | 'Start' | 'decision/unstarted'    | 'ready'
-        'Approved'          | 'View'  | 'decision/approved'     | 'approved'
+        status          | label       | sample               | tab
+        'Make decision' | 'Start now' | 'decision/unstarted' | 'ready'
+        'Approved'      | 'View'      | 'decision/approved'  | 'approved'
     }
 
     @Unroll
