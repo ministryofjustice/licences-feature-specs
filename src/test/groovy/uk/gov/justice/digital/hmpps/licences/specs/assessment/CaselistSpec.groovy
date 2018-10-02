@@ -40,7 +40,7 @@ class CaselistSpec extends GebReportingSpec {
 
         where:
         type        | sample                 | status               | tab
-        'Unstarted' | 'assessment/unstarted' | 'Ready to check'     | 'ready'
+        'Unstarted' | 'assessment/unstarted' | 'Address provided'   | 'ready'
         'Doing'     | 'assessment/reporting' | 'Assessment ongoing' | 'checking'
         'Done'      | 'assessment/done'      | 'Assessment ongoing' | 'checking'
     }
@@ -58,9 +58,9 @@ class CaselistSpec extends GebReportingSpec {
         find('a.button').text() == label
 
         where:
-        status               | label   | sample                 | tab
-        'Ready to check'     | 'Start' | 'assessment/unstarted' | 'ready'
-        'Assessment ongoing' | 'View'  | 'assessment/reporting' | 'checking'
+        status               | label       | sample                 | tab
+        'RAddress provided'  | 'Start now' | 'assessment/unstarted' | 'ready'
+        'Assessment ongoing' | 'Continue'  | 'assessment/reporting' | 'checking'
     }
 
     @Unroll
