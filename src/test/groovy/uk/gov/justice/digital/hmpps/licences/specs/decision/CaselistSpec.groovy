@@ -33,16 +33,16 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        to CaselistPage, tab
+        to CaselistPage
 
         then: 'The appropriate status is shown'
         hdcEligible[0].find('.status').text() == status
 
         where:
-        type        | sample                  | status          | tab
-        'Unstarted' | 'decision/unstarted'    | 'Make decision' | 'ready'
-        'Approved'  | 'decision/approved'     | 'Approved'      | 'approved'
-        'Postponed' | 'finalchecks/postponed' | 'Postponed'     | 'postponed'
+        type        | sample                  | status
+        'Unstarted' | 'decision/unstarted'    | 'Make decision'
+        'Approved'  | 'decision/approved'     | 'Approved'
+        'Postponed' | 'finalchecks/postponed' | 'Postponed'
     }
 
     @Unroll
@@ -52,15 +52,15 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        via CaselistPage, tab
+        via CaselistPage
 
         then: 'Button label depends on status'
         find('a.button').text() == label
 
         where:
-        status          | label       | sample               | tab
-        'Make decision' | 'Start now' | 'decision/unstarted' | 'ready'
-        'Approved'      | 'View'      | 'decision/approved'  | 'approved'
+        status          | label       | sample
+        'Make decision' | 'Start now' | 'decision/unstarted'
+        'Approved'      | 'View'      | 'decision/approved'
     }
 
     @Unroll
@@ -91,14 +91,14 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        via CaselistPage, tab
+        via CaselistPage
 
         then: 'Button target depends on stage'
         find('a.button').getAttribute('href').contains(target)
 
         where:
-        stage      | sample               | target      | tab
-        'APPROVAL' | 'decision/unstarted' | '/taskList' | 'ready'
-        'DECIDED'  | 'decision/approved'  | '/taskList' | 'approved'
+        stage      | sample               | target
+        'APPROVAL' | 'decision/unstarted' | '/taskList'
+        'DECIDED'  | 'decision/approved'  | '/taskList'
     }
 }

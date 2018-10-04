@@ -35,7 +35,7 @@ class CommonCaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        via CaselistPage, 'ready'
+        via CaselistPage
 
         then: 'I see one HDC eligible prisoner'
         hdcEligible.size() == 1
@@ -54,7 +54,7 @@ class CommonCaselistSpec extends GebReportingSpec {
         when: 'I view the case list'
         actions.logIn(user)
         testData.loadLicence(sample)
-        via CaselistPage, 'ready'
+        via CaselistPage
 
         then: 'I see the expected data for the prisoner'
         offenders.summary[0].name == 'Mark Andrews'
@@ -75,7 +75,7 @@ class CommonCaselistSpec extends GebReportingSpec {
         when: 'I view the case list'
         actions.logOut()
         actions.logIn('CA_MULTI')
-        via CaselistPage, 'ready'
+        via CaselistPage
 
         then: 'I see the first 20 offenders'
         hdcEligible.size() == 22
@@ -107,7 +107,7 @@ class CommonCaselistSpec extends GebReportingSpec {
 
         when: 'I view the case list as an RO'
         actions.logIn('RO')
-        via CaselistPage, 'ready'
+        via CaselistPage
 
         then: 'I see the search for an offender option'
         searchOffenderControl.isDisplayed()
@@ -117,7 +117,7 @@ class CommonCaselistSpec extends GebReportingSpec {
 
         when: 'I view the case list and I am not an RO'
         actions.logIn(user)
-        via CaselistPage, 'ready'
+        via CaselistPage
 
         then: 'I do not see the search for an offender option'
         !searchOffenderControl.isDisplayed()
