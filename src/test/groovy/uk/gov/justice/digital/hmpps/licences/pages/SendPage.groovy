@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.licences.pages
 
 import geb.Page
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
+import uk.gov.justice.digital.hmpps.licences.modules.SubmissionTargetModule
 
 class SendPage extends Page {
 
@@ -13,13 +14,7 @@ class SendPage extends Page {
 
     static content = {
         header { module(HeaderModule) }
-
-        prison(required: false) { $("#premise") }
-        city(required: false) { $("#city") }
-        locality(required: false) { $("#locality") }
-        postCode(required: false) { $("#postCode") }
-
-        phones(required: false) { $("div", id: startsWith("phone")) }
+        submissionTarget { module(SubmissionTargetModule) }
     }
 
 }

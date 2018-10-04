@@ -161,18 +161,12 @@ class TaskListSpec extends GebReportingSpec {
         when: 'I click continue'
         find('#continueBtn').click()
 
-        then: 'I see the submit to CA page'
-        at SendPage
+        then: 'I see the sent to CA confirmation page'
+        at SentPage
 
         and: 'I see contact details for the prison (only first BUS phone shown)'
-        prison.text() == 'HMP Albany'
-        phones.size() == 1
-
-        and: 'I can click to submit'
-        find('#continueBtn').click()
-
-        then: 'I see the confirmation page'
-        at SentPage
+        submissionTarget.prison.text() == 'HMP Albany'
+        submissionTarget.phones.size() == 1
 
         when: 'I click return to case list'
         find('#backBtn').click()

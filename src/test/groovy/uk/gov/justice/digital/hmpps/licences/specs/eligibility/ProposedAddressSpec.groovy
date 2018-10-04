@@ -228,13 +228,13 @@ class ProposedAddressSpec extends GebReportingSpec {
         when: 'I click to continue'
         find('#continueBtn').click()
 
-        then: 'I move to confirmation page'
-        at SendPage
+        then: 'I see the sent confirmation page'
+        at SentPage
 
         when: 'I click return to case list'
         find('#backBtn').click()
 
-        then: 'I return to the task list'
-        at TaskListPage
+        then: 'I return to the case list'
+        at CaselistPage
     }
 }
