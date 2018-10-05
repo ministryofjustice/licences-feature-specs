@@ -55,7 +55,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         at TaskListPage
 
         and: 'I click the back to dashboard button'
-        $('a', text: 'Back to case list').click()
+        $('a', text: 'Back to case list', 0).click()
 
         then: 'I go back to the dashboard'
         at CaselistPage
