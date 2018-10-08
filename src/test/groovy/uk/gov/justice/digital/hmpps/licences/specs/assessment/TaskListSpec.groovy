@@ -53,7 +53,7 @@ class TaskListSpec extends GebReportingSpec {
         offender.details.name == 'Mark Andrews'
         offender.details.nomisId == 'A5001DY'
         offender.details.dob == '22/10/1989'
-        offender.details.roName == 'David Ball'
+        offender.details.roName == 'Ryan Orton'
         offender.details.externalLocation == 'HMP Albany'
         offender.details.offences == "Cause exceed max permitted wt of artic' vehicle - No of axles/configuration (No MOT/Manufacturer's Plate)"
         offender.details.crd == '15/10/2019'
