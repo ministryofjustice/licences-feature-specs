@@ -33,16 +33,16 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        to CaselistPage, tab
+        to CaselistPage
 
         then: 'The appropriate status is shown'
         hdcEligible[0].find('.status').text() == status
 
         where:
-        type        | sample                 | status               | tab
-        'Unstarted' | 'assessment/unstarted' | 'Address provided'   | 'ready'
-        'Doing'     | 'assessment/reporting' | 'Assessment ongoing' | 'checking'
-        'Done'      | 'assessment/done'      | 'Assessment ongoing' | 'checking'
+        type        | sample                 | status
+        'Unstarted' | 'assessment/unstarted' | 'Address provided'
+        'Doing'     | 'assessment/reporting' | 'Assessment ongoing'
+        'Done'      | 'assessment/done'      | 'Assessment ongoing'
     }
 
     @Unroll
@@ -52,15 +52,15 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        via CaselistPage, tab
+        via CaselistPage
 
         then: 'Button label depends on status'
         find('a.button').text() == label
 
         where:
-        status               | label       | sample                 | tab
-        'RAddress provided'  | 'Start now' | 'assessment/unstarted' | 'ready'
-        'Assessment ongoing' | 'Continue'  | 'assessment/reporting' | 'checking'
+        status               | label       | sample
+        'RAddress provided'  | 'Start now' | 'assessment/unstarted'
+        'Assessment ongoing' | 'Continue'  | 'assessment/reporting'
     }
 
     @Unroll
@@ -87,17 +87,17 @@ class CaselistSpec extends GebReportingSpec {
         given: 'A licence'
         testData.loadLicence(sample)
 
-        when: 'I view the caselist tab'
-        to CaselistPage, tab
+        when: 'I view the caselist'
+        to CaselistPage
 
         then: 'Button target depends on stage'
         find('a.button').getAttribute('href').contains(target)
 
         where:
-        stage           | sample                  | target            | tab
-        'PROCESSING_RO' | 'assessment/unstarted'  | '/taskList'       | 'ready'
-        'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence' | 'withPrison'
-        'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'withPrison'
-        'DECIDED'       | 'decision/approved'     | '/taskList'       | 'approved'
+        stage           | sample                  | target
+        'PROCESSING_RO' | 'assessment/unstarted'  | '/taskList'
+        'PROCESSING_CA' | 'finalchecks/unstarted' | '/review/licence'
+        'APPROVAL'      | 'decision/unstarted'    | '/review/licence'
+        'DECIDED'       | 'decision/approved'     | '/taskList'
     }
 }

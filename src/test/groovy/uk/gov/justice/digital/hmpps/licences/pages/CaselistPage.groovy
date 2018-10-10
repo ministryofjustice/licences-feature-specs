@@ -24,10 +24,6 @@ class CaselistPage extends Page {
             $('a', href: contains(nomisId)).click()
         }
 
-        viewTabFor { tabName ->
-            $('a', href: tabName).click()
-        }
-
         searchOffenderControl(required: false){ $('#searchOffenderLink')}
 
         paginateNext(required: false) {$('#pagination a.next')}

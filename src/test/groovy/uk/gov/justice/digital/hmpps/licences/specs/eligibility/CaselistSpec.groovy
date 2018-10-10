@@ -35,16 +35,16 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        to CaselistPage, tab
+        to CaselistPage
 
         then: 'The appropriate status is shown'
         hdcEligible[0].find('.status').text() == status
 
         where:
-        type         | sample                 | status                     | tab
-        'Unstarted'  | 'eligibility/started'  | 'Checking eligibility'     | 'ready'
-        'Excluded'   | 'eligibility/excluded' | 'Excluded (Ineligible)'    | 'ready'
-        'Sent to RO' | 'assessment/unstarted' | 'With responsible officer' | 'submittedRo'
+        type         | sample                 | status
+        'Unstarted'  | 'eligibility/started'  | 'Checking eligibility'
+        'Excluded'   | 'eligibility/excluded' | 'Excluded (Ineligible)'
+        'Sent to RO' | 'assessment/unstarted' | 'With responsible officer'
     }
 
     @Unroll
@@ -54,16 +54,16 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        via CaselistPage, tab
+        via CaselistPage
 
         then: 'Button label depends on status'
         find('a.button').text() == label
 
         where:
-        status        | label       | sample                  | tab
-        'Not started' | 'Start now' | 'eligibility/unstarted' | 'ready'
-        'Review case' | 'Continue'  | 'finalchecks/unstarted' | 'reviewCase'
-        'Postponed'   | 'Change'    | 'finalchecks/postponed' | 'reviewCase'
+        status        | label       | sample
+        'Not started' | 'Start now' | 'eligibility/unstarted'
+        'Review case' | 'Continue'  | 'finalchecks/unstarted'
+        'Postponed'   | 'Change'    | 'finalchecks/postponed'
     }
 
     @Unroll
@@ -73,19 +73,19 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence(sample)
 
         when: 'I view the caselist'
-        via CaselistPage, tab
+        via CaselistPage
 
         then: 'Button target depends on stage'
         find('a.button').getAttribute('href').contains(target)
 
         where:
-        stage           | sample                  | target            | tab
-        'UNSTARTED'     | 'unstarted/unstarted'   | '/taskList'       | 'ready'
-        'ELIGIBILITY'   | 'eligibility/unstarted' | '/taskList'       | 'ready'
-        'PROCESSING_RO' | 'assessment/unstarted'  | '/review/licence' | 'submittedRo'
-        'PROCESSING_CA' | 'finalchecks/unstarted' | '/taskList'       | 'reviewCase'
-        'APPROVAL'      | 'decision/unstarted'    | '/review/licence' | 'submittedDm'
-        'DECIDED'       | 'decision/approved'     | '/taskList'       | 'create'
+        stage           | sample                  | target
+        'UNSTARTED'     | 'unstarted/unstarted'   | '/taskList'
+        'ELIGIBILITY'   | 'eligibility/unstarted' | '/taskList'
+        'PROCESSING_RO' | 'assessment/unstarted'  | '/review/licence'
+        'PROCESSING_CA' | 'finalchecks/unstarted' | '/taskList'
+        'APPROVAL'      | 'decision/unstarted'    | '/review/licence'
+        'DECIDED'       | 'decision/approved'     | '/taskList'
     }
 
     def 'Review button shows licence review with return to caselist option'() {
@@ -94,7 +94,7 @@ class CaselistSpec extends GebReportingSpec {
         testData.loadLicence('assessment/unstarted')
 
         when: 'I click review'
-        via CaselistPage, 'submittedRo'
+        via CaselistPage
         find('a.button').click()
 
         then: 'I see the licence review page'
