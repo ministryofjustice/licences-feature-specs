@@ -7,9 +7,8 @@ import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAdressAddressProposedPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
-import uk.gov.justice.digital.hmpps.licences.pages.SendPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressOptOutPage
-import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressBassReferralPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.BassReferralBassRequestPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
@@ -114,7 +113,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         find('#continueBtn').click()
 
         then: 'I see the BASS referral form'
-        at ProposedAddressBassReferralPage
+        at BassReferralBassRequestPage
 
         and: 'Nothing is selected'
         decisionRadios.checked == null
@@ -141,7 +140,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'The task list is shown next if BASS referral is Yes' () {
 
         given: 'On BASS referral page'
-        at ProposedAddressBassReferralPage
+        at BassReferralBassRequestPage
 
         when: 'I select yes'
         decisionRadios.checked = 'Yes'

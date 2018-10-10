@@ -4,9 +4,9 @@ import geb.Page
 import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class ProposedAddressBassReferralPage extends Page {
+class BassReferralBassRequestPage extends Page {
 
-    static url = '/hdc/proposedAddress/bassReferral'
+    static url = '/hdc/bassReferral/bassRequest'
 
     static at = {
         browser.currentUrl.contains(url)
@@ -15,7 +15,7 @@ class ProposedAddressBassReferralPage extends Page {
     static content = {
         header { module(HeaderModule) }
 
-        decisionRadios { $(name: "decision").module(RadioButtons) }
+        decisionRadios { $(name: "bassRequested").module(RadioButtons) }
 
         proposedTownInput(required: false) { $("#proposedTown") }
 
