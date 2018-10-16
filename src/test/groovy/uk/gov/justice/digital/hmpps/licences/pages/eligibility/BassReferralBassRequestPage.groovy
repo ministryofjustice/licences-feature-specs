@@ -4,7 +4,7 @@ import geb.Page
 import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class ProposedAddressBassReferralPage extends Page {
+class BassReferralBassRequestPage extends Page {
 
     static url = '/hdc/bassReferral/bassRequest'
 
