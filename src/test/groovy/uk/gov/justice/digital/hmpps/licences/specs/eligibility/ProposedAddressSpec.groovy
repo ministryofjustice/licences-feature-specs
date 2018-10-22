@@ -7,7 +7,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.CurfewAddressChoicePage
-import uk.gov.justice.digital.hmpps.licences.pages.eligibility.BassReferralBassRequestPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.BassRequestPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
@@ -32,7 +32,7 @@ class ProposedAddressSpec extends GebReportingSpec {
 
     def 'Starts with nothing selected'() {
 
-        when: 'I view the opt out page'
+        when: 'I view the choice page'
         to CurfewAddressChoicePage, testData.markAndrewsBookingId
 
         then: 'No radio option is selected'
@@ -44,7 +44,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         given: 'Opt out form already done'
         testData.loadLicence('eligibility/optedOut')
 
-        when: 'I view the opt out page'
+        when: 'I view the choice page'
         to CurfewAddressChoicePage, testData.markAndrewsBookingId
 
         then: 'I see the previous values'
@@ -69,12 +69,12 @@ class ProposedAddressSpec extends GebReportingSpec {
         given: 'On choice page'
         to CurfewAddressChoicePage, testData.markAndrewsBookingId
 
-        when: 'I select to opt out'
+        when: 'I select bass'
         decisionRadios.checked = 'Bass'
         find('#continueBtn').click()
 
         then: 'I see the address page'
-        at BassReferralBassRequestPage
+        at BassRequestPage
     }
 
     def 'The address proposed question page is shown next if decision is Address' () {
@@ -82,7 +82,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         given: 'On choice page'
         to CurfewAddressChoicePage, testData.markAndrewsBookingId
 
-        when: 'I select to opt out'
+        when: 'I select address'
         decisionRadios.checked = 'Address'
         find('#continueBtn').click()
 

@@ -11,13 +11,12 @@ import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewHoursPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
-import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksPostponePage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.BassRejectedPage
+import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.BassOfferPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksSeriousOffencePage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewAddressPage
-import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewCurfewHoursPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewConditionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewReportingPage
-import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewRiskPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -32,6 +31,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
     @Shared
     def tasks = [
             address    : 'Proposed curfew address',
+            bass       : 'BASS address',
             curfewHours: 'Curfew hours',
             conditions : 'Additional conditions',
             risk       : 'Risk management and victim liaison',
@@ -181,5 +181,38 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
 
         then: 'I see only address, submit'
         taskListActions.size() == 2
+    }
+
+    def 'BASS task button links to bass offer page'() {
+
+        given: 'BASS has been requested'
+        testData.loadLicence('finalchecks/bassOffer-unstarted')
+
+        when: 'I view the task list'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'I see the start now button for bass address'
+        taskListAction(tasks.bass).text() == 'Start now'
+
+        when: 'I start the task'
+        taskListAction(tasks.bass).click()
+
+        then: 'I see the BASS offer page'
+        at BassOfferPage
+    }
+
+    def 'When BASS is rejected, can submit to DM for refusal'() {
+
+        given: 'BASS offer is rejected'
+        testData.loadLicence('finalchecks/bassOffer-unavailable')
+
+        when: 'I view the task list'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'I see only bass, refuse, submit'
+        taskListActions.size() == 3
+
+        and: 'I can only submit for refusal'
+        $('h2', text: contains('Submit to decision maker')).closest('div').text().contains('Ready to submit for refusal')
     }
 }

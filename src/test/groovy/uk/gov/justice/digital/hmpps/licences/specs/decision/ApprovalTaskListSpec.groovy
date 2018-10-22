@@ -76,7 +76,6 @@ class ApprovalTaskListSpec extends GebReportingSpec {
         taskListAction(tasks.decision).text() == 'Refuse HDC'
     }
 
-
     def 'When CRD time insufficent, reduced task set shown'() {
 
         given: 'The address has been rejected'
