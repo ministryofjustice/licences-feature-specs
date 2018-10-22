@@ -1,5 +1,5 @@
 {
-  "stage": "ELIGIBILITY",
+  "stage": "PROCESSING_CA",
   "licence": {
     "eligibility": {
       "crdTime": {
@@ -17,6 +17,19 @@
         "proposedTown": "BASS Town",
         "bassRequested": "Yes",
         "proposedCounty": "BASS County"
+      },
+      "bassAreaCheck": {
+        "bassAreaReason": "",
+        "bassAreaSuitable": "Yes"
+      },
+      "bassOffer": {
+        "bassArea": "Area",
+        "postCode": "AB11AB",
+        "telephone": "111",
+        "addressTown": "Town",
+        "addressLine1": "Street",
+        "addressLine2": "",
+        "bassAccepted": "Yes"
       }
     },
     "proposedAddress": {

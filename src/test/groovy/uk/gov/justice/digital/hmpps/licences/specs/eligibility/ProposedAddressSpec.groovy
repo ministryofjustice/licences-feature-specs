@@ -10,6 +10,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressOptOutPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.BassReferralBassRequestPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewBassRequestPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -39,7 +40,7 @@ class ProposedAddressSpec extends GebReportingSpec {
         then: 'Neither radio option is selected'
         decisionRadios.checked == null
 
-        and: 'details form is not shown'
+        and: 'The details form is not shown'
         !detailsForm.isDisplayed()
     }
 
@@ -118,21 +119,21 @@ class ProposedAddressSpec extends GebReportingSpec {
         and: 'Nothing is selected'
         decisionRadios.checked == null
 
-        and: 'details form is not shown'
+        and: 'The details form is not shown'
         !proposedTownInput.isDisplayed()
         !proposedCountyInput.isDisplayed()
 
-        when: 'i select Yes'
+        when: 'I select Yes'
         decisionRadios.checked = 'Yes'
 
-        then: 'details form is shown'
+        then: 'Details form is shown'
         proposedTownInput.isDisplayed()
         proposedCountyInput.isDisplayed()
 
-        when: 'i select No'
+        when: 'I select No'
         decisionRadios.checked = 'No'
 
-        then: 'details form is not shown'
+        then: 'The details form is not shown'
         !proposedTownInput.isDisplayed()
         !proposedCountyInput.isDisplayed()
     }
@@ -223,6 +224,40 @@ class ProposedAddressSpec extends GebReportingSpec {
 
         then: 'I see the review page'
         at ReviewCurfewAddressPage
+
+        when: 'I click to continue'
+        find('#continueBtn').click()
+
+        then: 'I see the sent confirmation page'
+        at SentPage
+
+        when: 'I click return to case list'
+        find('#backBtn').click()
+
+        then: 'I return to the case list'
+        at CaselistPage
+    }
+
+    def 'I can submit a BASS request to the RO' () {
+
+        given: 'A BASS request'
+        testData.loadLicence('eligibility/bassReferral')
+
+        when: 'I view the task list page'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        and: 'I click to continue to submission'
+        find('#continueBtn').click()
+
+        then: 'I see the review BASS request page'
+        at ReviewBassRequestPage
+
+        and: 'The proposed BASS details are shown'
+        bass.proposed.town == 'BASS Town'
+        bass.proposed.county == 'BASS County'
+
+        and: 'The change link is shown'
+        changeBassLink.isDisplayed()
 
         when: 'I click to continue'
         find('#continueBtn').click()

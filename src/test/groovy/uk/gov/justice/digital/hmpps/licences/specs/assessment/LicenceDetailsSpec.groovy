@@ -197,4 +197,24 @@ class LicenceDetailsSpec extends GebReportingSpec {
         'no consent'     | 'assessment/address-rejected'             | [consent: 'No', electricity: null, homeVisit: null, safety: null, cautioned: 'No']
         'no electricity' | 'assessment/address-rejected-electricity' | [consent: 'Yes', electricity: 'No', homeVisit: null, safety: null, cautioned: 'No']
     }
+
+    def 'Shows BASS details when BASS referral'() {
+
+        given: 'A BASS request'
+        testData.loadLicence('assessment/bassArea-rejected')
+
+        when: 'I view the licence details summary page for the licence record'
+        to LicenceDetailsPage, testData.markAndrewsBookingId
+
+        then: 'I see the bass details'
+
+        println 'here'
+        println $('#proposedTown')
+        println $('#proposedTown').text()
+
+        bass.proposed.county == 'BASS County'
+        bass.proposed.town == 'BASS Town'
+        bass.area.areaSuitable == 'No'
+        bass.area.areaReason == 'Reason'
+    }
 }

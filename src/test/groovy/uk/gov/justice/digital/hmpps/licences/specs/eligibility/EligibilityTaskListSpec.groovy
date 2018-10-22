@@ -183,4 +183,14 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         then: 'The submit task is shown'
         !taskListAction('Inform the offender').isDisplayed()
     }
+
+    def 'BASS submit task shown when BASS requested'() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/bassReferral")
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'The submit task is shown'
+        $('h2', text: contains('Submit BASS request')).isDisplayed()
+    }
 }

@@ -8,6 +8,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.*
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.EligibilityExclusionPage
+import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.BassOfferPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksSeriousOffencePage
 import uk.gov.justice.digital.hmpps.licences.pages.pdf.LicenceTemplatePage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewAddressPage
@@ -27,6 +28,7 @@ class CaTaskListSpec extends GebReportingSpec {
     def tasks = [
             eligibility : 'Eligibility and presumed suitability',
             address     : 'Proposed curfew address',
+            bass        : 'BASS address',
             conditions  : 'Additional conditions',
             risk        : 'Risk management and victim liaison',
             reporting   : 'Reporting instructions',
@@ -142,6 +144,24 @@ class CaTaskListSpec extends GebReportingSpec {
 
         then: 'I can only submit to RO'
         $('h2', text: contains('Submit curfew address')).closest('div').text().contains('Ready to submit')
+    }
+
+    def 'BASS task shown when BASS referral' () {
+
+        given: 'An approved licence for BASS referral'
+        testData.loadLicence('decision/approved-bass')
+
+        when: 'I view the task list page'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'I see the BASS task'
+        taskListAction(tasks.bass).text() == 'Change'
+
+        when: 'I start the task'
+        taskListAction(tasks.bass).click()
+
+        then: 'I see the BASS offer page'
+        at BassOfferPage
     }
 }
 
