@@ -36,7 +36,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
             conditions : 'Additional conditions',
             risk       : 'Risk management and victim liaison',
             reporting  : 'Reporting instructions',
-            final      : 'Final checks',
+            final      : 'Review case',
             postpone   : 'Postponement',
             submit     : 'Submit to decision maker'
     ]

@@ -34,20 +34,20 @@ class PostponeSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'The button label is Postpone'
-        taskListAction('Postponement').value() == 'Postpone'
+        taskListAction('Postpone').value() == 'Postpone'
 
         when: 'I postpone'
-        taskListAction('Postponement').click()
+        taskListAction('Postpone').click()
 
         then: 'The button label is Resume'
         at TaskListPage
-        taskListAction('Postponement').value() == 'Resume'
+        taskListAction('Postpone').value() == 'Resume'
 
         when: 'I resume'
-        taskListAction('Postponement').click()
+        taskListAction('Postpone').click()
 
         then: 'The button label is Postpone'
         at TaskListPage
-        taskListAction('Postponement').value() == 'Postpone'
+        taskListAction('Postpone').value() == 'Postpone'
     }
 }

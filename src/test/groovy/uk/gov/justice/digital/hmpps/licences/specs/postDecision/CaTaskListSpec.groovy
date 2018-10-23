@@ -31,7 +31,7 @@ class CaTaskListSpec extends GebReportingSpec {
             risk        : 'Risk management and victim liaison',
             reporting   : 'Reporting instructions',
             curfew      : 'Curfew hours',
-            finalChecks : 'Final checks',
+            finalChecks : 'Review case',
             postponement: 'Postponement',
             create      : 'Create licence',
             submit      : 'Submit to prison case admin'
