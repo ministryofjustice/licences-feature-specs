@@ -58,9 +58,9 @@ class ApprovalSpec extends GebReportingSpec {
         and: 'I select no for approve release'
         releaseRadios.checked = 'No'
 
-        then: 'I see 2 reason options'
+        then: 'I see 4 reason options'
         reasonsForm.isDisplayed()
-        reasons.size() == 2
+        reasons.size() == 4
     }
 
     def 'Shows previously saved values'() {
