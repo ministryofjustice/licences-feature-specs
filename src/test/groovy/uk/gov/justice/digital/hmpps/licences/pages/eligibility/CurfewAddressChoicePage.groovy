@@ -4,9 +4,9 @@ import geb.Page
 import geb.module.RadioButtons
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
 
-class ProposedAddressOptOutPage extends Page {
+class CurfewAddressChoicePage extends Page {
 
-    static url = '/hdc/proposedAddress/optOut'
+    static url = '/hdc/proposedAddress/curfewAddressChoice'
 
     static at = {
         browser.currentUrl.contains(url)
@@ -16,7 +16,5 @@ class ProposedAddressOptOutPage extends Page {
         header { module(HeaderModule) }
 
         decisionRadios { $(name: "decision").module(RadioButtons) }
-
-        detailsForm(required: false) { $("#optOutDetails") }
     }
 }

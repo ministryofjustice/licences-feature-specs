@@ -15,8 +15,6 @@ class BassReferralBassRequestPage extends Page {
     static content = {
         header { module(HeaderModule) }
 
-        decisionRadios { $(name: "bassRequested").module(RadioButtons) }
-
         proposedTownInput(required: false) { $("#proposedTown") }
 
         proposedCountyInput(required: false) { $("#proposedCounty") }
