@@ -4,10 +4,9 @@ import geb.spock.GebReportingSpec
 import spock.lang.Shared
 import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
-import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAdressAddressProposedPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
-import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressOptOutPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.CurfewAddressChoicePage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.BassReferralBassRequestPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewCurfewAddressPage
@@ -31,137 +30,63 @@ class ProposedAddressSpec extends GebReportingSpec {
         actions.logOut()
     }
 
-    def 'Starts with opt out page with nothing selected'() {
+    def 'Starts with nothing selected'() {
 
         when: 'I view the opt out page'
-        to ProposedAddressOptOutPage, testData.markAndrewsBookingId
+        to CurfewAddressChoicePage, testData.markAndrewsBookingId
 
-        then: 'Neither radio option is selected'
+        then: 'No radio option is selected'
         decisionRadios.checked == null
-
-        and: 'details form is not shown'
-        !detailsForm.isDisplayed()
     }
 
-    def 'Details box is not shown when Yes is selected'() {
-
-        given: 'I am on the opt out page'
-
-        when: 'I select yes for opt out'
-        decisionRadios.checked = 'Yes'
-
-        then: 'I see details form'
-        detailsForm.isDisplayed()
-
-        when: 'I select no for opt out'
-        decisionRadios.checked = 'No'
-
-        then: 'I don not see details form'
-        !detailsForm.isDisplayed()
-    }
-
-    def 'Can view eligibility checks when already started'() {
+    def 'Shows previous values'() {
 
         given: 'Opt out form already done'
         testData.loadLicence('eligibility/optedOut')
 
         when: 'I view the opt out page'
-        to ProposedAddressOptOutPage, testData.markAndrewsBookingId
+        to CurfewAddressChoicePage, testData.markAndrewsBookingId
 
         then: 'I see the previous values'
-        decisionRadios.checked == 'Yes'
-        detailsForm.isDisplayed()
-        detailsForm == 'Reason for opt out'
-
+        decisionRadios.checked == 'OptOut'
     }
 
-    def 'The task list is shown next if opt out is Yes' () {
-        given: 'On opt out page'
-        at ProposedAddressOptOutPage
+    def 'The task list is shown next if decision is OptOut' () {
+
+        given: 'On choice page'
+        to CurfewAddressChoicePage, testData.markAndrewsBookingId
 
         when: 'I select to opt out'
-        decisionRadios.checked = 'Yes'
+        decisionRadios.checked = 'OptOut'
         find('#continueBtn').click()
 
         then: 'I see the task list'
         at TaskListPage
     }
 
-    def 'The address proposed question page is shown next if opt out is No' () {
+    def 'The BASS referral page is shown next if decision is Bass' () {
 
-        when: 'I view the opt out page'
-        to ProposedAddressOptOutPage, testData.markAndrewsBookingId
+        given: 'On choice page'
+        to CurfewAddressChoicePage, testData.markAndrewsBookingId
 
-        and: 'I select to not opt out'
-        decisionRadios.checked = 'No'
+        when: 'I select to opt out'
+        decisionRadios.checked = 'Bass'
         find('#continueBtn').click()
 
-        then: 'I see the address proposed form'
-        at ProposedAdressAddressProposedPage
-
-        and: 'Nothing is selected'
-        decisionRadios.checked == null
-    }
-
-    def 'The BASS referral page is shown next if address proposed is No' () {
-
-        given: 'On address proposed page'
-        at ProposedAdressAddressProposedPage
-
-        when: 'I select to not propose an address'
-        decisionRadios.checked = 'No'
-        find('#continueBtn').click()
-
-        then: 'I see the BASS referral form'
+        then: 'I see the address page'
         at BassReferralBassRequestPage
-
-        and: 'Nothing is selected'
-        decisionRadios.checked == null
-
-        and: 'details form is not shown'
-        !proposedTownInput.isDisplayed()
-        !proposedCountyInput.isDisplayed()
-
-        when: 'i select Yes'
-        decisionRadios.checked = 'Yes'
-
-        then: 'details form is shown'
-        proposedTownInput.isDisplayed()
-        proposedCountyInput.isDisplayed()
-
-        when: 'i select No'
-        decisionRadios.checked = 'No'
-
-        then: 'details form is not shown'
-        !proposedTownInput.isDisplayed()
-        !proposedCountyInput.isDisplayed()
     }
 
-    def 'The task list is shown next if BASS referral is Yes' () {
+    def 'The address proposed question page is shown next if decision is Address' () {
 
-        given: 'On BASS referral page'
-        at BassReferralBassRequestPage
+        given: 'On choice page'
+        to CurfewAddressChoicePage, testData.markAndrewsBookingId
 
-        when: 'I select yes'
-        decisionRadios.checked = 'Yes'
-        proposedTownInput = 'Town'
-        proposedCountyInput = 'County'
+        when: 'I select to opt out'
+        decisionRadios.checked = 'Address'
         find('#continueBtn').click()
 
-        then: 'I see the task list'
-        at TaskListPage
-    }
-
-    def 'The proposed address form is shown next if address proposed is Yes' () {
-
-        when: 'I view the address proposed page'
-        to ProposedAdressAddressProposedPage, testData.markAndrewsBookingId
-
-        and: 'I select yes'
-        decisionRadios.checked = 'Yes'
-        find('#continueBtn').click()
-
-        then: 'I see the proposed Address Form'
+        then: 'I see the address page'
         at ProposedAddressCurfewAddressPage
     }
 
@@ -216,7 +141,7 @@ class ProposedAddressSpec extends GebReportingSpec {
     def 'I can submit the address to the RO' () {
 
         given: 'On the task list page'
-        at TaskListPage
+        to TaskListPage, testData.markAndrewsBookingId
 
         when: 'I click to continue to submission'
         find('#continueBtn').click()
