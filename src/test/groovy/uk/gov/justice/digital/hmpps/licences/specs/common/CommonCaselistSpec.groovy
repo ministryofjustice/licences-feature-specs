@@ -103,6 +103,19 @@ class CommonCaselistSpec extends GebReportingSpec {
         paginationText.text().contains('Offenders 1 - 20 of 22')
     }
 
+    def 'Inactive cases are displayed under inactive tab'() {
+
+        given: 'a licence exists in an inactive state'
+        testData.loadLicence('eligibility/excluded')
+
+        when: 'I view the caselist with the inactive tab'
+        actions.logIn('CA')
+        to CaselistPage, 'inactive'
+
+        then: 'The inactive case is shown with correct status'
+        statusFor(0) == 'Excluded (Ineligible)'
+    }
+
     def 'Search for offenders is available for RO'() {
 
         when: 'I view the case list as an RO'

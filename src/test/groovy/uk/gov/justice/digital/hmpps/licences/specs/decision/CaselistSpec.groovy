@@ -36,7 +36,7 @@ class CaselistSpec extends GebReportingSpec {
         to CaselistPage
 
         then: 'The appropriate status is shown'
-        hdcEligible[0].find('.status').text() == status
+        statusFor(0) == status
 
         where:
         type        | sample                  | status
