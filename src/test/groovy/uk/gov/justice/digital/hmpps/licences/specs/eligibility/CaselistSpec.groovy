@@ -38,12 +38,11 @@ class CaselistSpec extends GebReportingSpec {
         to CaselistPage
 
         then: 'The appropriate status is shown'
-        hdcEligible[0].find('.status').text() == status
+        statusFor(0) == status
 
         where:
         type         | sample                 | status
         'Unstarted'  | 'eligibility/started'  | 'Checking eligibility'
-        'Excluded'   | 'eligibility/excluded' | 'Excluded (Ineligible)'
         'Sent to RO' | 'assessment/unstarted' | 'With responsible officer'
     }
 

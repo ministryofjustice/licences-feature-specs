@@ -19,6 +19,9 @@ class CaselistPage extends Page {
         offenders { module(OffenderSummaryModule) }
 
         hdcEligible(required: false) { $('tr.hdcEligible') }
+        statusFor {index ->
+            $('tr.hdcEligible')[index].find('.status').text()
+        }
 
         viewTaskListFor { nomisId ->
             $('a', href: contains(nomisId)).click()
