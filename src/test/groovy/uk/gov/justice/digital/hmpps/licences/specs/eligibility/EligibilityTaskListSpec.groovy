@@ -70,7 +70,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see a start button for the eligibility check'
-        eligibilityCheckStartButton.value() == 'Start'
+        eligibilityCheckStartButton.value() == 'Start now'
     }
 
     def 'Start eligibility check button goes to eligibility check page'() {
