@@ -5,6 +5,7 @@ import spock.lang.Shared
 import spock.lang.Stepwise
 import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.CurfewAddressChoicePage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.ProposedAddressCurfewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewAddressPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksAddressWithdrawnPage
@@ -103,14 +104,13 @@ class ReviewAddressSpec extends GebReportingSpec {
         addAddressRadios = "No"
         find('#continueBtn').click()
 
-        then: 'I go to the tasklist'
-        at TaskListPage
+        then: 'I go to the address choice page'
+        at CurfewAddressChoicePage
 
-        when: 'I click to go into the address task'
-        taskListAction('Proposed curfew address').click()
+        when: 'I go back to the address page'
+        to ReviewAddressPage, testData.markAndrewsBookingId
 
         then: 'I see that the address has been withdrawn'
-        at ReviewAddressPage
         errorSummary.text().contains('withdrawn this address')
     }
 
