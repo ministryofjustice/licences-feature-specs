@@ -17,9 +17,9 @@ class AddressDetailsModule extends Module {
 
         address { type ->
             [
-                    line1    : $("#address1-${type}"),
-                    line2    : $("#address2-${type}"),
-                    town     : $("#town-${type}"),
+                    line1    : $("#addressLine1-${type}"),
+                    line2    : $("#addressLine2-${type}"),
+                    town     : $("#addressTown-${type}"),
                     postCode : $("#postCode-${type}"),
                     telephone: $("#telephone-${type}")
             ]
