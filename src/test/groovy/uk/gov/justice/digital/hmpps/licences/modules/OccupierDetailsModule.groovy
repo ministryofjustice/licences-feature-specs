@@ -17,9 +17,9 @@ class OccupierDetailsModule extends Module {
 
         occupier { type ->
             [
-                    name     : $("#occupierName-${type}"),
-                    age      : $("#occupierAge-${type}"),
-                    relationship : $("#occupierRelation-${type}"),
+                    name     : $("#occupiername-${type}"),
+                    age      : $("#occupierage-${type}"),
+                    relationship : $("#occupierrelationship-${type}"),
                     cautioned: $("#cautioned-${type}")
             ]
         }
