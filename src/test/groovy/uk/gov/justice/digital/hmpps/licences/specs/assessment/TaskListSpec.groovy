@@ -46,6 +46,9 @@ class TaskListSpec extends GebReportingSpec {
     @Stage
     def 'Shows details of the prisoner (from nomis)'() {
 
+        given: 'An unprocessed licence'
+        testData.loadLicence('assessment/unstarted')
+
         when: 'I view the task list page'
         to TaskListPage, testData.markAndrewsBookingId
 
@@ -77,9 +80,6 @@ class TaskListSpec extends GebReportingSpec {
     }
 
     def 'Shows start now button for all tasks except submit'() {
-
-        given: 'An unprocessed licence'
-        testData.loadLicence('assessment/unstarted')
 
         when: 'I view the page'
         to TaskListPage, testData.markAndrewsBookingId
