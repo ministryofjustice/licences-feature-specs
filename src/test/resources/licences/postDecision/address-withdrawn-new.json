@@ -76,58 +76,61 @@
         "decision": "No"
       },
       "curfewAddress": {
-        "addresses": [
-          {
-            "consent": "Yes",
-            "occupier": {
-              "age": "21",
-              "name": "Main Occupier",
-              "relationship": "Brother"
-            },
-            "postCode": "AB1 1AB",
-            "residents": [
-              {
-                "age": "10",
-                "name": "Other Resident",
-                "relationship": "Son"
-              },
-              {
-                "age": "",
-                "name": "",
-                "relationship": ""
-              },
-              {
-                "age": "20",
-                "name": "Yet Another",
-                "relationship": "Wife"
-              }
-            ],
-            "telephone": "0123 456789",
-            "deemedSafe": "Yes",
-            "addressTown": "Town",
-            "electricity": "Yes",
-            "addressLine1": "Street",
-            "addressLine2": "",
-            "addressWithdrawn": "No",
-            "consentWithdrawn": "Yes",
-            "homeVisitConducted": "Yes",
-            "cautionedAgainstResident": "No"
+        "occupier": {
+          "name": "2",
+          "relationship": "2"
+        },
+        "postCode": "AB1 1AB",
+        "residents": [],
+        "telephone": "2",
+        "addressTown": "2",
+        "addressLine1": "2",
+        "addressLine2": "",
+        "cautionedAgainstResident": "No"
+      },
+      "rejections": [{
+        "address": {
+          "occupier": {
+            "age": "21",
+            "name": "Main Occupier",
+            "relationship": "Brother"
           },
-          {
-            "occupier": {
-              "name": "2",
-              "relationship": "2"
+          "postCode": "AB1 1AB",
+          "residents": [
+            {
+              "age": "10",
+              "name": "Other Resident",
+              "relationship": "Son"
             },
-            "postCode": "AB1 1AB",
-            "residents": [],
-            "telephone": "2",
-            "addressTown": "2",
-            "addressLine1": "2",
-            "addressLine2": "",
-            "cautionedAgainstResident": "No"
+            {
+              "age": "",
+              "name": "",
+              "relationship": ""
+            },
+            {
+              "age": "20",
+              "name": "Yet Another",
+              "relationship": "Wife"
+            }
+          ],
+          "telephone": "0123 456789",
+          "addressTown": "Town",
+          "addressLine1": "Street",
+          "addressLine2": "",
+          "cautionedAgainstResident": "No"
+        },
+        "addressReview": {
+          "curfewAddressReview": {
+            "consent": "Yes",
+            "electricity": "Yes",
+            "homeVisitConducted": "Yes"
+          },
+          "addressSafety": {
+            "deemedSafe": "Yes"
           }
-        ]
-      }
+        },
+        "withdrawalReason": "withdrawConsent"
+      }]
     },
     "licenceConditions": {
       "bespoke": [

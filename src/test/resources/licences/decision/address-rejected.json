@@ -20,38 +20,40 @@
         "decision": "No"
       },
       "curfewAddress": {
-        "addresses": [{
-          "addressLine1": "Street",
-          "addressLine2": "",
-          "addressTown": "Town",
-          "postCode": "AB1 1AB",
-          "telephone": "0123 456789",
-          "electricity": "Yes",
-          "occupier": {
-            "name": "Main Occupier",
-            "age": "21",
-            "relationship": "Brother"
+        "addressLine1": "Street",
+        "addressLine2": "",
+        "addressTown": "Town",
+        "postCode": "AB1 1AB",
+        "telephone": "0123 456789",
+        "electricity": "Yes",
+        "occupier": {
+          "name": "Main Occupier",
+          "age": "21",
+          "relationship": "Brother"
+        },
+        "residents": [
+          {
+            "name": "Other resident",
+            "age": "10",
+            "relationship": "Son"
           },
-          "residents": [
-            {
-              "name": "Other resident",
-              "age": "10",
-              "relationship": "Son"
-            },
-            {
-              "name": "",
-              "age": "",
-              "relationship": ""
-            },
-            {
-              "name": "",
-              "age": "",
-              "relationship": ""
-            }
-          ],
-          "cautionedAgainstResident": "No",
-          "consent": "No"
-        }]
+          {
+            "name": "",
+            "age": "",
+            "relationship": ""
+          },
+          {
+            "name": "",
+            "age": "",
+            "relationship": ""
+          }
+        ],
+        "cautionedAgainstResident": "No"
+      }
+    },
+    "curfew": {
+      "curfewAddressReview": {
+        "consent": "No"
       }
     }
   }

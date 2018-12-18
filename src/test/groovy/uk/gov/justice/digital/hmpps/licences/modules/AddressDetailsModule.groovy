@@ -17,11 +17,11 @@ class AddressDetailsModule extends Module {
 
         address { type ->
             [
-                    line1    : $("#addressLine1-${type}"),
-                    line2    : $("#addressLine2-${type}"),
-                    town     : $("#addressTown-${type}"),
-                    postCode : $("#postCode-${type}"),
-                    telephone: $("#telephone-${type}")
+                    line1    : $("#addressLine1"),
+                    line2    : $("#addressLine2"),
+                    town     : $("#addressTown"),
+                    postCode : $("#postCode"),
+                    telephone: $("#telephone")
             ]
         }
     }
