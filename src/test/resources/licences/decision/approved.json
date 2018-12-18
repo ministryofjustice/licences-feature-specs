@@ -20,40 +20,34 @@
         "decision": "No"
       },
       "curfewAddress": {
-        "addresses": [{
-          "addressLine1": "Street",
-          "addressLine2": "",
-          "addressTown": "Town",
-          "postCode": "AB1 1AB",
-          "telephone": "0123 456789",
-          "occupier": {
-            "name": "Main Occupier",
-            "age": "21",
-            "relationship": "Brother"
+        "addressLine1": "Street",
+        "addressLine2": "",
+        "addressTown": "Town",
+        "postCode": "AB1 1AB",
+        "telephone": "0123 456789",
+        "occupier": {
+          "name": "Main Occupier",
+          "age": "21",
+          "relationship": "Brother"
+        },
+        "residents": [
+          {
+            "name": "Other Resident",
+            "age": "10",
+            "relationship": "Son"
           },
-          "residents": [
-            {
-              "name": "Other Resident",
-              "age": "10",
-              "relationship": "Son"
-            },
-            {
-              "name": "",
-              "age": "",
-              "relationship": ""
-            },
-            {
-              "name": "Yet Another",
-              "age": "20",
-              "relationship": "Wife"
-            }
-          ],
-          "cautionedAgainstResident": "No",
-          "consent": "Yes",
-          "electricity": "Yes",
-          "homeVisitConducted": "Yes",
-          "deemedSafe": "Yes"
-        }]
+          {
+            "name": "",
+            "age": "",
+            "relationship": ""
+          },
+          {
+            "name": "Yet Another",
+            "age": "20",
+            "relationship": "Wife"
+          }
+        ],
+        "cautionedAgainstResident": "No"
       }
     },
     "curfew": {
@@ -74,6 +68,14 @@
         "saturdayUntil": "07:00",
         "sundayFrom": "18:19",
         "sundayUntil": "06:07"
+      },
+      "curfewAddressReview": {
+        "consent": "Yes",
+        "electricity": "Yes",
+        "homeVisitConducted": "Yes"
+      },
+      "addressSafety": {
+        "deemedSafe": "Yes"
       }
     },
     "licenceConditions": {

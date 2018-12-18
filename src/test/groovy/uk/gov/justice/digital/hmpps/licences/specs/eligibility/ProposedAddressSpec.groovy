@@ -123,12 +123,12 @@ class ProposedAddressSpec extends GebReportingSpec {
         addResidentLink.click()
 
         then: 'Another resident is added to the list'
-        $(name: '[addresses][0][residents][3][name]').isDisplayed()
+        $(name: '[residents][3][name]').isDisplayed()
 
         when: 'I set values'
-        $('input', name: '[addresses][0][residents][3][name]').value('Name')
-        $('input', name: '[addresses][0][residents][3][age]').value('11')
-        $('input', name: '[addresses][0][residents][3][relationship]').value('Relation')
+        $('input', name: '[residents][3][name]').value('Name')
+        $('input', name: '[residents][3][age]').value('11')
+        $('input', name: '[residents][3][relationship]').value('Relation')
 
         and: 'I click to save and continue'
         find('#continueBtn').click()

@@ -72,46 +72,50 @@
       "bassReferral": {
         "decision": "No"
       },
-      "curfewAddress": {
-        "addresses": [
-          {
-            "consent": "Yes",
-            "occupier": {
-              "age": "21",
-              "name": "Main Occupier",
-              "relationship": "Brother"
+      "curfewAddress": {},
+      "rejections": [{
+        "address": {
+          "occupier": {
+            "age": "21",
+            "name": "Main Occupier",
+            "relationship": "Brother"
+          },
+          "postCode": "AB1 1AB",
+          "residents": [
+            {
+              "age": "10",
+              "name": "Other Resident",
+              "relationship": "Son"
             },
-            "postCode": "AB1 1AB",
-            "residents": [
-              {
-                "age": "10",
-                "name": "Other Resident",
-                "relationship": "Son"
-              },
-              {
-                "age": "",
-                "name": "",
-                "relationship": ""
-              },
-              {
-                "age": "20",
-                "name": "Yet Another",
-                "relationship": "Wife"
-              }
-            ],
-            "telephone": "0123 456789",
-            "deemedSafe": "Yes",
-            "addressTown": "Town",
+            {
+              "age": "",
+              "name": "",
+              "relationship": ""
+            },
+            {
+              "age": "20",
+              "name": "Yet Another",
+              "relationship": "Wife"
+            }
+          ],
+          "telephone": "0123 456789",
+          "addressTown": "Town",
+          "addressLine1": "Street",
+          "addressLine2": "",
+          "cautionedAgainstResident": "No"
+        },
+        "addressReview": {
+          "curfewAddressReview": {
+            "consent": "Yes",
             "electricity": "Yes",
-            "addressLine1": "Street",
-            "addressLine2": "",
-            "addressWithdrawn": "No",
-            "consentWithdrawn": "Yes",
-            "homeVisitConducted": "Yes",
-            "cautionedAgainstResident": "No"
+            "homeVisitConducted": "Yes"
+          },
+          "addressSafety": {
+            "deemedSafe": "Yes"
           }
-        ]
-      }
+        },
+        "withdrawalReason": "withdrawConsent"
+      }]
     },
     "licenceConditions": {
       "bespoke": [
