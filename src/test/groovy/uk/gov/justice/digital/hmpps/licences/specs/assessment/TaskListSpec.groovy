@@ -6,14 +6,15 @@ import spock.lang.Stepwise
 import spock.lang.Unroll
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.BassAreaCheckPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewAddressReviewPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceDetailsPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.ReportingInstructionsPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
-import uk.gov.justice.digital.hmpps.licences.pages.SendPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsStandardPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewLicencePage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
 
@@ -29,6 +30,7 @@ class TaskListSpec extends GebReportingSpec {
     @Shared
     def tasks = [
             address   : 'Proposed curfew address',
+            bass      : 'BASS area check',
             conditions: 'Additional conditions',
             risk      : 'Risk management and victim liaison',
             reporting : 'Reporting instructions',
@@ -112,7 +114,7 @@ class TaskListSpec extends GebReportingSpec {
         tasks.reporting  | ReportingInstructionsPage
     }
 
-    def 'Shows change link for tasks that have been started'() {
+    def 'Shows change link for tasks that have been done'() {
 
         given: 'Tasks started except reporting instructions'
         testData.loadLicence('assessment/risks-no')
@@ -123,7 +125,7 @@ class TaskListSpec extends GebReportingSpec {
         then: 'I see the task buttons and the submit button'
         taskListActions.size() == 6
 
-        and: 'The links for started tasks all say Change'
+        and: 'The links for completed tasks all say Change'
         taskListAction(tasks.address).text() == 'Change'
         taskListAction(tasks.conditions).text() == 'Change'
         taskListAction(tasks.risk).text() == 'Change'
@@ -189,6 +191,79 @@ class TaskListSpec extends GebReportingSpec {
 
         and: 'The licence is ready to submit'
         $('#submitPcaStatus').text() == 'Ready to submit'
+    }
+
+    def 'BASS task button links to bass area page'() {
+
+        given: 'BASS has been requested'
+        testData.loadLicence('assessment/bassArea-unstarted')
+
+        when: 'I view the task list'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        and: 'I start the task'
+        taskListAction(tasks.bass).click()
+
+        then: 'I see the BASS area check page'
+        at BassAreaCheckPage
+    }
+
+    def 'Rejecting BASS area obviates subsequent tasks but still allows submission'() {
+
+        given: 'The address has been rejected'
+        testData.loadLicence('assessment/bassArea-rejected')
+
+        when: 'I view the tasklist'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'I see only the BASS and submit tasks'
+        taskListAction(tasks.bass).text() == 'Change'
+        taskListAction(tasks.submit).text() == 'Continue'
+
+        and: 'The licence is ready to submit'
+        $('#submitPcaStatus').text() == 'Ready to submit'
+    }
+
+    def 'Shows continue button for BASS area task when started'() {
+
+        given: 'The address is not approved but no reason given yet'
+        testData.loadLicence('assessment/bassArea-no')
+
+        when: 'Viewing the tasklist when BASS area rejected'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'A Continue button is shown'
+        taskListAction(tasks.bass).text() == 'Continue'
+    }
+
+    def 'Shows change link for BASS area task when complete'() {
+
+        given: 'BASS area task complete'
+        testData.loadLicence('assessment/bassArea-yes')
+
+        when: 'I view the page'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'A change link is shown'
+        taskListAction(tasks.bass).text() == 'Change'
+    }
+
+    def 'Bass details shown on review page'() {
+
+        given: 'Rejected bass area'
+        testData.loadLicence('assessment/bassArea-rejected')
+
+        when: 'I proceed'
+        taskListAction(tasks.submit).click()
+
+        then: 'I see the review page'
+        at ReviewLicencePage
+
+        and: 'The bass details are shown'
+        bass.proposed.town == 'BASS Town'
+        bass.proposed.county == 'BASS County'
+        bass.area.bassAreaSuitable == 'No'
+        bass.area.bassAreaReason == 'Reason'
     }
 }
 

@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.licences.pages.review
 
 import geb.Page
+import uk.gov.justice.digital.hmpps.licences.modules.BassRequestModule
 import uk.gov.justice.digital.hmpps.licences.modules.ConditionsSummaryModule
 import uk.gov.justice.digital.hmpps.licences.modules.CurfewDetailsModule
 import uk.gov.justice.digital.hmpps.licences.modules.HeaderModule
@@ -29,6 +30,8 @@ class ReviewLicencePage extends Page {
         risk { module(RiskDetailsModule) }
 
         reporting { module(ReportingDetailsModule) }
+
+        bass { module(BassRequestModule) }
 
         createLicenceControl(required: false) {$('#createPdf')}
     }

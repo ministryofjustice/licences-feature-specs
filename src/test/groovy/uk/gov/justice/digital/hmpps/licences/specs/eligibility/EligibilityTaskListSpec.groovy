@@ -7,6 +7,7 @@ import spock.lang.Stepwise
 import uk.gov.justice.digital.hmpps.Stage
 import uk.gov.justice.digital.hmpps.licences.pages.CaselistPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.eligibility.BassRejectedPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.EligibilityExclusionPage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -182,5 +183,30 @@ class EligibilityTaskListSpec extends GebReportingSpec {
 
         then: 'The submit task is shown'
         !taskListAction('Inform the offender').isDisplayed()
+    }
+
+    def 'BASS submit task shown when BASS requested'() {
+
+        when: 'Viewing the tasklist'
+        testData.loadLicence("eligibility/bassRequest-unstarted")
+        to TaskListPage, testData.markAndrewsBookingId
+
+        then: 'The submit task is shown'
+        $('h2', text: contains('Send for BASS area checks')).isDisplayed()
+    }
+
+    def 'When BASS is rejected, BASS task shows rejection page'() {
+
+        given: 'BASS has been requested'
+        testData.loadLicence('eligibility/bassArea-rejected')
+
+        when: 'I view the task list'
+        to TaskListPage, testData.markAndrewsBookingId
+
+        and: 'I start the task'
+        taskListAction('Curfew address and opt out').click()
+
+        then: 'I see the BASS rejection page'
+        at BassRejectedPage
     }
 }

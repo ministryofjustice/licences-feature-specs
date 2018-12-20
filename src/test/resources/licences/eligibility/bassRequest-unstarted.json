@@ -2,24 +2,27 @@
   "stage": "ELIGIBILITY",
   "licence": {
     "eligibility": {
+      "crdTime": {
+        "decision": "No"
+      },
       "excluded": {
         "decision": "No"
       },
       "suitability": {
         "decision": "No"
-      },
-      "crdTime": {
-        "decision": "No"
+      }
+    },
+    "bassReferral": {
+      "bassRequest": {
+        "bassRequested": "Yes"
       }
     },
     "proposedAddress": {
       "optOut": {
         "decision": "No"
       },
-      "bassReferral": {
-        "decision": "Yes",
-        "proposedTown": "Bass Town",
-        "proposedCounty": "Bass County"
+      "addressProposed": {
+        "decision": "No"
       }
     }
   }
