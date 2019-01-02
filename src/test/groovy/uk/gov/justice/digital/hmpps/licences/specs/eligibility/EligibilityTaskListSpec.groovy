@@ -149,7 +149,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'The address check task is not shown'
-        !taskListAction('Curfew address and opt out').isDisplayed()
+        !taskListAction('Curfew address').isDisplayed()
 
         where:
         condition << ['unstarted', 'excluded', 'unsuitable', 'insufficientTime']
@@ -162,7 +162,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'The address check task is shown'
-        taskListAction('Curfew address and opt out').isDisplayed()
+        taskListAction('Curfew address').isDisplayed()
     }
 
     def 'Submit task shown once address task is started'() {
@@ -204,7 +204,7 @@ class EligibilityTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         and: 'I start the task'
-        taskListAction('Curfew address and opt out').click()
+        taskListAction('Curfew address').click()
 
         then: 'I see the BASS rejection page'
         at BassRejectedPage

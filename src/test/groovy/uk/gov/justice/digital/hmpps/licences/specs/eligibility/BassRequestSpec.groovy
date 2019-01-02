@@ -125,7 +125,7 @@ class BassRequestSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         and: 'I do the bass task'
-        taskListAction('Curfew address and opt out').click()
+        taskListAction('Curfew address').click()
 
         then: 'BASS task links to rejected page'
         at BassRejectedPage
