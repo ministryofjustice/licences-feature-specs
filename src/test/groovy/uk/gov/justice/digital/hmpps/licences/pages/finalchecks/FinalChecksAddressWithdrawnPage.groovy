@@ -15,6 +15,6 @@ class FinalChecksAddressWithdrawnPage extends Page {
     static content = {
         header { module(HeaderModule) }
 
-        addAddressRadios { $(name: "decision").module(RadioButtons) }
+        addAddressRadios { $(name: "enterNewAddress").module(RadioButtons) }
     }
 }
