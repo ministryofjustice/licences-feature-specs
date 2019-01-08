@@ -54,10 +54,6 @@
     "curfew": {
       "curfewAddressReview": {
         "consent": "No"
-      },
-      "addressSafety": {
-        "deemedSafe": "No",
-        "reason": "Managed safely details"
       }
     }
   }

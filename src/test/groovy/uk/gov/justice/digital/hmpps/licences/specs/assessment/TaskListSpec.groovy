@@ -14,6 +14,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
 import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.LicenceConditionsStandardPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.VictimLiaisonPage
 import uk.gov.justice.digital.hmpps.licences.pages.review.ReviewLicencePage
 import uk.gov.justice.digital.hmpps.licences.util.Actions
 import uk.gov.justice.digital.hmpps.licences.util.TestData
@@ -32,7 +33,8 @@ class TaskListSpec extends GebReportingSpec {
             address   : 'Proposed curfew address',
             bass      : 'BASS area check',
             conditions: 'Additional conditions',
-            risk      : 'Risk management and victim liaison',
+            risk      : 'Risk management',
+            victim    : 'Victim liaison',
             reporting : 'Reporting instructions',
             submit    : 'Submit to prison case admin'
     ]
@@ -87,7 +89,7 @@ class TaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons and the submit button'
-        taskListActions.size() == 6
+        taskListActions.size() == 7
 
         and: 'The buttons all say Start'
         taskListActions.take(5).every { it.text() == 'Start now' }
@@ -111,6 +113,7 @@ class TaskListSpec extends GebReportingSpec {
         tasks.address    | CurfewAddressReviewPage
         tasks.conditions | LicenceConditionsStandardPage
         tasks.risk       | RiskManagementPage
+        tasks.victim     | VictimLiaisonPage
         tasks.reporting  | ReportingInstructionsPage
     }
 
@@ -123,12 +126,13 @@ class TaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons and the submit button'
-        taskListActions.size() == 6
+        taskListActions.size() == 7
 
         and: 'The links for completed tasks all say Change'
         taskListAction(tasks.address).text() == 'Change'
         taskListAction(tasks.conditions).text() == 'Change'
         taskListAction(tasks.risk).text() == 'Change'
+        taskListAction(tasks.victim).text() == 'Change'
         taskListAction(tasks.reporting).text() == 'Start now'
     }
 
@@ -141,7 +145,7 @@ class TaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons'
-        taskListActions.size() == 6
+        taskListActions.size() == 7
 
         and: 'There is a submit to OMU button'
         taskListAction(tasks.submit).text() == 'Continue'

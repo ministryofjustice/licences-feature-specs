@@ -49,10 +49,15 @@
     "risk": {
       "riskManagement": {
         "planningActions": "Yes",
-        "planningActionsDetails": "Risk details",
         "awaitingInformation": "Yes",
-        "awaitingInformationDetails": "Information details",
-        "victimLiaison": "Yes",
+        "riskManagementDetails": "Information details",
+        "proposedAddressSuitable": "No",
+        "unsuitableReason": "Reason"
+      }
+    },
+    "victim": {
+      "victimLiaison": {
+        "decision": "Yes",
         "victimLiaisonDetails": "Victim details"
       }
     },

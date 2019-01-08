@@ -32,7 +32,7 @@ class RiskManagementSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         when: 'I start the risk management task'
-        taskListAction('Risk management and victim liaison').click()
+        taskListAction('Risk management').click()
 
         then: 'I see the risk management page'
         at RiskManagementPage
@@ -40,63 +40,32 @@ class RiskManagementSpec extends GebReportingSpec {
         and: 'The options are unset'
         riskManagementRadios.checked == null
         awaitingInformationRadios.checked == null
-        victimLiaisonRadios.checked == null
+        addressSuitableRadios.checked == null
     }
 
-    def 'Risk management details shown when YES' () {
+    def 'Address suitability reasons shown when No' () {
 
         when: 'At risk management page'
         at RiskManagementPage
 
-        then: 'I dont see the details form'
-        !riskManagementForm.isDisplayed()
+        then: 'I dont see the reason form'
+        !addressSuitableForm.isDisplayed()
 
-        when: 'I select yes for risk management'
-        riskManagementRadios.checked = 'Yes'
+        when: 'I select no for address suitability'
+        addressSuitableRadios.checked = 'No'
 
-        then: 'I see the details form'
-        riskManagementForm.isDisplayed()
-    }
-
-    def 'Awaiting information details shown when YES' () {
-
-        when: 'At risk management page'
-        at RiskManagementPage
-
-        then: 'I dont see the details form'
-        !awaitingInformationForm.isDisplayed()
-
-        when: 'I select yes for awaiting information'
-        awaitingInformationRadios.checked = 'Yes'
-
-        then: 'I see the details form'
-        awaitingInformationForm.isDisplayed()
-    }
-
-    def 'Victim liaison details shown when YES' () {
-
-        when: 'At risk management page'
-        at RiskManagementPage
-
-        then: 'I dont see the details form'
-        !victimLiaisonForm.isDisplayed()
-
-        when: 'I select yes for victim liaison'
-        victimLiaisonRadios.checked = 'Yes'
-
-        then: 'I see the details form'
-        victimLiaisonForm.isDisplayed()
+        then: 'I see the reason form'
+        addressSuitableForm.isDisplayed()
     }
 
     def 'Modified choices are saved after save and continue' () {
-
 
         given:  'At risk management page'
         at RiskManagementPage
 
         when: 'I select new options'
         riskManagementRadios.checked = 'Yes'
-        victimLiaisonRadios.checked = 'No'
+        addressSuitableRadios.checked = 'No'
 
         and: 'I save and continue'
         find('#continueBtn').click()
@@ -106,6 +75,6 @@ class RiskManagementSpec extends GebReportingSpec {
 
         then: 'I see the previously entered values'
         riskManagementRadios.checked == 'Yes'
-        victimLiaisonRadios.checked == 'No'
+        addressSuitableRadios.checked == 'No'
     }
 }

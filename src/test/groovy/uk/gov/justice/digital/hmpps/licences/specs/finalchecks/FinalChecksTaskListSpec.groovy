@@ -11,6 +11,7 @@ import uk.gov.justice.digital.hmpps.licences.pages.SentPage
 import uk.gov.justice.digital.hmpps.licences.pages.TaskListPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.CurfewHoursPage
 import uk.gov.justice.digital.hmpps.licences.pages.assessment.RiskManagementPage
+import uk.gov.justice.digital.hmpps.licences.pages.assessment.VictimLiaisonPage
 import uk.gov.justice.digital.hmpps.licences.pages.eligibility.BassRejectedPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.BassOfferPage
 import uk.gov.justice.digital.hmpps.licences.pages.finalchecks.FinalChecksSeriousOffencePage
@@ -34,7 +35,8 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
             bass       : 'BASS address',
             curfewHours: 'Curfew hours',
             conditions : 'Additional conditions',
-            risk       : 'Risk management and victim liaison',
+            risk       : 'Risk management',
+            victim     : 'Victim liaison',
             reporting  : 'Reporting instructions',
             final      : 'Review case',
             postpone   : 'Postpone',
@@ -90,11 +92,11 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, testData.markAndrewsBookingId
 
-        then: 'I see 8 task buttons'
-        taskListActions.size() == 8
+        then: 'I see 9 task buttons'
+        taskListActions.size() == 9
 
         and: 'The tasks for reviewing RO input have View buttons'
-        taskListActions.take(5)*.text() == ['Change', 'View/Edit', 'View/Edit', 'View', 'View']
+        taskListActions.take(6)*.text() == ['Change', 'View/Edit', 'View/Edit', 'View/Edit', 'View', 'View']
 
         and: 'The final checks task has a Start button'
         taskListAction(tasks.final).text() == 'Start now'
@@ -111,8 +113,8 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         when: 'I view the page'
         to TaskListPage, testData.markAndrewsBookingId
 
-        then: 'I see 9 task buttons'
-        taskListActions.size() == 9
+        then: 'I see 10 task buttons'
+        taskListActions.size() == 10
 
         and: 'The submit task has a Continue button'
         taskListAction(tasks.submit).text() == 'Continue'
@@ -142,6 +144,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         'curfew'       | tasks.curfewHours | CurfewHoursPage
         'conditions'   | tasks.conditions  | ReviewConditionsPage
         'risk'         | tasks.risk        | RiskManagementPage
+        'victim'       | tasks.victim      | VictimLiaisonPage
         'reporting'    | tasks.reporting   | ReviewReportingPage
         'final checks' | tasks.final       | FinalChecksSeriousOffencePage
         'submit'       | tasks.submit      | SendPage

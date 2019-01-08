@@ -39,8 +39,7 @@ class CurfewDetailsModule extends Module {
                     cautioned  : $("#cautioned-curfew").text(),
                     consent    : $("#consent-curfew").text(),
                     homeVisit  : $("#homeVisit-curfew").text(),
-                    electricity: $("#electricity-curfew").text(),
-                    safety     : $("#deemedSafe-curfew").text()
+                    electricity: $("#electricity-curfew").text()
             ]
         }
 

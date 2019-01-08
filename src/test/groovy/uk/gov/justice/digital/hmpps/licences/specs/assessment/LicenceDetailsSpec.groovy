@@ -72,8 +72,6 @@ class LicenceDetailsSpec extends GebReportingSpec {
         curfew.reviewAnswers.consent == 'Yes'
         curfew.reviewAnswers.homeVisit == 'Yes'
         curfew.reviewAnswers.electricity == 'Yes'
-        curfew.reviewAnswers.safety == 'Yes'
-
     }
 
     def 'Shows curfew hours details'() {
@@ -122,7 +120,6 @@ class LicenceDetailsSpec extends GebReportingSpec {
         then: 'I see the risk management details'
         risk.answers.planningActions == 'No'
         risk.answers.information == 'No'
-        risk.answers.victimLiaison == 'No'
     }
 
     def 'Shows reporting details'() {
@@ -159,6 +156,7 @@ class LicenceDetailsSpec extends GebReportingSpec {
         'curfewHours' | CurfewHoursPage
         'conditions'  | LicenceConditionsStandardPage
         'risk'        | RiskManagementPage
+        'victim'      | VictimLiaisonPage
         'reporting'   | ReportingInstructionsPage
     }
 
@@ -194,8 +192,8 @@ class LicenceDetailsSpec extends GebReportingSpec {
 
         where:
         reason           | sample                                    | answers
-        'no consent'     | 'assessment/address-rejected'             | [consent: 'No', electricity: null, homeVisit: null, safety: null, cautioned: 'No']
-        'no electricity' | 'assessment/address-rejected-electricity' | [consent: 'Yes', electricity: 'No', homeVisit: null, safety: null, cautioned: 'No']
+        'no consent'     | 'assessment/address-rejected'             | [consent: 'No', electricity: null, homeVisit: null, cautioned: 'No']
+        'no electricity' | 'assessment/address-rejected-electricity' | [consent: 'Yes', electricity: 'No', homeVisit: null, cautioned: 'No']
     }
 
     def 'Shows BASS details when BASS referral'() {

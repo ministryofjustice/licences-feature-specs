@@ -3,9 +3,13 @@
   "licence": {
     "risk": {
       "riskManagement": {
-        "victimLiaison": "No",
         "planningActions": "No",
         "awaitingInformation": "No"
+      }
+    },
+    "victim": {
+      "victimLiaison": {
+        "victimLiaison": "No"
       }
     },
     "curfew": {
@@ -125,8 +129,11 @@
             "electricity": "Yes",
             "homeVisitConducted": "Yes"
           },
-          "addressSafety": {
-            "deemedSafe": "Yes"
+          "risk": {
+            "riskManagement": {
+              "proposedAddressSuitable": "No",
+              "unsuitableReason": "Reasons"
+            }
           }
         },
         "withdrawalReason": "withdrawConsent"
