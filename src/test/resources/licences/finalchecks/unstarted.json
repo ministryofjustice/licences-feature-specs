@@ -94,7 +94,12 @@
       "riskManagement": {
         "planningActions": "No",
         "awaitingInformation": "No",
-        "victimLiaison": "No"
+        "proposedAddressSuitable": "Yes"
+      }
+    },
+    "victim": {
+      "victimLiaison": {
+        "decision": "No"
       }
     },
     "reporting": {

@@ -45,12 +45,12 @@ class ReviewLicenceSpec extends GebReportingSpec {
         to ReviewLicencePage, testData.markAndrewsBookingId
 
         then: 'I see the address detail'
-        $('#curfewAddressDetails').isDisplayed();
+        $('#curfewAddressDetails').isDisplayed()
+        $('#riskDetails').isDisplayed()
 
         and: 'I do not see the other sections'
-        ! $('#curfewHoursDetails').isDisplayed();
-        ! $('#conditionsDetails').isDisplayed();
-        ! $('#riskDetails').isDisplayed();
-        ! $('#reportingDetails').isDisplayed();
+        ! $('#curfewHoursDetails').isDisplayed()
+        ! $('#conditionsDetails').isDisplayed()
+        ! $('#reportingDetails').isDisplayed()
     }
 }

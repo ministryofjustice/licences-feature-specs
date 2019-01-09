@@ -73,9 +73,6 @@
         "consent": "Yes",
         "electricity": "Yes",
         "homeVisitConducted": "Yes"
-      },
-      "addressSafety": {
-        "deemedSafe": "Yes"
       }
     },
     "licenceConditions": {
@@ -96,7 +93,12 @@
       "riskManagement": {
         "planningActions": "No",
         "awaitingInformation": "No",
-        "victimLiaison": "No"
+        "proposedAddressSuitable": "Yes"
+      }
+    },
+    "victim": {
+      "victimLiaison": {
+        "decision": "No"
       }
     },
     "reporting": {
