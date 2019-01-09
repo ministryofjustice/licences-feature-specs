@@ -45,17 +45,17 @@ class ApprovalTaskListSpec extends GebReportingSpec {
 
     def 'Shows buttons for all tasks with correct label'() {
 
-        given: 'An licence ready for final checks'
+        given: 'A licence ready for final checks'
         testData.loadLicence('decision/unstarted')
 
         when: 'I view the page'
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the right number of task buttons'
-        taskListActions.size() == 7
+        taskListActions.size() == 8
 
         and: 'The tasks for reviewing RO and CA input have View buttons'
-        taskListActions.take(5).every { it.text() == 'View' }
+        taskListActions.take(6).every { it.text() == 'View' }
 
         and: 'The final decision task has a Continue button'
         taskListAction(tasks.decision).text() == 'Continue'

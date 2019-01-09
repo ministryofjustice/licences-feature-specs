@@ -17,10 +17,9 @@ class RiskManagementPage extends Page {
 
         riskManagementRadios { $(name: "planningActions").module(RadioButtons) }
         awaitingInformationRadios { $(name: "awaitingInformation").module(RadioButtons) }
-        victimLiaisonRadios { $(name: "victimLiaison").module(RadioButtons) }
+        addressSuitableRadios { $(name: "proposedAddressSuitable").module(RadioButtons) }
 
-        riskManagementForm(required: false) { $("#planningActionsDetails") }
-        awaitingInformationForm(required: false) { $("#awaitingInformationDetails") }
-        victimLiaisonForm(required: false) { $("#victimLiaisonDetails") }
+        riskManagementForm { $("#riskManagementDetails") }
+        addressSuitableForm(required: false) { $("#unsuitableReason") }
     }
 }

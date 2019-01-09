@@ -30,7 +30,8 @@ class CaTaskListSpec extends GebReportingSpec {
             address     : 'Proposed curfew address',
             bass        : 'BASS address',
             conditions  : 'Additional conditions',
-            risk        : 'Risk management and victim liaison',
+            risk        : 'Risk management',
+            victim      : 'Victim liaison',
             reporting   : 'Reporting instructions',
             curfew      : 'Curfew hours',
             finalChecks : 'Review case',
@@ -68,10 +69,10 @@ class CaTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the task buttons and the submit button'
-        taskListActions.size() == 10
+        taskListActions.size() == 11
 
         and: 'All editable tasks have View/Edit buttons'
-        taskListActions.take(6).every { it.text() == 'View/Edit' }
+        taskListActions.take(7).every { it.text() == 'View/Edit' }
 
         and: 'Final checks task is view only'
         taskListAction(tasks.finalChecks).text() == 'Change'
@@ -97,6 +98,7 @@ class CaTaskListSpec extends GebReportingSpec {
         tasks.eligibility | EligibilityExclusionPage
         tasks.address     | ReviewAddressPage
         tasks.risk        | RiskManagementPage
+        tasks.victim      | VictimLiaisonPage
         tasks.curfew      | CurfewHoursPage
         tasks.conditions  | LicenceConditionsStandardPage
         tasks.reporting   | ReportingInstructionsPage
@@ -130,7 +132,7 @@ class CaTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see the full tasklist and the create licence task'
-        taskListActions.size() == 10
+        taskListActions.size() == 11
         taskListAction(tasks.create).text() == 'Continue'
     }
 
@@ -139,7 +141,7 @@ class CaTaskListSpec extends GebReportingSpec {
         given: 'Address has been withdrawn and a new one added'
         testData.loadLicence('postDecision/address-withdrawn-new')
 
-        when: 'I view the taskist'
+        when: 'I view the tasklist'
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I can only submit to RO'

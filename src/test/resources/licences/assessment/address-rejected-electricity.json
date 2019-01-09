@@ -55,10 +55,6 @@
         "consent": "Yes",
         "electricity": "No",
         "homeVisit": "Yes"
-      },
-      "addressSafety": {
-        "deemedSafe": "No",
-        "reason": "Managed safely details"
       }
     }
   }

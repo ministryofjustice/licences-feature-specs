@@ -36,7 +36,7 @@ class ReviewRiskSpec extends GebReportingSpec {
         then: 'I see the risk management answers'
         risk.answers.planningActions == 'No'
         risk.answers.information == 'No'
-        risk.answers.victimLiaison == 'No'
+        risk.answers.addressSuitable == 'Yes'
     }
 
     def 'Also shows risk details entered by RO when there are risk issues'() {
@@ -48,9 +48,8 @@ class ReviewRiskSpec extends GebReportingSpec {
         to ReviewRiskPage, testData.markAndrewsBookingId
 
         then: 'I see the risk management details'
-        risk.answers.planningActionsDetail == 'Risk details'
-        risk.answers.informationDetail == 'Information details'
-        risk.answers.victimLiaisonDetail == 'Victim details'
+        risk.answers.riskManagementDetail == 'Information details'
+        risk.answers.unsuitableReason == 'Reason'
     }
 
 }
