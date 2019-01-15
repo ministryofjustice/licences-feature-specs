@@ -183,7 +183,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         to TaskListPage, testData.markAndrewsBookingId
 
         then: 'I see only address, submit'
-        taskListActions.size() == 2
+        taskListActions.size() == 3
     }
 
     def 'BASS task button links to bass offer page'() {
