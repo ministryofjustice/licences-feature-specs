@@ -39,7 +39,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
             victim     : 'Victim liaison',
             reporting  : 'Reporting instructions',
             final      : 'Review case',
-            postpone   : 'Postpone',
+            postpone   : 'Postpone or refuse',
             submit     : 'Submit to decision maker'
     ]
 
@@ -102,7 +102,7 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         taskListAction(tasks.final).text() == 'Start now'
 
         and: 'The postpone task has a Postpone button'
-        taskListAction(tasks.postpone).value() == 'Postpone'  // NB value, not text - button, not link
+        taskListAction(tasks.postpone).text() == 'Postpone'
     }
 
     def 'Shows submit button when all tasks done'() {
@@ -216,6 +216,6 @@ class FinalChecksTaskListSpec extends GebReportingSpec {
         taskListActions.size() == 3
 
         and: 'I can only submit for refusal'
-        $('h2', text: contains('Submit to decision maker')).closest('div').text().contains('Ready to submit for refusal')
+        $('h2', text: contains('Submit to decision maker')).closest('div').next().text().contains('Ready to submit for refusal')
     }
 }

@@ -40,7 +40,7 @@ class TaskListPage extends Page {
         taskListActions(required: false) { $('.taskListAction') }
 
         taskListAction(required: false){ taskName ->
-            $('h2', text: contains(taskName)).closest('div').find('.taskListAction')
+            $('h2', text: contains(taskName)).closest('div').next().find('.taskListAction')
         }
     }
 }
