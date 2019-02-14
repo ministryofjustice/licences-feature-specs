@@ -192,9 +192,6 @@ class TaskListSpec extends GebReportingSpec {
         then: 'I see only the address and submit tasks'
         taskListAction(tasks.address).text() == 'Change'
         taskListAction(tasks.submit).text() == 'Continue'
-
-        and: 'The licence is ready to submit'
-        $('#submitPcaStatus').text() == 'Ready to submit'
     }
 
     def 'BASS task button links to bass area page'() {
@@ -223,9 +220,6 @@ class TaskListSpec extends GebReportingSpec {
         then: 'I see only the BASS and submit tasks'
         taskListAction(tasks.bass).text() == 'Change'
         taskListAction(tasks.submit).text() == 'Continue'
-
-        and: 'The licence is ready to submit'
-        $('#submitPcaStatus').text() == 'Ready to submit'
     }
 
     def 'Shows continue button for BASS area task when started'() {
