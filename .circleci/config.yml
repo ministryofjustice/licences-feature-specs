@@ -13,7 +13,7 @@ jobs:
           key: gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: feature tests for mock
-          command: ./gradlew clean mockTest
+          command: ./gradlew clean mockTest --info
           no_output_timeout: 15m
       - save_cache:
           key: gradle-cache-{{ checksum "build.gradle" }}
