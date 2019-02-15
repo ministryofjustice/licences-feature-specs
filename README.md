@@ -5,7 +5,7 @@ see http://www.gebish.org/manual/current/
 ## Pre-Requisites
 
 ### Webdriver
-Install current versions of phantomjs and chromedriver
+Install current versions of chromedriver
 
 ### Environment
 The following environment variables must be set:
@@ -17,7 +17,7 @@ suitable mocks.
 
 ## Execution
 
-In src.test/resources/GebConfig.groovy you can change from headless mode (Phantom JS)
+In src.test/resources/GebConfig.groovy you can change from headless mode 
 to browser mode with ChromeDriver. If not using the bundled Linux ChromeDriver, set the
 webdriver.chrome.driver property with your ChromeDriver path.
 
