@@ -4,7 +4,6 @@ plugins {
 
 ext {
     ext {
-        drivers = ['chromeHeadless']
         groovyVersion = '2.5.5'
         gebVersion = '2.2'
         seleniumVersion = '3.12.0'
@@ -42,10 +41,12 @@ dependencies {
 }
 
 task mockTest(type: Test) {
+    systemProperty 'geb.env', 'chromeHeadless'
     group = 'verification'
 }
 
 task stageTest(type: Test) {
     group = 'verification'
+    systemProperty 'geb.env', 'chromeHeadless'
     systemProperty 'spock.configuration', 'StageSpockConfig.groovy'
 }
